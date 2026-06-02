@@ -1,1 +1,1 @@
-// Add JS here
+// All code is in index.html
