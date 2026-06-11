@@ -1321,7 +1321,7 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
         </div>
         <div class="sub-counter-row">
           <div class="sub-counter-label">
-            W1,600 L형 데스크 + 원형 테이블
+            W1,600 L형 데스크 + 보조 테이블
             <small>2.0평 / 6.7㎡</small>
           </div>
           <div class="sub-counter-box">
@@ -1347,7 +1347,7 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
         </div>
         <div class="sub-counter-row">
           <div class="sub-counter-label">
-            W1,800 L형 데스크 + 원형 테이블
+            W1,800 L형 데스크 + 보조 테이블
             <small>2.3평 / 7.5㎡</small>
           </div>
           <div class="sub-counter-box">
@@ -1627,12 +1627,10 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
 
     
 <div class="card">
-      <div class="card-title">🖨️ OA존 · 탕비공간<button onclick="openFpPreview('oa')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-oa"></span></div>
-      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">컴팩트형 (W3,400)</div>
+      <div class="card-title">🖨️ OA존<span class="card-size-badge" id="badge-oa"></span></div>
       <div class="sub-counter-row">
-<div style="height:1px;background:var(--border);margin:10px 0 8px;"></div>
-              <div class="sub-counter-label">
-          컴팩트 OA/탕비 — 수납형
+        <div class="sub-counter-label">
+          컴팩트형 (W3,400)
           <small>2.3평 / 7.6㎡</small>
         </div>
         <div class="sub-counter-box">
@@ -1643,37 +1641,39 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
       </div>
       <div class="sub-counter-row" style="border-bottom:none;">
         <div class="sub-counter-label">
-          컴팩트 OA/탕비 — 복도형
-          <small>1.5평 / 5.1㎡</small>
-        </div>
-        <div class="sub-counter-box">
-          <button class="sub-counter-btn" onclick="adj('oa_cc',-1)">−</button>
-          <input class="sub-counter-num" id="oa_cc" type="number" value="0" min="0" oninput="calc()">
-          <button class="sub-counter-btn" onclick="adj('oa_cc',1)">+</button>
-        </div>
-      </div>
-      <div style="height:2px;background:rgba(0,0,0,0.15);margin:10px 0 10px;"></div>
-      <div style="font-size:11px;font-weight:700;color:var(--muted);margin:0 0 6px;text-transform:uppercase;letter-spacing:0.5px;">표준형 (W4,200)</div>
-      <div class="sub-counter-row">
-        <div class="sub-counter-label">
-          표준형 OA/탕비 — 수납형
-          <small>2.8평 / 9.3㎡</small>
+          표준형 (W4,200)
+          <small>3.5평 / 11.6㎡</small>
         </div>
         <div class="sub-counter-box">
           <button class="sub-counter-btn" onclick="adj('oa_ss',-1)">−</button>
-          <input class="sub-counter-num" id="oa_ss" type="number" value="1" min="0" oninput="calc()">
+          <input class="sub-counter-num" id="oa_ss" type="number" value="0" min="0" oninput="calc()">
           <button class="sub-counter-btn" onclick="adj('oa_ss',1)">+</button>
         </div>
       </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">☕ 탕비공간<span class="card-size-badge" id="badge-tb"></span></div>
       <div class="sub-counter-row">
         <div class="sub-counter-label">
-          표준형 OA/탕비 — 복도형
-          <small>2.0평 / 6.3㎡</small>
+          컴팩트형 (W3,400)
+          <small>2.3평 / 7.6㎡</small>
         </div>
         <div class="sub-counter-box">
-          <button class="sub-counter-btn" onclick="adj('oa_sc',-1)">−</button>
-          <input class="sub-counter-num" id="oa_sc" type="number" value="0" min="0" oninput="calc()">
-          <button class="sub-counter-btn" onclick="adj('oa_sc',1)">+</button>
+          <button class="sub-counter-btn" onclick="adj('tb_cs',-1)">−</button>
+          <input class="sub-counter-num" id="tb_cs" type="number" value="0" min="0" oninput="calc()">
+          <button class="sub-counter-btn" onclick="adj('tb_cs',1)">+</button>
+        </div>
+      </div>
+      <div class="sub-counter-row" style="border-bottom:none;">
+        <div class="sub-counter-label">
+          표준형 (W4,200)
+          <small>3.5평 / 11.6㎡</small>
+        </div>
+        <div class="sub-counter-box">
+          <button class="sub-counter-btn" onclick="adj('tb_ss',-1)">−</button>
+          <input class="sub-counter-num" id="tb_ss" type="number" value="0" min="0" oninput="calc()">
+          <button class="sub-counter-btn" onclick="adj('tb_ss',1)">+</button>
         </div>
       </div>
     </div>
@@ -2811,7 +2811,7 @@ function restart() {
     tm_16rt:0, tm_16ch:0, tm_16l:0, tm_18rt:0, tm_18ch:0, tm_18l:0,
     emp_12:0, emp_14:0, emp_16:50, emp_18:0, emp_120:0,
     conf_pb:0, conf_fr:0, conf_4:0, conf_6:2, conf_8:1, conf_12:0, conf_14:0, conf_16:0,
-    oa_cs:0, oa_cc:0, oa_ss:1, oa_sc:0,
+    oa_cs:0, oa_ss:0, tb_cs:0, tb_ss:0,
     stor_cab:0, stor_loc:0,
     lg_s:0, lg_m:1, lg_l:0
   };
@@ -2889,11 +2889,11 @@ function calc() {
   const confCount = conf_pb + conf_fr + conf_4 + conf_6 + conf_8 + conf_12 + conf_14 + conf_16;
 
   // OA존·탕비실 (평)
-  const oa_cs = v('oa_cs'); // 컴팩트 수납 2.3
-  const oa_cc = v('oa_cc'); // 컴팩트 복도 1.5
-  const oa_ss = v('oa_ss'); // 표준 수납 2.8
-  const oa_sc = v('oa_sc'); // 표준 복도 2.0
-  const oaArea = oa_cs*2.3 + oa_cc*1.5 + oa_ss*2.8 + oa_sc*2.0;
+  const oa_cs = v('oa_cs'); // OA 컴팩트형 2.3
+  const oa_ss = v('oa_ss'); // OA 표준형 3.5
+  const tb_cs = v('tb_cs'); // 탕비 컴팩트형 2.3
+  const tb_ss = v('tb_ss'); // 탕비 표준형 3.5
+  const oaArea = oa_cs*2.3 + oa_ss*3.5 + tb_cs*2.3 + tb_ss*3.5;
 
   // 수납가구 (평)
   const stor_cab = v('stor_cab'); // 캐비닛 0.5
@@ -2930,6 +2930,8 @@ function calc() {
     totalPy, usablePy, corridorPy, totalM2,
     usableCore,
     execArea, tmArea, empArea, confArea, oaArea, storArea, lgArea,
+    oaOnly: oa_cs*2.3 + oa_ss*3.5,
+    tbArea: tb_cs*2.3 + tb_ss*3.5,
     empCount: empTotal,
     execCount: exec_xl + exec_l + exec_m + exec_s,
     confChairs: Math.round(confArea / 1.5)
@@ -3049,7 +3051,8 @@ function renderCalc() {
   setBadge('badge-emp',   d.empArea   || 0);
   setBadge('badge-focus', focusArea2);
   setBadge('badge-conf',  meetingArea2);
-  setBadge('badge-oa',    d.oaArea    || 0);
+  setBadge('badge-oa',    d.oaOnly  || 0);
+  setBadge('badge-tb',    d.tbArea  || 0);
   setBadge('badge-stor',  d.storArea  || 0);
   setBadge('badge-lg',    d.lgArea    || 0);
 
@@ -3331,10 +3334,10 @@ function buildReport() {
     exec_l:  { cat:'임원공간', label:'중대형 임원실',  py:8.0,  m2:26.4, comp:'임원SET+7인 회의',  fur:'임원 데스크+크레덴자+회의테이블' },
     exec_m:  { cat:'임원공간', label:'중형 임원실',    py:5.4,  m2:18,   comp:'임원SET+4인 회의',  fur:'임원 데스크+크레덴자+6인 회의테이블' },
     exec_s:  { cat:'임원공간', label:'소형 임원실',    py:3.3,  m2:10.8, comp:'임원SET+보조좌석',  fur:'임원 데스크+보조의자' },
-    tm_16rt: { cat:'팀장석',   label:'팀장석 W1,600+원형',py:2.0, m2:6.7, comp:'W1,600 L형 데스크 + 원형 회의테이블', fur:'W1,600 모션데스크+원형테이블' },
+    tm_16rt: { cat:'팀장석',   label:'팀장석 W1,600+보조',py:2.0, m2:6.7, comp:'W1,600 L형 데스크 + 보조 테이블', fur:'W1,600 모션데스크+원형테이블' },
     tm_16ch: { cat:'팀장석',   label:'팀장석 W1,600+보조',py:1.4, m2:4.7, comp:'W1,600 L형 데스크 + 보조의자',  fur:'W1,600 모션데스크+보조의자' },
     tm_16l:  { cat:'팀장석',   label:'팀장석 W1,600 L형', py:1.0, m2:3.4, comp:'W1,600 L형 데스크',    fur:'W1,600 L형 데스크' },
-    tm_18rt: { cat:'팀장석',   label:'팀장석 W1,800+원형',py:2.3, m2:7.5, comp:'W1,800 L형 데스크 + 원형 회의테이블', fur:'W1,800 모션데스크+원형테이블' },
+    tm_18rt: { cat:'팀장석',   label:'팀장석 W1,800+보조',py:2.3, m2:7.5, comp:'W1,800 L형 데스크 + 보조 테이블', fur:'W1,800 모션데스크+원형테이블' },
     tm_18ch: { cat:'팀장석',   label:'팀장석 W1,800+보조',py:1.6, m2:5.3, comp:'W1,800 L형 데스크 + 보조의자',  fur:'W1,800 모션데스크+보조의자' },
     tm_18l:  { cat:'팀장석',   label:'팀장석 W1,800 L형', py:1.1, m2:3.8, comp:'W1,800 L형 데스크',    fur:'W1,800 L형 데스크' },
     emp_12:  { cat:'업무공간', label:'팀원석 W1,200', py:0.7, m2:2.3,  comp:'노트북 전용',         fur:'W1,200 데스크+사이드수납' },
@@ -3853,9 +3856,9 @@ var FP_PREVIEW = {
     title: '팀장석 실제 구성 보기',
     items: [
       { label: 'W1,600 L형',       key: 'tm_16l',  desc: '1.0평 · W1,600 L형 데스크' },
-      { label: 'W1,600 L형+원형',  key: 'tm_16rt', desc: '2.0평 · W1,600 L형 데스크 + 원형 테이블' },
+      { label: 'W1,600 L형+원형',  key: 'tm_16rt', desc: '2.0평 · W1,600 L형 데스크 + 보조 테이블' },
       { label: 'W1,800 L형',       key: 'tm_18l',  desc: '1.1평 · W1,800 L형 데스크' },
-      { label: 'W1,800 L형+원형',  key: 'tm_18rt', desc: '2.3평 · W1,800 L형 데스크 + 원형 테이블' },
+      { label: 'W1,800 L형+원형',  key: 'tm_18rt', desc: '2.3평 · W1,800 L형 데스크 + 보조 테이블' },
     ]
   },
   emp: {
