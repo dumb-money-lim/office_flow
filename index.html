@@ -1295,7 +1295,7 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
         </div>
         <div class="sub-counter-box">
           <button class="sub-counter-btn" onclick="adj('exec_s',-1)">−</button>
-          <input class="sub-counter-num" id="exec_s" type="number" value="0" min="0" oninput="calc()">
+          <input class="sub-counter-num" id="exec_s" type="number" value="1" min="0" oninput="calc()">
           <button class="sub-counter-btn" onclick="adj('exec_s',1)">+</button>
         </div>
       </div>
@@ -3964,7 +3964,7 @@ var FP_PREVIEW = {
       { label: '대형',   key: 'exec_xl',    desc: '13.3평 · 임원SET + 9인 회의' },
       { label: '중대형', key: 'exec_l',     desc: '8.0평 · 임원SET + 7인 회의' },
       { label: '중형',   key: 'exec_m',     desc: '5.4평 · 임원SET + 4인 회의' },
-      { label: '소형',   key: 'exec_s_desk',desc: '3.6평 · 임원 데스크 단독' },
+      { label: '소형',   key: 'exec_s',desc: '3.6평 · 임원 데스크 단독' },
     ]
   },
   tm: {
@@ -3979,11 +3979,11 @@ var FP_PREVIEW = {
   emp: {
     title: '팀원석 실제 구성 보기',
     items: [
-      { label: 'W1,200', key: 'emp_12_w', desc: '0.6평 · 1인 기준' },
-      { label: 'W1,400', key: 'emp_14_w', desc: '0.7평 · 1인 기준' },
-      { label: 'W1,600', key: 'emp_16_w', desc: '0.9평 · 듀얼모니터 가능' },
-      { label: 'W1,800', key: 'emp_18_w', desc: '1.1평 · 대형 모니터 가능' },
-      { label: '120도형', key: 'emp_120_3', desc: '1.2평 · 3인 클러스터' },
+      { label: 'W1,200', key: 'emp_12', desc: '0.6평 · 1인 기준' },
+      { label: 'W1,400', key: 'emp_14', desc: '0.7평 · 1인 기준' },
+      { label: 'W1,600', key: 'emp_16', desc: '0.9평 · 듀얼모니터 가능' },
+      { label: 'W1,800', key: 'emp_18', desc: '1.1평 · 대형 모니터 가능' },
+      { label: '120도형', key: 'emp_120', desc: '1.2평 · 3인 클러스터' },
     ]
   },
   conf: {
@@ -4029,7 +4029,7 @@ var FP_PREVIEW = {
     title: '오픈라운지 예시',
     items: [
       { label: '소형',   key: 'lg_s',  desc: '6.0평 · 소파+바테이블' },
-      { label: '중형',   key: 'lg_s2', desc: '6.0평 · 원형+소파' },
+      { label: '중형',   key: 'lg_m', desc: '6.0평 · 원형+소파' },
       { label: '중대형', key: 'lg_l',  desc: '9.0평 · 바+원형+소파' },
     ]
   },
