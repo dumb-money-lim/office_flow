@@ -2,6 +2,9 @@
 <html lang="ko" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
+<!-- jsPDF + html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PR98EB6S3K"></script>
 <script>
@@ -4563,62 +4566,63 @@ function completeReport() {
   var text = document.getElementById('btn-report-text');
   if (!btn) return;
 
-  // 인쇄 스타일 추가
-  var style = document.createElement('style');
-  style.id = 'print-style';
-  style.innerHTML = [
-    '@media print {',
-    '  @page { margin: 12mm; size: A4; }',
-    '  body * { visibility: hidden; }',
-    '  #s4, #s4 * { visibility: visible; }',
-    '  #s4 { position: absolute; left: 0; top: 0; width: 100%; background: #fff; }',
-    '  .topnav, .step-bar, #btn-report-done, #btn-report-done-area { display: none !important; }',
-    '  .section { padding: 20px 16px !important; }', '  .ratio-card { margin-bottom: 16px !important; }', '  .section + .section { padding-top: 8px !important; }',
-    '  #stacked-bar-chart, #stacked-bar-chart * { visibility: visible !important; display: flex !important; }',
-    '  #dual-bar-chart, #dual-bar-chart * { visibility: visible !important; display: block !important; }',
-    '  #per-person-analysis, #per-person-analysis * { visibility: visible !important; }',
-    '  #conf-analysis, #conf-analysis * { visibility: visible !important; }',
-    '  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }',
-    '  .ratio-card, .card { page-break-inside: avoid; }',
-    '  h2, h3 { page-break-after: avoid; }',
-    '}'
-  ].join('\n');
-  document.head.appendChild(style);
+  // 버튼 로딩
+  if (icon) { icon.textContent = '⏳'; icon.style.animation = 'none'; }
+  if (text) text.textContent = 'PDF 생성 중...';
+  btn.disabled = true;
 
-  // 파일명 설정
-  var company = document.getElementById('f-company');
-  var companyName = company && company.value ? company.value : '공간분석보고서';
-  var today = new Date();
-  var dateStr = today.getFullYear() + '.' +
-    String(today.getMonth()+1).padStart(2,'0') + '.' +
-    String(today.getDate()).padStart(2,'0');
-  var prevTitle = document.title;
-  document.title = companyName + '_공간분석보고서_' + dateStr;
+  var company = (document.getElementById('f-company') || {}).value || 'OfficeFlow';
+  var s4 = document.getElementById('s4');
+  if (!s4) return;
 
-  // 인쇄 창 열기 (동기적 — 닫으면 바로 다음 코드 실행)
-  window.print();
+  // 버튼 영역 숨김
+  var hideEls = s4.querySelectorAll('#btn-report-done-area, #ai-cta-section');
+  hideEls.forEach(function(el) { el.style.display = 'none'; });
 
-  // 인쇄 창 닫힌 후 처리
-  var ps = document.getElementById('print-style');
-  if (ps) ps.remove();
-  document.title = prevTitle;
+  html2canvas(s4, {
+    scale: 2,
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: '#F5F4F0',
+    scrollY: 0,
+    windowWidth: 390
+  }).then(function(canvas) {
+    var imgData = canvas.toDataURL('image/jpeg', 0.92);
+    var pdf = new window.jspdf.jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4'
+    });
 
-  // 버튼 완료 상태
-  btn.style.background = '#E8420A';
-  btn.style.pointerEvents = 'none';
-  if (icon) icon.textContent = '✓';
-  if (text) text.textContent = '완료! 서비스로 이동합니다...';
+    var pageW = 210;
+    var pageH = 297;
+    var imgW  = pageW;
+    var imgH  = canvas.height * pageW / canvas.width;
+    var y = 0;
 
-  // 잠시 후 s-next 이동
-  setTimeout(function() {
-    go('s-next');
-    // 버튼 초기화
-    setTimeout(function() {
-      if (btn)  { btn.style.background = ''; btn.style.pointerEvents = ''; }
-      if (icon) icon.textContent = '✓';
-      if (text) text.textContent = '보고서 저장하기';
-    }, 300);
-  }, 800);
+    // 여러 페이지 처리
+    while (y < imgH) {
+      if (y > 0) pdf.addPage();
+      pdf.addImage(imgData, 'JPEG', 0, -y, imgW, imgH);
+      y += pageH;
+    }
+
+    pdf.save(company + '_공간분석보고서.pdf');
+
+    // 버튼 복원
+    hideEls.forEach(function(el) { el.style.display = ''; });
+    if (icon) icon.textContent = '✓';
+    if (text) text.textContent = '저장 완료!';
+    btn.disabled = false;
+
+  }).catch(function(err) {
+    hideEls.forEach(function(el) { el.style.display = ''; });
+    // 폴백: 인쇄 방식
+    window.print();
+    if (icon) icon.textContent = '✓';
+    if (text) text.textContent = '보고서 저장하기';
+    btn.disabled = false;
+  });
 }
 
 
