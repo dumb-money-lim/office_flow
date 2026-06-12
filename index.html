@@ -165,7 +165,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=DM+Sans:wght@400;500;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet"></noscript>
-<!-- EmailJS SDK -->
 <style>
 /* ─────────────────────────────────────────────
    RESET & BASE
@@ -2090,15 +2089,15 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
     <div style="margin-top:32px;padding-bottom:8px;">
       <div style="height:1px;background:var(--border);margin-bottom:24px;"></div>
       <!-- AI 분석 멘트 + CTA -->
-      <div id="ai-cta-section" style="background:linear-gradient(135deg,#8B2200 0%,#C43200 100%);border-radius:16px;padding:24px;margin-bottom:20px;color:#fff;">
-        <div style="font-size:11px;font-weight:700;letter-spacing:2px;opacity:0.7;margin-bottom:10px;text-transform:uppercase;">OFFICE.FLOW 공간 진단 결과</div>
-        <div id="ai-analysis-text" style="font-size:14px;line-height:1.8;margin-bottom:20px;min-height:60px;">
-          <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.7);">
+      <div id="ai-cta-section" style="background:#FFF5F2;border:1.5px solid #FFCFAA;border-radius:16px;padding:24px;margin-bottom:20px;color:var(--text);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--brand);margin-bottom:10px;text-transform:uppercase;">OFFICE.FLOW 공간 진단 결과</div>
+        <div id="ai-analysis-text" style="font-size:14px;line-height:1.8;margin-bottom:20px;min-height:60px;color:var(--text);">
+          <div style="display:flex;align-items:center;gap:8px;color:var(--muted);">
             <div style="width:18px;height:18px;border:2px solid rgba(255,255,255,0.5);border-top-color:#fff;border-radius:50%;animation:loadingSpin 0.8s linear infinite;"></div>
             분석 중...
           </div>
         </div>
-        <button onclick="submitConsulting()" style="background:#fff;color:#8B2200;border:none;border-radius:24px;padding:14px 28px;font-size:14px;font-weight:800;cursor:pointer;width:100%;letter-spacing:-0.3px;">
+        <button onclick="submitConsulting()" style="background:var(--accent);color:#fff;border:none;border-radius:24px;padding:14px 28px;font-size:14px;font-weight:800;cursor:pointer;width:100%;letter-spacing:-0.3px;transition:background 0.2s;">
           컨설팅 신청하기
         </button>
       </div>
@@ -3612,10 +3611,7 @@ function buildReport() {
   }
 }
 
-/* ─────────────────────────────────────────────
-   EMAILJS 연동 — 보고서 이메일 자동 발송
-   설정: emailjs.com 가입 후 아래 3가지 ID 교체
-───────────────────────────────────────────── */
+
 
 
 
@@ -3663,7 +3659,16 @@ async function submitConsulting() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    if (btn) { btn.textContent = '신청 완료 ✓'; btn.style.background = '#4CAF50'; }
+    if (btn) {
+      btn.textContent = '컨설팅 신청 완료 ✓';
+      btn.style.background = 'var(--accent)';
+      btn.style.color = '#fff';
+      btn.style.fontWeight = '800';
+      btn.onclick = null;
+      btn.disabled = true;
+      btn.style.cursor = 'default';
+      btn.style.opacity = '1';
+    }
   } catch(err) {
     if (btn) { btn.textContent = '컨설팅 신청하기'; btn.disabled = false; }
     alert('신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
@@ -3936,17 +3941,6 @@ function submitFurnitureRequest() {
       confirmEl.textContent = email + ' 으로 견적서가 발송됩니다';
     }
   }
-
-  // EmailJS 발송
-  try {
-    if (typeof emailjs !== 'undefined') {
-      var company2 = v('company') || '미입력';
-      var name2    = v('name')    || '미입력';
-      var email2   = v('email')   || '미입력';
-      // EmailJS 설정 후 활성화
-      // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', { ... }, 'YOUR_PUBLIC_KEY');
-    }
-  } catch(e) {}
 
   // S9로 이동
   go('s9');
