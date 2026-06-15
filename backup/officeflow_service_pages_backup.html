@@ -1,0 +1,2892 @@
+<!--
+═══════════════════════════════════════════════════════════════
+  OfficeFlow 원스톱 서비스 페이지 백업
+  백업일: 2025년 6월
+═══════════════════════════════════════════════════════════════
+
+  이 파일은 s-next(원스톱 서비스) 이후 연결되던 4개 서비스 페이지의
+  백업입니다. 추후 데이터가 쌓인 후 재활성화할 때 사용하세요.
+
+  포함된 페이지:
+    - s5: 부동산 의뢰
+    - s7: 인테리어 비용
+    - s8: 가구 상담
+    - s9: 납품 요청 완료
+
+  ───────────────────────────────────────────────────────────
+  복원 방법
+  ───────────────────────────────────────────────────────────
+  1. [HTML 페이지] 섹션의 내용을 index.html의
+     FP 모달(<!-- FLOOR PLAN PREVIEW --> 주석) 직전에 삽입
+
+  2. [JavaScript 함수] 섹션의 함수들을 index.html의
+     <script> 블록 안에 삽입
+
+  3. s-next 페이지의 서비스 카드 onclick 복원:
+     - 매물 탐색:    onclick="go('s5')"
+     - 인테리어 비용: onclick="go('s7')"
+     - 가구 상담:    onclick="go('s8')"
+
+  4. 서비스 카드를 다시 클릭 가능하게 스타일 복원
+     (cursor:pointer, 안내 문구 등)
+═══════════════════════════════════════════════════════════════
+-->
+
+
+<!-- ╔═══════════════════════════════════════════════════════╗ -->
+<!-- ║                  [HTML 페이지]                         ║ -->
+<!-- ╚═══════════════════════════════════════════════════════╝ -->
+
+<!-- ════════════════════════════════════════
+     SCREEN 5 — 부동산 의뢰
+════════════════════════════════════════ -->
+<div id="s5" class="screen">
+  <nav class="topnav">
+    <div class="logo">OFFICE<span>.</span>FLOW</div>
+    <button onclick="go('s4')" style="background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;font-size:13px;font-family:'Noto Sans KR',sans-serif;">← 보고서로</button>
+  </nav>
+
+  <div class="section">
+    <div class="section-title">매물 의뢰하기</div>
+    <div class="section-sub">아래 조건을 입력하시면 담당자가 맞춤 매물을 찾아드립니다</div>
+
+    <!-- ── 서울 오피스 시장 현황 (Savills) ── -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;">서울 오피스 시장 현황</div>
+      <div style="font-size:15px;font-weight:800;letter-spacing:-0.5px;margin-bottom:4px;">2026년 1분기 프라임 오피스</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">매물 탐색 전 참고하세요</div>
+
+      <!-- 권역별 3개 카드 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
+        <div style="border:1.5px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center;">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:2px;">CBD</div>
+          <div style="font-size:9px;color:var(--muted);margin-bottom:6px;">종로·을지로·시청</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:#D44E2A;letter-spacing:-1px;line-height:1;">5.5<span style="font-size:13px;">%</span></div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px;">공실률</div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;font-weight:700;color:var(--brand);">133,300원/평</div>
+          <div style="font-size:9px;color:var(--muted);">전년 +3.8%</div>
+        </div>
+        <div style="border:2px solid var(--accent);background:#FFF5F2;border-radius:10px;padding:12px 10px;text-align:center;">
+          <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:2px;">GBD ★</div>
+          <div style="font-size:9px;color:var(--muted);margin-bottom:6px;">강남·서초·역삼</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:#E8420A;letter-spacing:-1px;line-height:1;">1.7<span style="font-size:13px;">%</span></div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px;">공실률 (최저)</div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(232,66,10,0.15);font-size:11px;font-weight:700;color:var(--brand);">131,300원/평</div>
+          <div style="font-size:9px;color:var(--muted);">전년 +6.2%</div>
+        </div>
+        <div style="border:1.5px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center;">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:2px;">YBD</div>
+          <div style="font-size:9px;color:var(--muted);margin-bottom:6px;">여의도</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:#B8860B;letter-spacing:-1px;line-height:1;">4.4<span style="font-size:13px;">%</span></div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px;">공실률</div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;font-weight:700;color:var(--brand);">112,900원/평</div>
+          <div style="font-size:9px;color:var(--muted);">전년 +1.7%</div>
+        </div>
+      </div>
+
+      <!-- 서울 전체 요약 바 -->
+      <div style="background:var(--bg);border-radius:10px;border:1.5px solid var(--border);padding:12px 14px;margin-bottom:10px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;">
+          <div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;color:var(--brand);">4.0%</div>
+            <div style="font-size:10px;color:var(--muted);">서울 평균 공실률</div>
+          </div>
+          <div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;color:var(--brand);">128,200</div>
+            <div style="font-size:10px;color:var(--muted);">원/평 (전년 +4.1%)</div>
+          </div>
+          <div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;color:var(--brand);">3조원</div>
+            <div style="font-size:10px;color:var(--muted);">Q1 거래규모</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 인사이트 -->
+      <div style="background:#F0F4FF;border-radius:10px;border:1px solid #C8D5F0;padding:12px 14px;margin-bottom:6px;">
+        <div style="font-size:11px;font-weight:700;color:#E8420A;margin-bottom:6px;">📊 시장 인사이트</div>
+        <div style="font-size:12px;color:#2A3A5C;line-height:1.8;">
+          · GBD 공실률 1.7% — <b>매물 희소, 빠른 의사결정 필요</b><br>
+          · CBD 신규 공급(G1 Seoul·르네스퀘어) 예정 — <b>협상 여지 증가 전망</b><br>
+          · 서울 임대료 전년 대비 평균 +4.1% 상승 지속
+        </div>
+      </div>
+      <div style="text-align:right;font-size:10px;color:var(--muted);margin-bottom:16px;">
+        출처: Savills Korea Research, 서울 프라임 오피스 Q1/2026
+      </div>
+    </div>
+
+    <div class="re-notice">
+      <div class="re-notice-icon">✅</div>
+      <div>
+        <div class="re-notice-title">보고서 기준 자동 설정됨</div>
+        <div class="re-notice-sub" id="re-auto">약 127평 · 서울 전체</div>
+      </div>
+    </div>
+
+    <!-- ① 이전 희망 시기 -->
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px;">① 이전 희망 시기</div>
+      <div class="chip-group">
+        <div class="chip on" onclick="chipOne(this,'.chip-time')">3개월 이내</div>
+        <div class="chip chip-time" onclick="chipOne(this,'.chip-time')">6개월 이내</div>
+        <div class="chip chip-time" onclick="chipOne(this,'.chip-time')">1년 이내</div>
+        <div class="chip chip-time" onclick="chipOne(this,'.chip-time')">1년 이상</div>
+        <div class="chip chip-time" onclick="chipOne(this,'.chip-time')">미정</div>
+      </div>
+    </div>
+
+    <!-- ② 임대 형태 -->
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px;">② 임대 형태</div>
+      <div class="chip-group">
+        <div class="chip on" onclick="chipOne(this,'.chip-lease')">월세</div>
+        <div class="chip chip-lease" onclick="chipOne(this,'.chip-lease')">전세</div>
+        <div class="chip chip-lease" onclick="chipOne(this,'.chip-lease')">매매 (사옥)</div>
+        <div class="chip chip-lease" onclick="chipOne(this,'.chip-lease')">무관</div>
+      </div>
+    </div>
+
+    <!-- ③ 희망 지역 -->
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px;">③ 희망 지역 <span style="font-size:11px;color:var(--muted);font-weight:400;">(복수 선택 가능)</span></div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">서울</div>
+      <div class="chip-group" style="margin-bottom:12px;">
+        <div class="chip on" onclick="this.classList.toggle('on')">강남·서초</div>
+        <div class="chip" onclick="this.classList.toggle('on')">여의도</div>
+        <div class="chip" onclick="this.classList.toggle('on')">종로·CBD</div>
+        <div class="chip" onclick="this.classList.toggle('on')">마포·홍대</div>
+        <div class="chip" onclick="this.classList.toggle('on')">성수·왕십리</div>
+        <div class="chip" onclick="this.classList.toggle('on')">기타 서울</div>
+      </div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">경기·인천</div>
+      <div class="chip-group" style="margin-bottom:12px;">
+        <div class="chip" onclick="this.classList.toggle('on')">판교</div>
+        <div class="chip" onclick="this.classList.toggle('on')">분당</div>
+        <div class="chip" onclick="this.classList.toggle('on')">수원</div>
+        <div class="chip" onclick="this.classList.toggle('on')">인천</div>
+        <div class="chip" onclick="this.classList.toggle('on')">기타 경기</div>
+      </div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">지방</div>
+      <div class="chip-group">
+        <div class="chip" onclick="this.classList.toggle('on')">부산</div>
+        <div class="chip" onclick="this.classList.toggle('on')">대구</div>
+        <div class="chip" onclick="this.classList.toggle('on')">대전</div>
+        <div class="chip" onclick="this.classList.toggle('on')">광주</div>
+        <div class="chip" onclick="this.classList.toggle('on')">울산</div>
+        <div class="chip" onclick="this.classList.toggle('on')">세종</div>
+        <div class="chip" onclick="this.classList.toggle('on')">기타 지방</div>
+      </div>
+    </div>
+
+    <!-- ④ 월 임차료 예산 -->
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px;">④ 월 임차료 예산</div>
+      <div class="chip-group">
+        <div class="chip" onclick="chipOne(this,'.chip-budget')">~500만원</div>
+        <div class="chip" onclick="chipOne(this,'.chip-budget')">500~1,000만원</div>
+        <div class="chip on chip-budget" onclick="chipOne(this,'.chip-budget')">1,000~2,000만원</div>
+        <div class="chip chip-budget" onclick="chipOne(this,'.chip-budget')">2,000~3,000만원</div>
+        <div class="chip chip-budget" onclick="chipOne(this,'.chip-budget')">3,000만원 이상</div>
+        <div class="chip chip-budget" onclick="chipOne(this,'.chip-budget')">협의 가능</div>
+      </div>
+    </div>
+
+    <!-- ⑤ 건물 등급 선호 -->
+    <div class="card">
+      <div class="card-title" style="margin-bottom:8px;">⑤ 건물 등급 선호</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.6;">프라임: 초고층·랜드마크 / A급: 주요 업무지구 신축 / B급: 일반 오피스</div>
+      <div class="chip-group">
+        <div class="chip" onclick="chipOne(this,'.chip-grade')">프라임급</div>
+        <div class="chip on chip-grade" onclick="chipOne(this,'.chip-grade')">A급</div>
+        <div class="chip chip-grade" onclick="chipOne(this,'.chip-grade')">B급</div>
+        <div class="chip chip-grade" onclick="chipOne(this,'.chip-grade')">무관</div>
+      </div>
+    </div>
+
+    <!-- ⑥ 현재 계약 만료 시점 -->
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px;">⑥ 현재 계약 만료 시점</div>
+      <div class="chip-group">
+        <div class="chip" onclick="chipOne(this,'.chip-expire')">3개월 이내</div>
+        <div class="chip" onclick="chipOne(this,'.chip-expire')">6개월 이내</div>
+        <div class="chip on chip-expire" onclick="chipOne(this,'.chip-expire')">1년 이내</div>
+        <div class="chip chip-expire" onclick="chipOne(this,'.chip-expire')">1년 이상</div>
+        <div class="chip chip-expire" onclick="chipOne(this,'.chip-expire')">해당없음 (신규)</div>
+      </div>
+    </div>
+
+    <!-- 추가 요청사항 -->
+    <div class="card">
+      <div class="card-title" style="margin-bottom:10px;">추가 요청사항 <span style="font-size:11px;color:var(--muted);font-weight:400;">(선택)</span></div>
+      <textarea class="form-input" rows="3" placeholder="주차 대수, 특수 공간(서버룸·회의실 다수 등), 기타 요청사항을 자유롭게 작성해 주세요." style="height:auto;padding-top:12px;padding-bottom:12px;resize:none;line-height:1.6;"></textarea>
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="btn-primary full mb8" onclick="go('s7')">의뢰 완료 — 인테리어 견적 보기 →</button>
+      <button class="btn-secondary full" onclick="go('s4')">← 보고서로 돌아가기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     SCREEN 7 — 인테리어 비용
+════════════════════════════════════════ -->
+<div id="s7" class="screen">
+  <nav class="topnav">
+    <div class="logo">OFFICE<span>.</span>FLOW</div>
+    <button onclick="go('s5')" style="background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;font-size:13px;font-family:'Noto Sans KR',sans-serif;">← 매물 의뢰로</button>
+  </nav>
+
+  <div class="cost-header">
+    <div class="cost-header-label" id="cost-concept-lbl">선택한 컨셉 기준</div>
+    <div class="cost-header-title">예상 인테리어 견적</div>
+    <div class="cost-header-sub" id="cost-area-lbl">127평 기준 · VAT 별도</div>
+  </div>
+
+  <div class="section">
+
+    <!-- 등급 선택 탭 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;">
+      <div id="tab-standard" onclick="switchCostTab('standard')"
+        style="border:2px solid var(--accent);background:#FFF5F2;border-radius:10px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.15s;">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:3px;">표준형</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:900;color:var(--brand);letter-spacing:-0.5px;" id="total-standard">약 1.5억원</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px;">평당 110~135만원</div>
+      </div>
+      <div id="tab-premium" onclick="switchCostTab('premium')"
+        style="border:2px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.15s;">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:3px;">프리미엄</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:900;color:var(--brand);letter-spacing:-0.5px;" id="total-premium">약 2.3억원</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px;">평당 160~200만원</div>
+      </div>
+    </div>
+
+    <!-- 항목별 비용 테이블 -->
+    <div style="font-size:13px;font-weight:700;margin-bottom:10px;">항목별 예상 비용</div>
+
+    <!-- 시공 -->
+    <div class="cost-block">
+      <div class="cost-block-title">🔨 인테리어 시공</div>
+      <div class="cost-row">
+        <div>
+          <div class="cost-item-name">바닥·벽·천장 공사</div>
+          <div class="cost-item-brand" id="desc-floor">마감재 포함 · 평당 40~55만원</div>
+        </div>
+        <div class="cost-price" id="cost-floor">약 5,500만원</div>
+      </div>
+      <div class="cost-row">
+        <div>
+          <div class="cost-item-name">전기·조명 공사</div>
+          <div class="cost-item-brand" id="desc-elec">간접조명 포함 · 평당 15~20만원</div>
+        </div>
+        <div class="cost-price" id="cost-elec">약 2,100만원</div>
+      </div>
+      <div class="cost-row">
+        <div>
+          <div class="cost-item-name">유리 파티션·도어</div>
+          <div class="cost-item-brand" id="desc-glass">강화유리 기준 · 평당 30~40만원</div>
+        </div>
+        <div class="cost-price" id="cost-glass">약 4,300만원</div>
+      </div>
+      <div class="cost-row">
+        <div>
+          <div class="cost-item-name">도장·특수 마감</div>
+          <div class="cost-item-brand" id="desc-paint">컨셉 소재 적용 · 평당 10~15만원</div>
+        </div>
+        <div class="cost-price" id="cost-paint">약 1,500만원</div>
+      </div>
+    </div>
+
+    <!-- AV·기타 -->
+    <div class="cost-block">
+      <div class="cost-block-title">📱 AV·가전·기타</div>
+      <div class="cost-row">
+        <div>
+          <div class="cost-item-name">회의실 디스플레이</div>
+          <div class="cost-item-brand" id="desc-av">회의실 수량 기준 · 실당 200~300만원</div>
+        </div>
+        <div class="cost-price" id="cost-av">약 1,400만원</div>
+      </div>
+      <div class="cost-row">
+        <div>
+          <div class="cost-item-name">네트워크·보안 설비</div>
+          <div class="cost-item-brand" id="desc-net">기본 구성 기준 · 평당 5~8만원</div>
+        </div>
+        <div class="cost-price" id="cost-net">약 800만원</div>
+      </div>
+    </div>
+
+    <!-- 설계·감리 -->
+    <div class="cost-block">
+      <div class="cost-block-title">📐 설계·감리</div>
+      <div class="cost-row">
+        <div>
+          <div class="cost-item-name">공간 설계·감리비</div>
+          <div class="cost-item-brand" id="desc-design">시공 총액의 8~10%</div>
+        </div>
+        <div class="cost-price" id="cost-design">약 1,200만원</div>
+      </div>
+    </div>
+
+    <!-- 총계 -->
+    <div class="cost-total">
+      <div>
+        <div class="cost-total-lbl">예상 시공 총 비용</div>
+        <div class="cost-total-note">VAT 별도 · 실측 후 최종 확정</div>
+      </div>
+      <div class="cost-total-num" id="cost-grand-total">약 1.5억원</div>
+    </div>
+
+    <!-- 출처 및 안내 -->
+    <div style="background:#F0F4FF;border-radius:10px;border:1px solid #C8D5F0;padding:14px 16px;margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:700;color:#E8420A;margin-bottom:6px;">💡 견적 안내</div>
+      <div style="font-size:12px;color:#2A3A5C;line-height:1.8;">
+        · 2026년 서울 기준 업계 평균 단가를 적용한 <b>가이드 수치</b>입니다<br>
+        · 자재비·인건비 상승으로 실제 비용은 달라질 수 있습니다<br>
+        · 정확한 견적은 파트너 인테리어 업체 상담을 통해 확인하세요
+      </div>
+      <div style="font-size:10px;color:#8A9AB5;margin-top:8px;">출처: 쿠시먼앤드웨이크필드 아시아태평양 오피스 인테리어 비용 가이드 2026, 스페이스로그인 2026</div>
+    </div>
+
+    <!-- ── 스타일 이미지 선택 ── -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:15px;font-weight:800;letter-spacing:-0.5px;margin-bottom:4px;">어떤 스타일이 마음에 드세요?</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:14px;">마음에 드는 이미지를 모두 선택해 주세요. 상담 시 참고자료로 활용됩니다.</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+        <div id="simg-0" onclick="toggleStyleImg(0)"
+          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
+          <!-- 이미지 자리: <img id="simg-img-0" src="..."> 로 교체 -->
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#8B2200,#C43200);display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;opacity:0.3;">
+              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 1</div>
+            </div>
+          </div>
+          <div id="check-0" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
+        </div>
+        <div id="simg-1" onclick="toggleStyleImg(1)"
+          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
+          <!-- 이미지 자리: <img id="simg-img-1" src="..."> 로 교체 -->
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1A1A2E,#3D3D6E);display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;opacity:0.3;">
+              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 2</div>
+            </div>
+          </div>
+          <div id="check-1" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
+        </div>
+        <div id="simg-2" onclick="toggleStyleImg(2)"
+          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
+          <!-- 이미지 자리: <img id="simg-img-2" src="..."> 로 교체 -->
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#3A2A1A,#8B5E2A);display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;opacity:0.3;">
+              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 3</div>
+            </div>
+          </div>
+          <div id="check-2" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
+        </div>
+        <div id="simg-3" onclick="toggleStyleImg(3)"
+          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
+          <!-- 이미지 자리: <img id="simg-img-3" src="..."> 로 교체 -->
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#2A2A2A,#5A4A3A);display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;opacity:0.3;">
+              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 4</div>
+            </div>
+          </div>
+          <div id="check-3" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
+        </div>
+        <div id="simg-4" onclick="toggleStyleImg(4)"
+          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
+          <!-- 이미지 자리: <img id="simg-img-4" src="..."> 로 교체 -->
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1A2A3A,#2D5A8A);display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;opacity:0.3;">
+              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 5</div>
+            </div>
+          </div>
+          <div id="check-4" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
+        </div>
+        <div id="simg-5" onclick="toggleStyleImg(5)"
+          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
+          <!-- 이미지 자리: <img id="simg-img-5" src="..."> 로 교체 -->
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#2A1A2E,#6D3D8E);display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;opacity:0.3;">
+              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 6</div>
+            </div>
+          </div>
+          <div id="check-5" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
+        </div>
+        <div id="simg-6" onclick="toggleStyleImg(6)"
+          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
+          <!-- 이미지 자리: <img id="simg-img-6" src="..."> 로 교체 -->
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#3A3A1A,#7A6A0A);display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;opacity:0.3;">
+              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 7</div>
+            </div>
+          </div>
+          <div id="check-6" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
+        </div>
+        <div id="simg-7" onclick="toggleStyleImg(7)"
+          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
+          <!-- 이미지 자리: <img id="simg-img-7" src="..."> 로 교체 -->
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1A3A3A,#0A6A6A);display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;opacity:0.3;">
+              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 8</div>
+            </div>
+          </div>
+          <div id="check-7" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
+        </div>
+
+      </div>
+      <div style="font-size:11px;color:var(--muted);text-align:center;padding:10px;background:#F8F7F3;border-radius:8px;">
+        📸 실제 레퍼런스 사진으로 업데이트 예정입니다
+      </div>
+    </div>
+    <button class="btn-primary full mb8" onclick="go('s8')">인테리어 상담 신청 →</button>
+    <button class="btn-secondary full" onclick="go('s5')">← 매물 의뢰로 돌아가기</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     SCREEN 8 — 가구 상담
+════════════════════════════════════════ -->
+<div id="s8" class="screen">
+  <nav class="topnav">
+    <div class="logo">OFFICE<span>.</span>FLOW</div>
+    <button onclick="go('s7')" style="background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;font-size:13px;font-family:'Noto Sans KR',sans-serif;">← 견적으로</button>
+  </nav>
+
+  <div class="section">
+    <div class="section-title">퍼시스 가구 상담</div>
+    <div class="section-sub">보고서 기반 예상 수량과 등급별 가이드 금액입니다. 납품 요청 시 <b style="color:var(--accent);">추가 할인</b> 됩니다.</div>
+
+    <!-- 예상 수량 요약 -->
+    <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">📦 예상 필요 수량 (보고서 자동 산출)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;" id="furniture-qty-grid">
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">
+          <span style="font-size:11px;color:var(--muted);">직원 데스크</span>
+          <span style="font-size:12px;font-weight:700;color:var(--brand);" id="qty-desk-std">50세트</span>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">
+          <span style="font-size:11px;color:var(--muted);">직원 의자</span>
+          <span style="font-size:12px;font-weight:700;color:var(--brand);" id="qty-chair">50석</span>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">
+          <span style="font-size:11px;color:var(--muted);">임원·중역 의자</span>
+          <span style="font-size:12px;font-weight:700;color:var(--brand);" id="qty-exec-chair">3석</span>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">
+          <span style="font-size:11px;color:var(--muted);">회의용 의자</span>
+          <span style="font-size:12px;font-weight:700;color:var(--brand);" id="qty-conf-chair">약 30석</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 등급 탭 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;">
+      <div id="tab-furniture-standard" onclick="switchFurnitureTab('standard')"
+        style="border:2px solid var(--accent);background:#FFF5F2;border-radius:10px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.15s;">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:3px;">표준형</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;color:var(--brand);" id="furniture-total-standard">—</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px;">납품가 기준</div>
+      </div>
+      <div id="tab-furniture-premium" onclick="switchFurnitureTab('premium')"
+        style="border:2px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.15s;">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:3px;">프리미엄</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;color:var(--brand);" id="furniture-total-premium">—</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px;">납품가 기준</div>
+      </div>
+    </div>
+
+    <!-- 품목별 가격 테이블 -->
+    <div id="furniture-items">
+
+      <!-- 직원 데스크 -->
+      <div class="cost-block">
+        <div class="cost-block-title">🖥 직원 데스크</div>
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:grid-template-columns:1fr 1fr 1fr;background:var(--bg);padding:8px 12px;font-size:10px;font-weight:700;color:var(--muted);text-align:right;gap:4px;">
+            <div style="text-align:left;">시리즈</div>
+            <div>소비자가</div>
+            <div style="color:var(--accent);">25% 할인가</div>
+          </div>
+          <div id="row-desk" style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px;gap:4px;align-items:center;border-top:1px solid var(--border);">
+            <div>
+              <div style="font-size:12px;font-weight:700;" id="name-desk">—</div>
+              <div style="font-size:10px;color:var(--muted);" id="spec-desk">데이터 준비중</div>
+            </div>
+            <div style="text-align:right;font-size:11px;color:var(--muted);text-decoration:line-through;" id="price-desk-ori">—</div>
+            <div style="text-align:right;font-size:14px;font-weight:800;color:var(--accent);" id="price-desk-25">—</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 직원 의자 -->
+      <div class="cost-block">
+        <div class="cost-block-title">🪑 직원 의자</div>
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:grid-template-columns:1fr 1fr 1fr;background:var(--bg);padding:8px 12px;font-size:10px;font-weight:700;color:var(--muted);text-align:right;gap:4px;">
+            <div style="text-align:left;">시리즈</div>
+            <div>소비자가</div>
+            <div style="color:var(--accent);">25% 할인가</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px;gap:4px;align-items:center;border-top:1px solid var(--border);">
+            <div>
+              <div style="font-size:12px;font-weight:700;" id="name-chair">—</div>
+              <div style="font-size:10px;color:var(--muted);" id="spec-chair">데이터 준비중</div>
+            </div>
+            <div style="text-align:right;font-size:11px;color:var(--muted);text-decoration:line-through;" id="price-chair-ori">—</div>
+            <div style="text-align:right;font-size:14px;font-weight:800;color:var(--accent);" id="price-chair-25">—</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 중역 의자 -->
+      <div class="cost-block">
+        <div class="cost-block-title">👔 임원·중역 의자</div>
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:grid-template-columns:1fr 1fr 1fr;background:var(--bg);padding:8px 12px;font-size:10px;font-weight:700;color:var(--muted);text-align:right;gap:4px;">
+            <div style="text-align:left;">시리즈</div>
+            <div>소비자가</div>
+            <div style="color:var(--accent);">25% 할인가</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px;gap:4px;align-items:center;border-top:1px solid var(--border);">
+            <div>
+              <div style="font-size:12px;font-weight:700;" id="name-exec">—</div>
+              <div style="font-size:10px;color:var(--muted);" id="spec-exec">데이터 준비중</div>
+            </div>
+            <div style="text-align:right;font-size:11px;color:var(--muted);text-decoration:line-through;" id="price-exec-ori">—</div>
+            <div style="text-align:right;font-size:14px;font-weight:800;color:var(--accent);" id="price-exec-25">—</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 회의용 의자 -->
+      <div class="cost-block">
+        <div class="cost-block-title">📋 회의용 의자</div>
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:grid-template-columns:1fr 1fr 1fr;background:var(--bg);padding:8px 12px;font-size:10px;font-weight:700;color:var(--muted);text-align:right;gap:4px;">
+            <div style="text-align:left;">시리즈</div>
+            <div>소비자가</div>
+            <div style="color:var(--accent);">25% 할인가</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px;gap:4px;align-items:center;border-top:1px solid var(--border);">
+            <div>
+              <div style="font-size:12px;font-weight:700;" id="name-conf">—</div>
+              <div style="font-size:10px;color:var(--muted);" id="spec-conf">데이터 준비중</div>
+            </div>
+            <div style="text-align:right;font-size:11px;color:var(--muted);text-decoration:line-through;" id="price-conf-ori">—</div>
+            <div style="text-align:right;font-size:14px;font-weight:800;color:var(--accent);" id="price-conf-25">—</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /furniture-items -->
+
+    <!-- 총계 -->
+    <div class="cost-total" style="margin-bottom:20px;">
+      <div>
+        <div class="cost-total-lbl">예상 가구 총 납품가</div>
+        <div class="cost-total-note">추가 할인 적용 · VAT 별도 · 견적 확정 후 최종 결정</div>
+      </div>
+      <div class="cost-total-num" id="furniture-grand-total">—</div>
+    </div>
+
+    <!-- 할인 배너 -->
+    <div style="background:var(--brand);border-radius:12px;padding:16px;margin-bottom:20px;text-align:center;">
+      <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:4px;">퍼시스 공식 대리점</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:-0.5px;">본사 직납품 · 전국 설치 서비스</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px;">소비자가 대비 <span style="color:#FFD166;">25% 할인</span> · 규모에 따라 추가 협의 가능</div>
+    </div>
+
+    <!-- 안내 -->
+    <div style="background:#F0F4FF;border-radius:10px;border:1px solid #C8D5F0;padding:14px 16px;margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:700;color:#E8420A;margin-bottom:6px;">💡 납품 안내</div>
+      <div style="font-size:12px;color:#2A3A5C;line-height:1.8;">
+        · 위 금액은 데이터 입력 후 실제 가격으로 업데이트됩니다<br>
+        · 규모·품목에 따라 추가 할인 협의 가능합니다<br>
+        · 퍼시스 본사 직납품 · 설치·AS 본사 보증
+      </div>
+    </div>
+
+    <button class="btn-primary full mb8" onclick="submitFurnitureRequest()" style="font-size:16px;padding:18px;">
+      📦 납품 요청하기 (추가 할인 받기)
+    </button>
+    <button class="btn-secondary full" onclick="go('s7')">← 인테리어 견적으로</button>
+  </div>
+</div>
+
+<script src="floor_imgs.js" defer></script>
+<script>
+/* ─────────────────────────────────────────────
+   NAVIGATION
+───────────────────────────────────────────── */
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  sync();
+
+  // s-next 진입 시 AI 진단 멘트 생성
+  if (id === 's-next') {
+    setTimeout(function() { generateAIAnalysis(window._calc || {}); }, 300);
+  }
+}
+
+function restart() {
+  const defaults = {
+    exec_xl:0, exec_l:1, exec_m:2, exec_s:0,
+    tm_16rt:0, tm_16ch:0, tm_16l:0, tm_18rt:0, tm_18ch:0, tm_18l:0,
+    emp_12:0, emp_14:0, emp_16:50, emp_18:0, emp_120:0,
+    conf_pb:0, conf_fr:0, conf_4:0, conf_6:2, conf_8:1, conf_12:0, conf_14:0, conf_16:0,
+    oa_cs:0, oa_ss:0, tb_cs:0, tb_ss:0,
+    stor_cab:0, stor_loc:0,
+    lg_s:0, lg_m:1, lg_l:0
+  };
+  for (const [id, val] of Object.entries(defaults)) {
+    const el = document.getElementById(id);
+    if (el) el.value = val;
+  }
+  calc();
+  go('s1');
+}
+
+/* ─────────────────────────────────────────────
+   COUNTER HELPERS
+───────────────────────────────────────────── */
+function adj(id, delta) {
+  const el = document.getElementById(id);
+  el.value = Math.max(0, parseInt(el.value || 0) + delta);
+  calc();
+}
+
+/* ─────────────────────────────────────────────
+   CHIP HELPERS
+───────────────────────────────────────────── */
+function chipOne(el, sel) {
+  document.querySelectorAll(sel).forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+}
+
+/* ─────────────────────────────────────────────
+   CALCULATION — 엑셀 DB 기준 전체 항목
+───────────────────────────────────────────── */
+function calc() {
+  const v = (id) => {
+    const el = document.getElementById(id);
+    return el ? Math.max(0, parseInt(el.value) || 0) : 0;
+  };
+
+  // 임원실 (평)
+  const exec_xl = v('exec_xl'); // 대형 13.3
+  const exec_l  = v('exec_l');  // 중대형 8.0
+  const exec_m  = v('exec_m');  // 중형 5.4
+  const exec_s  = v('exec_s');  // 소형 3.3
+  const execArea = exec_xl*13.3 + exec_l*8.0 + exec_m*5.4 + exec_s*3.3;
+
+  // 팀장석 (평)
+  const tm_16rt = v('tm_16rt'); // 2.0
+  const tm_16ch = v('tm_16ch'); // 1.4
+  const tm_16l  = v('tm_16l');  // 1.0
+  const tm_18rt = v('tm_18rt'); // 2.3
+  const tm_18ch = v('tm_18ch'); // 1.6
+  const tm_18l  = v('tm_18l');  // 1.1
+  const tmArea = tm_16rt*2.0 + tm_16ch*1.4 + tm_16l*1.0 + tm_18rt*2.3 + tm_18ch*1.6 + tm_18l*1.1;
+
+  // 팀원석 (평)
+  const emp_12  = v('emp_12');  // 0.7
+  const emp_14  = v('emp_14');  // 0.8
+  const emp_16  = v('emp_16');  // 0.9
+  const emp_18  = v('emp_18');  // 1.0
+  const emp_120 = v('emp_120'); // 0.7
+  const empArea = emp_12*0.7 + emp_14*0.8 + emp_16*0.9 + emp_18*1.0 + emp_120*0.7;
+  const empTotal = emp_12 + emp_14 + emp_16 + emp_18 + emp_120;
+
+  // 집중공간·회의실 (평)
+  const conf_pb = v('conf_pb'); // 폰부스 0.5
+  const conf_fr = v('conf_fr'); // 포커스룸 1.5
+  const conf_4  = v('conf_4');  // 4인 2.4
+  const conf_6  = v('conf_6');  // 6인 3.3
+  const conf_8  = v('conf_8');  // 8인 5.4
+  const conf_12 = v('conf_12'); // 12인 8.2
+  
+  const conf_14 = v('conf_14'); // 14인 10.5
+  const conf_16 = v('conf_16'); // 16인+α 14.2
+  
+  const confArea = conf_pb*0.5 + conf_fr*1.5 + conf_4*2.4 + conf_6*3.3 + conf_8*5.4 + conf_12*8.2 + conf_14*10.5 + conf_16*14.2;
+  const confCount = conf_pb + conf_fr + conf_4 + conf_6 + conf_8 + conf_12 + conf_14 + conf_16;
+
+  // OA존·탕비실 (평)
+  const oa_cs = v('oa_cs'); // OA 컴팩트형 2.3
+  const oa_ss = v('oa_ss'); // OA 표준형 3.5
+  const tb_cs = v('tb_cs'); // 탕비 컴팩트형 2.3
+  const tb_ss = v('tb_ss'); // 탕비 표준형 3.5
+  const oaArea = oa_cs*2.3 + oa_ss*3.5 + tb_cs*2.3 + tb_ss*3.5;
+
+  // 수납가구 (평)
+  const stor_cab = v('stor_cab'); // 캐비닛 0.5
+  const stor_loc = v('stor_loc'); // 락커 0.4
+  const storArea = stor_cab*0.5 + stor_loc*0.4;
+
+  // 오픈라운지 (평)
+  const lg_s = v('lg_s'); // 소형 5.2
+  const lg_m = v('lg_m'); // 중형 6.0
+  const lg_l = v('lg_l'); // 중대형 12.8
+  const lgArea = lg_s*5.2 + lg_m*6.0 + lg_l*12.8;
+
+  // 합산
+  const usableCore = execArea + tmArea + empArea + confArea + oaArea + storArea + lgArea;
+  const totalPy    = Math.round(usableCore / 0.65);
+  const usablePy   = Math.round(usableCore);
+  const corridorPy = Math.round(usableCore / 0.65 * 0.35);
+  const totalM2    = Math.round(totalPy * 3.305);
+
+  // 팀원석 badge
+  const badge = document.getElementById('emp-total-badge');
+  if (badge) badge.textContent = empTotal;
+
+  // 요약 배너
+  const set = (id, val) => { const e = document.getElementById(id); if(e) e.textContent = val; };
+  set('usable-py', usablePy.toFixed(1) + ' 평');
+  set('corridor-py', corridorPy.toFixed(1) + ' 평');
+
+  // store globally
+  window._calc = {
+    empTotal, exec_l, exec_m, exec_xl, exec_s,
+    conf_pb, conf_fr, conf_4, conf_6, conf_8, conf_12, conf_14, conf_16,
+    confCount,
+    totalPy, usablePy, corridorPy, totalM2,
+    usableCore,
+    execArea, tmArea, empArea, confArea, oaArea, storArea, lgArea,
+    oaOnly: oa_cs*2.3 + oa_ss*3.5,
+    tbArea: tb_cs*2.3 + tb_ss*3.5,
+    empCount: empTotal,
+    execCount: exec_xl + exec_l + exec_m + exec_s,
+    confChairs: Math.round(confArea / 1.5)
+  };
+  renderCalc();
+}
+
+function renderCalc() {
+  const d = window._calc;
+  if (!d) return;
+
+  const set = (id, val) => { const e = document.getElementById(id); if(e) e.textContent = val; };
+  const setHTML = (id, val) => { const e = document.getElementById(id); if(e) e.innerHTML = val; };
+
+  // S2 총 면적 배너
+  // step-8 결과 배너 업데이트
+  set('total-py-val', d.totalPy);
+  set('total-m2', '약 ' + d.totalM2 + ' m²');
+  set('usable-py', Math.round(d.usablePy) + ' 평');
+  set('corridor-py', Math.round(d.corridorPy) + ' 평');
+
+  // S3 미리보기
+  set('pv-py', d.totalPy);
+  set('pv-conf', d.confCount);
+
+  // S4 보고서 헤더
+  set('r-total-big', d.totalPy + '평');
+  set('r-usable-py', Math.round(d.usablePy) + '평');
+  set('r-corridor-py', d.corridorPy + '평');
+  set('r-emp-num', d.empTotal + '석');
+  var confS = (d.conf_4||0) + (d.conf_6||0);
+  var confM = (d.conf_8||0) + (d.conf_12||0);
+  var confL = (d.conf_12||0) + (d.conf_14||0) + (d.conf_16||0);
+  var confFocus = (d.conf_pb||0) + (d.conf_fr||0);
+  set('r-conf-s', confS + '개');
+  set('r-conf-m', confM + '개');
+  set('r-conf-l', confL + '개');
+  set('r-conf-focus', confFocus + '개');
+  set('r-exec-l-name', '중대형 임원실 ×' + d.exec_l);
+  set('r-exec-m-name', '중형 임원실 ×' + d.exec_m);
+
+  // 회사명 + 날짜
+  const company = document.getElementById('f-company');
+  const dateStr = new Date().toLocaleDateString('ko-KR', {year:'numeric',month:'long',day:'numeric'});
+  const companyName = (company && company.value) ? company.value + ' · ' : '';
+  // ── 공간 구성 비율 계산 (실제 입력값 기반) ──
+  var totalAll  = d.totalPy || 1;
+  var corridorArea = totalAll - (d.usableCore || 0);
+
+  // 공간 분류 기준:
+  // 임원: 임원실 / 업무: 팀장석+팀원석 / 회의: 소형~대형 회의실
+  // 휴게: 라운지 / 지원: 폰부스+포커스룸+OA존+탕비실+수납
+
+  // 폰부스·포커스룸 면적 (지원으로 분류)
+  var focusArea = ((d.conf_pb||0)*0.5) + ((d.conf_fr||0)*1.5);
+  // 회의실: 4인 이상만 (폰부스·포커스룸 제외)
+  var meetingArea = (d.confArea||0) - focusArea;
+
+  var rExecArea  = d.execArea  || 0;
+  var rEmpArea   = (d.empArea  || 0) + (d.tmArea || 0);
+  var rConfArea  = meetingArea;
+  var rLgArea    = d.lgArea    || 0;
+  var rStorArea  = focusArea + (d.oaArea || 0) + (d.storArea || 0);
+
+  var pExec  = Math.round(rExecArea  / totalAll * 100);
+  var pEmp   = Math.round(rEmpArea   / totalAll * 100);
+  var pConf  = Math.round(rConfArea  / totalAll * 100);
+  var pLg    = Math.round(rLgArea    / totalAll * 100);
+  var pStor  = Math.round(rStorArea  / totalAll * 100);
+  var pCorridor = Math.round(corridorArea / totalAll * 100);
+
+  // 합계 100% 보정
+  var pSum = pExec + pEmp + pConf + pLg + pStor + pCorridor;
+  if (pSum !== 100) pEmp += (100 - pSum);
+
+  // 막대 너비 + 수치 업데이트
+  var setBar = function(id, pct) {
+    var el = document.getElementById(id);
+    if (el) el.style.width = Math.max(pct, 4) + '%';
+  };
+  var setPct = function(id, pct) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = pct + '%';
+  };
+
+  // 이중 막대 차트 + 분석 요약 (renderAnalysis 함수로 분리)
+  renderAnalysis();
+
+    set('r-company-date', companyName + dateStr + ' 작성');
+
+  // S5 매물 자동설정
+  set('re-auto', '약 ' + d.totalPy + '평 · 서울 전체 · 조건 미정');
+
+  // S7 비용 레이블 + 가구 견적
+  set('cost-area-lbl', d.totalPy + '평 기준 · VAT 별도');
+  const execCost = Math.round((d.exec_xl*2400 + d.exec_l*1200 + d.exec_m*600 + d.exec_s*350) / 100) * 100;
+  const deskCost = Math.round(d.empTotal * 110 / 100) * 100;
+  set('c-exec', '약 ' + execCost.toLocaleString() + '만원');
+  set('c-desk', '약 ' + deskCost.toLocaleString() + '만원');
+
+  // 각 카드 badge에 합산 면적 실시간 표시
+  var setBadge = function(id, val) {
+    var e = document.getElementById(id);
+    if (!e) return;
+    if (val > 0) {
+      var m2 = Math.round(val * 3.305 * 10) / 10;
+      e.textContent = val.toFixed(1) + '평 / ' + m2.toFixed(1) + 'm²';
+    } else {
+      e.textContent = '';
+    }
+  };
+
+  var focusArea2 = ((d.conf_pb||0)*0.5) + ((d.conf_fr||0)*1.5);
+  var meetingArea2 = (d.confArea||0) - focusArea2;
+  setBadge('badge-exec',  d.execArea  || 0);
+  setBadge('badge-tm',    d.tmArea    || 0);
+  setBadge('badge-emp',   d.empArea   || 0);
+  setBadge('badge-focus', focusArea2);
+  setBadge('badge-conf',  meetingArea2);
+  setBadge('badge-oa',    d.oaOnly  || 0);
+  setBadge('badge-tb',    d.tbArea  || 0);
+  setBadge('badge-stor',  d.storArea  || 0);
+  setBadge('badge-lg',    d.lgArea    || 0);
+
+
+
+  // 분석 함수 호출
+  if (typeof renderAnalysis === 'function') renderAnalysis();
+}
+
+function updateStepBar(currentStep) {
+  // 모든 step-bar의 step-item 업데이트 (S2/S3/S4 각각 존재)
+  document.querySelectorAll('.step-bar').forEach(function(bar) {
+    var items = bar.querySelectorAll('.step-item');
+    items.forEach(function(el, i) {
+      el.classList.remove('active', 'done');
+      if (i + 1 === currentStep) el.classList.add('active');
+      if (i + 1 < currentStep) el.classList.add('done');
+    });
+  });
+}
+
+function sync() { renderCalc(); }
+
+/* ─────────────────────────────────────────────
+   CONCEPT PICKER
+───────────────────────────────────────────── */
+const conceptDB = {
+  modern:  { name: '모던 시티', text: '다크 컬러와 메탈릭 소재로 강렬하고 세련된 인상을 줍니다. 스틸 파티션과 블랙 프레임 가구로 도시적인 분위기를 연출해요. IT·금융·컨설팅 업종에 잘 어울립니다.' },
+  natural: { name: '네추럴 그린', text: '우드와 그린 계열로 자연 친화적인 환경을 만듭니다. 식물과 원목 소재를 활용해 편안하고 창의적인 분위기를 조성해요. 스타트업·크리에이티브 업종에 인기 있어요.' },
+  warm:    { name: '웜 빈티지', text: '브라운·테라코타·브릭 계열로 따뜻하고 감성적인 공간을 연출합니다. 빈티지 조명과 패브릭 소재로 포근한 분위기를 만들어요. 문화·미디어 업종에 어울립니다.' },
+  minimal: { name: '클린 미니멀', text: '화이트와 그레이 계열로 깔끔하고 집중력 있는 환경을 만듭니다. 불필요한 장식 없이 기능에 집중한 설계로 생산성을 높여요. 제조·의료·전문직에 선호됩니다.' }
+};
+
+function pickConcept(key) {
+  const conceptNames = {
+    biophilic:   '자연 친화형 (Biophilic)',
+    modern:      '모던 미니멀 (Modern Minimal)',
+    hospitality: '호스피탈리티 (Hospitality)',
+    industrial:  '인더스트리얼 (Industrial Creative)',
+  };
+
+  // 모든 카드 선택 해제
+  document.querySelectorAll('.concept-card').forEach(function(c) {
+    c.style.border = '2px solid var(--border)';
+    c.style.boxShadow = 'none';
+  });
+
+  // 선택 카드 강조
+  var selected = document.getElementById('concept-' + key);
+  if (selected) {
+    selected.style.border = '2px solid var(--accent)';
+    selected.style.boxShadow = '0 6px 24px rgba(232,66,10,0.18)';
+    // 선택한 카드로 부드럽게 스크롤
+    selected.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // 선택 완료 바 표시
+  var bar = document.getElementById('concept-selected-bar');
+  if (bar) {
+    bar.style.display = 'flex';
+    var nameEl = document.getElementById('selected-concept-name');
+    if (nameEl) nameEl.textContent = conceptNames[key] || key;
+  }
+
+  // S7 컨셉 라벨 연동
+  var lbl = document.getElementById('cost-concept-lbl');
+  if (lbl) lbl.textContent = (conceptNames[key] || key) + ' 컨셉 기준';
+
+  window._concept = key;
+}
+
+function switchImg(concept, idx) {
+  // 해당 컨셉의 이미지 전환
+  for (var i = 0; i < 3; i++) {
+    var img = document.getElementById('img-' + concept + '-' + i);
+    if (img) img.style.opacity = (i === idx) ? '1' : '0';
+  }
+}
+
+// 각 컨셉 이미지 자동 슬라이드
+(function() {
+  var timers = {};
+  var conceptKeys = ['biophilic', 'modern', 'hospitality', 'industrial'];
+  var idxMap = { biophilic: 0, modern: 0, hospitality: 0, industrial: 0 };
+
+  function startSlide(key) {
+    timers[key] = setInterval(function() {
+      idxMap[key] = (idxMap[key] + 1) % 3;
+      switchImg(key, idxMap[key]);
+    }, 3500 + Math.random() * 500);
+  }
+
+  // 페이지 로드 후 시작
+  window.addEventListener('load', function() {
+    conceptKeys.forEach(function(k, i) {
+      setTimeout(function() { startSlide(k); }, i * 800);
+    });
+  });
+})();
+
+/* ─────────────────────────────────────────────
+   RENDER MAP (렌더링 이미지 — 전역)
+───────────────────────────────────────────── */
+var RENDER_MAP = {
+  // 임원공간
+  exec_xl: 'images/exec_xl.png',
+  exec_l:  'images/exec_l.png',
+  exec_m:  'images/exec_m.png',
+  exec_s:  'images/exec_s.png',
+  // 팀장석
+  tm_16rt: 'images/tm_16rt.png',
+  tm_16ch: 'images/tm_16ch.png',
+  tm_16l:  'images/tm_16l.png',
+  tm_18rt: 'images/tm_18rt.png',
+  tm_18ch: 'images/tm_18ch.png',
+  tm_18l:  'images/tm_18l.png',
+  // 팀원석
+  emp_12:  'images/emp_12.png',
+  emp_14:  'images/emp_14.png',
+  emp_16:  'images/emp_16.png',
+  emp_18:  'images/emp_18.png',
+  emp_120: 'images/emp_120.png',
+  // 회의실
+  conf_4:  'images/conf_4.png',
+  conf_6:  'images/conf_6.png',
+  conf_8:  'images/conf_8.png',
+  conf_12: 'images/conf_12.png',
+  conf_14: 'images/conf_14.png',
+  conf_16: 'images/conf_16.png',
+  // 집중공간
+  conf_pb: 'images/conf_pb.png',
+  conf_fr: 'images/conf_fr.png',
+  // 라운지
+  lg_s:    'images/lg_s.png',
+  lg_m:    'images/lg_m.png',
+  lg_l:    'images/lg_l.png',
+  // 수납
+  stor_cab: 'images/stor_cab.png',
+  stor_loc: 'images/stor_loc.png',
+  // OA존
+  oa_cs:   'images/oa_cs.png',
+  oa_ss:   'images/oa_ss.png',
+  // 탕비공간
+  tb_cs:   'images/tb_cs.png',
+  tb_ss:   'images/tb_ss.png',
+};
+
+/* ─────────────────────────────────────────────
+   INIT
+───────────────────────────────────────────── */
+calc();
+
+/* ─────────────────────────────────────────────
+   COST TAB 전환 (표준형 / 프리미엄)
+───────────────────────────────────────────── */
+var _costTab = 'standard';
+var _selectedStyles = [];
+
+function toggleStyleImg(idx) {
+  var card = document.getElementById('simg-' + idx);
+  var check = document.getElementById('check-' + idx);
+  var pos = _selectedStyles.indexOf(idx);
+  if (pos === -1) {
+    _selectedStyles.push(idx);
+    if (card) { card.style.border = '2px solid var(--accent)'; card.style.boxShadow = '0 4px 16px rgba(232,66,10,0.2)'; }
+    if (check) check.style.display = 'block';
+  } else {
+    _selectedStyles.splice(pos, 1);
+    if (card) { card.style.border = '2px solid var(--border)'; card.style.boxShadow = 'none'; }
+    if (check) check.style.display = 'none';
+  }
+}
+
+var COST_DATA = {
+  standard: {
+    label: '표준형',
+    pyMin: 110, pyMax: 135,
+    floor:  { min: 40,  max: 55,  unit: '평당', desc: '마감재 포함 · 평당 40~55만원' },
+    elec:   { min: 15,  max: 20,  unit: '평당', desc: '간접조명 포함 · 평당 15~20만원' },
+    glass:  { min: 30,  max: 40,  unit: '평당', desc: '강화유리 기준 · 평당 30~40만원' },
+    paint:  { min: 10,  max: 15,  unit: '평당', desc: '컨셉 소재 적용 · 평당 10~15만원' },
+    av:     { min: 200, max: 300, unit: '실당', desc: '회의실 수량 기준 · 실당 200~300만원' },
+    net:    { min: 5,   max: 8,   unit: '평당', desc: '기본 구성 기준 · 평당 5~8만원' },
+    design: { rate: 0.09, desc: '시공 총액의 8~10%' },
+  },
+  premium: {
+    label: '프리미엄',
+    pyMin: 160, pyMax: 200,
+    floor:  { min: 65,  max: 90,  unit: '평당', desc: '고급 마감재 · 평당 65~90만원' },
+    elec:   { min: 25,  max: 40,  unit: '평당', desc: '커스텀 조명 · 평당 25~40만원' },
+    glass:  { min: 45,  max: 60,  unit: '평당', desc: '고급 강화유리 · 평당 45~60만원' },
+    paint:  { min: 20,  max: 35,  unit: '평당', desc: '특수 소재·마감 · 평당 20~35만원' },
+    av:     { min: 350, max: 500, unit: '실당', desc: '프리미엄 AV · 실당 350~500만원' },
+    net:    { min: 10,  max: 15,  unit: '평당', desc: '고급 네트워크 · 평당 10~15만원' },
+    design: { rate: 0.11, desc: '시공 총액의 10~12%' },
+  }
+};
+
+function switchCostTab(tab) {
+  _costTab = tab;
+  var d = window._calc;
+  var py = d ? d.totalPy : 127;
+  var conf = d ? d.confCount : 6;
+  updateCostDisplay(tab, py, conf);
+
+  var std = document.getElementById('tab-standard');
+  var prm = document.getElementById('tab-premium');
+  if (tab === 'standard') {
+    if (std) { std.style.border = '2px solid var(--accent)'; std.style.background = '#FFF5F2'; }
+    if (prm) { prm.style.border = '2px solid var(--border)'; prm.style.background = '#fff'; }
+  } else {
+    if (prm) { prm.style.border = '2px solid var(--accent)'; prm.style.background = '#FFF5F2'; }
+    if (std) { std.style.border = '2px solid var(--border)'; std.style.background = '#fff'; }
+  }
+}
+
+function updateCostDisplay(tab, py, conf) {
+  var c = COST_DATA[tab];
+  var fmt = function(n) {
+    if (n >= 10000) return '약 ' + (n/10000).toFixed(1) + '억원';
+    return '약 ' + Math.round(n/100)*100 + '만원';
+  };
+  var mid = function(a, b) { return Math.round((a+b)/2); };
+
+  var floor  = mid(c.floor.min,  c.floor.max)  * py;
+  var elec   = mid(c.elec.min,   c.elec.max)   * py;
+  var glass  = mid(c.glass.min,  c.glass.max)  * py;
+  var paint  = mid(c.paint.min,  c.paint.max)  * py;
+  var av     = mid(c.av.min,     c.av.max)     * conf;
+  var net    = mid(c.net.min,    c.net.max)    * py;
+  var sub    = floor + elec + glass + paint + av + net;
+  var design = Math.round(sub * c.design.rate);
+  var total  = sub + design;
+
+  var set = function(id, val) { var el = document.getElementById(id); if(el) el.textContent = val; };
+  set('cost-floor',  fmt(floor));
+  set('cost-elec',   fmt(elec));
+  set('cost-glass',  fmt(glass));
+  set('cost-paint',  fmt(paint));
+  set('cost-av',     fmt(av));
+  set('cost-net',    fmt(net));
+  set('cost-design', fmt(design));
+  set('cost-grand-total', fmt(total));
+  set('desc-floor',  c.floor.desc);
+  set('desc-elec',   c.elec.desc);
+  set('desc-glass',  c.glass.desc);
+  set('desc-paint',  c.paint.desc);
+  set('desc-av',     c.av.desc);
+  set('desc-net',    c.net.desc);
+  set('desc-design', c.design.desc);
+
+  // 탭 합계 업데이트
+  set('total-standard', tab === 'standard' ? fmt(total) : document.getElementById('total-standard').textContent);
+  set('total-premium',  tab === 'premium'  ? fmt(total) : document.getElementById('total-premium').textContent);
+
+  // cost-area-lbl 연동
+  set('cost-area-lbl', py + '평 기준 · VAT 별도');
+}
+
+/* ─────────────────────────────────────────────
+   REPORT BUILDER — S2 입력값 → S4 자동 반영
+───────────────────────────────────────────── */
+function buildReport() {
+  const d = window._calc;
+  if (!d) return;
+
+  const v  = (id) => { const e = document.getElementById(id); return e ? Math.max(0, parseInt(e.value)||0) : 0; };
+  const gs = (id) => { const e = document.getElementById(id); return e ? e.value.trim() : ''; };
+  const set = (id, val) => { const e = document.getElementById(id); if(e) e.textContent = val; };
+  const industry = gs('industry');
+
+  // 날짜
+  const now = new Date();
+  const dateStr = now.getFullYear() + '년 ' + (now.getMonth()+1) + '월 ' + now.getDate() + '일 작성';
+  const dateShort = now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0');
+  set('r-company-date', (gs('f-company') ? gs('f-company') + ' · ' : '') + dateStr);
+  // 분석 요약 자동 생성
+  var summaryEl = document.getElementById('r-analysis-summary');
+  if (summaryEl && d) {
+    var empT = d.empTotal || 0;
+    var confT = (d.conf_pb||0)+(d.conf_fr||0)+(d.conf_4||0)+(d.conf_6||0)+(d.conf_8||0)+(d.conf_12||0)+(d.conf_12||0)+(d.conf_14||0)+(d.conf_16||0)+(d.conf_16||0);
+    var pyT = d.totalPy || 0;
+    summaryEl.textContent = '직원 ' + empT + '명 · 회의실 ' + confT + '개소 기준, 예상 필요 면적 ' + pyT + '평 (가용 ' + Math.round(d.usablePy||0) + '평 + 통로 ' + Math.round(d.corridorPy||0) + '평)';
+  }
+
+  // 업종 배지
+  var indEl = document.getElementById('r-industry');
+  if (indEl) {
+    indEl.textContent = industry;
+    indEl.style.display = industry ? 'inline-block' : 'none';
+  }
+  set('r-date-cover', dateShort);
+
+  // 표지 메타
+  set('r-emp-cover', d.empTotal + '명');
+  set('r-conf-cover', d.confCount + '개소');
+  set('r-total-big', d.totalPy + '평');
+  set('r-total-box', d.totalPy + '평');
+  set('r-total-m2-box', '약 ' + d.totalM2 + ' m²');
+  set('r-usable-py', Math.round(d.usablePy) + '평');
+  set('r-usable-m2', '약 ' + Math.round(d.usablePy * 3.305) + ' m²');
+  set('r-corridor-py', d.corridorPy + '평');
+
+  // 수신자
+  const company = gs('f-company');
+  const name    = gs('f-name');
+  const email    = gs('f-email');
+  let recipient = '담당자님';
+  if (company && name) recipient = company + ' ' + name + ' 담당자님';
+  else if (name)       recipient = name + ' 담당자님';
+  else if (company)    recipient = company + ' 담당자님';
+  set('r-company-name', recipient);
+  if (email) set('r-email-note', '보고서가 ' + email + ' 로 발송됩니다. 상사 보고 자료로 활용하세요');
+
+  // ── 공간 카드 동적 생성 ──
+  const DB = {
+    exec_xl: { cat:'임원공간', label:'대형 임원실',    py:13.3, m2:44,   comp:'임원SET+9인 회의',  fur:'임원 데스크+크레덴자+소파SET' },
+    exec_l:  { cat:'임원공간', label:'중대형 임원실',  py:8.0,  m2:26.4, comp:'임원SET+7인 회의',  fur:'임원 데스크+크레덴자+회의테이블' },
+    exec_m:  { cat:'임원공간', label:'중형 임원실',    py:5.4,  m2:18,   comp:'임원SET+4인 회의',  fur:'임원 데스크+크레덴자+6인 회의테이블' },
+    exec_s:  { cat:'임원공간', label:'소형 임원실',    py:3.3,  m2:10.8, comp:'임원SET+보조좌석',  fur:'임원 데스크+보조의자' },
+    tm_16rt: { cat:'팀장석',   label:'팀장석 W1,600+보조',py:2.0, m2:6.7, comp:'W1,600 L형 데스크 + 보조 테이블', fur:'W1,600 모션데스크+원형테이블' },
+    tm_16ch: { cat:'팀장석',   label:'팀장석 W1,600+보조',py:1.4, m2:4.7, comp:'W1,600 L형 데스크 + 보조의자',  fur:'W1,600 모션데스크+보조의자' },
+    tm_16l:  { cat:'팀장석',   label:'팀장석 W1,600 L형', py:1.0, m2:3.4, comp:'W1,600 L형 데스크',    fur:'W1,600 L형 데스크' },
+    tm_18rt: { cat:'팀장석',   label:'팀장석 W1,800+보조',py:2.3, m2:7.5, comp:'W1,800 L형 데스크 + 보조 테이블', fur:'W1,800 모션데스크+원형테이블' },
+    tm_18ch: { cat:'팀장석',   label:'팀장석 W1,800+보조',py:1.6, m2:5.3, comp:'W1,800 L형 데스크 + 보조의자',  fur:'W1,800 모션데스크+보조의자' },
+    tm_18l:  { cat:'팀장석',   label:'팀장석 W1,800 L형', py:1.1, m2:3.8, comp:'W1,800 L형 데스크',    fur:'W1,800 L형 데스크' },
+    emp_12:  { cat:'업무공간', label:'팀원석 W1,200', py:0.7, m2:2.3,  comp:'노트북 전용',         fur:'W1,200 데스크+사이드수납' },
+    emp_14:  { cat:'업무공간', label:'팀원석 W1,400', py:0.8, m2:2.7,  comp:'노트북+모니터',        fur:'W1,400 데스크+사이드수납' },
+    emp_16:  { cat:'업무공간', label:'팀원석 W1,600', py:0.9, m2:3.0,  comp:'듀얼모니터 가능',     fur:'W1,600 모션데스크+사이드수납' },
+    emp_18:  { cat:'업무공간', label:'팀원석 W1,800', py:1.0, m2:3.4,  comp:'대형 듀얼모니터',     fur:'W1,800 모션데스크+사이드수납' },
+    emp_120: { cat:'업무공간', label:'120도형 팀원석', py:0.7, m2:2.4,  comp:'협업형 배치',         fur:'120도형 데스크 시스템' },
+    conf_pb: { cat:'집중공간', label:'폰부스',         py:0.5, m2:1.7,  comp:'1인 집중공간',        fur:'폰부스 SET' },
+    conf_fr: { cat:'집중공간', label:'포커스룸',       py:1.5, m2:4.8,  comp:'소규모 집중공간',     fur:'데스크+의자' },
+    conf_4:  { cat:'회의공간', label:'4인 회의실',     py:2.4, m2:7.8,  comp:'소형 회의',           fur:'4인 회의테이블+의자' },
+    conf_6:  { cat:'회의공간', label:'6인 회의실',     py:3.3, m2:10.8, comp:'소형 회의',           fur:'6인 회의테이블+의자+디스플레이' },
+    conf_8:  { cat:'회의공간', label:'8인 회의실',     py:5.4, m2:18,   comp:'중형 회의',           fur:'8인 회의테이블+의자+디스플레이' },
+    conf_12: { cat:'회의공간', label:'12인 회의실',    py:8.2, m2:27,   comp:'중형 회의',           fur:'12인 회의테이블+의자+디스플레이' },
+    conf_14: { cat:'회의공간', label:'14인 회의실',    py:10.5,m2:34.9, comp:'대형 회의',           fur:'14인 회의테이블+의자+디스플레이' },
+    conf_16: { cat:'회의공간', label:'16인+α 회의실',  py:14.2,m2:47,   comp:'대형+추가배석',       fur:'16인 회의테이블+의자+디스플레이' },
+    oa_cs:   { cat:'OA·탕비', label:'컴팩트OA 수납형', py:2.3, m2:7.6,  comp:'W3,400 컴팩트형',    fur:'OA카운터+복합기+탕비' },
+    oa_cc:   { cat:'OA·탕비', label:'컴팩트OA 복도형', py:1.5, m2:5.1,  comp:'W3,400 복도배치',    fur:'OA카운터+복합기' },
+    oa_ss:   { cat:'OA·탕비', label:'표준형OA 수납형', py:2.8, m2:9.3,  comp:'W4,200 표준형',      fur:'OA카운터+복합기+탕비+수납장' },
+    oa_sc:   { cat:'OA·탕비', label:'표준형OA 복도형', py:2.0, m2:6.3,  comp:'W4,200 복도배치',    fur:'OA카운터+복합기+탕비' },
+    stor_cab:{ cat:'수납가구', label:'캐비닛 (5EA)',    py:0.5, m2:1.68, comp:'W800 공용캐비닛',    fur:'5단 캐비닛 5EA' },
+    stor_loc:{ cat:'수납가구', label:'락커 (5EA)',      py:0.4, m2:1.38, comp:'W500 개인락커',      fur:'개인 락커 5EA' },
+    lg_s:    { cat:'휴게공간', label:'오픈라운지 소형', py:5.2, m2:17.3, comp:'오픈캔틴+소파',      fur:'소파+바테이블+스툴' },
+    lg_m:    { cat:'휴게공간', label:'오픈라운지 중형', py:6.0, m2:20.2, comp:'오픈캔틴+바테이블',  fur:'소파+바테이블+스툴' },
+    lg_l:    { cat:'휴게공간', label:'오픈라운지 중대형',py:12.8,m2:42.2,comp:'대형 오픈캔틴+소파', fur:'대형소파+바테이블+스툴+캔틴카운터' },
+  };
+
+  // ── SVG 평면도 라이브러리 ──
+  function getFloorPlan(key) {
+    // 이미지 키 매핑 (JPG 실제 도면 우선, 없으면 SVG 폴백)
+    const IMG_MAP = {
+      // 임원실
+      exec_xl:  'exec_xl',
+      exec_l:   'exec_l',
+      exec_m:   'exec_m',
+      exec_s:   'exec_s_desk',
+      // 팀장석
+      tm_16rt:  'tm_16rt',
+      tm_16ch:  'tm_ch',
+      tm_16l:   null,
+      tm_18rt:  'tm_18rt',
+      tm_18ch:  'tm_18ch',
+      tm_18l:   null,
+      // 팀원석
+      emp_12:   'emp_12_w',
+      emp_14:   'emp_14_w',
+      emp_16:   'emp_16_w',
+      emp_18:   'emp_18_w',
+      emp_120:  'emp_120_3',
+      // 집중공간·회의실
+      conf_pb:  null,
+      conf_fr:  'conf_fr',
+      conf_4:   'conf_4',
+      conf_6:   'conf_6',
+      conf_8:   'conf_8',
+      conf_12:  'conf_12',
+      conf_12:  'conf_12',
+      conf_14:  'conf_14',
+      conf_16:  'conf_16',
+      conf_16:  'conf_16',
+      // OA·탕비실
+      oa_ss:    'oa_ss',
+      oa_cs:    'oa_cs',
+      oa_cc:    'oa_cc',
+      oa_sc:    'oa_sc',
+      // 수납가구
+      stor_cab: 'stor_cab',
+      stor_loc: 'stor_loc',
+      // 오픈라운지
+      lg_s:     'lg_s',
+      lg_m:     'lg_s2',
+      lg_l:     'lg_l',
+    };
+    const imgKey = IMG_MAP[key];
+    if (imgKey && typeof FLOOR_IMGS !== 'undefined' && FLOOR_IMGS[imgKey]) {
+      return '<img src="' + FLOOR_IMGS[imgKey] + '" style="width:100%;height:auto;display:block;border-radius:4px;" alt="평면도" loading="lazy">';
+    }
+    // SVG 폴백으로 넘어감
+    const _svgFallback = true; // marker
+    if (!_svgFallback) return '';
+
+    const plans = {
+      exec_xl: '<svg viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="120" height="160" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="116" height="156" fill="none" stroke="#999" stroke-width="1.5" rx="1"/><rect x="30" y="8" width="60" height="28" fill="#fff" stroke="#555" stroke-width="1"/><rect x="8" y="8" width="20" height="28" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="60" cy="42" r="6" fill="#fff" stroke="#555" stroke-width="1"/><rect x="25" y="60" width="70" height="55" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="65" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="10" y="80" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="10" y="95" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="98" y="65" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="98" y="80" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="98" y="95" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="32" y="118" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="54" y="118" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="76" y="118" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="8" y="138" width="50" height="14" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><line x1="88" y1="156" x2="88" y2="148" stroke="#555" stroke-width="1.5"/><path d="M88 156 Q104 156 104 140" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
+      exec_l:  '<svg viewBox="0 0 110 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="110" height="150" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="106" height="146" fill="none" stroke="#999" stroke-width="1.5" rx="1"/><rect x="25" y="8" width="60" height="26" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="8" width="17" height="26" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="55" cy="40" r="6" fill="#fff" stroke="#555" stroke-width="1"/><rect x="22" y="58" width="66" height="48" fill="#fff" stroke="#555" stroke-width="1"/><rect x="7" y="62" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="7" y="75" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="7" y="88" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="91" y="62" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="91" y="75" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="91" y="88" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="50" y="109" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="6" y="125" width="98" height="14" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><line x1="80" y1="148" x2="80" y2="140" stroke="#555" stroke-width="1.5"/><path d="M80 148 Q96 148 96 132" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
+      exec_m:  '<svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="100" height="130" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="96" height="126" fill="none" stroke="#999" stroke-width="1.5" rx="1"/><rect x="20" y="8" width="56" height="24" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="8" width="12" height="24" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="50" cy="38" r="5.5" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="50" cy="85" r="26" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="50" cy="54" r="5" fill="#fff" stroke="#666" stroke-width="0.8"/><circle cx="50" cy="116" r="5" fill="#fff" stroke="#666" stroke-width="0.8"/><circle cx="19" cy="85" r="5" fill="#fff" stroke="#666" stroke-width="0.8"/><circle cx="81" cy="85" r="5" fill="#fff" stroke="#666" stroke-width="0.8"/><line x1="72" y1="128" x2="72" y2="120" stroke="#555" stroke-width="1.5"/><path d="M72 128 Q88 128 88 112" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
+      exec_s:  '<svg viewBox="0 0 90 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="90" height="110" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="86" height="106" fill="none" stroke="#999" stroke-width="1.5" rx="1"/><rect x="15" y="8" width="60" height="22" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="45" cy="36" r="5.5" fill="#fff" stroke="#555" stroke-width="1"/><rect x="18" y="58" width="14" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="58" y="58" width="14" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="30" y="55" width="30" height="18" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="6" y="85" width="78" height="14" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><line x1="62" y1="108" x2="62" y2="100" stroke="#555" stroke-width="1.5"/><path d="M62 108 Q78 108 78 92" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
+      tm_16rt: '<svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="100" height="80" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="96" height="76" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="50" height="24" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="32" width="20" height="18" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="50" cy="34" r="5" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="80" cy="42" r="16" fill="#fff" stroke="#888" stroke-width="0.8"/><circle cx="80" cy="23" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="80" cy="61" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="61" cy="42" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="99" cy="42" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/></svg>',
+      tm_16ch: '<svg viewBox="0 0 95 75" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="95" height="75" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="91" height="71" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="52" height="24" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="32" width="20" height="16" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="52" cy="34" r="5" fill="#fff" stroke="#555" stroke-width="0.8"/><rect x="70" y="30" width="18" height="14" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><rect x="70" y="48" width="18" height="14" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/></svg>',
+      tm_16l:  '<svg viewBox="0 0 85 65" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="85" height="65" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="81" height="61" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="46" height="20" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="28" width="18" height="16" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="36" cy="32" r="5" fill="#fff" stroke="#555" stroke-width="0.8"/></svg>',
+      tm_18rt: '<svg viewBox="0 0 110 85" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="110" height="85" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="106" height="81" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="56" height="26" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="34" width="22" height="20" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="57" cy="37" r="5.5" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="86" cy="45" r="18" fill="#fff" stroke="#888" stroke-width="0.8"/><circle cx="86" cy="24" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="86" cy="66" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="65" cy="45" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="107" cy="45" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/></svg>',
+      tm_18ch: '<svg viewBox="0 0 105 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="105" height="80" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="101" height="76" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="58" height="26" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="34" width="22" height="18" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="58" cy="37" r="5.5" fill="#fff" stroke="#555" stroke-width="0.8"/><rect x="78" y="30" width="20" height="15" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><rect x="78" y="50" width="20" height="15" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/></svg>',
+      tm_18l:  '<svg viewBox="0 0 95 70" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="95" height="70" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="91" height="66" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="52" height="22" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="30" width="20" height="18" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="40" cy="34" r="5" fill="#fff" stroke="#555" stroke-width="0.8"/></svg>',
+      emp_12:  '<svg viewBox="0 0 55 50" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="55" height="50" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="51" height="46" fill="none" stroke="#999" stroke-width="1.2"/><rect x="5" y="7" width="45" height="18" fill="#fff" stroke="#555" stroke-width="1"/><rect x="40" y="7" width="10" height="18" fill="#f0f0f0" stroke="#888" stroke-width="0.7"/><circle cx="24" cy="32" r="6" fill="#fff" stroke="#555" stroke-width="1"/></svg>',
+      emp_14:  '<svg viewBox="0 0 62 52" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="62" height="52" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="58" height="48" fill="none" stroke="#999" stroke-width="1.2"/><rect x="5" y="7" width="50" height="20" fill="#fff" stroke="#555" stroke-width="1"/><rect x="44" y="7" width="11" height="20" fill="#f0f0f0" stroke="#888" stroke-width="0.7"/><circle cx="27" cy="35" r="6" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="43" width="42" height="5" fill="#e0e0e0" stroke="#888" stroke-width="0.6" rx="1"/></svg>',
+      emp_16:  '<svg viewBox="0 0 70 55" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="70" height="55" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="66" height="51" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="58" height="22" fill="#fff" stroke="#555" stroke-width="1"/><rect x="52" y="8" width="12" height="22" fill="#f0f0f0" stroke="#888" stroke-width="0.7"/><circle cx="30" cy="36" r="6.5" fill="#fff" stroke="#555" stroke-width="1"/><rect x="12" y="44" width="46" height="6" fill="#e0e0e0" stroke="#888" stroke-width="0.6" rx="1"/></svg>',
+      emp_18:  '<svg viewBox="0 0 80 58" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="80" height="58" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="76" height="54" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="68" height="24" fill="#fff" stroke="#555" stroke-width="1"/><rect x="60" y="8" width="14" height="24" fill="#f0f0f0" stroke="#888" stroke-width="0.7"/><circle cx="36" cy="38" r="7" fill="#fff" stroke="#555" stroke-width="1"/><rect x="14" y="47" width="52" height="7" fill="#e0e0e0" stroke="#888" stroke-width="0.6" rx="1"/></svg>',
+      emp_120: '<svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="80" height="70" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="76" height="66" fill="none" stroke="#999" stroke-width="1.2"/><polygon points="40,8 72,50 8,50" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="40" cy="58" r="6" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="14" cy="36" r="6" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="66" cy="36" r="6" fill="#fff" stroke="#555" stroke-width="0.8"/></svg>',
+      conf_pb: '<svg viewBox="0 0 55 65" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="55" height="65" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="51" height="61" fill="none" stroke="#999" stroke-width="1.2"/><rect x="8" y="8" width="39" height="22" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="27" cy="44" r="10" fill="#fff" stroke="#555" stroke-width="1"/><line x1="27" y1="34" x2="27" y2="54" stroke="#bbb" stroke-width="0.5"/><line x1="17" y1="44" x2="37" y2="44" stroke="#bbb" stroke-width="0.5"/></svg>',
+      conf_fr: '<svg viewBox="0 0 85 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="85" height="90" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="81" height="86" fill="none" stroke="#999" stroke-width="1.2"/><rect x="8" y="8" width="69" height="28" fill="#fff" stroke="#555" stroke-width="1"/><rect x="14" y="46" width="26" height="20" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="44" y="46" width="26" height="20" fill="#fff" stroke="#888" stroke-width="0.8"/><circle cx="28" cy="38" r="7" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="58" cy="38" r="7" fill="#fff" stroke="#555" stroke-width="0.8"/></svg>',
+      conf_4:  '<svg viewBox="0 0 90 85" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="90" height="85" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="86" height="81" fill="none" stroke="#999" stroke-width="1.2"/><rect x="18" y="22" width="54" height="35" fill="#fff" stroke="#555" stroke-width="1"/><rect x="28" y="9" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="50" y="9" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="28" y="58" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="50" y="58" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="5" y="30" width="11" height="14" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="74" y="30" width="11" height="14" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><line x1="60" y1="83" x2="60" y2="74" stroke="#555" stroke-width="1.5"/><path d="M60 83 Q76 83 76 67" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
+      conf_6:  '<svg viewBox="0 0 100 105" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="100" height="105" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="96" height="101" fill="none" stroke="#999" stroke-width="1.2"/><rect x="18" y="22" width="64" height="55" fill="#fff" stroke="#555" stroke-width="1"/><rect x="26" y="9" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="58" y="9" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="26" y="80" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="58" y="80" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="56" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="84" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="84" y="56" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><line x1="68" y1="103" x2="68" y2="93" stroke="#555" stroke-width="1.5"/><path d="M68 103 Q84 103 84 87" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
+      conf_8:  '<svg viewBox="0 0 110 135" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="110" height="135" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="106" height="131" fill="none" stroke="#999" stroke-width="1.2"/><rect x="18" y="20" width="74" height="85" fill="#fff" stroke="#555" stroke-width="1"/><rect x="18" y="20" width="74" height="8" fill="#ddd" stroke="#888" stroke-width="0.6"/><rect x="28" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="66" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="28" y="107" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="66" y="107" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="94" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="94" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="94" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><line x1="76" y1="133" x2="76" y2="122" stroke="#555" stroke-width="1.5"/><path d="M76 133 Q92 133 92 117" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
+      conf_12: '<svg viewBox="0 0 115 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="115" height="150" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="111" height="146" fill="none" stroke="#999" stroke-width="1.2"/><rect x="18" y="20" width="79" height="100" fill="#fff" stroke="#555" stroke-width="1"/><rect x="18" y="20" width="79" height="8" fill="#ddd" stroke="#888" stroke-width="0.6"/><rect x="25" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="55" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="25" y="122" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="55" y="122" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="88" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="99" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="99" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="99" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="99" y="88" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><line x1="80" y1="148" x2="80" y2="136" stroke="#555" stroke-width="1.5"/><path d="M80 148 Q96 148 96 132" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
+      conf_12: '<svg viewBox="0 0 120 165" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="120" height="165" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="116" height="161" fill="none" stroke="#999" stroke-width="1.2"/><rect x="18" y="20" width="84" height="115" fill="#fff" stroke="#555" stroke-width="1"/><rect x="18" y="20" width="84" height="8" fill="#ddd" stroke="#888" stroke-width="0.6"/><rect x="28" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="60" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="28" y="137" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="60" y="137" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="88" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="108" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="104" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="104" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="104" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="104" y="88" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="104" y="108" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><line x1="84" y1="163" x2="84" y2="150" stroke="#555" stroke-width="1.5"/><path d="M84 163 Q100 163 100 147" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
+      oa_ss:   '<svg viewBox="0 0 130 55" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="130" height="55" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="126" height="51" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="118" height="26" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="10" width="22" height="18" fill="#e0e0e0" stroke="#888" stroke-width="0.8" rx="1"/><rect x="14" y="13" width="14" height="8" fill="#ccc" stroke="#999" stroke-width="0.5"/><rect x="40" y="10" width="18" height="18" fill="#f5f5f5" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="49" cy="19" r="5" fill="#ddd" stroke="#999" stroke-width="0.5"/><rect x="6" y="36" width="118" height="14" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><line x1="65" y1="36" x2="65" y2="50" stroke="#aaa" stroke-width="0.5"/></svg>',
+      oa_cs:   '<svg viewBox="0 0 110 50" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="110" height="50" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="106" height="46" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="98" height="24" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="9" width="20" height="18" fill="#e0e0e0" stroke="#888" stroke-width="0.8" rx="1"/><rect x="35" y="9" width="16" height="18" fill="#f5f5f5" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="43" cy="18" r="5" fill="#ddd" stroke="#999" stroke-width="0.5"/><rect x="6" y="34" width="98" height="12" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/></svg>',
+      oa_cc:   '<svg viewBox="0 0 100 48" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="100" height="48" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="96" height="44" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="88" height="22" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="9" width="20" height="16" fill="#e0e0e0" stroke="#888" stroke-width="0.8" rx="1"/><rect x="35" y="9" width="16" height="16" fill="#f5f5f5" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="43" cy="17" r="5" fill="#ddd" stroke="#999" stroke-width="0.5"/><rect x="6" y="32" width="88" height="12" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/></svg>',
+      oa_sc:   '<svg viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="120" height="48" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="116" height="44" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="108" height="22" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="9" width="22" height="16" fill="#e0e0e0" stroke="#888" stroke-width="0.8" rx="1"/><rect x="38" y="9" width="18" height="16" fill="#f5f5f5" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="47" cy="17" r="5" fill="#ddd" stroke="#999" stroke-width="0.5"/><rect x="6" y="32" width="108" height="12" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/></svg>',
+      stor_cab:'<svg viewBox="0 0 90 40" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="90" height="40" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="86" height="36" fill="none" stroke="#999" stroke-width="1.2"/><rect x="5" y="5" width="16" height="30" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="23" y="5" width="16" height="30" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="41" y="5" width="16" height="30" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="59" y="5" width="16" height="30" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="69" y="5" width="16" height="30" fill="#fff" stroke="#888" stroke-width="0.8"/><circle cx="13" cy="20" r="2" fill="#bbb"/><circle cx="31" cy="20" r="2" fill="#bbb"/><circle cx="49" cy="20" r="2" fill="#bbb"/><circle cx="67" cy="20" r="2" fill="#bbb"/><circle cx="77" cy="20" r="2" fill="#bbb"/></svg>',
+      stor_loc:'<svg viewBox="0 0 90 50" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="90" height="50" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="86" height="46" fill="none" stroke="#999" stroke-width="1.2"/><rect x="5" y="5" width="16" height="40" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="23" y="5" width="16" height="40" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="41" y="5" width="16" height="40" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="59" y="5" width="16" height="40" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="69" y="5" width="16" height="40" fill="#fff" stroke="#888" stroke-width="0.8"/><circle cx="13" cy="18" r="2" fill="#bbb"/><circle cx="31" cy="18" r="2" fill="#bbb"/><circle cx="49" cy="18" r="2" fill="#bbb"/><circle cx="67" cy="18" r="2" fill="#bbb"/><circle cx="77" cy="18" r="2" fill="#bbb"/></svg>',
+      lg_s:    '<svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="130" height="100" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="126" height="96" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="118" height="20" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><rect x="6" y="36" width="55" height="20" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="6" y="56" width="55" height="8" fill="#ccc" stroke="#888" stroke-width="0.6" rx="1"/><rect x="72" y="36" width="52" height="16" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="80" cy="60" r="6" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="96" cy="60" r="6" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="112" cy="60" r="6" fill="#fff" stroke="#888" stroke-width="0.7"/><rect x="20" y="78" width="28" height="14" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/></svg>',
+      lg_m:    '<svg viewBox="0 0 140 115" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="140" height="115" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="136" height="111" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="128" height="22" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><rect x="6" y="38" width="60" height="22" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="6" y="60" width="22" height="30" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="66" y="60" width="22" height="30" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="30" y="66" width="34" height="20" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><rect x="96" y="38" width="38" height="16" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="104" cy="62" r="6" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="118" cy="62" r="6" fill="#fff" stroke="#888" stroke-width="0.7"/><rect x="96" y="76" width="16" height="22" fill="#ddd" stroke="#888" stroke-width="0.7" rx="2"/><rect x="118" y="76" width="16" height="22" fill="#ddd" stroke="#888" stroke-width="0.7" rx="2"/></svg>',
+      lg_l:    '<svg viewBox="0 0 170 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="170" height="130" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="166" height="126" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="158" height="24" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><rect x="10" y="9" width="24" height="18" fill="#e0e0e0" stroke="#999" stroke-width="0.6" rx="1"/><rect x="6" y="42" width="80" height="20" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="6" y="62" width="20" height="40" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="66" y="62" width="20" height="40" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="28" y="68" width="36" height="26" fill="#fff" stroke="#888" stroke-width="0.8" rx="2"/><rect x="96" y="42" width="68" height="18" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="106" cy="68" r="7" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="120" cy="68" r="7" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="134" cy="68" r="7" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="150" cy="68" r="7" fill="#fff" stroke="#888" stroke-width="0.7"/><rect x="96" y="86" width="20" height="24" fill="#ddd" stroke="#888" stroke-width="0.7" rx="2"/><rect x="122" y="86" width="20" height="24" fill="#ddd" stroke="#888" stroke-width="0.7" rx="2"/><rect x="148" y="86" width="16" height="24" fill="#ddd" stroke="#888" stroke-width="0.7" rx="2"/></svg>',
+    };
+    return plans[key] || '';
+  }
+
+  // 카드 생성 (텍스트 + 렌더링 이미지)
+  const cardContainer = document.getElementById('r-space-cards');
+  if (cardContainer) {
+    cardContainer.innerHTML = '';
+    const catColors = {
+      '임원공간':'#8B2200','팀장석':'#8B2200','업무공간':'#C43200',
+      '집중공간':'#FFAD85','회의공간':'#E8420A','OA·탕비':'#FFAD85',
+      '수납가구':'#FFAD85','휴게공간':'#FF8552'
+    };
+    // 렌더링 이미지 키 매핑
+    // RENDER_MAP은 전역으로 이동됨;
+
+    for (const [key, info] of Object.entries(DB)) {
+      const qty = v(key);
+      if (qty === 0) continue;
+      const totalPy = (info.py * qty).toFixed(1);
+      const totalM2 = (info.m2 * qty).toFixed(1);
+      const dotColor = catColors[info.cat] || '#888';
+
+      const renderSrc = RENDER_MAP[key] || null;
+      const renderImg = renderSrc
+        ? '<div style="margin-top:12px;border-radius:12px;overflow:hidden;background:#F5F4F0;">' +
+            '<img src="' + renderSrc + '" style="width:100%;height:auto;display:block;" loading="lazy">' +
+          '</div>'
+        : '';
+
+      const card = document.createElement('div');
+      card.className = 'rcard';
+      card.style.cssText = 'background:#fff;border:2.5px solid #E8E6E0;border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:0;';
+      card.innerHTML =
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">' +
+          '<div style="font-size:15px;font-weight:900;color:#E8420A;letter-spacing:-0.3px;">' + info.cat + '</div>' +
+          '<div style="font-size:12px;font-weight:700;color:var(--brand);background:#F5F4F0;padding:3px 10px;border-radius:20px;white-space:nowrap;">' + totalPy + '평 (' + totalM2 + 'm²)</div>' +
+        '</div>' +
+        '<div style="font-size:13px;font-weight:700;color:var(--brand);margin-bottom:6px;">' + info.label + ' ×' + qty + '</div>' +
+        '<div style="font-size:11px;color:#E8420A;font-weight:600;margin-bottom:10px;">구성 가구 : ' + info.comp + '</div>' +
+        renderImg;
+      cardContainer.appendChild(card);
+    }
+    if (cardContainer.children.length === 0) {
+      cardContainer.innerHTML = '<div style="grid-column:1/3;text-align:center;color:var(--muted);font-size:13px;padding:20px;">입력된 공간 항목이 없습니다.</div>';
+    }
+  }
+  // ── 합산표 동적 생성 ──
+  const tbody = document.getElementById('r-table-body');
+  if (tbody) {
+    tbody.innerHTML = '';
+    let grandTotal = 0;
+    const catOrder = ['임원공간','팀장석','업무공간','집중공간','회의공간','OA·탕비','수납가구','휴게공간'];
+    const grouped = {};
+    for (const [key, info] of Object.entries(DB)) {
+      const qty = v(key);
+      if (qty === 0) continue;
+      if (!grouped[info.cat]) grouped[info.cat] = [];
+      grouped[info.cat].push({ label: info.label, py: info.py, qty, total: info.py * qty });
+    }
+    catOrder.forEach(cat => {
+      if (!grouped[cat]) return;
+      const catRow = document.createElement('tr');
+      catRow.style.cssText = 'background:rgba(232,66,10,0.04);';
+      catRow.innerHTML = `<td colspan="4" style="padding:8px 12px;font-weight:700;font-size:11px;color:var(--accent);">${cat}</td>`;
+      tbody.appendChild(catRow);
+      grouped[cat].forEach(item => {
+        grandTotal += item.total;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="padding:9px 12px;border-bottom:1px solid var(--border);">${item.label}</td>
+          <td style="padding:9px 12px;border-bottom:1px solid var(--border);text-align:center;">${item.py}평</td>
+          <td style="padding:9px 12px;border-bottom:1px solid var(--border);text-align:center;">${item.qty}</td>
+          <td style="padding:9px 12px;border-bottom:1px solid var(--border);text-align:right;font-weight:700;">${item.total.toFixed(1)}평<br><span style="font-size:10px;color:var(--muted);font-weight:400;">${(item.total*3.305).toFixed(1)}m²</span></td>`;
+        tbody.appendChild(tr);
+      });
+    });
+    // 통로
+    const corridorRow = document.createElement('tr');
+    corridorRow.style.cssText = 'background:rgba(232,66,10,0.04);';
+    corridorRow.innerHTML = `<td colspan="4" style="padding:8px 12px;font-weight:700;font-size:11px;color:var(--accent);">통로 및 여유공간</td>`;
+    tbody.appendChild(corridorRow);
+    const corr = document.createElement('tr');
+    corr.innerHTML = `
+      <td style="padding:9px 12px;border-bottom:1px solid var(--border);">통로 및 여유공간 (35%)</td>
+      <td style="padding:9px 12px;border-bottom:1px solid var(--border);text-align:center;">—</td>
+      <td style="padding:9px 12px;border-bottom:1px solid var(--border);text-align:center;">—</td>
+      <td style="padding:9px 12px;border-bottom:1px solid var(--border);text-align:right;font-weight:700;">${d.corridorPy}평<br><span style="font-size:10px;color:var(--muted);font-weight:400;">${Math.round(d.corridorPy*3.305)}m²</span></td>`;
+    tbody.appendChild(corr);
+    // TOTAL
+    const totalRow = document.createElement('tr');
+    totalRow.style.cssText = 'background:var(--brand);';
+    totalRow.innerHTML = `
+      <td colspan="3" style="padding:12px;color:#fff;font-weight:700;font-size:14px;">우리 회사 예상 필요 면적 TOTAL</td>
+      <td style="padding:12px;color:var(--accent2);font-weight:900;font-size:14px;text-align:right;font-family:'DM Sans',sans-serif;">${d.totalPy}평<br><span style="font-size:11px;font-weight:700;opacity:0.8;">${Math.round(d.totalPy*3.305)}m²</span></td>`;
+    tbody.appendChild(totalRow);
+  }
+}
+
+
+
+
+
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz4y85YDtUr4ZcEMTILMU9uqtVopOwk4SI24TqM2oNro9nSOl9xqHTjRyWWOgKPGAWi/exec';
+
+function buildLeadPayload(action) {
+  const d = window._calc || {};
+  const now = new Date();
+  const ymd = now.getFullYear().toString().slice(2)
+    + String(now.getMonth()+1).padStart(2,'0')
+    + String(now.getDate()).padStart(2,'0');
+  // leadId는 세션에 저장해서 보고서 요청~컨설팅까지 동일하게 유지
+  if (!window._leadId) {
+    window._leadId = 'OF-' + ymd + '-' + String(Date.now()).slice(-4);
+  }
+  return {
+    action: action,
+    leadId:   window._leadId,
+    company:  (document.getElementById('f-company')  || {}).value || '',
+    industry: (document.getElementById('industry')   || {}).value || '',
+    name:     (document.getElementById('f-name')     || {}).value || '',
+    email:    (document.getElementById('f-email')    || {}).value || '',
+    tel:      (document.getElementById('f-tel')      || {}).value || '',
+    memo:     (document.getElementById('f-memo')     || {}).value || '',
+    empTotal: d.empTotal  || 0,
+    totalPy:  d.totalPy   ? d.totalPy.toFixed(1)  : 0,
+    execArea: d.execArea  ? d.execArea.toFixed(1)  : 0,
+    empArea:  d.empArea   ? d.empArea.toFixed(1)   : 0,
+    confArea: d.confArea  ? d.confArea.toFixed(1)  : 0,
+    lgArea:   d.lgArea    ? d.lgArea.toFixed(1)    : 0,
+    oaArea:   d.oaArea    ? d.oaArea.toFixed(1)    : 0,
+  };
+}
+
+// 보고서 요청 시 — Google Sheets 저장 + GA
+async function saveLeadToSheet() {
+  const payload = buildLeadPayload('save_lead');
+
+  try {
+    gtag('event', 'report_complete', {
+      'event_category': 'conversion',
+      'event_label': payload.leadId,
+      'company': payload.company
+    });
+  } catch(e) {}
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(err) {
+    console.error('리드 저장 오류:', err);
+  }
+}
+
+async function submitConsulting() {
+  const btn = document.querySelector('[onclick="submitConsulting()"]');
+  if (btn) { btn.textContent = '신청 중...'; btn.disabled = true; }
+
+  const payload = buildLeadPayload('send_email');
+
+  // PDF 생성해서 첨부
+  try {
+    const s4 = document.getElementById('s4');
+    if (s4 && typeof html2canvas !== 'undefined' && typeof window.jspdf !== 'undefined') {
+      const hideEls = s4.querySelectorAll('#btn-report-done-area');
+      hideEls.forEach(function(el){ el.style.display = 'none'; });
+
+      const canvas = await html2canvas(s4, {
+        scale: 1.5, useCORS: true, allowTaint: false,
+        backgroundColor: '#F5F4F0', logging: false,
+        windowWidth: s4.scrollWidth, windowHeight: s4.scrollHeight
+      });
+      hideEls.forEach(function(el){ el.style.display = ''; });
+
+      const imgData = canvas.toDataURL('image/jpeg', 0.85);
+      const pdf = new window.jspdf.jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+      const pageW = 210, pageH = 297;
+      const imgH = canvas.height * pageW / canvas.width;
+      let y = 0;
+      while (y < imgH) {
+        if (y > 0) pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 0, -y, pageW, imgH);
+        y += pageH;
+      }
+      // base64 PDF (헤더 제거)
+      payload.pdfBase64 = pdf.output('datauristring').split(',')[1];
+      payload.pdfName = (payload.company || 'OfficeFlow') + '_공간분석보고서.pdf';
+    }
+  } catch(e) {
+    console.error('PDF 첨부 생성 실패:', e);
+  }
+
+  // GA 이벤트
+  try {
+    gtag('event', 'consulting_request', {
+      'event_category': 'conversion',
+      'event_label': payload.leadId,
+      'company': payload.company
+    });
+  } catch(e) {}
+
+  // 이메일 발송 요청
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (btn) {
+      btn.textContent = '컨설팅 신청 완료 ✓';
+      btn.style.background = 'var(--accent)';
+      btn.style.color = '#fff';
+      btn.style.fontWeight = '800';
+      btn.onclick = null;
+      btn.disabled = true;
+      btn.style.cursor = 'default';
+      btn.style.opacity = '1';
+    }
+  } catch(err) {
+    if (btn) { btn.textContent = '컨설팅 신청하기'; btn.disabled = false; }
+    alert('신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
+  }
+}
+
+async function generateAIAnalysis(d) {
+  const el = document.getElementById('ai-analysis-text');
+  if (!el) return;
+
+  const company = (document.getElementById('f-company') || {}).value || '귀사';
+
+  // 비율 계산
+  const execPct  = d.execArea  / d.usableCore * 100 || 0;
+  const empPct   = (d.tmArea + d.empArea) / d.usableCore * 100 || 0;
+  const confPct  = d.confArea  / d.usableCore * 100 || 0;
+  const lgPct    = d.lgArea    / d.usableCore * 100 || 0;
+  const oaPct    = d.oaArea    / d.usableCore * 100 || 0;
+
+  const prompt = `당신은 오피스 공간 컨설팅 전문가입니다. 아래 공간 분석 데이터를 바탕으로 한국어로 2~3문장의 짧고 전문적인 진단 멘트를 작성해 주세요. 마지막 문장은 공간 전문가의 무료 도면 컨설팅을 자연스럽게 권유하는 내용으로 마무리해 주세요.
+
+회사명: ${company}
+직원 수: ${d.empTotal || 0}명
+필요 면적: ${d.totalPy ? d.totalPy.toFixed(0) : 0}평
+
+공간 구성 비율:
+- 임원공간: ${execPct.toFixed(1)}% (국내 평균 8%)
+- 업무공간: ${empPct.toFixed(1)}% (국내 평균 26.6%)
+- 회의공간: ${confPct.toFixed(1)}% (국내 평균 14.8%)
+- 휴게공간: ${lgPct.toFixed(1)}% (국내 평균 3.2%)
+- 지원공간: ${oaPct.toFixed(1)}% (국내 평균 10.4%)
+
+진단 멘트만 출력하세요. 제목이나 부가 설명 없이 바로 본문만 써주세요.`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 300,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content && data.content[0] && data.content[0].text;
+    if (text) {
+      el.innerHTML = '<span style="font-size:14px;line-height:1.8;">' + text + '</span>';
+    } else {
+      el.innerHTML = '<span style="font-size:14px;line-height:1.8;opacity:0.85;">OFFICE.FLOW 분석 결과를 바탕으로 공간 전문가가 맞춤형 공간 레이아웃 설계를 지원해 드립니다. 지금 신청하고 전문가와 상담해 보세요.</span>';
+    }
+  } catch(e) {
+    el.innerHTML = '<span style="font-size:14px;line-height:1.8;opacity:0.85;">OFFICE.FLOW 분석 결과를 바탕으로 공간 전문가가 맞춤형 공간 레이아웃 설계를 지원해 드립니다. 지금 신청하고 전문가와 상담해 보세요.</span>';
+  }
+}
+
+
+
+/* ─────────────────────────────────────────────
+   go() 함수 오버라이드 — S4 진입 시 자동 실행
+───────────────────────────────────────────── */
+const _goOriginal = go;
+/* ─────────────────────────────────────────────
+   FURNITURE TAB (데이터는 추후 입력 예정)
+───────────────────────────────────────────── */
+var _furnitureTab = 'standard';
+
+// ★ 데이터 입력 포맷 안내 ★
+// 아래 FURNITURE_DATA에 시리즈명·소비자가를 입력해 주세요
+// 25%·30% 할인가는 자동 계산됩니다
+// ★ 아래 데이터를 실제 퍼시스 시리즈명·소비자가로 교체해 주세요
+// 25% 할인가는 자동 계산됩니다
+var FURNITURE_DATA = {
+  standard: {
+    desk:  { name: '시리즈명 입력', spec: '모델명 입력', price: 0 },
+    chair: { name: '시리즈명 입력', spec: '모델명 입력', price: 0 },
+    exec:  { name: '시리즈명 입력', spec: '모델명 입력', price: 0 },
+    conf:  { name: '시리즈명 입력', spec: '모델명 입력', price: 0 },
+  },
+  premium: {
+    desk:  { name: '시리즈명 입력', spec: '모델명 입력', price: 0 },
+    chair: { name: '시리즈명 입력', spec: '모델명 입력', price: 0 },
+    exec:  { name: '시리즈명 입력', spec: '모델명 입력', price: 0 },
+    conf:  { name: '시리즈명 입력', spec: '모델명 입력', price: 0 },
+  }
+};
+
+function switchFurnitureTab(tab) {
+  _furnitureTab = tab;
+  var std = document.getElementById('tab-furniture-standard');
+  var prm = document.getElementById('tab-furniture-premium');
+  if (tab === 'standard') {
+    if (std) { std.style.border = '2px solid var(--accent)'; std.style.background = '#FFF5F2'; }
+    if (prm) { prm.style.border = '2px solid var(--border)'; prm.style.background = '#fff'; }
+  } else {
+    if (prm) { prm.style.border = '2px solid var(--accent)'; prm.style.background = '#FFF5F2'; }
+    if (std) { std.style.border = '2px solid var(--border)'; std.style.background = '#fff'; }
+  }
+  var d = window._calc || {};
+  updateFurnitureDisplay(tab, d.empCount||50, d.execCount||3, d.confChairs||30);
+}
+
+function updateFurnitureDisplay(tab, empQty, execQty, confQty) {
+  var data = FURNITURE_DATA[tab];
+  var set = function(id, val) { var el = document.getElementById(id); if(el) el.textContent = val; };
+  var fmt = function(n) {
+    if (!n) return '—';
+    return Math.round(n).toLocaleString() + '원';
+  };
+  var fmtTotal = function(n) {
+    if (!n) return '—';
+    var m = Math.round(n / 10000);
+    return '약 ' + m.toLocaleString() + '만원';
+  };
+
+  var items = [
+    { key: 'desk',  qty: empQty  },
+    { key: 'chair', qty: empQty  },
+    { key: 'exec',  qty: execQty },
+    { key: 'conf',  qty: confQty },
+  ];
+
+  var grandTotal = 0;
+  items.forEach(function(item) {
+    var d = data[item.key];
+    var p = d.price || 0;
+    var p25 = Math.round(p * 0.75);
+    var p30 = Math.round(p * 0.70);
+    set('name-'  + item.key, d.name);
+    set('spec-'  + item.key, d.spec);
+    set('price-' + item.key + '-ori', p   ? p.toLocaleString()   + '원' : '—');
+    set('price-' + item.key + '-25',  p25 ? p25.toLocaleString() + '원' : '—');
+    set('qty-' + item.key + '-label', item.qty + (item.key === 'conf' ? '석' : item.key === 'exec' ? '석' : item.key === 'chair' ? '석' : '세트'));
+    var itemTotal = p30 * item.qty;
+    set('total-' + item.key, fmtTotal(itemTotal));
+    grandTotal += itemTotal;
+  });
+
+  set('furniture-grand-total', fmtTotal(grandTotal));
+  var tabTotalId = 'furniture-total-' + tab;
+  set(tabTotalId, fmtTotal(grandTotal));
+}
+
+function submitReport() {
+  var agree = document.getElementById('privacy-agree');
+  if (!agree || !agree.checked) {
+    alert('개인정보 수집·이용에 동의해 주세요.');
+    return;
+  }
+  // 로딩 스크린 먼저 표시
+  go('s-loading');
+  startLoadingAnimation();
+}
+
+function startLoadingAnimation() {
+  var steps = [
+    { id: 1, pct: 20,  delay: 400  },
+    { id: 2, pct: 45,  delay: 900  },
+    { id: 3, pct: 68,  delay: 1500 },
+    { id: 4, pct: 85,  delay: 2100 },
+    { id: 5, pct: 100, delay: 2700 },
+  ];
+
+  steps.forEach(function(step) {
+    setTimeout(function() {
+      // 프로그레스 바
+      var bar = document.getElementById('loading-bar');
+      var pct = document.getElementById('loading-pct');
+      if (bar) bar.style.width = step.pct + '%';
+      if (pct) pct.textContent = step.pct + '%';
+
+      // 체크 항목 활성화
+      var item = document.getElementById('lc-' + step.id);
+      var icon = document.getElementById('lc-' + step.id + '-icon');
+      if (item) item.style.opacity = '1';
+      if (icon) {
+        icon.style.background = 'var(--accent)';
+        icon.style.color = '#fff';
+        icon.textContent = '✓';
+      }
+    }, step.delay);
+  });
+
+  // 3.2초 후 S4로 이동
+  setTimeout(function() {
+    // 로딩 아이콘 회전 멈춤
+    var icon = document.getElementById('loading-icon');
+    if (icon) icon.style.animation = 'none';
+
+    // S4로 전환
+    buildReport();
+    go('s4');
+    // 보고서 요청 = 리드 저장 (GS + GA)
+    saveLeadToSheet();
+
+    // 로딩 상태 초기화 (다음 사용을 위해)
+    setTimeout(function() {
+      var bar = document.getElementById('loading-bar');
+      var pct = document.getElementById('loading-pct');
+      if (bar) bar.style.width = '0%';
+      if (pct) pct.textContent = '0%';
+      if (icon) icon.style.animation = 'loadingSpin 2s linear infinite';
+      [1,2,3,4,5].forEach(function(i) {
+        var it = document.getElementById('lc-' + i);
+        var ic = document.getElementById('lc-' + i + '-icon');
+        if (it) it.style.opacity = '0.3';
+        if (ic) { ic.style.background = 'var(--border)'; ic.style.color = 'inherit'; ic.textContent = '○'; }
+      });
+    }, 500);
+  }, 3200);
+}
+
+function togglePrivacyAgree() {
+  checkFormReady();
+}
+
+function checkFormReady() {
+  var agree   = document.getElementById('privacy-agree');
+  var btn     = document.getElementById('btn-report');
+  if (!agree || !btn) return;
+
+  var company  = (document.getElementById('f-company')  || {}).value || '';
+  var industry = (document.getElementById('industry')   || {}).value || '';
+  var name     = (document.getElementById('f-name')     || {}).value || '';
+  var tel      = (document.getElementById('f-tel')      || {}).value || '';
+  var email    = (document.getElementById('f-email')    || {}).value || '';
+
+  var ready = agree.checked
+    && company.trim() !== ''
+    && industry.trim() !== ''
+    && name.trim() !== ''
+    && tel.trim() !== ''
+    && email.trim() !== '';
+
+  btn.style.opacity       = ready ? '1'    : '0.4';
+  btn.style.pointerEvents = ready ? 'auto' : 'none';
+}
+
+function submitFurnitureRequest() {
+  var d = window._calc || {};
+  var emp   = d.empCount   || 50;
+  var exec  = d.execCount  || 3;
+  var conf  = d.confChairs || 30;
+  var tab   = _furnitureTab || 'standard';
+  var tabLabel = tab === 'premium' ? '프리미엄' : '표준형';
+  var data  = FURNITURE_DATA[tab];
+  var total = document.getElementById('furniture-grand-total');
+  var totalVal = total ? total.textContent : '견적 산출 중';
+
+  // S9 내용 채우기
+  var summaryEl = document.getElementById('s9-summary');
+  if (summaryEl) {
+    var getVal = function(id) { var el = document.getElementById(id); return (el && el.value) ? el.value : '—'; };
+    var company = getVal('company');
+    var name    = getVal('name');
+    var email   = getVal('email');
+    summaryEl.innerHTML =
+      '선택 등급: <b>' + tabLabel + '</b><br>' +
+      '직원 데스크: <b>' + (data.desk.name || '—') + ' × ' + emp + '세트</b><br>' +
+      '직원 의자: <b>' + (data.chair.name || '—') + ' × ' + emp + '석</b><br>' +
+      '중역 의자: <b>' + (data.exec.name  || '—') + ' × ' + exec + '석</b><br>' +
+      '회의용 의자: <b>' + (data.conf.name || '—') + ' × ' + conf + '석</b><br>' +
+      '예상 납품 총액: <b style="color:var(--accent);">' + totalVal + '</b>';
+    var confirmEl = document.getElementById('s9-email-confirm');
+    if (confirmEl && email !== '—') {
+      confirmEl.textContent = email + ' 으로 견적서가 발송됩니다';
+    }
+  }
+
+  // S9로 이동
+  go('s9');
+}
+
+
+/* ─────────────────────────────────────────────
+   FLOOR PLAN PREVIEW (S2 예시 보기)
+───────────────────────────────────────────── */
+var FP_PREVIEW = {
+  exec: {
+    title: '임원공간 실제 구성 보기',
+    items: [
+      { label: '대형',   key: 'exec_xl',    desc: '13.3평 · 임원SET + 9인 회의' },
+      { label: '중대형', key: 'exec_l',     desc: '8.0평 · 임원SET + 7인 회의' },
+      { label: '중형',   key: 'exec_m',     desc: '5.4평 · 임원SET + 4인 회의' },
+      { label: '소형',   key: 'exec_s',desc: '3.6평 · 임원 데스크 단독' },
+    ]
+  },
+  tm: {
+    title: '팀장석 실제 구성 보기',
+    items: [
+      { label: 'W1,600 L형',       key: 'tm_16l',  desc: '1.0평 · W1,600 L형 데스크' },
+      { label: 'W1,600 L형+보조',  key: 'tm_16rt', desc: '2.0평 · W1,600 L형 데스크 + 보조 테이블' },
+      { label: 'W1,800 L형',       key: 'tm_18l',  desc: '1.1평 · W1,800 L형 데스크' },
+      { label: 'W1,800 L형+보조',  key: 'tm_18rt', desc: '2.3평 · W1,800 L형 데스크 + 보조 테이블' },
+    ]
+  },
+  emp: {
+    title: '팀원석 실제 구성 보기',
+    items: [
+      { label: 'W1,200', key: 'emp_12', desc: '0.6평 · 1인 기준' },
+      { label: 'W1,400', key: 'emp_14', desc: '0.7평 · 1인 기준' },
+      { label: 'W1,600', key: 'emp_16', desc: '0.9평 · 듀얼모니터 가능' },
+      { label: 'W1,800', key: 'emp_18', desc: '1.1평 · 대형 모니터 가능' },
+      { label: '120도형', key: 'emp_120', desc: '1.2평 · 3인 클러스터' },
+    ]
+  },
+  conf: {
+    title: '회의공간 실제 구성 보기',
+    items: [
+      { label: '4인',      key: 'conf_4',  desc: '2.4평 · 소형 회의' },
+      { label: '6인',      key: 'conf_6',  desc: '3.3평 · 소형 회의' },
+      { label: '8인',      key: 'conf_8',  desc: '5.4평 · 중형 회의' },
+      { label: '12인',     key: 'conf_12', desc: '8.2평 · 중형 회의' },
+      { label: '14인',     key: 'conf_14', desc: '10.5평 · 대형 회의' },
+      { label: '16인+α',   key: 'conf_16', desc: '14.2평 · 대형 회의' },
+    ]
+  },
+  oa: {
+    title: 'OA존 실제 구성 보기',
+    items: [
+      { label: '컴팩트형 (W3,400)', key: 'oa_cs', desc: '2.3평 · 프린터+복합기+수납' },
+      { label: '표준형 (W4,200)',   key: 'oa_ss', desc: '3.5평 · 프린터+복합기+대형수납' },
+    ]
+  },
+  tb: {
+    title: '탕비공간 실제 구성 보기',
+    items: [
+      { label: '컴팩트형 (W3,400)', key: 'tb_cs', desc: '2.3평 · 싱크+전기포트+소형냉장고' },
+      { label: '표준형 (W4,200)',   key: 'tb_ss', desc: '3.5평 · 싱크+커피머신+냉장고+수납' },
+    ]
+  },
+  stor: {
+    title: '수납가구 예시',
+    items: [
+      { label: '캐비닛', key: 'stor_cab', desc: '서류·물품 수납' },
+      { label: '락커',   key: 'stor_loc', desc: '개인 물품 보관' },
+    ]
+  },
+  focus: {
+    title: '개인 집중공간 실제 구성 보기',
+    items: [
+      { label: '폰부스',   key: 'conf_pb', desc: '0.5평 · 1인 독립 부스' },
+      { label: '포커스룸', key: 'conf_fr', desc: '1.5평 · 1~2인 집중 공간' },
+    ]
+  },
+  lg: {
+    title: '오픈라운지 예시',
+    items: [
+      { label: '소형',   key: 'lg_s',  desc: '6.0평 · 소파+바테이블' },
+      { label: '중형',   key: 'lg_m', desc: '6.0평 · 원형+소파' },
+      { label: '중대형', key: 'lg_l',  desc: '9.0평 · 바+원형+소파' },
+    ]
+  },
+};
+
+var _fpCurrentKey = null;
+var _fpCurrentIdx = 0;
+
+function openFpPreview(categoryKey) {
+  var data = FP_PREVIEW[categoryKey];
+  if (!data) return;
+
+  _fpCurrentKey = categoryKey;
+
+  // 제목 설정
+  var titleEl = document.getElementById('fp-sheet-title');
+  if (titleEl) titleEl.textContent = data.title;
+
+  // 탭 버튼 생성
+  var tabsEl = document.getElementById('fp-tabs');
+  if (tabsEl) {
+    // 탭 버튼 DOM 직접 생성 (쿼트 충돌 방지)
+    tabsEl.innerHTML = '';
+    data.items.forEach(function(item, i) {
+      var btn = document.createElement('button');
+      btn.textContent = item.label;
+      btn.setAttribute('data-tab-idx', i);
+      btn.style.cssText = 'padding:6px 12px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;';
+      btn.addEventListener('click', function() { selectFpTab(i); });
+      tabsEl.appendChild(btn);
+    });
+    var dummy = ''
+  }
+
+  // 첫 번째 탭 선택
+  selectFpTab(0);
+
+  // 바텀시트 표시
+  var overlay = document.getElementById('fp-overlay');
+  var sheet   = document.getElementById('fp-sheet');
+  if (overlay) { overlay.style.display = 'block'; }
+  if (sheet)   { sheet.style.display = 'flex'; }
+
+  // 스와이프 초기화 + 화살표 표시 (아이템 2개 이상일 때만)
+  setTimeout(initFpSwipe, 100);
+  var showArrows = data.items.length > 1;
+  var prevBtn = document.getElementById('fp-prev-btn');
+  var nextBtn = document.getElementById('fp-next-btn');
+  if (prevBtn) prevBtn.style.display = showArrows ? 'flex' : 'none';
+  if (nextBtn) nextBtn.style.display = showArrows ? 'flex' : 'none';
+}
+
+function selectFpTab(idx) {
+  var categoryKey = _fpCurrentKey;
+  var data = FP_PREVIEW[categoryKey];
+  if (!data) return;
+  var item = data.items[idx];
+  if (!item) return;
+  _fpCurrentIdx = idx;
+
+  // 탭 활성화
+  var tabsEl = document.getElementById('fp-tabs');
+  if (tabsEl) {
+    tabsEl.querySelectorAll('button').forEach(function(btn, i) {
+      btn.style.background  = i === idx ? 'var(--brand)' : '#fff';
+      btn.style.color       = i === idx ? '#fff' : 'inherit';
+      btn.style.borderColor = i === idx ? 'var(--brand)' : 'var(--border)';
+    });
+  }
+
+  var imgEl    = document.getElementById('fp-preview-img');
+  var labelEl  = document.getElementById('fp-preview-label');
+  var descEl   = document.getElementById('fp-preview-desc');
+  var noImgEl  = document.getElementById('fp-no-img');
+
+  // 렌더링 이미지 (RENDER_MAP에서 조회)
+  var renderSrc = '';
+  if (typeof RENDER_MAP !== 'undefined' && RENDER_MAP[item.key]) {
+    renderSrc = RENDER_MAP[item.key];
+  }
+
+  if (imgEl) {
+    if (renderSrc) {
+      imgEl.src = renderSrc;
+      imgEl.style.display = 'block';
+      if (noImgEl) noImgEl.style.display = 'none';
+    } else {
+      imgEl.style.display = 'none';
+      if (noImgEl) noImgEl.style.display = 'flex';
+    }
+  }
+
+  if (labelEl) labelEl.textContent = item.label;
+  if (descEl)  descEl.textContent  = item.desc || '';
+}
+
+function fpSwipe(dir) {
+  var data = FP_PREVIEW[_fpCurrentKey];
+  if (!data) return;
+  var newIdx = _fpCurrentIdx + dir;
+  if (newIdx < 0) newIdx = data.items.length - 1;
+  if (newIdx >= data.items.length) newIdx = 0;
+
+  var imgEl = document.getElementById('fp-preview-img');
+  if (imgEl) {
+    imgEl.style.opacity = '0';
+    setTimeout(function() { selectFpTab(newIdx); imgEl.style.opacity = '1'; }, 150);
+  } else {
+    selectFpTab(newIdx);
+  }
+}
+
+// 터치 스와이프 감지
+var _fpTouchStartX = 0;
+var _fpTouchEndX = 0;
+
+function initFpSwipe() {
+  var wrap = document.getElementById('fp-img-wrap');
+  if (!wrap || wrap._swipeInit) return;
+  wrap._swipeInit = true;
+
+  wrap.addEventListener('touchstart', function(e) {
+    _fpTouchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  wrap.addEventListener('touchend', function(e) {
+    _fpTouchEndX = e.changedTouches[0].screenX;
+    var diff = _fpTouchEndX - _fpTouchStartX;
+    if (Math.abs(diff) > 40) {
+      fpSwipe(diff < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+}
+
+function closeFpPreview() {
+  var overlay = document.getElementById('fp-overlay');
+  var sheet   = document.getElementById('fp-sheet');
+  if (overlay) overlay.style.display = 'none';
+  if (sheet)   sheet.style.display   = 'none';
+}
+
+
+/* ─────────────────────────────────────────────
+   S2 WIZARD — 단계별 진행
+───────────────────────────────────────────── */
+var _s2Step = 1;
+
+function getStepAreaValues() {
+  var d = window._calc || {};
+  var focusA = ((d.conf_pb||0)*0.5) + ((d.conf_fr||0)*1.5);
+  return {
+    exec:  d.execArea || 0,
+    tm:    d.tmArea   || 0,
+    emp:   d.empArea  || 0,
+    focus: focusA,
+    conf:  (d.confArea||0) - focusA,
+    oa:    d.oaArea   || 0,
+    stor:  d.storArea || 0,
+    lg:    d.lgArea   || 0,
+  };
+}
+
+var S2_STEPS = [
+  { label: '🏢 임원공간',              pct: 20  },
+  { label: '👔 팀장석 · 팀원석',       pct: 40  },
+  { label: '🤝 회의공간',              pct: 60  },
+  { label: '☕ 오픈라운지',            pct: 80  },
+  { label: '🎯 집중 · 수납 · OA존',   pct: 100 },
+  { label: '✅ 결과 확인',             pct: 100 },
+];
+
+function s2GoStep(step) {
+  // 현재 단계 숨기기
+  var cur = document.getElementById('s2-step-' + _s2Step);
+  if (cur) cur.style.display = 'none';
+
+  _s2Step = step;
+
+  // 새 단계 보이기
+  var next = document.getElementById('s2-step-' + step);
+  if (next) {
+    next.style.display = 'block';
+    // 스크롤 상단으로
+    var screen = document.getElementById('s2');
+    if (screen) screen.scrollTop = 0;
+  }
+
+  // 진행률 업데이트
+  var info = S2_STEPS[step - 1];
+  if (info) {
+    var bar   = document.getElementById('s2-progress');
+    var label = document.getElementById('s2-step-label');
+    var name  = document.getElementById('s2-step-name');
+    var areaEl = document.getElementById('s2-step-area');
+    if (bar)   bar.style.width = info.pct + '%';
+    if (label) label.textContent = (step <= 5 ? step + ' / 5단계' : '완료');
+    if (name)  name.textContent  = info.label;
+
+    // 공간 카테고리명 업데이트
+    var spaceNames = { 1:'임원공간', 2:'업무공간', 3:'회의공간', 4:'휴게공간', 5:'지원공간' };
+    var spaceLabel = document.getElementById('s2-space-label');
+    if (spaceLabel && spaceNames[step]) spaceLabel.textContent = spaceNames[step];
+
+
+  }
+
+  // 결과 단계면 display 설정 후 calc() + renderCalc() 실행
+  if (step === 8) {
+    setTimeout(function() {
+      calc();
+      if (window._calc) {
+        var d = window._calc;
+        var set = function(id, val) { var e = document.getElementById(id); if(e) e.textContent = val; };
+        set('total-py-val', d.totalPy);
+        set('total-m2', '약 ' + d.totalM2 + ' m²');
+        set('usable-py', Math.round(d.usablePy) + ' 평');
+        set('corridor-py', Math.round(d.corridorPy) + ' 평');
+      }
+    }, 50);
+  }
+}
+
+function showS2Result() {
+  calc();
+  var d = window._calc;
+
+  // go() 방식으로 스크린 전환
+  document.querySelectorAll('.screen').forEach(function(s) {
+    s.classList.remove('active');
+  });
+  var result = document.getElementById('s2result');
+  if (result) result.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // 데이터 채우기
+  if (d) {
+    var set = function(id, val) { var e = document.getElementById(id); if(e) e.textContent = val; };
+    set('r2-total-py',    d.totalPy);
+    set('r2-total-m2',   '약 ' + d.totalM2 + ' m²');
+    set('r2-usable-py',  Math.round(d.usablePy) + ' 평');
+    set('r2-corridor-py', Math.round(d.corridorPy) + ' 평');
+  }
+}
+
+
+/* ─────────────────────────────────────────────
+   RENDER ANALYSIS — 공간 구성 비율 이중 막대 + 분석
+───────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────
+   Section 01 — 가로 누적 막대 차트
+───────────────────────────────────────────── */
+function renderStackedBar(d) {
+  var chartEl  = document.getElementById('stacked-bar-chart');
+  var legendEl = document.getElementById('stacked-bar-legend');
+  var usablePyEl  = document.getElementById('r-usable-py');
+  var usableM2El  = document.getElementById('r-usable-m2');
+  var totalPy2El  = document.getElementById('r-total-py2');
+  var totalM22El  = document.getElementById('r-total-m2-2');
+  if (!chartEl) return;
+
+  var usableCore = d.usableCore || 0;
+  if (usableCore <= 0) return;
+
+  // 각 공간 면적
+  var exec  = d.execArea || 0;
+  var biz   = (d.tmArea || 0) + (d.empArea || 0);
+  var conf  = (d.confArea || 0) - ((d.conf_pb||0)*0.5) - ((d.conf_fr||0)*1.5);
+  var lg    = d.lgArea || 0;
+  var supp  = ((d.conf_pb||0)*0.5) + ((d.conf_fr||0)*1.5) + (d.oaArea||0) + (d.storArea||0);
+  var corr  = Math.round(usableCore / 0.65 * 0.35 * 10) / 10;
+  var total = usableCore + corr;
+
+  // 비율 계산
+  var pct = function(val) {
+    return total > 0 ? Math.round(val / total * 1000) / 10 : 0;
+  };
+
+  var items = [
+    { label:'임원', val:exec, color:'#8B2200' },
+    { label:'업무', val:biz,  color:'#C43200' },
+    { label:'회의', val:conf, color:'#E8420A' },
+    { label:'휴게', val:lg,   color:'#FF8552' },
+    { label:'지원', val:supp, color:'#FFAD85' },
+    { label:'통로', val:corr, color:'#FFCFAA' },
+  ];
+
+  // 0% 항목 제거 (입력 안 한 경우)
+  var validItems = items.filter(function(it) { return it.val > 0; });
+  if (validItems.length === 0) return;
+
+  // ── 누적 막대 ──
+  // 전체 합산 기준 % 재계산 (100% 맞추기)
+  var totalPct = 0;
+  validItems.forEach(function(it) { totalPct += pct(it.val); });
+
+  var barHTML = '<div style="display:flex;width:100%;height:36px;border-radius:20px;overflow:hidden;gap:0;">';
+  validItems.forEach(function(it) {
+    var p = pct(it.val);
+    if (p < 0.5) return;
+    var w = (p / totalPct * 100).toFixed(2);
+    barHTML += '<div style="background:' + it.color + ';width:' + w + '%;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;">' +
+      '<span style="font-size:10px;font-weight:700;color:#fff;white-space:nowrap;opacity:0.95;letter-spacing:0.3px;padding:0 4px;">' + it.label + '</span>' +
+    '</div>';
+  });
+  barHTML += '</div>';
+  chartEl.innerHTML = barHTML;
+
+  // ── 범례 ──
+  var legendHTML = '';
+  validItems.forEach(function(it) {
+    var p = pct(it.val);
+    legendHTML +=
+      '<div style="display:flex;align-items:center;gap:5px;white-space:nowrap;">' +
+        '<div style="width:10px;height:10px;border-radius:50%;background:' + it.color + ';flex-shrink:0;"></div>' +
+        '<span style="font-size:11px;color:var(--muted);font-weight:600;">' + it.label + ' ' + p + '%</span>' +
+      '</div>';
+  });
+  if (legendEl) legendEl.innerHTML = legendHTML;
+
+  // ── 하단 2열 카드 값 ──
+  var usablePy  = Math.round(usableCore * 10) / 10;
+  var usableM2  = Math.round(usableCore * 3.305 * 10) / 10;
+  var totalPyV  = Math.round(total * 10) / 10;
+  var totalM2V  = Math.round(total * 3.305 * 10) / 10;
+
+  if (usablePyEl) usablePyEl.textContent = usablePy + '평';
+  if (usableM2El) usableM2El.textContent = usableM2 + ' m²';
+  if (totalPy2El) totalPy2El.textContent = totalPyV + '평';
+  if (totalM22El) totalM22El.textContent = totalM2V + ' m²';
+}
+
+function renderAnalysis() {
+  var d = window._calc;
+  if (!d) return;
+
+  // 입력된 회사명 가져오기
+  var companyEl = document.getElementById('f-company');
+  var companyName = (companyEl && companyEl.value && companyEl.value.trim()) ? companyEl.value.trim() : '우리회사';
+  // 회사명 레이블 업데이트
+  var compLbl = document.getElementById('analysis-company-label');
+  if (compLbl) compLbl.textContent = companyName;
+
+  var totalAll = d.totalPy || 1;
+  var corridorArea = totalAll - (d.usableCore || 0);
+
+  var focusArea   = ((d.conf_pb||0)*0.5) + ((d.conf_fr||0)*1.5);
+  var meetingArea = (d.confArea||0) - focusArea;
+  var rExecArea   = d.execArea  || 0;
+  var rEmpArea    = (d.empArea||0) + (d.tmArea||0);
+  var rConfArea   = meetingArea;
+  var rLgArea     = d.lgArea    || 0;
+  var rStorArea   = focusArea + (d.oaArea||0) + (d.storArea||0);
+
+  var pExec     = rExecArea   / totalAll * 100;
+  var pEmp      = rEmpArea    / totalAll * 100;
+  var pConf     = rConfArea   / totalAll * 100;
+  var pLg       = rLgArea     / totalAll * 100;
+  var pStor     = rStorArea   / totalAll * 100;
+  var pCorridor = corridorArea / totalAll * 100;
+  var pSum = pExec+pEmp+pConf+pLg+pStor+pCorridor;
+  if(pSum > 0) pEmp += (100 - pSum);
+
+  var OUR = { exec:pExec, emp:pEmp, conf:pConf, lg:pLg, stor:pStor, corridor:pCorridor };
+  var AVG = { exec:8.2,  emp:27.2, conf:11.7, lg:5.7,  stor:12.7, corridor:33.7 }; // 퍼시스 DB 2023
+
+  var LABELS = [
+    { key:'exec',     label:'임원공간',           colorOur:'#8B2200' },
+    { key:'emp',      label:'업무공간',            colorOur:'#C43200' },
+    { key:'conf',     label:'회의공간',            colorOur:'#E8420A' },
+    { key:'lg',       label:'휴게공간',            colorOur:'#FF8552' },
+    { key:'stor',     label:'지원공간(탕비·수납)', colorOur:'#FFAD85' },
+    { key:'corridor', label:'통로 및 여유공간',    colorOur:'#FFCFAA' },
+  ];
+
+  var chart = document.getElementById('dual-bar-chart');
+  if (chart) {
+    chart.innerHTML = LABELS.map(function(item) {
+      var our = OUR[item.key] || 0;
+      var avg = AVG[item.key] || 0;
+      var diffAvg = our - avg;
+      var diffColor = Math.abs(diffAvg) <= 1.5 ? '#E8420A'
+                    : diffAvg > 0 ? '#E8420A' : '#E8420A';
+      var diffLabel = Math.abs(diffAvg) <= 1.5
+        ? '≈ 적정'
+        : (diffAvg > 0 ? '▲ +' : '▼ ') + Math.abs(diffAvg).toFixed(1) + '%p';
+      var diffBg = Math.abs(diffAvg) <= 1.5
+        ? 'rgba(45,106,10,0.08)' : diffAvg > 0
+        ? 'rgba(232,66,10,0.08)' : 'rgba(24,95,165,0.08)';
+      return [
+        '<div style="margin-bottom:12px;background:#fff;border-radius:10px;padding:12px 14px;border:1px solid var(--border);">',
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">',
+            '<span style="font-size:13px;font-weight:700;color:var(--brand);">' + item.label + '</span>',
+            '<span style="font-size:11px;font-weight:700;color:' + diffColor + ';background:' + diffBg + ';padding:3px 9px;border-radius:20px;">' + diffLabel + '</span>',
+          '</div>',
+          '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">',
+            '<div style="width:44px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60px;">' + companyName + '</div>',
+            '<div style="flex:1;height:22px;background:#F0EEE8;border-radius:4px;overflow:hidden;">',
+              '<div style="height:100%;width:' + Math.max(our,2).toFixed(1) + '%;background:' + item.colorOur + ';border-radius:4px;">',
+              '</div>',
+            '</div>',
+            '<div style="width:36px;font-size:11px;font-weight:800;color:' + item.colorOur + ';text-align:left;flex-shrink:0;">' + our.toFixed(1) + '%</div>',
+          '</div>',
+          '<div style="display:flex;align-items:center;gap:8px;">',
+            '<div style="width:44px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0;">기업평균</div>',
+            '<div style="flex:1;height:14px;background:#F0EEE8;border-radius:4px;overflow:hidden;">',
+              '<div style="height:100%;width:' + avg + '%;background:#C4C2BC;border-radius:4px;">',
+              '</div>',
+            '</div>',
+            '<div style="width:36px;font-size:11px;font-weight:700;color:#888;text-align:left;flex-shrink:0;">' + avg + '%</div>',
+          '</div>',
+        '</div>'
+      ].join('');
+    }).join('');
+  }
+
+  var analysisEl = document.getElementById('r-space-analysis');
+  if (analysisEl) {
+    var msgs = [];
+    if (OUR.exec - AVG.exec > 2)
+      msgs.push('🔴 <b>임원공간</b>이 기업평균(8.2%)보다 <b style="color:#E8420A;">' + (OUR.exec-AVG.exec).toFixed(1) + '%p 높습니다.</b> 임원실 규모 또는 개수 조정을 검토해보세요.');
+    else if (OUR.exec - AVG.exec < -2)
+      msgs.push('🟢 <b>임원공간</b>이 기업평균(8.2%)보다 <b style="color:#E8420A;">' + Math.abs(OUR.exec-AVG.exec).toFixed(1) + '%p 효율적으로</b> 배분되어 있습니다.');
+    else msgs.push('🟢 <b>임원공간</b> 비율이 기업평균(8.2%)과 유사합니다. 적정 수준입니다.');
+
+    if (OUR.emp - AVG.emp > 3)
+      msgs.push('🟢 <b>업무공간</b>이 평균(27.2%)보다 <b style="color:#E8420A;">' + (OUR.emp-AVG.emp).toFixed(1) + '%p 넓어</b> 직원 1인당 충분한 업무 환경이 확보됩니다.');
+    else if (OUR.emp - AVG.emp < -3)
+      msgs.push('🔴 <b>업무공간</b>이 평균(27.2%)보다 <b style="color:#E8420A;">' + Math.abs(OUR.emp-AVG.emp).toFixed(1) + '%p 부족합니다.</b> 팀원석 배치 방식 또는 규모 재검토를 권장합니다.');
+    else msgs.push('🟢 <b>업무공간</b> 비율이 적정 범위 내에 있습니다.');
+
+    if (OUR.conf - AVG.conf < -2)
+      msgs.push('🔴 <b>회의공간</b>이 평균(11.7%)보다 <b style="color:#E8420A;">' + Math.abs(OUR.conf-AVG.conf).toFixed(1) + '%p 부족합니다.</b> 소형 회의실 추가를 검토해보세요.');
+    else if (OUR.conf - AVG.conf > 2)
+      msgs.push('🟡 <b>회의공간</b>이 평균(11.7%)보다 <b>' + (OUR.conf-AVG.conf).toFixed(1) + '%p 많습니다.</b> 일부를 포커스룸·라운지로 전환하면 효율적입니다.');
+    else msgs.push('🟢 <b>회의공간</b> 비율이 적정 범위(11~13%) 내에 있습니다.');
+
+    if (OUR.lg === 0)
+      msgs.push('🔴 <b>휴게공간이 계획되어 있지 않습니다.</b> 기업평균 6.6% 기준, 오픈라운지 도입을 강력히 권고합니다.');
+    else if (OUR.lg - AVG.lg < -2)
+      msgs.push('🟡 <b>휴게공간</b>이 평균(6.6%)보다 <b>' + Math.abs(OUR.lg-AVG.lg).toFixed(1) + '%p 적습니다.</b> 라운지 확충으로 직원 만족도를 높일 수 있습니다.');
+    else msgs.push('🟢 <b>휴게공간</b> 비율이 적정 범위 내에 있습니다.');
+
+    if (OUR.stor - AVG.stor < -3)
+      msgs.push('🟡 <b>지원공간(탕비·수납)</b>이 평균(12.7%)보다 부족합니다. OA존·공용수납 배치를 추가로 검토해보세요.');
+
+    analysisEl.innerHTML = msgs.join('<br>');
+  }
+
+  renderPerPersonAnalysis(d);
+  renderConfAnalysis(d);
+  renderStackedBar(d);
+}
+
+/* ─────────────────────────────────────────────
+   1인당 면적 적정성 분석
+───────────────────────────────────────────── */
+function renderPerPersonAnalysis(d) {
+  var el = document.getElementById('per-person-analysis');
+  if (!el) return;
+  var companyEl2 = document.getElementById('f-company');
+  var companyName = (companyEl2 && companyEl2.value && companyEl2.value.trim()) ? companyEl2.value.trim() : '우리회사';
+  var vv = function(id) { var e = document.getElementById(id); return e ? Math.max(0,parseInt(e.value)||0) : 0; };
+  var empTotal = d.empTotal || 0;
+  var empAreaTotal = d.empArea || 0;
+  var empPerPerson = empTotal > 0 ? empAreaTotal / empTotal * 3.305 : 0;
+  var tmQty = vv('tm_16rt')+vv('tm_16l')+vv('tm_18rt')+vv('tm_18l');
+  var tmArea = d.tmArea || 0;
+  var tmPerPerson = tmQty > 0 ? tmArea / tmQty * 3.305 : 0;
+
+  if (empTotal === 0 && tmQty === 0) {
+    el.innerHTML = '<div style="background:#F8F7F3;border-radius:10px;padding:16px;text-align:center;color:var(--muted);font-size:13px;">팀원석·팀장석 입력 시 자동 분석됩니다.</div>';
+    return;
+  }
+  // 임원실 1개당 평균 면적
+  var execQty = (d.exec_xl||0)+(d.exec_l||0)+(d.exec_m||0)+(d.exec_s||0);
+  var execAreaTotal = d.execArea || 0;
+  var execPerRoom = execQty > 0 ? execAreaTotal / execQty * 3.305 : 0;
+
+  var BENCH = [];
+  if (execQty > 0)   BENCH.push({ label:'임원실 1개당 면적',  our:execPerRoom,  avg:26.3, unit:'m²', color:'#8B2200', desc:'퍼시스 DB 2023 기준 부(소)장실·국(단)장실 평균 26.3㎡ (약 8평)', ok:execPerRoom>=22.0, low:execPerRoom<17.0 });
+  if (tmQty > 0)     BENCH.push({ label:'팀장석 1인당 면적',  our:tmPerPerson,  avg:5.8,  unit:'m²', color:'#C43200', desc:'퍼시스 DB 2023 기준 팀장 1인당 업무공간 평균 5.8㎡',  ok:tmPerPerson>=5.0,  low:tmPerPerson<4.0  });
+  if (empTotal > 0)  BENCH.push({ label:'팀원석 1인당 면적',  our:empPerPerson, avg:3.35, unit:'m²', color:'#E8420A', desc:'퍼시스 DB 2023 기준 팀원 1인당 업무공간 평균 3.35㎡', ok:empPerPerson>=2.8, low:empPerPerson<2.3 });
+
+  el.innerHTML = '<div style="display:flex;flex-direction:column;gap:10px;">' + BENCH.map(function(item) {
+    var barW = Math.min(item.our / item.avg * 60, 96);
+    var sc = item.color || '#E8420A';
+    var sb = item.ok ? 'rgba(139,34,0,0.07)' : item.low ? 'rgba(255,173,133,0.15)' : 'rgba(232,66,10,0.08)';
+    var sl = item.ok ? '✓ 적정' : item.low ? '⚠ 부족' : '△ 다소 부족';
+    return [
+      '<div style="background:#fff;border-radius:10px;border:1px solid var(--border);padding:14px 16px;">',
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">',
+          '<span style="font-size:13px;font-weight:700;color:var(--brand);">' + item.label + '</span>',
+          '<span style="font-size:11px;font-weight:700;color:' + sc + ';background:' + sb + ';padding:3px 10px;border-radius:20px;">' + sl + '</span>',
+        '</div>',
+        '<div style="display:flex;align-items:flex-end;gap:16px;margin-bottom:10px;">',
+          '<div style="text-align:center;"><div style="font-size:28px;font-weight:900;color:' + sc + ';letter-spacing:-1px;line-height:1;">' + item.our.toFixed(1) + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">우리 회사 (' + item.unit + ')</div></div>',
+          '<div style="font-size:18px;color:var(--muted);padding-bottom:12px;">vs</div>',
+          '<div style="text-align:center;"><div style="font-size:28px;font-weight:900;color:#888;letter-spacing:-1px;line-height:1;">' + item.avg + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">기업평균 (' + item.unit + ')</div></div>',
+        '</div>',
+        '<div style="margin-bottom:8px;">',
+          '<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><div style="width:52px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0;">' + companyName + '</div><div style="flex:1;height:18px;background:#F0EEE8;border-radius:4px;overflow:hidden;"><div style="height:100%;width:' + barW.toFixed(0) + '%;background:' + sc + ';border-radius:4px;"></div></div></div>',
+          '<div style="display:flex;align-items:center;gap:6px;"><div style="width:52px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0;">기업평균</div><div style="flex:1;height:12px;background:#F0EEE8;border-radius:4px;overflow:hidden;"><div style="height:100%;width:60%;background:#C4C2BC;border-radius:4px;"></div></div></div>',
+        '</div>',
+        '<div style="font-size:11px;color:var(--muted);line-height:1.6;">' + item.desc + '</div>',
+      '</div>'
+    ].join('');
+  }).join('') + '</div>';
+}
+
+/* ─────────────────────────────────────────────
+   회의실 적정성 분석
+───────────────────────────────────────────── */
+function renderConfAnalysis(d) {
+  var el = document.getElementById('conf-analysis');
+  if (!el) return;
+  var empTotal  = d.empTotal  || 0;
+  var confCount = (d.conf_4||0)+(d.conf_6||0)+(d.conf_8||0)+(d.conf_12||0)+(d.conf_12||0)+(d.conf_14||0)+(d.conf_16||0)+(d.conf_16||0);
+  var BENCH_RATIO = 4.6 / 75;
+  var recommended = Math.round(empTotal * BENCH_RATIO);
+  var recMin = Math.floor(empTotal * (4.0/75));
+  var recMax = Math.ceil(empTotal * (5.2/75));
+  var status, sc, sb, statusMsg;
+  if (confCount === 0) {
+    status='⚠ 미계획'; sc='#E8420A'; sb='rgba(232,66,10,0.08)';
+    statusMsg='회의실이 계획되어 있지 않습니다. 직원 수 기준 최소 '+recMin+'개를 권장합니다.';
+  } else if (confCount < recMin) {
+    status='🔴 부족'; sc='#E8420A'; sb='rgba(232,66,10,0.08)';
+    statusMsg='현재 '+confCount+'개는 직원 수 대비 부족합니다. '+(recMin-confCount)+'개 이상 추가를 권장합니다.';
+  } else if (confCount > recMax+1) {
+    status='🟡 과다'; sc='#B87D0A'; sb='rgba(184,125,10,0.08)';
+    statusMsg='회의실이 다소 많은 편입니다. 일부를 포커스룸·라운지로 전환하면 공간 효율이 높아집니다.';
+  } else {
+    status='🟢 적정'; sc='#E8420A'; sb='rgba(45,106,10,0.08)';
+    statusMsg='직원 수 대비 적정 수준의 회의실이 계획되어 있습니다.';
+  }
+
+  var confSmall  = (d.conf_4||0)+(d.conf_6||0);
+  var confMid    = (d.conf_8||0)+(d.conf_12||0)+(d.conf_12||0);
+  var confLarge  = (d.conf_14||0)+(d.conf_16||0)+(d.conf_16||0);
+  var confFocus  = (d.conf_pb||0)+(d.conf_fr||0);
+  var confTotal2 = confSmall+confMid+confLarge+confFocus;
+
+  var distHTML = '';
+  if (confTotal2 > 0) {
+    var DIST = [
+      { label:'집중공간 (1~2인)', count:confFocus, color:'#FFCFAA', bench:16.6 },
+      { label:'소형 (4~6인)',     count:confSmall, color:'#FF8552', bench:46.6 },
+      { label:'중형 (8~12인)',    count:confMid,   color:'#E8420A', bench:27.7 },
+      { label:'대형 (14인+)',     count:confLarge, color:'#8B2200', bench:9.1  },
+    ];
+    distHTML = '<div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">' +
+      '<div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">규모별 분포 (권장 비율 비교)</div>' +
+      DIST.map(function(item) {
+        if (item.count === 0) return '';
+        var ourPct = confTotal2 > 0 ? item.count / confTotal2 * 100 : 0;
+        return '<div style="margin-bottom:8px;"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;"><span style="font-weight:600;color:var(--brand);">' + item.label + ' (' + item.count + '개)</span><span style="color:var(--muted);">권장 ' + item.bench + '%</span></div><div style="display:flex;gap:4px;align-items:center;"><div style="flex:1;height:14px;background:#F0EEE8;border-radius:3px;overflow:hidden;"><div style="height:100%;width:' + ourPct.toFixed(0) + '%;background:' + item.color + ';border-radius:3px;"></div></div><span style="font-size:10px;font-weight:700;color:' + item.color + ';min-width:32px;text-align:right;">' + ourPct.toFixed(0) + '%</span></div></div>';
+      }).join('') + '</div>';
+  }
+
+  el.innerHTML = [
+    '<div style="background:#fff;border-radius:10px;border:1px solid var(--border);padding:14px 16px;">',
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">',
+        '<div><div style="font-size:13px;font-weight:700;color:var(--brand);margin-bottom:4px;">회의실 수 적정성</div><div style="font-size:11px;color:var(--muted);">퍼시스 DB 기준: 직원 75명당 평균 4.6개</div></div>',
+        '<span style="font-size:11px;font-weight:700;color:' + sc + ';background:' + sb + ';padding:3px 10px;border-radius:20px;white-space:nowrap;">' + status + '</span>',
+      '</div>',
+      '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">',
+        '<div style="text-align:center;background:var(--bg);border-radius:8px;padding:10px;"><div style="font-size:26px;font-weight:900;color:' + sc + ';letter-spacing:-1px;">' + confCount + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">현재 계획</div></div>',
+        '<div style="text-align:center;background:var(--bg);border-radius:8px;padding:10px;"><div style="font-size:26px;font-weight:900;color:var(--brand);letter-spacing:-1px;">' + recommended + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">권장 수 (평균)</div></div>',
+        '<div style="text-align:center;background:var(--bg);border-radius:8px;padding:10px;"><div style="font-size:16px;font-weight:900;color:#888;letter-spacing:-0.5px;line-height:1.6;">' + recMin + '~' + recMax + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">권장 범위</div></div>',
+      '</div>',
+      '<div style="font-size:12px;color:#2A3A5C;line-height:1.7;background:' + sb + ';border-radius:8px;padding:10px 12px;">' + statusMsg + '</div>',
+      distHTML,
+    '</div>',
+''
+  ].join('');
+}
+
+
+/* ─────────────────────────────────────────────
+   보고서 저장하기 애니메이션
+───────────────────────────────────────────── */
+function completeReport() {
+  var btn  = document.getElementById('btn-report-done');
+  var icon = document.getElementById('btn-report-icon');
+  var text = document.getElementById('btn-report-text');
+  if (!btn) return;
+
+  var company = (document.getElementById('f-company') || {}).value || 'OfficeFlow';
+  var s4 = document.getElementById('s4');
+  if (!s4) return;
+
+  function resetBtn() {
+    if (icon) { icon.textContent = '✓'; icon.style.animation = 'none'; }
+    if (text) text.textContent = '보고서 저장하기';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+  }
+
+  if (icon) { icon.textContent = '⏳'; icon.style.animation = 'none'; }
+  if (text) text.textContent = 'PDF 생성 중...';
+  btn.disabled = true;
+
+  // 숨길 요소
+  var hideEls = s4.querySelectorAll('#btn-report-done-area, #ai-cta-section');
+  hideEls.forEach(function(el) { el.style.display = 'none'; });
+
+  // 라이브러리 로드 확인
+  if (typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
+    hideEls.forEach(function(el) { el.style.display = ''; });
+    alert('PDF 라이브러리 로딩 중입니다. 잠시 후 다시 시도해 주세요.');
+    resetBtn();
+    return;
+  }
+
+  // 약간의 지연 후 캡처 (렌더링 안정화)
+  setTimeout(function() {
+    html2canvas(s4, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: false,
+      backgroundColor: '#F5F4F0',
+      logging: false,
+      scrollX: 0,
+      scrollY: 0,
+      windowWidth: s4.scrollWidth,
+      windowHeight: s4.scrollHeight
+    }).then(function(canvas) {
+      hideEls.forEach(function(el) { el.style.display = ''; });
+
+      var imgData = canvas.toDataURL('image/jpeg', 0.9);
+      var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+      var pageW = 210, pageH = 297;
+      var imgW  = pageW;
+      var imgH  = canvas.height * pageW / canvas.width;
+      var y = 0;
+
+      while (y < imgH) {
+        if (y > 0) pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 0, -y, imgW, imgH);
+        y += pageH;
+      }
+
+      pdf.save(company + '_공간분석보고서.pdf');
+
+      if (icon) icon.textContent = '✓';
+      if (text) text.textContent = '저장 완료!';
+      btn.disabled = false;
+
+      // 저장 후 다음 페이지로 이동
+      setTimeout(function() { go('s-next'); }, 800);
+
+    }).catch(function(err) {
+      hideEls.forEach(function(el) { el.style.display = ''; });
+      console.error('PDF 생성 오류:', err);
+      resetBtn();
+      // 실패(취소)해도 다음 페이지로 이동
+      go('s-next');
+    });
+  }, 400);
+
+  setTimeout(function() { if (btn.disabled) resetBtn(); }, 15000);
+}
+
+
+/* ─────────────────────────────────────────────
+   PDF 저장
+───────────────────────────────────────────── */
+function savePDF() {
+  // 파일명 설정
+  var company = document.getElementById('f-company');
+  var companyName = company && company.value ? company.value : '회사명';
+  var today = new Date();
+  var dateStr = today.getFullYear() + String(today.getMonth()+1).padStart(2,'0') + String(today.getDate()).padStart(2,'0');
+  document.title = companyName + '_공간분석보고서_' + dateStr;
+
+  // S4만 인쇄되도록 설정
+  var style = document.createElement('style');
+  style.id = 'print-style';
+  style.innerHTML = [
+    '@media print {',
+    '  body * { visibility: hidden; }',
+    '  #s4, #s4 * { visibility: visible; }',
+    '  #s4 { position: absolute; left: 0; top: 0; width: 100%; }',
+    '  .topnav { display: none !important; }',
+    '  #btn-report-done { display: none !important; }',
+    '  .section { padding: 16px !important; }',
+    '  @page { margin: 10mm; size: A4; }',
+    '}'
+  ].join('\n');
+  document.head.appendChild(style);
+
+  window.print();
+
+  // 인쇄 후 정리
+  setTimeout(function() {
+    var ps = document.getElementById('print-style');
+    if (ps) ps.remove();
+    document.title = 'OfficeFlow | 공간 분석 보고서';
+  }, 1000);
+}
+
+// s-pdf 진입 시 파일명 업데이트
+function updatePdfFilename() {
+  var el = document.getElementById('pdf-filename');
+  if (!el) return;
+  var company = document.getElementById('f-company');
+  var name = company && company.value ? company.value : '회사명';
+  var today = new Date();
+  var d = today.getFullYear() + '.' + String(today.getMonth()+1).padStart(2,'0') + '.' + String(today.getDate()).padStart(2,'0');
+  var dot = d.replace(/\./g, '');
+  el.textContent = name + '_공간분석보고서_' + d.replace(/\./g,'.') + '.pdf';
+}
+
+go = function(id) {
+  _goOriginal(id);
+  // step-bar 업데이트
+  if (id === 's2' || id === 's2result') updateStepBar(1);
+  if (id === 's3' || id === 's-loading') updateStepBar(2);
+  if (id === 's4' || id === 's-next' || id === 's5' || id === 's7' || id === 's8' || id === 's9') updateStepBar(3);
+
+  if (id === 's4') {
+    // buildReport는 startLoadingAnimation에서 이미 호출됨
+  }
+  if (id === 's-pdf') {
+    updatePdfFilename();
+  }
+  if (id === 's-next') {
+    var d = window._calc || {};
+    var set = function(id, val) { var e = document.getElementById(id); if(e) e.textContent = val; };
+    set('snext-py',  (d.totalPy || '—') + '평');
+    set('snext-emp', (d.empTotal || '—') + '명');
+    var confCnt = (d.conf_4||0)+(d.conf_6||0)+(d.conf_8||0)+(d.conf_12||0)+(d.conf_12||0)+(d.conf_14||0)+(d.conf_16||0)+(d.conf_16||0);
+    set('snext-conf', (confCnt || '—') + '개');
+    set('snext-py2', (d.totalPy || '—') + '평');
+  }
+  if (id === 's8') {
+    var d = window._calc || {};
+    var empCount   = d.empCount   || 50;
+    var execCount  = d.execCount  || 3;
+    var confChairs = d.confChairs || 30;
+
+    var set = function(id, val) { var el = document.getElementById(id); if(el) el.textContent = val; };
+
+    // 수량 표시
+    set('qty-desk-std',    empCount + '석');
+    set('qty-desk-motion', empCount + '석');
+    set('qty-chair',       empCount + '석');
+    set('qty-conf-chair',  '약 ' + confChairs + '석');
+
+    // 납품가(30%) 기준 합계
+    var deskStdTotal    = Math.round(499400 * 0.7 * empCount / 10000);
+    var deskMotionTotal = Math.round(1289400 * 0.7 * empCount / 10000);
+    var chairTotal      = Math.round(502700 * 0.7 * empCount / 10000);
+    var confChairTotal  = Math.round(217800 * 0.7 * confChairs / 10000);
+
+    set('total-desk-std',    '약 ' + deskStdTotal.toLocaleString() + '만원');
+    set('total-desk-motion', '약 ' + deskMotionTotal.toLocaleString() + '만원');
+    set('total-chair',       '약 ' + chairTotal.toLocaleString() + '만원');
+    set('total-conf-chair',  '약 ' + confChairTotal.toLocaleString() + '만원');
+
+    // 수량 요약 그리드
+    var grid = document.getElementById('furniture-qty-grid');
+    if (grid) {
+      var items = [
+        { label: '직원 데스크', qty: empCount + '세트' },
+        { label: '직원 의자',   qty: empCount + '석' },
+        { label: '임원·중역 의자', qty: (execCount || 3) + '석' },
+        { label: '회의용 의자', qty: '약 ' + confChairs + '석' },
+      ];
+      grid.innerHTML = items.map(function(item) {
+        return '<div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">' +
+          '<span style="font-size:11px;color:var(--muted);">' + item.label + '</span>' +
+          '<span style="font-size:12px;font-weight:700;color:var(--brand);">' + item.qty + '</span>' +
+          '</div>';
+      }).join('');
+    }
+
+    // 수량 요약 업데이트
+    var set2 = function(id, val) { var el = document.getElementById(id); if(el) el.textContent = val; };
+    set2('qty-desk-std',    empCount + '세트');
+    set2('qty-chair',       empCount + '석');
+    set2('qty-exec-chair',  execCount + '석');
+    set2('qty-conf-chair',  '약 ' + confChairs + '석');
+    // 탭 양쪽 합계 미리 계산
+    ['standard','premium'].forEach(function(t) {
+      updateFurnitureDisplay(t, empCount, execCount, confChairs);
+    });
+    switchFurnitureTab(_furnitureTab);
+  }
+  if (id === 's9') {
+    // S9는 submitFurnitureRequest()에서 직접 내용 채움
+  }
+  if (id === 's7') {
+    var d = window._calc;
+    var py = d ? d.totalPy : 127;
+    var conf = d ? d.confCount : 6;
+    // 두 탭 합계 모두 계산
+    var calcTotal = function(tab) {
+      var c = COST_DATA[tab];
+      var mid = function(a,b){return Math.round((a+b)/2);};
+      var sub = (mid(c.floor.min,c.floor.max)+mid(c.elec.min,c.elec.max)+mid(c.glass.min,c.glass.max)+mid(c.paint.min,c.paint.max))*py
+               + mid(c.av.min,c.av.max)*conf + mid(c.net.min,c.net.max)*py;
+      var total = sub + Math.round(sub*c.design.rate);
+      if(total>=10000) return '약 '+(total/10000).toFixed(1)+'억원';
+      return '약 '+Math.round(total/100)*100+'만원';
+    };
+    var set = function(id, val){var el=document.getElementById(id); if(el) el.textContent=val;};
+    set('total-standard', calcTotal('standard'));
+    set('total-premium',  calcTotal('premium'));
+    set('cost-area-lbl', py + '평 기준 · VAT 별도');
+    updateCostDisplay(_costTab, py, conf);
+  }
+};
+</script>
+
+<!-- ════════════════════════════════════════
+     SCREEN 9 — 납품 요청 완료
+════════════════════════════════════════ -->
+<div id="s9" class="screen">
+  <nav class="topnav">
+    <div class="logo">OFFICE<span>.</span>FLOW</div>
+  </nav>
+
+  <div class="section" style="text-align:center;padding-top:8px;">
+
+    <!-- 완료 아이콘 -->
+    <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#FF6B35);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 8px 24px rgba(232,66,10,0.3);">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16l7 7L26 9" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <div style="font-size:22px;font-weight:900;letter-spacing:-0.5px;margin-bottom:6px;">납품 요청 완료!</div>
+    <div style="font-size:14px;color:var(--muted);margin-bottom:4px;">담당자가 <b style="color:var(--brand);">48시간 내</b> 정식 견적서를 발송해 드립니다</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:28px;" id="s9-email-confirm"></div>
+
+    <!-- 요청 요약 -->
+    <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:24px;text-align:left;">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">접수된 요청 내용</div>
+      <div id="s9-summary" style="font-size:12px;color:var(--brand);line-height:2;"></div>
+    </div>
+
+    <!-- 퍼시스 신뢰 배지 -->
+    <div style="margin-bottom:24px;">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;">왜 퍼시스인가요?</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div style="border:1.5px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;">1위</div>
+          <div style="font-size:11px;font-weight:700;margin-top:4px;">국내 사무가구</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">시장점유율 60%</div>
+        </div>
+        <div style="border:1.5px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;">42년</div>
+          <div style="font-size:11px;font-weight:700;margin-top:4px;">업력</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">1983년 창립</div>
+        </div>
+        <div style="border:1.5px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;">250+</div>
+          <div style="font-size:11px;font-weight:700;margin-top:4px;">전국 대리점</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">전국 설치·AS</div>
+        </div>
+        <div style="border:1.5px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;">70+</div>
+          <div style="font-size:11px;font-weight:700;margin-top:4px;">수출국</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">글로벌 검증 품질</div>
+        </div>
+      </div>
+
+      <!-- 핵심 메시지 -->
+      <div style="background:var(--brand);border-radius:10px;padding:14px 16px;text-align:left;">
+        <div style="font-size:12px;font-weight:800;color:#fff;margin-bottom:6px;">국내 대기업의 선택, 퍼시스</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.65);line-height:1.8;">
+          삼성·현대·LG 등 국내 대기업부터<br>
+          스타트업까지 60%가 선택한 브랜드.<br>
+          본사 직납품으로 품질과 AS를 보증합니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 추가 상담 -->
+    <div style="background:#F0F4FF;border-radius:10px;border:1px solid #C8D5F0;padding:14px 16px;margin-bottom:20px;text-align:left;">
+      <div style="font-size:11px;font-weight:700;color:#E8420A;margin-bottom:6px;">📞 빠른 상담을 원하신다면</div>
+      <div style="font-size:12px;color:#2A3A5C;line-height:1.8;">
+        견적 문의·쇼룸 방문 예약은<br>
+        담당자에게 직접 연락 주세요.
+      </div>
+    </div>
+
+    <button class="btn-secondary full" onclick="restart()" style="margin-top:4px;">← 처음으로 돌아가기</button>
+
+  </div>
+</div>
+
+
+
+
+<!-- ╔═══════════════════════════════════════════════════════╗ -->
+<!-- ║                [JavaScript 함수]                       ║ -->
+<!-- ╚═══════════════════════════════════════════════════════╝ -->
+<script>
+// ===== submitFurnitureRequest =====
+function submitFurnitureRequest() {
+  var d = window._calc || {};
+  var emp   = d.empCount   || 50;
+  var exec  = d.execCount  || 3;
+  var conf  = d.confChairs || 30;
+  var tab   = _furnitureTab || 'standard';
+  var tabLabel = tab === 'premium' ? '프리미엄' : '표준형';
+  var data  = FURNITURE_DATA[tab];
+  var total = document.getElementById('furniture-grand-total');
+  var totalVal = total ? total.textContent : '견적 산출 중';
+
+  // S9 내용 채우기
+  var summaryEl = document.getElementById('s9-summary');
+  if (summaryEl) {
+    var getVal = function(id) { var el = document.getElementById(id); return (el && el.value) ? el.value : '—'; };
+    var company = getVal('company');
+    var name    = getVal('name');
+    var email   = getVal('email');
+    summaryEl.innerHTML =
+      '선택 등급: <b>' + tabLabel + '</b><br>' +
+      '직원 데스크: <b>' + (data.desk.name || '—') + ' × ' + emp + '세트</b><br>' +
+      '직원 의자: <b>' + (data.chair.name || '—') + ' × ' + emp + '석</b><br>' +
+      '중역 의자: <b>' + (data.exec.name  || '—') + ' × ' + exec + '석</b><br>' +
+      '회의용 의자: <b>' + (data.conf.name || '—') + ' × ' + conf + '석</b><br>' +
+      '예상 납품 총액: <b style="color:var(--accent);">' + totalVal + '</b>';
+    var confirmEl = document.getElementById('s9-email-confirm');
+    if (confirmEl && email !== '—') {
+      confirmEl.textContent = email + ' 으로 견적서가 발송됩니다';
+    }
+  }
+
+  // S9로 이동
+  go('s9');
+}
+
+// ===== switchCostTab =====
+function switchCostTab(tab) {
+  _costTab = tab;
+  var d = window._calc;
+  var py = d ? d.totalPy : 127;
+  var conf = d ? d.confCount : 6;
+  updateCostDisplay(tab, py, conf);
+
+  var std = document.getElementById('tab-standard');
+  var prm = document.getElementById('tab-premium');
+  if (tab === 'standard') {
+    if (std) { std.style.border = '2px solid var(--accent)'; std.style.background = '#FFF5F2'; }
+    if (prm) { prm.style.border = '2px solid var(--border)'; prm.style.background = '#fff'; }
+  } else {
+    if (prm) { prm.style.border = '2px solid var(--accent)'; prm.style.background = '#FFF5F2'; }
+    if (std) { std.style.border = '2px solid var(--border)'; std.style.background = '#fff'; }
+  }
+}
+
+// ===== toggleStyleImg =====
+function toggleStyleImg(idx) {
+  var card = document.getElementById('simg-' + idx);
+  var check = document.getElementById('check-' + idx);
+  var pos = _selectedStyles.indexOf(idx);
+  if (pos === -1) {
+    _selectedStyles.push(idx);
+    if (card) { card.style.border = '2px solid var(--accent)'; card.style.boxShadow = '0 4px 16px rgba(232,66,10,0.2)'; }
+    if (check) check.style.display = 'block';
+  } else {
+    _selectedStyles.splice(pos, 1);
+    if (card) { card.style.border = '2px solid var(--border)'; card.style.boxShadow = 'none'; }
+    if (check) check.style.display = 'none';
+  }
+}
+
+// ===== chipOne =====
+function chipOne(el, sel) {
+  document.querySelectorAll(sel).forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+}
+
+// ===== switchFurnitureTab =====
+function switchFurnitureTab(tab) {
+  _furnitureTab = tab;
+  var std = document.getElementById('tab-furniture-standard');
+  var prm = document.getElementById('tab-furniture-premium');
+  if (tab === 'standard') {
+    if (std) { std.style.border = '2px solid var(--accent)'; std.style.background = '#FFF5F2'; }
+    if (prm) { prm.style.border = '2px solid var(--border)'; prm.style.background = '#fff'; }
+  } else {
+    if (prm) { prm.style.border = '2px solid var(--accent)'; prm.style.background = '#FFF5F2'; }
+    if (std) { std.style.border = '2px solid var(--border)'; std.style.background = '#fff'; }
+  }
+  var d = window._calc || {};
+  updateFurnitureDisplay(tab, d.empCount||50, d.execCount||3, d.confChairs||30);
+}
+
+
+</script>
