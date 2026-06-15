@@ -2091,20 +2091,6 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
     <!-- 보고서 마무리 버튼 -->
     <div style="margin-top:32px;padding-bottom:8px;">
       <div style="height:1px;background:var(--border);margin-bottom:24px;"></div>
-      <!-- AI 분석 멘트 + CTA -->
-      <div id="ai-cta-section" style="background:#FFF5F2;border:1.5px solid #FFCFAA;border-radius:16px;padding:24px;margin-bottom:20px;color:var(--text);">
-        <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--brand);margin-bottom:10px;text-transform:uppercase;">OFFICE.FLOW 공간 진단 결과</div>
-        <div id="ai-analysis-text" style="font-size:14px;line-height:1.8;margin-bottom:20px;min-height:60px;color:var(--text);">
-          <div style="display:flex;align-items:center;gap:8px;color:var(--muted);">
-            <div style="width:18px;height:18px;border:2px solid rgba(255,255,255,0.5);border-top-color:#fff;border-radius:50%;animation:loadingSpin 0.8s linear infinite;"></div>
-            분석 중...
-          </div>
-        </div>
-        <button onclick="submitConsulting()" style="background:#FFF0EB;color:var(--brand);border:1.5px solid #FFCFAA;border-radius:24px;padding:14px 28px;font-size:14px;font-weight:800;cursor:pointer;width:100%;letter-spacing:-0.3px;transition:all 0.2s;">
-          컨설팅 신청하기
-        </button>
-      </div>
-
       <div style="text-align:center;margin-bottom:16px;">
         <div style="font-size:12px;color:var(--muted);line-height:1.8;">
           본 보고서는 OFFICE.FLOW 공간 분석 시스템을 통해 산출된 결과입니다.<br>
@@ -2226,6 +2212,20 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
       </div>
 
     </div>
+
+<!-- AI 분석 멘트 + CTA -->
+      <div id="ai-cta-section" style="background:#FFF5F2;border:1.5px solid #FFCFAA;border-radius:16px;padding:24px;margin-bottom:20px;color:var(--text);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--brand);margin-bottom:10px;text-transform:uppercase;">OFFICE.FLOW 공간 진단 결과</div>
+        <div id="ai-analysis-text" style="font-size:14px;line-height:1.8;margin-bottom:20px;min-height:60px;color:var(--text);">
+          <div style="display:flex;align-items:center;gap:8px;color:var(--muted);">
+            <div style="width:18px;height:18px;border:2px solid rgba(255,255,255,0.5);border-top-color:#fff;border-radius:50%;animation:loadingSpin 0.8s linear infinite;"></div>
+            분석 중...
+          </div>
+        </div>
+        <button onclick="submitConsulting()" style="background:#FFF0EB;color:var(--brand);border:1.5px solid #FFCFAA;border-radius:24px;padding:14px 28px;font-size:14px;font-weight:800;cursor:pointer;width:100%;letter-spacing:-0.3px;transition:all 0.2s;">
+          컨설팅 신청하기
+        </button>
+      </div>
 
     <!-- 하단 안내 -->
     <div style="background:var(--bg);border-radius:10px;border:1px solid var(--border);padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.8;text-align:center;">
@@ -2829,6 +2829,11 @@ function go(id) {
   document.getElementById(id).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   sync();
+
+  // s-next 진입 시 AI 진단 멘트 생성
+  if (id === 's-next') {
+    setTimeout(function() { generateAIAnalysis(window._calc || {}); }, 300);
+  }
 }
 
 function restart() {
@@ -3868,8 +3873,6 @@ function startLoadingAnimation() {
       'event_category': 'engagement',
       'event_label': '보고서 완료'
     });
-    // AI 분석 멘트 생성 (비동기)
-    setTimeout(() => generateAIAnalysis(window._calc || {}), 500);
 
     // 로딩 상태 초기화 (다음 사용을 위해)
     setTimeout(function() {
