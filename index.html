@@ -4676,11 +4676,15 @@ function completeReport() {
       if (text) text.textContent = '저장 완료!';
       btn.disabled = false;
 
+      // 저장 후 다음 페이지로 이동
+      setTimeout(function() { go('s-next'); }, 800);
+
     }).catch(function(err) {
       hideEls.forEach(function(el) { el.style.display = ''; });
       console.error('PDF 생성 오류:', err);
-      alert('PDF 생성에 실패했습니다. 다시 시도해 주세요.');
       resetBtn();
+      // 실패(취소)해도 다음 페이지로 이동
+      go('s-next');
     });
   }, 400);
 
