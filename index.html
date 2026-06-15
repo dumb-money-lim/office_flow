@@ -2151,7 +2151,7 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
     <div style="display:flex;flex-direction:column;gap:0;margin-bottom:24px;border:1.5px solid var(--border);border-radius:14px;overflow:hidden;">
 
       <!-- 매물 탐색 -->
-      <div onclick="go('s5')" style="background:#fff;padding:18px 16px;cursor:pointer;transition:background 0.15s;border-bottom:1px solid var(--border);" onmouseover="this.style.background='#F8F7F3'" onmouseout="this.style.background='#fff'">
+      <div style="background:#fff;padding:18px 16px;border-bottom:1px solid var(--border);opacity:0.65;">
         <div style="display:flex;align-items:center;gap:14px;">
           <!-- 픽토그램: 건물 -->
           <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#1A1A2E,#3D3D6E);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -2166,12 +2166,12 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
             <div style="font-size:13px;font-weight:800;color:var(--brand);margin-bottom:3px;">매물 탐색 · 의뢰</div>
             <div style="font-size:11px;color:var(--muted);line-height:1.6;">분석된 <b style="color:var(--brand);" id="snext-py2">—평</b> 기준으로 적합한 매물을 PM사에 의뢰합니다.</div>
           </div>
-          <div style="font-size:11px;font-weight:700;color:#E8420A;background:#FFF5F2;padding:3px 8px;border-radius:5px;flex-shrink:0;white-space:nowrap;">면적 연동</div>
+          <div style="font-size:11px;font-weight:700;color:var(--muted);background:#F0F0EC;padding:3px 8px;border-radius:5px;flex-shrink:0;white-space:nowrap;">준비 중</div>
         </div>
       </div>
 
       <!-- 인테리어 -->
-      <div onclick="go('s7')" style="background:#fff;padding:18px 16px;cursor:pointer;transition:background 0.15s;border-bottom:1px solid var(--border);" onmouseover="this.style.background='#F8F7F3'" onmouseout="this.style.background='#fff'">
+      <div style="background:#fff;padding:18px 16px;border-bottom:1px solid var(--border);opacity:0.65;">
         <div style="display:flex;align-items:center;gap:14px;">
           <!-- 픽토그램: 인테리어/붓 -->
           <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#C43200,#E8420A);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -2186,12 +2186,12 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
             <div style="font-size:13px;font-weight:800;color:var(--brand);margin-bottom:3px;">인테리어 예상 견적</div>
             <div style="font-size:11px;color:var(--muted);line-height:1.6;">공간 구성 비율 기반 <b style="color:var(--brand);">표준형·프리미엄</b> 예상 비용을 확인합니다.</div>
           </div>
-          <div style="font-size:11px;font-weight:700;color:#E8420A;background:#F0FFF0;padding:3px 8px;border-radius:5px;flex-shrink:0;white-space:nowrap;">비율 반영</div>
+          <div style="font-size:11px;font-weight:700;color:var(--muted);background:#F0F0EC;padding:3px 8px;border-radius:5px;flex-shrink:0;white-space:nowrap;">준비 중</div>
         </div>
       </div>
 
       <!-- 가구 상담 -->
-      <div onclick="go('s8')" style="background:#FFF5F2;padding:18px 16px;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#FFE8E0'" onmouseout="this.style.background='#FFF5F2'">
+      <div style="background:#FFF5F2;padding:18px 16px;opacity:0.65;">
         <div style="display:flex;align-items:center;gap:14px;">
           <!-- 픽토그램: 의자/가구 -->
           <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#E8420A,#FF6B35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -2207,7 +2207,7 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
             </div>
             <div style="font-size:11px;color:var(--muted);line-height:1.6;">직원·임원·회의실 수량이 자동 반영된 <b style="color:var(--brand);">맞춤 가구 견적</b>을 확인합니다.</div>
           </div>
-          <div style="font-size:11px;font-weight:700;color:#E8420A;background:#FFF0EB;padding:3px 8px;border-radius:5px;flex-shrink:0;white-space:nowrap;">수량 연동</div>
+          <div style="font-size:11px;font-weight:700;color:var(--muted);background:#F0F0EC;padding:3px 8px;border-radius:5px;flex-shrink:0;white-space:nowrap;">준비 중</div>
         </div>
       </div>
 
@@ -2236,588 +2236,6 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     SCREEN 5 — 부동산 의뢰
-════════════════════════════════════════ -->
-<div id="s5" class="screen">
-  <nav class="topnav">
-    <div class="logo">OFFICE<span>.</span>FLOW</div>
-    <button onclick="go('s4')" style="background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;font-size:13px;font-family:'Noto Sans KR',sans-serif;">← 보고서로</button>
-  </nav>
-
-  <div class="section">
-    <div class="section-title">매물 의뢰하기</div>
-    <div class="section-sub">아래 조건을 입력하시면 담당자가 맞춤 매물을 찾아드립니다</div>
-
-    <!-- ── 서울 오피스 시장 현황 (Savills) ── -->
-    <div style="margin-bottom:20px;">
-      <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;">서울 오피스 시장 현황</div>
-      <div style="font-size:15px;font-weight:800;letter-spacing:-0.5px;margin-bottom:4px;">2026년 1분기 프라임 오피스</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">매물 탐색 전 참고하세요</div>
-
-      <!-- 권역별 3개 카드 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-        <div style="border:1.5px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center;">
-          <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:2px;">CBD</div>
-          <div style="font-size:9px;color:var(--muted);margin-bottom:6px;">종로·을지로·시청</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:#D44E2A;letter-spacing:-1px;line-height:1;">5.5<span style="font-size:13px;">%</span></div>
-          <div style="font-size:9px;color:var(--muted);margin-top:2px;">공실률</div>
-          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;font-weight:700;color:var(--brand);">133,300원/평</div>
-          <div style="font-size:9px;color:var(--muted);">전년 +3.8%</div>
-        </div>
-        <div style="border:2px solid var(--accent);background:#FFF5F2;border-radius:10px;padding:12px 10px;text-align:center;">
-          <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:2px;">GBD ★</div>
-          <div style="font-size:9px;color:var(--muted);margin-bottom:6px;">강남·서초·역삼</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:#E8420A;letter-spacing:-1px;line-height:1;">1.7<span style="font-size:13px;">%</span></div>
-          <div style="font-size:9px;color:var(--muted);margin-top:2px;">공실률 (최저)</div>
-          <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(232,66,10,0.15);font-size:11px;font-weight:700;color:var(--brand);">131,300원/평</div>
-          <div style="font-size:9px;color:var(--muted);">전년 +6.2%</div>
-        </div>
-        <div style="border:1.5px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center;">
-          <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:2px;">YBD</div>
-          <div style="font-size:9px;color:var(--muted);margin-bottom:6px;">여의도</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:#B8860B;letter-spacing:-1px;line-height:1;">4.4<span style="font-size:13px;">%</span></div>
-          <div style="font-size:9px;color:var(--muted);margin-top:2px;">공실률</div>
-          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;font-weight:700;color:var(--brand);">112,900원/평</div>
-          <div style="font-size:9px;color:var(--muted);">전년 +1.7%</div>
-        </div>
-      </div>
-
-      <!-- 서울 전체 요약 바 -->
-      <div style="background:var(--bg);border-radius:10px;border:1.5px solid var(--border);padding:12px 14px;margin-bottom:10px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;">
-          <div>
-            <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;color:var(--brand);">4.0%</div>
-            <div style="font-size:10px;color:var(--muted);">서울 평균 공실률</div>
-          </div>
-          <div>
-            <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;color:var(--brand);">128,200</div>
-            <div style="font-size:10px;color:var(--muted);">원/평 (전년 +4.1%)</div>
-          </div>
-          <div>
-            <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;color:var(--brand);">3조원</div>
-            <div style="font-size:10px;color:var(--muted);">Q1 거래규모</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 인사이트 -->
-      <div style="background:#F0F4FF;border-radius:10px;border:1px solid #C8D5F0;padding:12px 14px;margin-bottom:6px;">
-        <div style="font-size:11px;font-weight:700;color:#E8420A;margin-bottom:6px;">📊 시장 인사이트</div>
-        <div style="font-size:12px;color:#2A3A5C;line-height:1.8;">
-          · GBD 공실률 1.7% — <b>매물 희소, 빠른 의사결정 필요</b><br>
-          · CBD 신규 공급(G1 Seoul·르네스퀘어) 예정 — <b>협상 여지 증가 전망</b><br>
-          · 서울 임대료 전년 대비 평균 +4.1% 상승 지속
-        </div>
-      </div>
-      <div style="text-align:right;font-size:10px;color:var(--muted);margin-bottom:16px;">
-        출처: Savills Korea Research, 서울 프라임 오피스 Q1/2026
-      </div>
-    </div>
-
-    <div class="re-notice">
-      <div class="re-notice-icon">✅</div>
-      <div>
-        <div class="re-notice-title">보고서 기준 자동 설정됨</div>
-        <div class="re-notice-sub" id="re-auto">약 127평 · 서울 전체</div>
-      </div>
-    </div>
-
-    <!-- ① 이전 희망 시기 -->
-    <div class="card">
-      <div class="card-title" style="margin-bottom:12px;">① 이전 희망 시기</div>
-      <div class="chip-group">
-        <div class="chip on" onclick="chipOne(this,'.chip-time')">3개월 이내</div>
-        <div class="chip chip-time" onclick="chipOne(this,'.chip-time')">6개월 이내</div>
-        <div class="chip chip-time" onclick="chipOne(this,'.chip-time')">1년 이내</div>
-        <div class="chip chip-time" onclick="chipOne(this,'.chip-time')">1년 이상</div>
-        <div class="chip chip-time" onclick="chipOne(this,'.chip-time')">미정</div>
-      </div>
-    </div>
-
-    <!-- ② 임대 형태 -->
-    <div class="card">
-      <div class="card-title" style="margin-bottom:12px;">② 임대 형태</div>
-      <div class="chip-group">
-        <div class="chip on" onclick="chipOne(this,'.chip-lease')">월세</div>
-        <div class="chip chip-lease" onclick="chipOne(this,'.chip-lease')">전세</div>
-        <div class="chip chip-lease" onclick="chipOne(this,'.chip-lease')">매매 (사옥)</div>
-        <div class="chip chip-lease" onclick="chipOne(this,'.chip-lease')">무관</div>
-      </div>
-    </div>
-
-    <!-- ③ 희망 지역 -->
-    <div class="card">
-      <div class="card-title" style="margin-bottom:12px;">③ 희망 지역 <span style="font-size:11px;color:var(--muted);font-weight:400;">(복수 선택 가능)</span></div>
-      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">서울</div>
-      <div class="chip-group" style="margin-bottom:12px;">
-        <div class="chip on" onclick="this.classList.toggle('on')">강남·서초</div>
-        <div class="chip" onclick="this.classList.toggle('on')">여의도</div>
-        <div class="chip" onclick="this.classList.toggle('on')">종로·CBD</div>
-        <div class="chip" onclick="this.classList.toggle('on')">마포·홍대</div>
-        <div class="chip" onclick="this.classList.toggle('on')">성수·왕십리</div>
-        <div class="chip" onclick="this.classList.toggle('on')">기타 서울</div>
-      </div>
-      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">경기·인천</div>
-      <div class="chip-group" style="margin-bottom:12px;">
-        <div class="chip" onclick="this.classList.toggle('on')">판교</div>
-        <div class="chip" onclick="this.classList.toggle('on')">분당</div>
-        <div class="chip" onclick="this.classList.toggle('on')">수원</div>
-        <div class="chip" onclick="this.classList.toggle('on')">인천</div>
-        <div class="chip" onclick="this.classList.toggle('on')">기타 경기</div>
-      </div>
-      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">지방</div>
-      <div class="chip-group">
-        <div class="chip" onclick="this.classList.toggle('on')">부산</div>
-        <div class="chip" onclick="this.classList.toggle('on')">대구</div>
-        <div class="chip" onclick="this.classList.toggle('on')">대전</div>
-        <div class="chip" onclick="this.classList.toggle('on')">광주</div>
-        <div class="chip" onclick="this.classList.toggle('on')">울산</div>
-        <div class="chip" onclick="this.classList.toggle('on')">세종</div>
-        <div class="chip" onclick="this.classList.toggle('on')">기타 지방</div>
-      </div>
-    </div>
-
-    <!-- ④ 월 임차료 예산 -->
-    <div class="card">
-      <div class="card-title" style="margin-bottom:12px;">④ 월 임차료 예산</div>
-      <div class="chip-group">
-        <div class="chip" onclick="chipOne(this,'.chip-budget')">~500만원</div>
-        <div class="chip" onclick="chipOne(this,'.chip-budget')">500~1,000만원</div>
-        <div class="chip on chip-budget" onclick="chipOne(this,'.chip-budget')">1,000~2,000만원</div>
-        <div class="chip chip-budget" onclick="chipOne(this,'.chip-budget')">2,000~3,000만원</div>
-        <div class="chip chip-budget" onclick="chipOne(this,'.chip-budget')">3,000만원 이상</div>
-        <div class="chip chip-budget" onclick="chipOne(this,'.chip-budget')">협의 가능</div>
-      </div>
-    </div>
-
-    <!-- ⑤ 건물 등급 선호 -->
-    <div class="card">
-      <div class="card-title" style="margin-bottom:8px;">⑤ 건물 등급 선호</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.6;">프라임: 초고층·랜드마크 / A급: 주요 업무지구 신축 / B급: 일반 오피스</div>
-      <div class="chip-group">
-        <div class="chip" onclick="chipOne(this,'.chip-grade')">프라임급</div>
-        <div class="chip on chip-grade" onclick="chipOne(this,'.chip-grade')">A급</div>
-        <div class="chip chip-grade" onclick="chipOne(this,'.chip-grade')">B급</div>
-        <div class="chip chip-grade" onclick="chipOne(this,'.chip-grade')">무관</div>
-      </div>
-    </div>
-
-    <!-- ⑥ 현재 계약 만료 시점 -->
-    <div class="card">
-      <div class="card-title" style="margin-bottom:12px;">⑥ 현재 계약 만료 시점</div>
-      <div class="chip-group">
-        <div class="chip" onclick="chipOne(this,'.chip-expire')">3개월 이내</div>
-        <div class="chip" onclick="chipOne(this,'.chip-expire')">6개월 이내</div>
-        <div class="chip on chip-expire" onclick="chipOne(this,'.chip-expire')">1년 이내</div>
-        <div class="chip chip-expire" onclick="chipOne(this,'.chip-expire')">1년 이상</div>
-        <div class="chip chip-expire" onclick="chipOne(this,'.chip-expire')">해당없음 (신규)</div>
-      </div>
-    </div>
-
-    <!-- 추가 요청사항 -->
-    <div class="card">
-      <div class="card-title" style="margin-bottom:10px;">추가 요청사항 <span style="font-size:11px;color:var(--muted);font-weight:400;">(선택)</span></div>
-      <textarea class="form-input" rows="3" placeholder="주차 대수, 특수 공간(서버룸·회의실 다수 등), 기타 요청사항을 자유롭게 작성해 주세요." style="height:auto;padding-top:12px;padding-bottom:12px;resize:none;line-height:1.6;"></textarea>
-    </div>
-
-    <div style="margin-top:20px;">
-      <button class="btn-primary full mb8" onclick="go('s7')">의뢰 완료 — 인테리어 견적 보기 →</button>
-      <button class="btn-secondary full" onclick="go('s4')">← 보고서로 돌아가기</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════
-     SCREEN 7 — 인테리어 비용
-════════════════════════════════════════ -->
-<div id="s7" class="screen">
-  <nav class="topnav">
-    <div class="logo">OFFICE<span>.</span>FLOW</div>
-    <button onclick="go('s5')" style="background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;font-size:13px;font-family:'Noto Sans KR',sans-serif;">← 매물 의뢰로</button>
-  </nav>
-
-  <div class="cost-header">
-    <div class="cost-header-label" id="cost-concept-lbl">선택한 컨셉 기준</div>
-    <div class="cost-header-title">예상 인테리어 견적</div>
-    <div class="cost-header-sub" id="cost-area-lbl">127평 기준 · VAT 별도</div>
-  </div>
-
-  <div class="section">
-
-    <!-- 등급 선택 탭 -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;">
-      <div id="tab-standard" onclick="switchCostTab('standard')"
-        style="border:2px solid var(--accent);background:#FFF5F2;border-radius:10px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.15s;">
-        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:3px;">표준형</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:900;color:var(--brand);letter-spacing:-0.5px;" id="total-standard">약 1.5억원</div>
-        <div style="font-size:10px;color:var(--muted);margin-top:2px;">평당 110~135만원</div>
-      </div>
-      <div id="tab-premium" onclick="switchCostTab('premium')"
-        style="border:2px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.15s;">
-        <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:3px;">프리미엄</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:900;color:var(--brand);letter-spacing:-0.5px;" id="total-premium">약 2.3억원</div>
-        <div style="font-size:10px;color:var(--muted);margin-top:2px;">평당 160~200만원</div>
-      </div>
-    </div>
-
-    <!-- 항목별 비용 테이블 -->
-    <div style="font-size:13px;font-weight:700;margin-bottom:10px;">항목별 예상 비용</div>
-
-    <!-- 시공 -->
-    <div class="cost-block">
-      <div class="cost-block-title">🔨 인테리어 시공</div>
-      <div class="cost-row">
-        <div>
-          <div class="cost-item-name">바닥·벽·천장 공사</div>
-          <div class="cost-item-brand" id="desc-floor">마감재 포함 · 평당 40~55만원</div>
-        </div>
-        <div class="cost-price" id="cost-floor">약 5,500만원</div>
-      </div>
-      <div class="cost-row">
-        <div>
-          <div class="cost-item-name">전기·조명 공사</div>
-          <div class="cost-item-brand" id="desc-elec">간접조명 포함 · 평당 15~20만원</div>
-        </div>
-        <div class="cost-price" id="cost-elec">약 2,100만원</div>
-      </div>
-      <div class="cost-row">
-        <div>
-          <div class="cost-item-name">유리 파티션·도어</div>
-          <div class="cost-item-brand" id="desc-glass">강화유리 기준 · 평당 30~40만원</div>
-        </div>
-        <div class="cost-price" id="cost-glass">약 4,300만원</div>
-      </div>
-      <div class="cost-row">
-        <div>
-          <div class="cost-item-name">도장·특수 마감</div>
-          <div class="cost-item-brand" id="desc-paint">컨셉 소재 적용 · 평당 10~15만원</div>
-        </div>
-        <div class="cost-price" id="cost-paint">약 1,500만원</div>
-      </div>
-    </div>
-
-    <!-- AV·기타 -->
-    <div class="cost-block">
-      <div class="cost-block-title">📱 AV·가전·기타</div>
-      <div class="cost-row">
-        <div>
-          <div class="cost-item-name">회의실 디스플레이</div>
-          <div class="cost-item-brand" id="desc-av">회의실 수량 기준 · 실당 200~300만원</div>
-        </div>
-        <div class="cost-price" id="cost-av">약 1,400만원</div>
-      </div>
-      <div class="cost-row">
-        <div>
-          <div class="cost-item-name">네트워크·보안 설비</div>
-          <div class="cost-item-brand" id="desc-net">기본 구성 기준 · 평당 5~8만원</div>
-        </div>
-        <div class="cost-price" id="cost-net">약 800만원</div>
-      </div>
-    </div>
-
-    <!-- 설계·감리 -->
-    <div class="cost-block">
-      <div class="cost-block-title">📐 설계·감리</div>
-      <div class="cost-row">
-        <div>
-          <div class="cost-item-name">공간 설계·감리비</div>
-          <div class="cost-item-brand" id="desc-design">시공 총액의 8~10%</div>
-        </div>
-        <div class="cost-price" id="cost-design">약 1,200만원</div>
-      </div>
-    </div>
-
-    <!-- 총계 -->
-    <div class="cost-total">
-      <div>
-        <div class="cost-total-lbl">예상 시공 총 비용</div>
-        <div class="cost-total-note">VAT 별도 · 실측 후 최종 확정</div>
-      </div>
-      <div class="cost-total-num" id="cost-grand-total">약 1.5억원</div>
-    </div>
-
-    <!-- 출처 및 안내 -->
-    <div style="background:#F0F4FF;border-radius:10px;border:1px solid #C8D5F0;padding:14px 16px;margin-bottom:20px;">
-      <div style="font-size:11px;font-weight:700;color:#E8420A;margin-bottom:6px;">💡 견적 안내</div>
-      <div style="font-size:12px;color:#2A3A5C;line-height:1.8;">
-        · 2026년 서울 기준 업계 평균 단가를 적용한 <b>가이드 수치</b>입니다<br>
-        · 자재비·인건비 상승으로 실제 비용은 달라질 수 있습니다<br>
-        · 정확한 견적은 파트너 인테리어 업체 상담을 통해 확인하세요
-      </div>
-      <div style="font-size:10px;color:#8A9AB5;margin-top:8px;">출처: 쿠시먼앤드웨이크필드 아시아태평양 오피스 인테리어 비용 가이드 2026, 스페이스로그인 2026</div>
-    </div>
-
-    <!-- ── 스타일 이미지 선택 ── -->
-    <div style="margin-bottom:20px;">
-      <div style="font-size:15px;font-weight:800;letter-spacing:-0.5px;margin-bottom:4px;">어떤 스타일이 마음에 드세요?</div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:14px;">마음에 드는 이미지를 모두 선택해 주세요. 상담 시 참고자료로 활용됩니다.</div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
-        <div id="simg-0" onclick="toggleStyleImg(0)"
-          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
-          <!-- 이미지 자리: <img id="simg-img-0" src="..."> 로 교체 -->
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#8B2200,#C43200);display:flex;align-items:center;justify-content:center;">
-            <div style="text-align:center;opacity:0.3;">
-              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 1</div>
-            </div>
-          </div>
-          <div id="check-0" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
-        </div>
-        <div id="simg-1" onclick="toggleStyleImg(1)"
-          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
-          <!-- 이미지 자리: <img id="simg-img-1" src="..."> 로 교체 -->
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1A1A2E,#3D3D6E);display:flex;align-items:center;justify-content:center;">
-            <div style="text-align:center;opacity:0.3;">
-              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 2</div>
-            </div>
-          </div>
-          <div id="check-1" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
-        </div>
-        <div id="simg-2" onclick="toggleStyleImg(2)"
-          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
-          <!-- 이미지 자리: <img id="simg-img-2" src="..."> 로 교체 -->
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#3A2A1A,#8B5E2A);display:flex;align-items:center;justify-content:center;">
-            <div style="text-align:center;opacity:0.3;">
-              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 3</div>
-            </div>
-          </div>
-          <div id="check-2" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
-        </div>
-        <div id="simg-3" onclick="toggleStyleImg(3)"
-          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
-          <!-- 이미지 자리: <img id="simg-img-3" src="..."> 로 교체 -->
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#2A2A2A,#5A4A3A);display:flex;align-items:center;justify-content:center;">
-            <div style="text-align:center;opacity:0.3;">
-              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 4</div>
-            </div>
-          </div>
-          <div id="check-3" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
-        </div>
-        <div id="simg-4" onclick="toggleStyleImg(4)"
-          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
-          <!-- 이미지 자리: <img id="simg-img-4" src="..."> 로 교체 -->
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1A2A3A,#2D5A8A);display:flex;align-items:center;justify-content:center;">
-            <div style="text-align:center;opacity:0.3;">
-              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 5</div>
-            </div>
-          </div>
-          <div id="check-4" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
-        </div>
-        <div id="simg-5" onclick="toggleStyleImg(5)"
-          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
-          <!-- 이미지 자리: <img id="simg-img-5" src="..."> 로 교체 -->
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#2A1A2E,#6D3D8E);display:flex;align-items:center;justify-content:center;">
-            <div style="text-align:center;opacity:0.3;">
-              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 6</div>
-            </div>
-          </div>
-          <div id="check-5" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
-        </div>
-        <div id="simg-6" onclick="toggleStyleImg(6)"
-          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
-          <!-- 이미지 자리: <img id="simg-img-6" src="..."> 로 교체 -->
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#3A3A1A,#7A6A0A);display:flex;align-items:center;justify-content:center;">
-            <div style="text-align:center;opacity:0.3;">
-              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 7</div>
-            </div>
-          </div>
-          <div id="check-6" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
-        </div>
-        <div id="simg-7" onclick="toggleStyleImg(7)"
-          style="border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;position:relative;aspect-ratio:4/3;">
-          <!-- 이미지 자리: <img id="simg-img-7" src="..."> 로 교체 -->
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1A3A3A,#0A6A6A);display:flex;align-items:center;justify-content:center;">
-            <div style="text-align:center;opacity:0.3;">
-              <div style="font-size:11px;color:#fff;font-weight:700;letter-spacing:1.5px;">PHOTO 8</div>
-            </div>
-          </div>
-          <div id="check-7" style="display:none;position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">✓</div>
-        </div>
-
-      </div>
-      <div style="font-size:11px;color:var(--muted);text-align:center;padding:10px;background:#F8F7F3;border-radius:8px;">
-        📸 실제 레퍼런스 사진으로 업데이트 예정입니다
-      </div>
-    </div>
-    <button class="btn-primary full mb8" onclick="go('s8')">인테리어 상담 신청 →</button>
-    <button class="btn-secondary full" onclick="go('s5')">← 매물 의뢰로 돌아가기</button>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════
-     SCREEN 8 — 가구 상담
-════════════════════════════════════════ -->
-<div id="s8" class="screen">
-  <nav class="topnav">
-    <div class="logo">OFFICE<span>.</span>FLOW</div>
-    <button onclick="go('s7')" style="background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;font-size:13px;font-family:'Noto Sans KR',sans-serif;">← 견적으로</button>
-  </nav>
-
-  <div class="section">
-    <div class="section-title">퍼시스 가구 상담</div>
-    <div class="section-sub">보고서 기반 예상 수량과 등급별 가이드 금액입니다. 납품 요청 시 <b style="color:var(--accent);">추가 할인</b> 됩니다.</div>
-
-    <!-- 예상 수량 요약 -->
-    <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:20px;">
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">📦 예상 필요 수량 (보고서 자동 산출)</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;" id="furniture-qty-grid">
-        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">
-          <span style="font-size:11px;color:var(--muted);">직원 데스크</span>
-          <span style="font-size:12px;font-weight:700;color:var(--brand);" id="qty-desk-std">50세트</span>
-        </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">
-          <span style="font-size:11px;color:var(--muted);">직원 의자</span>
-          <span style="font-size:12px;font-weight:700;color:var(--brand);" id="qty-chair">50석</span>
-        </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">
-          <span style="font-size:11px;color:var(--muted);">임원·중역 의자</span>
-          <span style="font-size:12px;font-weight:700;color:var(--brand);" id="qty-exec-chair">3석</span>
-        </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">
-          <span style="font-size:11px;color:var(--muted);">회의용 의자</span>
-          <span style="font-size:12px;font-weight:700;color:var(--brand);" id="qty-conf-chair">약 30석</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 등급 탭 -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;">
-      <div id="tab-furniture-standard" onclick="switchFurnitureTab('standard')"
-        style="border:2px solid var(--accent);background:#FFF5F2;border-radius:10px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.15s;">
-        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:3px;">표준형</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;color:var(--brand);" id="furniture-total-standard">—</div>
-        <div style="font-size:10px;color:var(--muted);margin-top:2px;">납품가 기준</div>
-      </div>
-      <div id="tab-furniture-premium" onclick="switchFurnitureTab('premium')"
-        style="border:2px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.15s;">
-        <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:3px;">프리미엄</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;color:var(--brand);" id="furniture-total-premium">—</div>
-        <div style="font-size:10px;color:var(--muted);margin-top:2px;">납품가 기준</div>
-      </div>
-    </div>
-
-    <!-- 품목별 가격 테이블 -->
-    <div id="furniture-items">
-
-      <!-- 직원 데스크 -->
-      <div class="cost-block">
-        <div class="cost-block-title">🖥 직원 데스크</div>
-        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-          <div style="display:grid;grid-template-columns:grid-template-columns:1fr 1fr 1fr;background:var(--bg);padding:8px 12px;font-size:10px;font-weight:700;color:var(--muted);text-align:right;gap:4px;">
-            <div style="text-align:left;">시리즈</div>
-            <div>소비자가</div>
-            <div style="color:var(--accent);">25% 할인가</div>
-          </div>
-          <div id="row-desk" style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px;gap:4px;align-items:center;border-top:1px solid var(--border);">
-            <div>
-              <div style="font-size:12px;font-weight:700;" id="name-desk">—</div>
-              <div style="font-size:10px;color:var(--muted);" id="spec-desk">데이터 준비중</div>
-            </div>
-            <div style="text-align:right;font-size:11px;color:var(--muted);text-decoration:line-through;" id="price-desk-ori">—</div>
-            <div style="text-align:right;font-size:14px;font-weight:800;color:var(--accent);" id="price-desk-25">—</div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- 직원 의자 -->
-      <div class="cost-block">
-        <div class="cost-block-title">🪑 직원 의자</div>
-        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-          <div style="display:grid;grid-template-columns:grid-template-columns:1fr 1fr 1fr;background:var(--bg);padding:8px 12px;font-size:10px;font-weight:700;color:var(--muted);text-align:right;gap:4px;">
-            <div style="text-align:left;">시리즈</div>
-            <div>소비자가</div>
-            <div style="color:var(--accent);">25% 할인가</div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px;gap:4px;align-items:center;border-top:1px solid var(--border);">
-            <div>
-              <div style="font-size:12px;font-weight:700;" id="name-chair">—</div>
-              <div style="font-size:10px;color:var(--muted);" id="spec-chair">데이터 준비중</div>
-            </div>
-            <div style="text-align:right;font-size:11px;color:var(--muted);text-decoration:line-through;" id="price-chair-ori">—</div>
-            <div style="text-align:right;font-size:14px;font-weight:800;color:var(--accent);" id="price-chair-25">—</div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- 중역 의자 -->
-      <div class="cost-block">
-        <div class="cost-block-title">👔 임원·중역 의자</div>
-        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-          <div style="display:grid;grid-template-columns:grid-template-columns:1fr 1fr 1fr;background:var(--bg);padding:8px 12px;font-size:10px;font-weight:700;color:var(--muted);text-align:right;gap:4px;">
-            <div style="text-align:left;">시리즈</div>
-            <div>소비자가</div>
-            <div style="color:var(--accent);">25% 할인가</div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px;gap:4px;align-items:center;border-top:1px solid var(--border);">
-            <div>
-              <div style="font-size:12px;font-weight:700;" id="name-exec">—</div>
-              <div style="font-size:10px;color:var(--muted);" id="spec-exec">데이터 준비중</div>
-            </div>
-            <div style="text-align:right;font-size:11px;color:var(--muted);text-decoration:line-through;" id="price-exec-ori">—</div>
-            <div style="text-align:right;font-size:14px;font-weight:800;color:var(--accent);" id="price-exec-25">—</div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- 회의용 의자 -->
-      <div class="cost-block">
-        <div class="cost-block-title">📋 회의용 의자</div>
-        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-          <div style="display:grid;grid-template-columns:grid-template-columns:1fr 1fr 1fr;background:var(--bg);padding:8px 12px;font-size:10px;font-weight:700;color:var(--muted);text-align:right;gap:4px;">
-            <div style="text-align:left;">시리즈</div>
-            <div>소비자가</div>
-            <div style="color:var(--accent);">25% 할인가</div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px;gap:4px;align-items:center;border-top:1px solid var(--border);">
-            <div>
-              <div style="font-size:12px;font-weight:700;" id="name-conf">—</div>
-              <div style="font-size:10px;color:var(--muted);" id="spec-conf">데이터 준비중</div>
-            </div>
-            <div style="text-align:right;font-size:11px;color:var(--muted);text-decoration:line-through;" id="price-conf-ori">—</div>
-            <div style="text-align:right;font-size:14px;font-weight:800;color:var(--accent);" id="price-conf-25">—</div>
-          </div>
-
-        </div>
-      </div>
-
-    </div><!-- /furniture-items -->
-
-    <!-- 총계 -->
-    <div class="cost-total" style="margin-bottom:20px;">
-      <div>
-        <div class="cost-total-lbl">예상 가구 총 납품가</div>
-        <div class="cost-total-note">추가 할인 적용 · VAT 별도 · 견적 확정 후 최종 결정</div>
-      </div>
-      <div class="cost-total-num" id="furniture-grand-total">—</div>
-    </div>
-
-    <!-- 할인 배너 -->
-    <div style="background:var(--brand);border-radius:12px;padding:16px;margin-bottom:20px;text-align:center;">
-      <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:4px;">퍼시스 공식 대리점</div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:-0.5px;">본사 직납품 · 전국 설치 서비스</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px;">소비자가 대비 <span style="color:#FFD166;">25% 할인</span> · 규모에 따라 추가 협의 가능</div>
-    </div>
-
-    <!-- 안내 -->
-    <div style="background:#F0F4FF;border-radius:10px;border:1px solid #C8D5F0;padding:14px 16px;margin-bottom:20px;">
-      <div style="font-size:11px;font-weight:700;color:#E8420A;margin-bottom:6px;">💡 납품 안내</div>
-      <div style="font-size:12px;color:#2A3A5C;line-height:1.8;">
-        · 위 금액은 데이터 입력 후 실제 가격으로 업데이트됩니다<br>
-        · 규모·품목에 따라 추가 할인 협의 가능합니다<br>
-        · 퍼시스 본사 직납품 · 설치·AS 본사 보증
-      </div>
-    </div>
-
-    <button class="btn-primary full mb8" onclick="submitFurnitureRequest()" style="font-size:16px;padding:18px;">
-      📦 납품 요청하기 (추가 할인 받기)
-    </button>
-    <button class="btn-secondary full" onclick="go('s7')">← 인테리어 견적으로</button>
-  </div>
-</div>
 
 <script src="floor_imgs.js" defer></script>
 <script>
@@ -2836,24 +2254,6 @@ function go(id) {
   }
 }
 
-function restart() {
-  const defaults = {
-    exec_xl:0, exec_l:1, exec_m:2, exec_s:0,
-    tm_16rt:0, tm_16ch:0, tm_16l:0, tm_18rt:0, tm_18ch:0, tm_18l:0,
-    emp_12:0, emp_14:0, emp_16:50, emp_18:0, emp_120:0,
-    conf_pb:0, conf_fr:0, conf_4:0, conf_6:2, conf_8:1, conf_12:0, conf_14:0, conf_16:0,
-    oa_cs:0, oa_ss:0, tb_cs:0, tb_ss:0,
-    stor_cab:0, stor_loc:0,
-    lg_s:0, lg_m:1, lg_l:0
-  };
-  for (const [id, val] of Object.entries(defaults)) {
-    const el = document.getElementById(id);
-    if (el) el.value = val;
-  }
-  calc();
-  go('s1');
-}
-
 /* ─────────────────────────────────────────────
    COUNTER HELPERS
 ───────────────────────────────────────────── */
@@ -2866,11 +2266,6 @@ function adj(id, delta) {
 /* ─────────────────────────────────────────────
    CHIP HELPERS
 ───────────────────────────────────────────── */
-function chipOne(el, sel) {
-  document.querySelectorAll(sel).forEach(c => c.classList.remove('on'));
-  el.classList.add('on');
-}
-
 /* ─────────────────────────────────────────────
    CALCULATION — 엑셀 DB 기준 전체 항목
 ───────────────────────────────────────────── */
@@ -3242,21 +2637,6 @@ calc();
 var _costTab = 'standard';
 var _selectedStyles = [];
 
-function toggleStyleImg(idx) {
-  var card = document.getElementById('simg-' + idx);
-  var check = document.getElementById('check-' + idx);
-  var pos = _selectedStyles.indexOf(idx);
-  if (pos === -1) {
-    _selectedStyles.push(idx);
-    if (card) { card.style.border = '2px solid var(--accent)'; card.style.boxShadow = '0 4px 16px rgba(232,66,10,0.2)'; }
-    if (check) check.style.display = 'block';
-  } else {
-    _selectedStyles.splice(pos, 1);
-    if (card) { card.style.border = '2px solid var(--border)'; card.style.boxShadow = 'none'; }
-    if (check) check.style.display = 'none';
-  }
-}
-
 var COST_DATA = {
   standard: {
     label: '표준형',
@@ -3281,67 +2661,6 @@ var COST_DATA = {
     design: { rate: 0.11, desc: '시공 총액의 10~12%' },
   }
 };
-
-function switchCostTab(tab) {
-  _costTab = tab;
-  var d = window._calc;
-  var py = d ? d.totalPy : 127;
-  var conf = d ? d.confCount : 6;
-  updateCostDisplay(tab, py, conf);
-
-  var std = document.getElementById('tab-standard');
-  var prm = document.getElementById('tab-premium');
-  if (tab === 'standard') {
-    if (std) { std.style.border = '2px solid var(--accent)'; std.style.background = '#FFF5F2'; }
-    if (prm) { prm.style.border = '2px solid var(--border)'; prm.style.background = '#fff'; }
-  } else {
-    if (prm) { prm.style.border = '2px solid var(--accent)'; prm.style.background = '#FFF5F2'; }
-    if (std) { std.style.border = '2px solid var(--border)'; std.style.background = '#fff'; }
-  }
-}
-
-function updateCostDisplay(tab, py, conf) {
-  var c = COST_DATA[tab];
-  var fmt = function(n) {
-    if (n >= 10000) return '약 ' + (n/10000).toFixed(1) + '억원';
-    return '약 ' + Math.round(n/100)*100 + '만원';
-  };
-  var mid = function(a, b) { return Math.round((a+b)/2); };
-
-  var floor  = mid(c.floor.min,  c.floor.max)  * py;
-  var elec   = mid(c.elec.min,   c.elec.max)   * py;
-  var glass  = mid(c.glass.min,  c.glass.max)  * py;
-  var paint  = mid(c.paint.min,  c.paint.max)  * py;
-  var av     = mid(c.av.min,     c.av.max)     * conf;
-  var net    = mid(c.net.min,    c.net.max)    * py;
-  var sub    = floor + elec + glass + paint + av + net;
-  var design = Math.round(sub * c.design.rate);
-  var total  = sub + design;
-
-  var set = function(id, val) { var el = document.getElementById(id); if(el) el.textContent = val; };
-  set('cost-floor',  fmt(floor));
-  set('cost-elec',   fmt(elec));
-  set('cost-glass',  fmt(glass));
-  set('cost-paint',  fmt(paint));
-  set('cost-av',     fmt(av));
-  set('cost-net',    fmt(net));
-  set('cost-design', fmt(design));
-  set('cost-grand-total', fmt(total));
-  set('desc-floor',  c.floor.desc);
-  set('desc-elec',   c.elec.desc);
-  set('desc-glass',  c.glass.desc);
-  set('desc-paint',  c.paint.desc);
-  set('desc-av',     c.av.desc);
-  set('desc-net',    c.net.desc);
-  set('desc-design', c.design.desc);
-
-  // 탭 합계 업데이트
-  set('total-standard', tab === 'standard' ? fmt(total) : document.getElementById('total-standard').textContent);
-  set('total-premium',  tab === 'premium'  ? fmt(total) : document.getElementById('total-premium').textContent);
-
-  // cost-area-lbl 연동
-  set('cost-area-lbl', py + '평 기준 · VAT 별도');
-}
 
 /* ─────────────────────────────────────────────
    REPORT BUILDER — S2 입력값 → S4 자동 반영
@@ -3623,25 +2942,23 @@ function buildReport() {
 
 
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyrz_QUNY4SotcLVK4k0RLAxHzG2tiv1phjeS_t_giUxecCapl-b28W_BEn8T3Cr-Y6/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz4y85YDtUr4ZcEMTILMU9uqtVopOwk4SI24TqM2oNro9nSOl9xqHTjRyWWOgKPGAWi/exec';
 
-async function submitConsulting() {
+function buildLeadPayload(action) {
   const d = window._calc || {};
-  const btn = document.querySelector('[onclick="submitConsulting()"]');
-
-  // 버튼 로딩 상태
-  if (btn) { btn.textContent = '신청 중...'; btn.disabled = true; }
-
-  // 고유 리드 ID 생성
   const now = new Date();
   const ymd = now.getFullYear().toString().slice(2)
     + String(now.getMonth()+1).padStart(2,'0')
     + String(now.getDate()).padStart(2,'0');
-  const leadId = 'OF-' + ymd + '-' + String(Date.now()).slice(-4);
-
-  const payload = {
-    leadId,
+  // leadId는 세션에 저장해서 보고서 요청~컨설팅까지 동일하게 유지
+  if (!window._leadId) {
+    window._leadId = 'OF-' + ymd + '-' + String(Date.now()).slice(-4);
+  }
+  return {
+    action: action,
+    leadId:   window._leadId,
     company:  (document.getElementById('f-company')  || {}).value || '',
+    industry: (document.getElementById('industry')   || {}).value || '',
     name:     (document.getElementById('f-name')     || {}).value || '',
     email:    (document.getElementById('f-email')    || {}).value || '',
     tel:      (document.getElementById('f-tel')      || {}).value || '',
@@ -3654,13 +2971,81 @@ async function submitConsulting() {
     lgArea:   d.lgArea    ? d.lgArea.toFixed(1)    : 0,
     oaArea:   d.oaArea    ? d.oaArea.toFixed(1)    : 0,
   };
+}
 
+// 보고서 요청 시 — Google Sheets 저장 + GA
+async function saveLeadToSheet() {
+  const payload = buildLeadPayload('save_lead');
+
+  try {
+    gtag('event', 'report_complete', {
+      'event_category': 'conversion',
+      'event_label': payload.leadId,
+      'company': payload.company
+    });
+  } catch(e) {}
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(err) {
+    console.error('리드 저장 오류:', err);
+  }
+}
+
+async function submitConsulting() {
+  const btn = document.querySelector('[onclick="submitConsulting()"]');
+  if (btn) { btn.textContent = '신청 중...'; btn.disabled = true; }
+
+  const payload = buildLeadPayload('send_email');
+
+  // PDF 생성해서 첨부
+  try {
+    const s4 = document.getElementById('s4');
+    if (s4 && typeof html2canvas !== 'undefined' && typeof window.jspdf !== 'undefined') {
+      const hideEls = s4.querySelectorAll('#btn-report-done-area');
+      hideEls.forEach(function(el){ el.style.display = 'none'; });
+
+      const canvas = await html2canvas(s4, {
+        scale: 1.5, useCORS: true, allowTaint: false,
+        backgroundColor: '#F5F4F0', logging: false,
+        windowWidth: s4.scrollWidth, windowHeight: s4.scrollHeight
+      });
+      hideEls.forEach(function(el){ el.style.display = ''; });
+
+      const imgData = canvas.toDataURL('image/jpeg', 0.85);
+      const pdf = new window.jspdf.jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+      const pageW = 210, pageH = 297;
+      const imgH = canvas.height * pageW / canvas.width;
+      let y = 0;
+      while (y < imgH) {
+        if (y > 0) pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 0, -y, pageW, imgH);
+        y += pageH;
+      }
+      // base64 PDF (헤더 제거)
+      payload.pdfBase64 = pdf.output('datauristring').split(',')[1];
+      payload.pdfName = (payload.company || 'OfficeFlow') + '_공간분석보고서.pdf';
+    }
+  } catch(e) {
+    console.error('PDF 첨부 생성 실패:', e);
+  }
+
+  // GA 이벤트
   try {
     gtag('event', 'consulting_request', {
       'event_category': 'conversion',
-      'event_label': leadId,
+      'event_label': payload.leadId,
       'company': payload.company
     });
+  } catch(e) {}
+
+  // 이메일 발송 요청
+  try {
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
@@ -3764,21 +3149,6 @@ var FURNITURE_DATA = {
   }
 };
 
-function switchFurnitureTab(tab) {
-  _furnitureTab = tab;
-  var std = document.getElementById('tab-furniture-standard');
-  var prm = document.getElementById('tab-furniture-premium');
-  if (tab === 'standard') {
-    if (std) { std.style.border = '2px solid var(--accent)'; std.style.background = '#FFF5F2'; }
-    if (prm) { prm.style.border = '2px solid var(--border)'; prm.style.background = '#fff'; }
-  } else {
-    if (prm) { prm.style.border = '2px solid var(--accent)'; prm.style.background = '#FFF5F2'; }
-    if (std) { std.style.border = '2px solid var(--border)'; std.style.background = '#fff'; }
-  }
-  var d = window._calc || {};
-  updateFurnitureDisplay(tab, d.empCount||50, d.execCount||3, d.confChairs||30);
-}
-
 function updateFurnitureDisplay(tab, empQty, execQty, confQty) {
   var data = FURNITURE_DATA[tab];
   var set = function(id, val) { var el = document.getElementById(id); if(el) el.textContent = val; };
@@ -3869,10 +3239,8 @@ function startLoadingAnimation() {
     // S4로 전환
     buildReport();
     go('s4');
-    gtag('event', 'report_complete', {
-      'event_category': 'engagement',
-      'event_label': '보고서 완료'
-    });
+    // 보고서 요청 = 리드 저장 (GS + GA)
+    saveLeadToSheet();
 
     // 로딩 상태 초기화 (다음 사용을 위해)
     setTimeout(function() {
@@ -3916,42 +3284,6 @@ function checkFormReady() {
   btn.style.opacity       = ready ? '1'    : '0.4';
   btn.style.pointerEvents = ready ? 'auto' : 'none';
 }
-
-function submitFurnitureRequest() {
-  var d = window._calc || {};
-  var emp   = d.empCount   || 50;
-  var exec  = d.execCount  || 3;
-  var conf  = d.confChairs || 30;
-  var tab   = _furnitureTab || 'standard';
-  var tabLabel = tab === 'premium' ? '프리미엄' : '표준형';
-  var data  = FURNITURE_DATA[tab];
-  var total = document.getElementById('furniture-grand-total');
-  var totalVal = total ? total.textContent : '견적 산출 중';
-
-  // S9 내용 채우기
-  var summaryEl = document.getElementById('s9-summary');
-  if (summaryEl) {
-    var getVal = function(id) { var el = document.getElementById(id); return (el && el.value) ? el.value : '—'; };
-    var company = getVal('company');
-    var name    = getVal('name');
-    var email   = getVal('email');
-    summaryEl.innerHTML =
-      '선택 등급: <b>' + tabLabel + '</b><br>' +
-      '직원 데스크: <b>' + (data.desk.name || '—') + ' × ' + emp + '세트</b><br>' +
-      '직원 의자: <b>' + (data.chair.name || '—') + ' × ' + emp + '석</b><br>' +
-      '중역 의자: <b>' + (data.exec.name  || '—') + ' × ' + exec + '석</b><br>' +
-      '회의용 의자: <b>' + (data.conf.name || '—') + ' × ' + conf + '석</b><br>' +
-      '예상 납품 총액: <b style="color:var(--accent);">' + totalVal + '</b>';
-    var confirmEl = document.getElementById('s9-email-confirm');
-    if (confirmEl && email !== '—') {
-      confirmEl.textContent = email + ' 으로 견적서가 발송됩니다';
-    }
-  }
-
-  // S9로 이동
-  go('s9');
-}
-
 
 /* ─────────────────────────────────────────────
    FLOOR PLAN PREVIEW (S2 예시 보기)
@@ -4766,162 +4098,9 @@ go = function(id) {
     set('snext-conf', (confCnt || '—') + '개');
     set('snext-py2', (d.totalPy || '—') + '평');
   }
-  if (id === 's8') {
-    var d = window._calc || {};
-    var empCount   = d.empCount   || 50;
-    var execCount  = d.execCount  || 3;
-    var confChairs = d.confChairs || 30;
 
-    var set = function(id, val) { var el = document.getElementById(id); if(el) el.textContent = val; };
-
-    // 수량 표시
-    set('qty-desk-std',    empCount + '석');
-    set('qty-desk-motion', empCount + '석');
-    set('qty-chair',       empCount + '석');
-    set('qty-conf-chair',  '약 ' + confChairs + '석');
-
-    // 납품가(30%) 기준 합계
-    var deskStdTotal    = Math.round(499400 * 0.7 * empCount / 10000);
-    var deskMotionTotal = Math.round(1289400 * 0.7 * empCount / 10000);
-    var chairTotal      = Math.round(502700 * 0.7 * empCount / 10000);
-    var confChairTotal  = Math.round(217800 * 0.7 * confChairs / 10000);
-
-    set('total-desk-std',    '약 ' + deskStdTotal.toLocaleString() + '만원');
-    set('total-desk-motion', '약 ' + deskMotionTotal.toLocaleString() + '만원');
-    set('total-chair',       '약 ' + chairTotal.toLocaleString() + '만원');
-    set('total-conf-chair',  '약 ' + confChairTotal.toLocaleString() + '만원');
-
-    // 수량 요약 그리드
-    var grid = document.getElementById('furniture-qty-grid');
-    if (grid) {
-      var items = [
-        { label: '직원 데스크', qty: empCount + '세트' },
-        { label: '직원 의자',   qty: empCount + '석' },
-        { label: '임원·중역 의자', qty: (execCount || 3) + '석' },
-        { label: '회의용 의자', qty: '약 ' + confChairs + '석' },
-      ];
-      grid.innerHTML = items.map(function(item) {
-        return '<div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;">' +
-          '<span style="font-size:11px;color:var(--muted);">' + item.label + '</span>' +
-          '<span style="font-size:12px;font-weight:700;color:var(--brand);">' + item.qty + '</span>' +
-          '</div>';
-      }).join('');
-    }
-
-    // 수량 요약 업데이트
-    var set2 = function(id, val) { var el = document.getElementById(id); if(el) el.textContent = val; };
-    set2('qty-desk-std',    empCount + '세트');
-    set2('qty-chair',       empCount + '석');
-    set2('qty-exec-chair',  execCount + '석');
-    set2('qty-conf-chair',  '약 ' + confChairs + '석');
-    // 탭 양쪽 합계 미리 계산
-    ['standard','premium'].forEach(function(t) {
-      updateFurnitureDisplay(t, empCount, execCount, confChairs);
-    });
-    switchFurnitureTab(_furnitureTab);
-  }
-  if (id === 's9') {
-    // S9는 submitFurnitureRequest()에서 직접 내용 채움
-  }
-  if (id === 's7') {
-    var d = window._calc;
-    var py = d ? d.totalPy : 127;
-    var conf = d ? d.confCount : 6;
-    // 두 탭 합계 모두 계산
-    var calcTotal = function(tab) {
-      var c = COST_DATA[tab];
-      var mid = function(a,b){return Math.round((a+b)/2);};
-      var sub = (mid(c.floor.min,c.floor.max)+mid(c.elec.min,c.elec.max)+mid(c.glass.min,c.glass.max)+mid(c.paint.min,c.paint.max))*py
-               + mid(c.av.min,c.av.max)*conf + mid(c.net.min,c.net.max)*py;
-      var total = sub + Math.round(sub*c.design.rate);
-      if(total>=10000) return '약 '+(total/10000).toFixed(1)+'억원';
-      return '약 '+Math.round(total/100)*100+'만원';
-    };
-    var set = function(id, val){var el=document.getElementById(id); if(el) el.textContent=val;};
-    set('total-standard', calcTotal('standard'));
-    set('total-premium',  calcTotal('premium'));
-    set('cost-area-lbl', py + '평 기준 · VAT 별도');
-    updateCostDisplay(_costTab, py, conf);
-  }
 };
 </script>
-
-<!-- ════════════════════════════════════════
-     SCREEN 9 — 납품 요청 완료
-════════════════════════════════════════ -->
-<div id="s9" class="screen">
-  <nav class="topnav">
-    <div class="logo">OFFICE<span>.</span>FLOW</div>
-  </nav>
-
-  <div class="section" style="text-align:center;padding-top:8px;">
-
-    <!-- 완료 아이콘 -->
-    <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#FF6B35);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 8px 24px rgba(232,66,10,0.3);">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16l7 7L26 9" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-
-    <div style="font-size:22px;font-weight:900;letter-spacing:-0.5px;margin-bottom:6px;">납품 요청 완료!</div>
-    <div style="font-size:14px;color:var(--muted);margin-bottom:4px;">담당자가 <b style="color:var(--brand);">48시간 내</b> 정식 견적서를 발송해 드립니다</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:28px;" id="s9-email-confirm"></div>
-
-    <!-- 요청 요약 -->
-    <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:24px;text-align:left;">
-      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">접수된 요청 내용</div>
-      <div id="s9-summary" style="font-size:12px;color:var(--brand);line-height:2;"></div>
-    </div>
-
-    <!-- 퍼시스 신뢰 배지 -->
-    <div style="margin-bottom:24px;">
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;">왜 퍼시스인가요?</div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
-        <div style="border:1.5px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;">1위</div>
-          <div style="font-size:11px;font-weight:700;margin-top:4px;">국내 사무가구</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:2px;">시장점유율 60%</div>
-        </div>
-        <div style="border:1.5px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;">42년</div>
-          <div style="font-size:11px;font-weight:700;margin-top:4px;">업력</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:2px;">1983년 창립</div>
-        </div>
-        <div style="border:1.5px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;">250+</div>
-          <div style="font-size:11px;font-weight:700;margin-top:4px;">전국 대리점</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:2px;">전국 설치·AS</div>
-        </div>
-        <div style="border:1.5px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;">70+</div>
-          <div style="font-size:11px;font-weight:700;margin-top:4px;">수출국</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:2px;">글로벌 검증 품질</div>
-        </div>
-      </div>
-
-      <!-- 핵심 메시지 -->
-      <div style="background:var(--brand);border-radius:10px;padding:14px 16px;text-align:left;">
-        <div style="font-size:12px;font-weight:800;color:#fff;margin-bottom:6px;">국내 대기업의 선택, 퍼시스</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.65);line-height:1.8;">
-          삼성·현대·LG 등 국내 대기업부터<br>
-          스타트업까지 60%가 선택한 브랜드.<br>
-          본사 직납품으로 품질과 AS를 보증합니다.
-        </div>
-      </div>
-    </div>
-
-    <!-- 추가 상담 -->
-    <div style="background:#F0F4FF;border-radius:10px;border:1px solid #C8D5F0;padding:14px 16px;margin-bottom:20px;text-align:left;">
-      <div style="font-size:11px;font-weight:700;color:#E8420A;margin-bottom:6px;">📞 빠른 상담을 원하신다면</div>
-      <div style="font-size:12px;color:#2A3A5C;line-height:1.8;">
-        견적 문의·쇼룸 방문 예약은<br>
-        담당자에게 직접 연락 주세요.
-      </div>
-    </div>
-
-    <button class="btn-secondary full" onclick="restart()" style="margin-top:4px;">← 처음으로 돌아가기</button>
-
-  </div>
-</div>
 
 <!-- ════════════════════════════════════════
      FLOOR PLAN PREVIEW BOTTOM SHEET
