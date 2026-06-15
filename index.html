@@ -4032,6 +4032,7 @@ var FP_PREVIEW = {
 };
 
 var _fpCurrentKey = null;
+var _fpCurrentIdx = 0;
 
 function openFpPreview(categoryKey) {
   var data = FP_PREVIEW[categoryKey];
@@ -4067,6 +4068,14 @@ function openFpPreview(categoryKey) {
   var sheet   = document.getElementById('fp-sheet');
   if (overlay) { overlay.style.display = 'block'; }
   if (sheet)   { sheet.style.display = 'flex'; }
+
+  // 스와이프 초기화 + 화살표 표시 (아이템 2개 이상일 때만)
+  setTimeout(initFpSwipe, 100);
+  var showArrows = data.items.length > 1;
+  var prevBtn = document.getElementById('fp-prev-btn');
+  var nextBtn = document.getElementById('fp-next-btn');
+  if (prevBtn) prevBtn.style.display = showArrows ? 'flex' : 'none';
+  if (nextBtn) nextBtn.style.display = showArrows ? 'flex' : 'none';
 }
 
 function selectFpTab(idx) {
@@ -4075,6 +4084,7 @@ function selectFpTab(idx) {
   if (!data) return;
   var item = data.items[idx];
   if (!item) return;
+  _fpCurrentIdx = idx;
 
   // 탭 활성화
   var tabsEl = document.getElementById('fp-tabs');
@@ -4110,6 +4120,44 @@ function selectFpTab(idx) {
 
   if (labelEl) labelEl.textContent = item.label;
   if (descEl)  descEl.textContent  = item.desc || '';
+}
+
+function fpSwipe(dir) {
+  var data = FP_PREVIEW[_fpCurrentKey];
+  if (!data) return;
+  var newIdx = _fpCurrentIdx + dir;
+  if (newIdx < 0) newIdx = data.items.length - 1;
+  if (newIdx >= data.items.length) newIdx = 0;
+
+  var imgEl = document.getElementById('fp-preview-img');
+  if (imgEl) {
+    imgEl.style.opacity = '0';
+    setTimeout(function() { selectFpTab(newIdx); imgEl.style.opacity = '1'; }, 150);
+  } else {
+    selectFpTab(newIdx);
+  }
+}
+
+// 터치 스와이프 감지
+var _fpTouchStartX = 0;
+var _fpTouchEndX = 0;
+
+function initFpSwipe() {
+  var wrap = document.getElementById('fp-img-wrap');
+  if (!wrap || wrap._swipeInit) return;
+  wrap._swipeInit = true;
+
+  wrap.addEventListener('touchstart', function(e) {
+    _fpTouchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  wrap.addEventListener('touchend', function(e) {
+    _fpTouchEndX = e.changedTouches[0].screenX;
+    var diff = _fpTouchEndX - _fpTouchStartX;
+    if (Math.abs(diff) > 40) {
+      fpSwipe(diff < 0 ? 1 : -1);
+    }
+  }, { passive: true });
 }
 
 function closeFpPreview() {
@@ -4577,75 +4625,66 @@ function completeReport() {
     btn.style.opacity = '1';
   }
 
-  // 모바일 감지
-  var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-  if (isMobile) {
-    // 모바일: 인쇄 방식 (크롬 → PDF로 저장 선택 가능)
-    var style = document.createElement('style');
-    style.id = 'print-only-s4';
-    style.innerHTML = [
-      '@media print {',
-      '  @page { margin: 8mm; size: A4; }',
-      '  body * { visibility: hidden !important; }',
-      '  #s4, #s4 * { visibility: visible !important; }',
-      '  #s4 { position: fixed !important; left: 0; top: 0; width: 100%; background: #fff !important; }',
-      '  #ai-cta-section, #btn-report-done-area { display: none !important; }',
-      '}'
-    ].join('');
-    document.head.appendChild(style);
-    window.print();
-    setTimeout(function() {
-      var el = document.getElementById('print-only-s4');
-      if (el) el.remove();
-    }, 1000);
-    return;
-  }
-
-  // PC: jsPDF 방식
   if (icon) { icon.textContent = '⏳'; icon.style.animation = 'none'; }
   if (text) text.textContent = 'PDF 생성 중...';
   btn.disabled = true;
 
+  // 숨길 요소
   var hideEls = s4.querySelectorAll('#btn-report-done-area, #ai-cta-section');
   hideEls.forEach(function(el) { el.style.display = 'none'; });
 
-  html2canvas(s4, {
-    scale: 2,
-    useCORS: true,
-    allowTaint: true,
-    backgroundColor: '#F5F4F0',
-    scrollY: 0,
-    windowWidth: 390
-  }).then(function(canvas) {
+  // 라이브러리 로드 확인
+  if (typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
     hideEls.forEach(function(el) { el.style.display = ''; });
-
-    var imgData = canvas.toDataURL('image/jpeg', 0.92);
-    var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-
-    var pageW = 210, pageH = 297;
-    var imgW  = pageW;
-    var imgH  = canvas.height * pageW / canvas.width;
-    var y = 0;
-
-    while (y < imgH) {
-      if (y > 0) pdf.addPage();
-      pdf.addImage(imgData, 'JPEG', 0, -y, imgW, imgH);
-      y += pageH;
-    }
-
-    pdf.save(company + '_공간분석보고서.pdf');
-
-    if (icon) icon.textContent = '✓';
-    if (text) text.textContent = '저장 완료!';
-    btn.disabled = false;
-
-  }).catch(function() {
-    hideEls.forEach(function(el) { el.style.display = ''; });
+    alert('PDF 라이브러리 로딩 중입니다. 잠시 후 다시 시도해 주세요.');
     resetBtn();
-  });
+    return;
+  }
 
-  setTimeout(function() { if (btn.disabled) resetBtn(); }, 10000);
+  // 약간의 지연 후 캡처 (렌더링 안정화)
+  setTimeout(function() {
+    html2canvas(s4, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: false,
+      backgroundColor: '#F5F4F0',
+      logging: false,
+      scrollX: 0,
+      scrollY: 0,
+      windowWidth: s4.scrollWidth,
+      windowHeight: s4.scrollHeight
+    }).then(function(canvas) {
+      hideEls.forEach(function(el) { el.style.display = ''; });
+
+      var imgData = canvas.toDataURL('image/jpeg', 0.9);
+      var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+      var pageW = 210, pageH = 297;
+      var imgW  = pageW;
+      var imgH  = canvas.height * pageW / canvas.width;
+      var y = 0;
+
+      while (y < imgH) {
+        if (y > 0) pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 0, -y, imgW, imgH);
+        y += pageH;
+      }
+
+      pdf.save(company + '_공간분석보고서.pdf');
+
+      if (icon) icon.textContent = '✓';
+      if (text) text.textContent = '저장 완료!';
+      btn.disabled = false;
+
+    }).catch(function(err) {
+      hideEls.forEach(function(el) { el.style.display = ''; });
+      console.error('PDF 생성 오류:', err);
+      alert('PDF 생성에 실패했습니다. 다시 시도해 주세요.');
+      resetBtn();
+    });
+  }, 400);
+
+  setTimeout(function() { if (btn.disabled) resetBtn(); }, 15000);
 }
 
 
@@ -4897,9 +4936,12 @@ go = function(id) {
 
   <!-- 이미지 영역 -->
   <div style="flex:1;overflow-y:auto;padding:16px 20px;">
-    <!-- 렌더링 이미지 -->
-    <div style="background:#F8F7F3;border-radius:12px;overflow:hidden;margin-bottom:12px;min-height:180px;display:flex;align-items:center;justify-content:center;">
-      <img id="fp-preview-img" src="" style="width:100%;height:auto;display:none;border-radius:12px;" alt="렌더링 이미지">
+    <!-- 렌더링 이미지 (스와이프 가능) -->
+    <div id="fp-img-wrap" style="position:relative;background:#F8F7F3;border-radius:12px;overflow:hidden;margin-bottom:12px;min-height:180px;display:flex;align-items:center;justify-content:center;touch-action:pan-y;">
+      <img id="fp-preview-img" src="" style="width:100%;height:auto;display:none;border-radius:12px;transition:opacity 0.2s;" alt="렌더링 이미지">
+      <!-- 좌우 화살표 -->
+      <button id="fp-prev-btn" onclick="fpSwipe(-1)" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.9);border:none;box-shadow:0 2px 8px rgba(0,0,0,0.15);font-size:18px;color:var(--brand);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;">‹</button>
+      <button id="fp-next-btn" onclick="fpSwipe(1)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.9);border:none;box-shadow:0 2px 8px rgba(0,0,0,0.15);font-size:18px;color:var(--brand);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;">›</button>
       <div id="fp-no-img" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center;">
         <div style="font-size:36px;margin-bottom:8px;opacity:0.3;">📸</div>
         <div style="font-size:12px;font-weight:700;color:var(--muted);">렌더링 이미지</div>
