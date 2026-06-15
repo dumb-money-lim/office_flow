@@ -4566,16 +4566,47 @@ function completeReport() {
   var text = document.getElementById('btn-report-text');
   if (!btn) return;
 
-  // 버튼 로딩
-  if (icon) { icon.textContent = '⏳'; icon.style.animation = 'none'; }
-  if (text) text.textContent = 'PDF 생성 중...';
-  btn.disabled = true;
-
   var company = (document.getElementById('f-company') || {}).value || 'OfficeFlow';
   var s4 = document.getElementById('s4');
   if (!s4) return;
 
-  // 버튼 영역 숨김
+  function resetBtn() {
+    if (icon) { icon.textContent = '✓'; icon.style.animation = 'none'; }
+    if (text) text.textContent = '보고서 저장하기';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+  }
+
+  // 모바일 감지
+  var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // 모바일: 인쇄 방식 (크롬 → PDF로 저장 선택 가능)
+    var style = document.createElement('style');
+    style.id = 'print-only-s4';
+    style.innerHTML = [
+      '@media print {',
+      '  @page { margin: 8mm; size: A4; }',
+      '  body * { visibility: hidden !important; }',
+      '  #s4, #s4 * { visibility: visible !important; }',
+      '  #s4 { position: fixed !important; left: 0; top: 0; width: 100%; background: #fff !important; }',
+      '  #ai-cta-section, #btn-report-done-area { display: none !important; }',
+      '}'
+    ].join('');
+    document.head.appendChild(style);
+    window.print();
+    setTimeout(function() {
+      var el = document.getElementById('print-only-s4');
+      if (el) el.remove();
+    }, 1000);
+    return;
+  }
+
+  // PC: jsPDF 방식
+  if (icon) { icon.textContent = '⏳'; icon.style.animation = 'none'; }
+  if (text) text.textContent = 'PDF 생성 중...';
+  btn.disabled = true;
+
   var hideEls = s4.querySelectorAll('#btn-report-done-area, #ai-cta-section');
   hideEls.forEach(function(el) { el.style.display = 'none'; });
 
@@ -4587,20 +4618,16 @@ function completeReport() {
     scrollY: 0,
     windowWidth: 390
   }).then(function(canvas) {
-    var imgData = canvas.toDataURL('image/jpeg', 0.92);
-    var pdf = new window.jspdf.jsPDF({
-      orientation: 'portrait',
-      unit: 'mm',
-      format: 'a4'
-    });
+    hideEls.forEach(function(el) { el.style.display = ''; });
 
-    var pageW = 210;
-    var pageH = 297;
+    var imgData = canvas.toDataURL('image/jpeg', 0.92);
+    var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+    var pageW = 210, pageH = 297;
     var imgW  = pageW;
     var imgH  = canvas.height * pageW / canvas.width;
     var y = 0;
 
-    // 여러 페이지 처리
     while (y < imgH) {
       if (y > 0) pdf.addPage();
       pdf.addImage(imgData, 'JPEG', 0, -y, imgW, imgH);
@@ -4609,20 +4636,16 @@ function completeReport() {
 
     pdf.save(company + '_공간분석보고서.pdf');
 
-    // 버튼 복원
-    hideEls.forEach(function(el) { el.style.display = ''; });
     if (icon) icon.textContent = '✓';
     if (text) text.textContent = '저장 완료!';
     btn.disabled = false;
 
-  }).catch(function(err) {
+  }).catch(function() {
     hideEls.forEach(function(el) { el.style.display = ''; });
-    // 폴백: 인쇄 방식
-    window.print();
-    if (icon) icon.textContent = '✓';
-    if (text) text.textContent = '보고서 저장하기';
-    btn.disabled = false;
+    resetBtn();
   });
+
+  setTimeout(function() { if (btn.disabled) resetBtn(); }, 10000);
 }
 
 
