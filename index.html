@@ -1999,7 +1999,7 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
       <div class="sub-counter-row">
         <div class="sub-counter-label">
           컴팩트형 (W3,400)
-          <small>2.3평 / 7.6㎡</small>
+          <small>1.5평 / 5.1㎡</small>
         </div>
         <div class="sub-counter-box">
           <button class="sub-counter-btn" onclick="adj('oa_cs',-1)">−</button>
@@ -2010,7 +2010,7 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
       <div class="sub-counter-row" style="border-bottom:none;">
         <div class="sub-counter-label">
           표준형 (W4,200)
-          <small>3.5평 / 11.6㎡</small>
+          <small>2.0평 / 6.3㎡</small>
         </div>
         <div class="sub-counter-box">
           <button class="sub-counter-btn" onclick="adj('oa_ss',-1)">−</button>
@@ -2025,7 +2025,7 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
       <div class="sub-counter-row">
         <div class="sub-counter-label">
           컴팩트형 (W3,400)
-          <small>2.3평 / 7.6㎡</small>
+          <small>1.5평 / 5.1㎡</small>
         </div>
         <div class="sub-counter-box">
           <button class="sub-counter-btn" onclick="adj('tb_cs',-1)">−</button>
@@ -2036,7 +2036,7 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
       <div class="sub-counter-row" style="border-bottom:none;">
         <div class="sub-counter-label">
           표준형 (W4,200)
-          <small>3.5평 / 11.6㎡</small>
+          <small>2.0평 / 6.3㎡</small>
         </div>
         <div class="sub-counter-box">
           <button class="sub-counter-btn" onclick="adj('tb_ss',-1)">−</button>
@@ -2795,11 +2795,11 @@ function calc() {
   const confCount = conf_pb + conf_fr + conf_4 + conf_6 + conf_8 + conf_12 + conf_14 + conf_16;
 
   // OA존·탕비실 (평)
-  const oa_cs = v('oa_cs'); // OA 컴팩트형 2.3
-  const oa_ss = v('oa_ss'); // OA 표준형 3.5
-  const tb_cs = v('tb_cs'); // 탕비 컴팩트형 2.3
-  const tb_ss = v('tb_ss'); // 탕비 표준형 3.5
-  const oaArea = oa_cs*2.3 + oa_ss*3.5 + tb_cs*2.3 + tb_ss*3.5;
+  const oa_cs = v('oa_cs'); // OA 컴팩트형 1.5
+  const oa_ss = v('oa_ss'); // OA 표준형 2.0
+  const tb_cs = v('tb_cs'); // 탕비 컴팩트형 1.5
+  const tb_ss = v('tb_ss'); // 탕비 표준형 2.0
+  const oaArea = oa_cs*1.5 + oa_ss*2.0 + tb_cs*1.5 + tb_ss*2.0;
 
   // 수납가구 (평)
   const stor_cab = v('stor_cab'); // 캐비닛 0.5
@@ -2836,8 +2836,8 @@ function calc() {
     totalPy, usablePy, corridorPy, totalM2,
     usableCore,
     execArea, tmArea, empArea, confArea, oaArea, storArea, lgArea,
-    oaOnly: oa_cs*2.3 + oa_ss*3.5,
-    tbArea: tb_cs*2.3 + tb_ss*3.5,
+    oaOnly: oa_cs*1.5 + oa_ss*2.0,
+    tbArea: tb_cs*1.5 + tb_ss*2.0,
     empCount: empTotal,
     execCount: exec_xl + exec_l + exec_m + exec_s,
     confChairs: Math.round(confArea / 1.5)
@@ -3222,10 +3222,10 @@ function buildReport() {
     conf_12: { cat:'회의공간', label:'12인 회의실',    py:8.2, m2:27,   comp:'중형 회의',           fur:'12인 회의테이블+의자+디스플레이' },
     conf_14: { cat:'회의공간', label:'14인 회의실',    py:10.5,m2:34.9, comp:'대형 회의',           fur:'14인 회의테이블+의자+디스플레이' },
     conf_16: { cat:'회의공간', label:'16인+α 회의실',  py:14.2,m2:47,   comp:'대형+추가배석',       fur:'16인 회의테이블+의자+디스플레이' },
-    oa_cs:   { cat:'OA·탕비', label:'컴팩트OA 수납형', py:2.3, m2:7.6,  comp:'W3,400 컴팩트형',    fur:'OA카운터+복합기+탕비' },
-    oa_cc:   { cat:'OA·탕비', label:'컴팩트OA 복도형', py:1.5, m2:5.1,  comp:'W3,400 복도배치',    fur:'OA카운터+복합기' },
-    oa_ss:   { cat:'OA·탕비', label:'표준형OA 수납형', py:2.8, m2:9.3,  comp:'W4,200 표준형',      fur:'OA카운터+복합기+탕비+수납장' },
-    oa_sc:   { cat:'OA·탕비', label:'표준형OA 복도형', py:2.0, m2:6.3,  comp:'W4,200 복도배치',    fur:'OA카운터+복합기+탕비' },
+    oa_cs:   { cat:'OA·탕비', label:'OA존 컴팩트형',  py:1.5, m2:5.1,  comp:'W3,400 컴팩트형',  fur:'OA카운터+복합기' },
+  oa_ss:   { cat:'OA·탕비', label:'OA존 표준형',    py:2.0, m2:6.3,  comp:'W4,200 표준형',    fur:'OA카운터+복합기+수납장' },
+  tb_cs:   { cat:'OA·탕비', label:'탕비공간 컴팩트형', py:1.5, m2:5.1,  comp:'W3,400 컴팩트형',  fur:'싱크대+상부장+냉장고' },
+  tb_ss:   { cat:'OA·탕비', label:'탕비공간 표준형',   py:2.0, m2:6.3,  comp:'W4,200 표준형',    fur:'싱크대+상부장+냉장고+수납' },
     stor_cab:{ cat:'수납가구', label:'캐비닛 (5EA)',    py:0.5, m2:1.68, comp:'W800 공용캐비닛',    fur:'5단 캐비닛 5EA' },
     stor_loc:{ cat:'수납가구', label:'락커 (5EA)',      py:0.4, m2:1.38, comp:'W500 개인락커',      fur:'개인 락커 5EA' },
     lg_s:    { cat:'휴게공간', label:'오픈라운지 소형', py:5.2, m2:17.3, comp:'오픈캔틴+소파',      fur:'소파+바테이블+스툴' },
@@ -3907,16 +3907,16 @@ function checkFormReady() {
 ───────────────────────────────────────────── */
 var FP_PREVIEW = {
   exec: {
-    title: '임원공간 실제 구성 보기',
+    title: '임원공간 예시 이미지',
     items: [
       { label: '대형',   key: 'exec_xl',    desc: '13.3평 · 임원SET + 9인 회의' },
       { label: '중대형', key: 'exec_l',     desc: '8.0평 · 임원SET + 7인 회의' },
       { label: '중형',   key: 'exec_m',     desc: '5.4평 · 임원SET + 4인 회의' },
-      { label: '소형',   key: 'exec_s',desc: '3.6평 · 임원 데스크 단독' },
+      { label: '소형',   key: 'exec_s',desc: '3.3평 · 임원 데스크 단독' },
     ]
   },
   tm: {
-    title: '팀장석 실제 구성 보기',
+    title: '팀장석 예시 이미지',
     items: [
       { label: 'W1,600 L형',       key: 'tm_16l',  desc: '1.0평 · W1,600 L형 데스크' },
       { label: 'W1,600 L형+보조',  key: 'tm_16rt', desc: '2.0평 · W1,600 L형 데스크 + 보조 테이블' },
@@ -3925,17 +3925,17 @@ var FP_PREVIEW = {
     ]
   },
   emp: {
-    title: '팀원석 실제 구성 보기',
+    title: '팀원석 예시 이미지',
     items: [
-      { label: 'W1,200', key: 'emp_12', desc: '0.6평 · 1인 기준' },
-      { label: 'W1,400', key: 'emp_14', desc: '0.7평 · 1인 기준' },
+      { label: 'W1,200', key: 'emp_12', desc: '0.7평 · 1인 기준' },
+      { label: 'W1,400', key: 'emp_14', desc: '0.8평 · 1인 기준' },
       { label: 'W1,600', key: 'emp_16', desc: '0.9평 · 듀얼모니터 가능' },
-      { label: 'W1,800', key: 'emp_18', desc: '1.1평 · 대형 모니터 가능' },
-      { label: '120도형', key: 'emp_120', desc: '1.2평 · 3인 클러스터' },
+      { label: 'W1,800', key: 'emp_18', desc: '1.0평 · 대형 모니터 가능' },
+      { label: '120도형', key: 'emp_120', desc: '0.7평 · 3인 클러스터' },
     ]
   },
   conf: {
-    title: '회의공간 실제 구성 보기',
+    title: '회의공간 예시 이미지',
     items: [
       { label: '4인',      key: 'conf_4',  desc: '2.4평 · 소형 회의' },
       { label: '6인',      key: 'conf_6',  desc: '3.3평 · 소형 회의' },
@@ -3946,17 +3946,17 @@ var FP_PREVIEW = {
     ]
   },
   oa: {
-    title: 'OA존 실제 구성 보기',
+    title: 'OA존 예시 이미지',
     items: [
-      { label: '컴팩트형 (W3,400)', key: 'oa_cs', desc: '2.3평 · 프린터+복합기+수납' },
-      { label: '표준형 (W4,200)',   key: 'oa_ss', desc: '3.5평 · 프린터+복합기+대형수납' },
+      { label: '컴팩트형 (W3,400)', key: 'oa_cs', desc: '1.5평 · 프린터+복합기+수납' },
+      { label: '표준형 (W4,200)',   key: 'oa_ss', desc: '2.0평 · 프린터+복합기+대형수납' },
     ]
   },
   tb: {
-    title: '탕비공간 실제 구성 보기',
+    title: '탕비공간 예시 이미지',
     items: [
-      { label: '컴팩트형 (W3,400)', key: 'tb_cs', desc: '2.3평 · 싱크+전기포트+소형냉장고' },
-      { label: '표준형 (W4,200)',   key: 'tb_ss', desc: '3.5평 · 싱크+커피머신+냉장고+수납' },
+      { label: '컴팩트형 (W3,400)', key: 'tb_cs', desc: '1.5평 · 싱크+전기포트+소형냉장고' },
+      { label: '표준형 (W4,200)',   key: 'tb_ss', desc: '2.0평 · 싱크+커피머신+냉장고+수납' },
     ]
   },
   stor: {
@@ -3967,7 +3967,7 @@ var FP_PREVIEW = {
     ]
   },
   focus: {
-    title: '개인 집중공간 실제 구성 보기',
+    title: '개인 집중공간 예시 이미지',
     items: [
       { label: '폰부스',   key: 'conf_pb', desc: '0.5평 · 1인 독립 부스' },
       { label: '포커스룸', key: 'conf_fr', desc: '1.5평 · 1~2인 집중 공간' },
@@ -3976,9 +3976,9 @@ var FP_PREVIEW = {
   lg: {
     title: '오픈라운지 예시',
     items: [
-      { label: '소형',   key: 'lg_s',  desc: '6.0평 · 소파+바테이블' },
+      { label: '소형',   key: 'lg_s',  desc: '5.2평 · 소파+바테이블' },
       { label: '중형',   key: 'lg_m', desc: '6.0평 · 원형+소파' },
-      { label: '중대형', key: 'lg_l',  desc: '9.0평 · 바+원형+소파' },
+      { label: '중대형', key: 'lg_l',  desc: '12.8평 · 바+원형+소파' },
     ]
   },
 };
@@ -4803,7 +4803,7 @@ go = function(id) {
   <div style="padding:12px 20px 0;flex-shrink:0;">
     <div style="width:36px;height:4px;background:#ddd;border-radius:2px;margin:0 auto 12px;"></div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-      <div style="font-size:16px;font-weight:800;letter-spacing:-0.5px;" id="fp-sheet-title">실제 구성 보기</div>
+      <div style="font-size:16px;font-weight:800;letter-spacing:-0.5px;" id="fp-sheet-title">예시 이미지</div>
       <button onclick="closeFpPreview()" style="background:none;border:none;font-size:20px;color:var(--muted);cursor:pointer;padding:4px 8px;">✕</button>
     </div>
     <!-- 탭 버튼 -->
