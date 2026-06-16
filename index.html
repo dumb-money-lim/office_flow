@@ -1410,6 +1410,22 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
 </style>
 </head>
 <body>
+<!-- 인앱 브라우저 안내 배너 (아이폰용) -->
+<div id="inapp-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:99999;background:#1A1A2E;color:#fff;padding:14px 16px;box-shadow:0 2px 12px rgba(0,0,0,0.2);font-family:'Noto Sans KR',sans-serif;">
+  <div style="display:flex;align-items:flex-start;gap:10px;max-width:720px;margin:0 auto;">
+    <div style="flex:1;">
+      <div style="font-size:13px;font-weight:800;margin-bottom:4px;">⚠️ 원활한 보고서 저장을 위한 안내</div>
+      <div style="font-size:12px;line-height:1.6;opacity:0.85;">
+        카카오톡 내 브라우저에서는 PDF 다운로드가 제한됩니다.<br>
+        우측 상단 <b>···</b> 메뉴 → <b>다른 브라우저로 열기</b>를 눌러주세요.
+      </div>
+      <button onclick="copyCurrentUrl()" style="margin-top:8px;background:#E8420A;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;">링크 복사하기</button>
+      <span id="copy-done" style="display:none;font-size:11px;margin-left:8px;color:#6BE39A;">복사됨 ✓</span>
+    </div>
+    <button onclick="document.getElementById('inapp-banner').style.display='none'" style="background:none;border:none;color:rgba(255,255,255,0.6);font-size:18px;cursor:pointer;flex-shrink:0;line-height:1;">×</button>
+  </div>
+</div>
+
 <div id="app-shell">
 
 <!-- ════════════════════════════════════════
@@ -2499,6 +2515,73 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
 /* ─────────────────────────────────────────────
    NAVIGATION
 ───────────────────────────────────────────── */
+// ─────────────────────────────────────────────
+//  인앱 브라우저 감지 & 대응
+// ─────────────────────────────────────────────
+function isInAppBrowser() {
+  var ua = navigator.userAgent || '';
+  // 카카오톡, 네이버, 페이스북, 인스타, 라인 등 인앱 브라우저
+  return /KAKAOTALK|NAVER|FBAN|FBAV|Instagram|Line|DaumApps|everytimeApp|wadiz|kakaostory/i.test(ua);
+}
+function isAndroid() {
+  return /Android/i.test(navigator.userAgent || '');
+}
+function isIOS() {
+  return /iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+}
+
+function copyCurrentUrl() {
+  var url = window.location.href;
+  function showCopied() {
+    var d = document.getElementById('copy-done');
+    if (d) { d.style.display = 'inline'; setTimeout(function(){ d.style.display='none'; }, 2000); }
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(showCopied).catch(function(){
+      fallbackCopy(url); showCopied();
+    });
+  } else {
+    fallbackCopy(url); showCopied();
+  }
+}
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+function handleInAppBrowser() {
+  if (!isInAppBrowser()) return;
+
+  var url = window.location.href;
+
+  if (isAndroid()) {
+    // 안드로이드: 크롬으로 자동 전환 시도 (intent URL)
+    var cleanUrl = url.replace(/^https?:\/\//, '');
+    var intentUrl = 'intent://' + cleanUrl + '#Intent;scheme=https;package=com.android.chrome;end';
+    try {
+      window.location.href = intentUrl;
+    } catch(e) {
+      // 실패 시 배너라도 표시
+      var b = document.getElementById('inapp-banner');
+      if (b) b.style.display = 'block';
+    }
+  } else if (isIOS()) {
+    // 아이폰: 자동 전환 불가 → 안내 배너 표시
+    var b = document.getElementById('inapp-banner');
+    if (b) b.style.display = 'block';
+  }
+}
+
+// 페이지 로드 시 인앱 브라우저 체크
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', handleInAppBrowser);
+} else {
+  handleInAppBrowser();
+}
+
 function go(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -4229,6 +4312,21 @@ function completeReport() {
   if (!s4) return;
 
   var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+
+  // 인앱 브라우저에서는 다운로드가 막히므로 먼저 안내
+  if (isInAppBrowser()) {
+    var b = document.getElementById('inapp-banner');
+    if (b) {
+      b.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    if (isAndroid()) {
+      // 안드로이드는 크롬으로 전환 시도
+      handleInAppBrowser();
+      return;
+    }
+    // 아이폰은 배너 안내 후 그래도 다운로드 시도는 함 (될 수도 있으니)
+  }
 
   function resetBtn() {
     if (icon) { icon.textContent = '✓'; icon.style.animation = 'none'; }
