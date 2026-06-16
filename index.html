@@ -1410,8 +1410,8 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
 
 /* 오픈 예정 서비스 - 관심도 수집 */
 .snext-soon-guide {
-  text-align: center; font-size: 12.5px; font-weight: 600;
-  color: var(--accent); margin-bottom: 14px;
+  text-align: center; font-size: 15px; font-weight: 700;
+  color: var(--accent); margin-bottom: 16px; letter-spacing: -0.2px;
 }
 .snext-svc { cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
 .snext-svc:hover { border-color: #FFCFAA; }
@@ -2165,11 +2165,13 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
       <div class="form-2col">
         <div class="form-group">
           <label class="form-label">연락처 <span style="color:var(--accent);">*</span></label>
-          <input class="form-input" id="f-tel" oninput="checkFormReady()" type="tel" placeholder="010-0000-0000">
+          <input class="form-input" id="f-tel" oninput="this.value=this.value.replace(/[^0-9-]/g,''); checkFormReady()" type="tel" inputmode="numeric" maxlength="13" placeholder="010-0000-0000">
+        <div id="f-tel-err" style="display:none;font-size:11px;color:#D32F2F;margin-top:4px;">올바른 연락처를 입력해 주세요 (숫자 9~11자리)</div>
         </div>
         <div class="form-group">
           <label class="form-label">이메일 <span style="color:var(--accent);">*</span></label>
           <input class="form-input" id="f-email" oninput="checkFormReady()" type="email" placeholder="name@company.com">
+        <div id="f-email-err" style="display:none;font-size:11px;color:#D32F2F;margin-top:4px;">올바른 이메일 형식을 입력해 주세요</div>
         </div>
       </div>
 
@@ -3764,6 +3766,17 @@ function submitReport() {
     alert('개인정보 수집·이용에 동의해 주세요.');
     return;
   }
+  // 형식 검증 (안전장치)
+  var tel   = (document.getElementById('f-tel')   || {}).value || '';
+  var email = (document.getElementById('f-email') || {}).value || '';
+  if (!isValidTel(tel)) {
+    alert('올바른 연락처를 입력해 주세요.');
+    return;
+  }
+  if (!isValidEmail(email)) {
+    alert('올바른 이메일 주소를 입력해 주세요.');
+    return;
+  }
   // 로딩 스크린 먼저 표시
   go('s-loading');
   startLoadingAnimation();
@@ -3831,6 +3844,15 @@ function togglePrivacyAgree() {
   checkFormReady();
 }
 
+function isValidEmail(v) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+}
+function isValidTel(v) {
+  // 숫자만 추출해서 9~11자리면 통과 (휴대폰/유선 모두 허용)
+  var digits = v.replace(/[^0-9]/g, '');
+  return digits.length >= 9 && digits.length <= 11;
+}
+
 function checkFormReady() {
   var agree   = document.getElementById('privacy-agree');
   var btn     = document.getElementById('btn-report');
@@ -3842,12 +3864,23 @@ function checkFormReady() {
   var tel      = (document.getElementById('f-tel')      || {}).value || '';
   var email    = (document.getElementById('f-email')    || {}).value || '';
 
+  // 전화번호 형식 안내
+  var telErr = document.getElementById('f-tel-err');
+  if (telErr) {
+    telErr.style.display = (tel.trim() !== '' && !isValidTel(tel)) ? 'block' : 'none';
+  }
+  // 이메일 형식 안내
+  var emailErr = document.getElementById('f-email-err');
+  if (emailErr) {
+    emailErr.style.display = (email.trim() !== '' && !isValidEmail(email)) ? 'block' : 'none';
+  }
+
   var ready = agree.checked
     && company.trim() !== ''
     && industry.trim() !== ''
     && name.trim() !== ''
-    && tel.trim() !== ''
-    && email.trim() !== '';
+    && isValidTel(tel)
+    && isValidEmail(email);
 
   btn.style.opacity       = ready ? '1'    : '0.4';
   btn.style.pointerEvents = ready ? 'auto' : 'none';
@@ -3963,6 +3996,16 @@ function openFpPreview(categoryKey) {
     var dummy = ''
   }
 
+  // 이 카테고리의 모든 이미지 미리 불러오기 (버퍼링 방지)
+  if (typeof RENDER_MAP !== 'undefined') {
+    data.items.forEach(function(item) {
+      if (RENDER_MAP[item.key]) {
+        var pre = new Image();
+        pre.src = RENDER_MAP[item.key];
+      }
+    });
+  }
+
   // 첫 번째 탭 선택
   selectFpTab(0);
 
@@ -4012,7 +4055,12 @@ function selectFpTab(idx) {
 
   if (imgEl) {
     if (renderSrc) {
+      // 이미 로드된(캐시된) 이미지면 즉시, 아니면 로드 후 표시
+      imgEl.style.opacity = '0';
+      imgEl.onload = function() { imgEl.style.opacity = '1'; };
       imgEl.src = renderSrc;
+      // 캐시되어 onload가 안 걸리는 경우 대비
+      if (imgEl.complete) { imgEl.style.opacity = '1'; }
       imgEl.style.display = 'block';
       if (noImgEl) noImgEl.style.display = 'none';
     } else {
