@@ -4228,33 +4228,40 @@ function completeReport() {
   var s4 = document.getElementById('s4');
   if (!s4) return;
 
+  var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+
   function resetBtn() {
     if (icon) { icon.textContent = '✓'; icon.style.animation = 'none'; }
     if (text) text.textContent = '보고서 저장하기';
     btn.disabled = false;
     btn.style.opacity = '1';
   }
+  function done() {
+    if (icon) icon.textContent = '✓';
+    if (text) text.textContent = '저장 완료!';
+    btn.disabled = false;
+    setTimeout(function() { go('s-next'); }, 800);
+  }
 
   if (icon) { icon.textContent = '⏳'; icon.style.animation = 'none'; }
   if (text) text.textContent = 'PDF 생성 중...';
   btn.disabled = true;
 
-  // 숨길 요소
   var hideEls = s4.querySelectorAll('#btn-report-done-area, #ai-cta-section');
   hideEls.forEach(function(el) { el.style.display = 'none'; });
 
-  // 라이브러리 로드 확인
   if (typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
     hideEls.forEach(function(el) { el.style.display = ''; });
-    alert('PDF 라이브러리 로딩 중입니다. 잠시 후 다시 시도해 주세요.');
+    alert('PDF 라이브러리를 불러오는 중입니다. 잠시 후 다시 시도해 주세요.');
     resetBtn();
     return;
   }
 
-  // 약간의 지연 후 캡처 (렌더링 안정화)
   setTimeout(function() {
+    // 모바일은 메모리 한계로 scale을 낮춤
+    var scale = isMobile ? 1.4 : 2;
     html2canvas(s4, {
-      scale: 2,
+      scale: scale,
       useCORS: true,
       allowTaint: false,
       backgroundColor: '#F5F4F0',
@@ -4266,39 +4273,63 @@ function completeReport() {
     }).then(function(canvas) {
       hideEls.forEach(function(el) { el.style.display = ''; });
 
-      var imgData = canvas.toDataURL('image/jpeg', 0.9);
+      var imgData = canvas.toDataURL('image/jpeg', 0.88);
       var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
       var pageW = 210, pageH = 297;
-      var imgW  = pageW;
       var imgH  = canvas.height * pageW / canvas.width;
       var y = 0;
-
       while (y < imgH) {
         if (y > 0) pdf.addPage();
-        pdf.addImage(imgData, 'JPEG', 0, -y, imgW, imgH);
+        pdf.addImage(imgData, 'JPEG', 0, -y, pageW, imgH);
         y += pageH;
       }
 
-      pdf.save(company + '_공간분석보고서.pdf');
+      var filename = company + '_공간분석보고서.pdf';
 
-      if (icon) icon.textContent = '✓';
-      if (text) text.textContent = '저장 완료!';
-      btn.disabled = false;
-
-      // 저장 후 다음 페이지로 이동
-      setTimeout(function() { go('s-next'); }, 800);
+      // ── 다운로드: Blob 방식 (모바일 안정성 ↑) ──
+      try {
+        var blob = pdf.output('blob');
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 1500);
+        done();
+      } catch (e1) {
+        // 폴백 1: jsPDF 기본 save
+        try {
+          pdf.save(filename);
+          done();
+        } catch (e2) {
+          // 폴백 2: 새 탭에서 PDF 열기 (사용자가 직접 저장)
+          try {
+            var url2 = URL.createObjectURL(pdf.output('blob'));
+            window.open(url2, '_blank');
+            done();
+          } catch (e3) {
+            console.error('PDF 다운로드 실패:', e3);
+            alert('PDF 저장에 실패했습니다. 다시 시도해 주세요.');
+            resetBtn();
+          }
+        }
+      }
 
     }).catch(function(err) {
       hideEls.forEach(function(el) { el.style.display = ''; });
       console.error('PDF 생성 오류:', err);
+      alert('PDF 생성 중 오류가 발생했습니다. 다시 시도해 주세요.');
       resetBtn();
-      // 실패(취소)해도 다음 페이지로 이동
-      go('s-next');
     });
   }, 400);
 
-  setTimeout(function() { if (btn.disabled) resetBtn(); }, 15000);
+  setTimeout(function() { if (btn.disabled) resetBtn(); }, 20000);
 }
 
 
