@@ -1429,6 +1429,70 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
   100% { transform: scale(1); }
 }
 .snext-svc.pop { animation: svcPop 0.3s ease; }
+
+/* ───── 종결 블록 ───── */
+.snext-closing {
+  margin-top: 28px;
+  padding: 28px 22px;
+  border-radius: 18px;
+  background: linear-gradient(165deg, #FFFFFF 0%, #FFF8F4 100%);
+  border: 1.5px solid #FFE0D0;
+  text-align: center;
+}
+.snext-closing-check {
+  display: inline-flex; margin-bottom: 12px;
+}
+.snext-closing-title {
+  font-size: 17px; font-weight: 900; color: var(--brand);
+  letter-spacing: -0.4px; margin-bottom: 10px;
+}
+.snext-closing-desc {
+  font-size: 12.5px; line-height: 1.7; color: var(--muted);
+  margin-bottom: 20px;
+}
+.snext-closing-btns {
+  display: flex; gap: 8px;
+}
+.snext-closing-btn {
+  flex: 1; border: none; cursor: pointer;
+  font-family: inherit; font-size: 13px; font-weight: 800;
+  padding: 13px; border-radius: 10px;
+  letter-spacing: -0.2px;
+  transition: all 0.15s;
+}
+.snext-closing-btn-sub {
+  background: #fff; color: var(--brand);
+  border: 1.5px solid var(--border);
+}
+.snext-closing-btn-sub:hover { border-color: var(--brand); }
+.snext-closing-btn-main {
+  background: var(--accent); color: #fff;
+  box-shadow: 0 4px 12px rgba(232,66,10,0.22);
+}
+.snext-closing-btn-main:hover { background: var(--accent2); }
+.snext-share-done {
+  display: none;
+  margin-top: 12px; font-size: 12px; font-weight: 700;
+  color: #1A7A3E;
+}
+.snext-share-done.show { display: block; }
+
+/* ───── 브랜드 마크 (페이지 끝 신호) ───── */
+.snext-brand {
+  margin-top: 32px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.snext-brand-logo {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px; font-weight: 800; color: var(--brand);
+  letter-spacing: -0.3px; margin-bottom: 4px;
+}
+.snext-brand-dot { color: var(--accent); }
+.snext-brand-tag {
+  font-size: 11px; color: var(--muted); letter-spacing: 0.3px;
+}
 </style>
 </head>
 <body>
@@ -2530,6 +2594,35 @@ footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.8; }
       연동 서비스는 순차적으로 열립니다.
     </div>
 
+    <!-- ───── 종결 블록 ───── -->
+    <div class="snext-closing">
+      <div class="snext-closing-check">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <circle cx="13" cy="13" r="12" stroke="#E8420A" stroke-width="1.5"/>
+          <path d="M7.5 13.5l3.5 3.5 7-7.5" stroke="#E8420A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="snext-closing-title">공간 분석이 완료되었습니다</div>
+      <div class="snext-closing-desc">
+        <span id="snext-closing-company">귀사</span>의 보고서가 안전하게 분석되었습니다.<br>
+        더 정밀한 컨설팅이 필요하시면 언제든 신청해 주세요.
+      </div>
+      <div class="snext-closing-btns">
+        <button class="snext-closing-btn snext-closing-btn-sub" onclick="restartAnalysis()">
+          다시 분석하기
+        </button>
+        <button class="snext-closing-btn snext-closing-btn-main" onclick="shareOfficeFlow()">
+          동료에게 공유하기
+        </button>
+      </div>
+      <div id="snext-share-done" class="snext-share-done">링크가 복사되었습니다 ✓</div>
+    </div>
+
+    <div class="snext-brand">
+      <span class="snext-brand-logo">OFFICE<span class="snext-brand-dot">.</span>FLOW</span>
+      <span class="snext-brand-tag">사무실 이전 공간 분석</span>
+    </div>
+
   </div>
 </div>
 
@@ -2612,9 +2705,14 @@ function go(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   sync();
 
-  // s-next 진입 시 AI 진단 멘트 생성
+  // s-next 진입 시 AI 진단 멘트 생성 + 종결 블록 회사명
   if (id === 's-next') {
     setTimeout(function() { generateAIAnalysis(window._calc || {}); }, 300);
+    var cc = document.getElementById('snext-closing-company');
+    if (cc) {
+      var cname = (document.getElementById('f-company') || {}).value || '';
+      cc.textContent = cname ? cname : '귀사';
+    }
   }
 }
 
@@ -3306,7 +3404,7 @@ function buildReport() {
 
 
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwKTmWBcVWgymoZLKaKWbqQzIAvhm1a5l_EZ7BEAvsAMsM-vJ6m7rujg7me6qgd1-HH/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCYapBNUFztnprf_wCqpnAfHwq1bxzDY6wHy8HaPCaU03Ebt07iV26iFMIvHqvg80/exec';
 
 function buildLeadPayload(action) {
   const d = window._calc || {};
@@ -3400,6 +3498,43 @@ async function submitConsulting() {
   } catch(err) {
     if (btn) { btn.textContent = '컨설팅 신청하기'; btn.disabled = false; }
     alert('신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
+  }
+}
+
+function restartAnalysis() {
+  // 처음 화면(공간 설정)으로 돌아가서 다시 시작
+  window._leadId = null;  // 새 분석이므로 leadId 초기화
+  go('s2');
+}
+
+function shareOfficeFlow() {
+  var url = window.location.href.split('#')[0];
+  var shareData = {
+    title: 'OfficeFlow — 사무실 이전 공간 분석',
+    text: '우리 회사에 딱 맞는 사무실 규모, 1분 만에 무료로 분석해보세요.',
+    url: url
+  };
+
+  // 모바일 네이티브 공유 시트 우선
+  if (navigator.share) {
+    navigator.share(shareData).catch(function(){});
+    // GA 이벤트
+    try { gtag('event', 'share', { 'method': 'native', 'leadId': window._leadId || '' }); } catch(e) {}
+    return;
+  }
+
+  // PC: URL 복사
+  function showDone() {
+    var d = document.getElementById('snext-share-done');
+    if (d) { d.classList.add('show'); setTimeout(function(){ d.classList.remove('show'); }, 2500); }
+    try { gtag('event', 'share', { 'method': 'copy', 'leadId': window._leadId || '' }); } catch(e) {}
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(showDone).catch(function(){
+      fallbackCopy(url); showDone();
+    });
+  } else {
+    fallbackCopy(url); showDone();
   }
 }
 
