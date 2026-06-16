@@ -2701,6 +2701,22 @@ if (document.readyState === 'loading') {
   handleInAppBrowser();
 }
 
+// URL 해시로 특정 화면 바로가기 (#s4, #s-next 등) — 개발/확인용
+function goToHashScreen() {
+  var hash = (window.location.hash || '').replace('#', '');
+  var valid = ['s1', 's2', 's2result', 's3', 's-loading', 's4', 's-next'];
+  if (hash && valid.indexOf(hash) !== -1) {
+    if (typeof go === 'function') go(hash);
+  }
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() { setTimeout(goToHashScreen, 100); });
+} else {
+  setTimeout(goToHashScreen, 100);
+}
+// 주소창에서 해시를 직접 바꿔도 이동
+window.addEventListener('hashchange', goToHashScreen);
+
 function go(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
