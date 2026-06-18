@@ -1563,11 +1563,11 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   color: var(--accent); margin-bottom: 16px; letter-spacing: -0.2px;
 }
 .snext-svc { cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
-.snext-svc:hover { border-color: #FFCFAA; }
+.snext-svc:hover { border-color: rgba(74,158,255,0.4); }
 .snext-svc:active { transform: scale(0.99); }
 .snext-svc.interested {
   border-color: var(--accent);
-  background: #FFF8F4;
+  background: rgba(74,158,255,0.1);
 }
 .snext-svc.interested .snext-svc-soon {
   background: var(--accent); color: #fff;
@@ -1584,15 +1584,16 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   margin-top: 28px;
   padding: 28px 22px;
   border-radius: 18px;
-  background: linear-gradient(165deg, #FFFFFF 0%, #FFF8F4 100%);
-  border: 1.5px solid #FFE0D0;
+  background: linear-gradient(165deg, rgba(74,158,255,0.1) 0%, rgba(0,212,255,0.04) 100%);
+  border: 1.5px solid rgba(74,158,255,0.3);
   text-align: center;
+  box-shadow: 0 0 30px rgba(0,212,255,0.08);
 }
 .snext-closing-check {
   display: inline-flex; margin-bottom: 12px;
 }
 .snext-closing-title {
-  font-size: 17px; font-weight: 900; color: var(--brand);
+  font-size: 17px; font-weight: 900; color: #FFFFFF;
   letter-spacing: -0.4px; margin-bottom: 10px;
 }
 .snext-closing-desc {
@@ -1610,13 +1611,13 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   transition: all 0.15s;
 }
 .snext-closing-btn-sub {
-  background: #fff; color: var(--brand);
-  border: 1.5px solid var(--border);
+  background: rgba(255,255,255,0.06); color: #FFFFFF;
+  border: 1.5px solid var(--border-mid);
 }
-.snext-closing-btn-sub:hover { border-color: var(--brand); }
+.snext-closing-btn-sub:hover { border-color: var(--accent); }
 .snext-closing-btn-main {
-  background: var(--accent); color: #fff;
-  box-shadow: 0 4px 12px rgba(232,66,10,0.22);
+  background: linear-gradient(135deg,#1A7FD4,#00D4FF); color: #fff;
+  box-shadow: 0 4px 16px rgba(0,212,255,0.3);
 }
 .snext-closing-btn-main:hover { background: var(--accent2); }
 .snext-share-done {
@@ -1728,7 +1729,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   </div>
 
   <footer>
-    <p>OFFICE.FLOW &nbsp;|&nbsp; 오피스 이전의 모든 흐름, 한 번에<br>문의: officeflow@example.com</p>
+    <p>OFFICE.FLOW &nbsp;|&nbsp; 오피스 이전의 모든 흐름, 한 번에</p>
   </footer>
 
   <!-- S1 하단 고정 시작 버튼 -->
@@ -2350,20 +2351,20 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
     <!-- 개인정보 수집·이용 동의 -->
     <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:16px;">
-      <div style="font-size:12px;font-weight:700;color:var(--brand);margin-bottom:8px;">개인정보 수집·이용 동의 <span style="color:var(--accent);">*</span><a href="privacy.html" target="_blank" style="font-size:11px;font-weight:600;color:var(--muted);margin-left:8px;text-decoration:underline;">처리방침 보기</a></div>
+      <div style="font-size:12px;font-weight:700;color:#FFFFFF;margin-bottom:8px;">개인정보 수집·이용 동의 <span style="color:var(--accent);">*</span><a href="privacy.html" target="_blank" style="font-size:11px;font-weight:600;color:var(--muted);margin-left:8px;text-decoration:underline;">처리방침 보기</a></div>
       <div style="font-size:11px;color:var(--muted);line-height:1.8;margin-bottom:10px;">
-        · <b>수집 항목:</b> 회사명, 업종, 담당자명, 연락처, 이메일<br>
-        · <b>수집 목적:</b> 오피스 면적 보고서 발송, 매물·인테리어·가구 상담 서비스 제공<br>
-        · <b>보유 기간:</b> 서비스 이용 완료 후 3년<br>
+        · <b style="color:var(--text-sub);">수집 항목:</b> 회사명, 업종, 담당자명, 연락처, 이메일<br>
+        · <b style="color:var(--text-sub);">수집 목적:</b> 오피스 면적 보고서 발송, 매물·인테리어·가구 상담 서비스 제공<br>
+        · <b style="color:var(--text-sub);">보유 기간:</b> 서비스 이용 완료 후 3년<br>
         · 위 동의를 거부할 권리가 있으나, 거부 시 보고서 발송이 제한될 수 있습니다.
       </div>
       <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
         <input type="checkbox" id="privacy-agree" onchange="togglePrivacyAgree()" style="width:18px;height:18px;accent-color:var(--accent);cursor:pointer;">
-        <span style="font-size:13px;font-weight:600;color:var(--brand);">개인정보 수집·이용에 동의합니다</span>
+        <span style="font-size:13px;font-weight:600;color:#FFFFFF;">개인정보 수집·이용에 동의합니다</span>
       </label>
     </div>
 
-    <button class="btn-primary full" onclick="submitReport()" id="btn-report" style="opacity:0.4;pointer-events:none;">📄 공간 분석 보고서 요청하기</button>
+    <button class="btn-primary full" onclick="submitReport()" id="btn-report" style="opacity:0.4;pointer-events:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px;margin-right:4px;"><rect x="5" y="3" width="14" height="18" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> 공간 분석 보고서 요청하기</button>
     <div style="margin-top:10px;">
       <button class="btn-secondary full" onclick="go('s2')">← 공간 설정으로 돌아가기</button>
     </div>
@@ -2383,8 +2384,8 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
     <!-- 애니메이션 아이콘 -->
     <div style="position:relative;width:96px;height:96px;margin-bottom:24px;display:flex;align-items:center;justify-content:center;">
-      <div id="loading-ring1" style="position:absolute;width:96px;height:96px;border-radius:50%;border:1.5px dashed rgba(77,186,255,0.4);animation:loadingSpin 3s linear infinite;"></div>
-      <div id="loading-ring2" style="position:absolute;width:84px;height:84px;border-radius:50%;border:1px solid rgba(77,186,255,0.2);animation:loadingSpinReverse 4s linear infinite;"></div>
+      <div id="loading-ring1" style="position:absolute;width:96px;height:96px;border-radius:50%;border:2px dashed rgba(77,186,255,0.65);animation:loadingSpin 3s linear infinite;"></div>
+      <div id="loading-ring2" style="position:absolute;width:84px;height:84px;border-radius:50%;border:1.5px solid rgba(0,212,255,0.35);animation:loadingSpinReverse 4s linear infinite;"></div>
       <div id="loading-icon" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#1A7FD4,#00D4FF);display:flex;align-items:center;justify-content:center;box-shadow:0 0 32px rgba(0,212,255,0.4);">
         <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
           <path d="M6 18h4M26 18h4M18 6v4M18 26v4" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
@@ -2516,12 +2517,12 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
     <!-- 하단 2열 카드 -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
-      <div style="background:var(--card);border:1px solid rgba(74,158,255,0.25);border-radius:14px;padding:18px;">
+      <div style="background:var(--card);border:1px solid var(--border-mid);border-radius:14px;padding:18px;">
         <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:8px;">통로 제외 가용 공간 (65%)</div>
         <div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1;color:#FFFFFF;" id="r-usable-py">—</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px;" id="r-usable-m2">— m²</div>
       </div>
-      <div style="background:var(--brand);border-radius:14px;padding:18px;">
+      <div style="background:var(--brand);border:1.5px solid rgba(74,158,255,0.4);border-radius:14px;padding:18px;box-shadow:0 0 20px rgba(74,158,255,0.12);">
         <div style="font-size:11px;color:rgba(255,255,255,0.5);font-weight:600;margin-bottom:8px;">예상 필요 가용면적</div>
         <div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1;color:var(--accent2);" id="r-total-py2">—</div>
         <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px;" id="r-total-m2-2">— m²</div>
@@ -2619,7 +2620,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         </div>
       </div>
       <button id="btn-report-done" onclick="completeReport()" class="btn-primary full" style="padding:18px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;">
-        <span id="btn-report-icon">✓</span>
+        <span id="btn-report-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align:-3px;"><path d="M3 8.5l3.2 3.2L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <span id="btn-report-text">보고서 저장하기</span>
       </button>
     </div>
@@ -3592,7 +3593,7 @@ function buildReport() {
 
 
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCYapBNUFztnprf_wCqpnAfHwq1bxzDY6wHy8HaPCaU03Ebt07iV26iFMIvHqvg80/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCusWNijCl2WLcfj0zqM87G4Flpi4dsMY6l4Sf9DBJxfXTic5xcfGdX0xL7zqA_ted/exec';
 
 function buildLeadPayload(action) {
   const d = window._calc || {};
@@ -4156,6 +4157,7 @@ var FP_PREVIEW = {
 };
 
 var _fpCurrentKey = null;
+var _fpScrollY = 0;
 var _fpCurrentIdx = 0;
 
 function openFpPreview(categoryKey) {
@@ -4202,6 +4204,14 @@ function openFpPreview(categoryKey) {
   var sheet   = document.getElementById('fp-sheet');
   if (overlay) { overlay.style.display = 'block'; }
   if (sheet)   { sheet.style.display = 'flex'; }
+
+  // 배경 스크롤 잠금 (모달 열림 동안 스크롤바 숨김)
+  _fpScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+  document.body.style.position = 'fixed';
+  document.body.style.top = '-' + _fpScrollY + 'px';
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
 
   // 스와이프 초기화 + 화살표 표시 (아이템 2개 이상일 때만)
   setTimeout(initFpSwipe, 100);
@@ -4306,6 +4316,14 @@ function closeFpPreview() {
   var sheet   = document.getElementById('fp-sheet');
   if (overlay) overlay.style.display = 'none';
   if (sheet)   sheet.style.display   = 'none';
+
+  // 배경 스크롤 잠금 해제 (원래 위치로 복원)
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.width = '';
+  window.scrollTo(0, _fpScrollY);
 }
 
 
@@ -4451,7 +4469,7 @@ function renderStackedBar(d) {
     { label:'회의', val:conf, color:'#4DBAFF' },
     { label:'휴게', val:lg,   color:'#4AB8FF' },
     { label:'지원', val:supp, color:'#7DD8FF' },
-    { label:'통로', val:corr, color:'#FFCFAA' },
+    { label:'통로', val:corr, color:'#A8E0FF' },
   ];
 
   // 0% 항목 제거 (입력 안 한 경우)
@@ -4539,7 +4557,7 @@ function renderAnalysis() {
     { key:'conf',     label:'회의공간',            colorOur:'#4DBAFF' },
     { key:'lg',       label:'휴게공간',            colorOur:'#4AB8FF' },
     { key:'stor',     label:'지원공간(탕비·수납)', colorOur:'#7DD8FF' },
-    { key:'corridor', label:'통로 및 여유공간',    colorOur:'#FFCFAA' },
+    { key:'corridor', label:'통로 및 여유공간',    colorOur:'#A8E0FF' },
   ];
 
   var chart = document.getElementById('dual-bar-chart');
@@ -4585,33 +4603,37 @@ function renderAnalysis() {
 
   var analysisEl = document.getElementById('r-space-analysis');
   if (analysisEl) {
+    var DOT_STRONG = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#00D4FF;margin-right:6px;"></span>';
+    var DOT_MID    = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4A9EFF;margin-right:6px;"></span>';
+    var DOT_OK     = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#7DD8FF;margin-right:6px;"></span>';
+    var HL = 'color:#4DBAFF;';
     var msgs = [];
     if (OUR.exec - AVG.exec > 2)
-      msgs.push('🔴 <b>임원공간</b>이 기업평균(8.2%)보다 <b style="color:#E8420A;">' + (OUR.exec-AVG.exec).toFixed(1) + '%p 높습니다.</b> 임원실 규모 또는 개수 조정을 검토해보세요.');
+      msgs.push(DOT_STRONG + '<b>임원공간</b>이 기업평균(8.2%)보다 <b style="' + HL + '">' + (OUR.exec-AVG.exec).toFixed(1) + '%p 높습니다.</b> 임원실 규모 또는 개수 조정을 검토해보세요.');
     else if (OUR.exec - AVG.exec < -2)
-      msgs.push('🟢 <b>임원공간</b>이 기업평균(8.2%)보다 <b style="color:#E8420A;">' + Math.abs(OUR.exec-AVG.exec).toFixed(1) + '%p 효율적으로</b> 배분되어 있습니다.');
-    else msgs.push('🟢 <b>임원공간</b> 비율이 기업평균(8.2%)과 유사합니다. 적정 수준입니다.');
+      msgs.push(DOT_OK + '<b>임원공간</b>이 기업평균(8.2%)보다 <b style="' + HL + '">' + Math.abs(OUR.exec-AVG.exec).toFixed(1) + '%p 효율적으로</b> 배분되어 있습니다.');
+    else msgs.push(DOT_OK + '<b>임원공간</b> 비율이 기업평균(8.2%)과 유사합니다. 적정 수준입니다.');
 
     if (OUR.emp - AVG.emp > 3)
-      msgs.push('🟢 <b>업무공간</b>이 평균(27.2%)보다 <b style="color:#E8420A;">' + (OUR.emp-AVG.emp).toFixed(1) + '%p 넓어</b> 직원 1인당 충분한 업무 환경이 확보됩니다.');
+      msgs.push(DOT_OK + '<b>업무공간</b>이 평균(27.2%)보다 <b style="' + HL + '">' + (OUR.emp-AVG.emp).toFixed(1) + '%p 넓어</b> 직원 1인당 충분한 업무 환경이 확보됩니다.');
     else if (OUR.emp - AVG.emp < -3)
-      msgs.push('🔴 <b>업무공간</b>이 평균(27.2%)보다 <b style="color:#E8420A;">' + Math.abs(OUR.emp-AVG.emp).toFixed(1) + '%p 부족합니다.</b> 팀원석 배치 방식 또는 규모 재검토를 권장합니다.');
-    else msgs.push('🟢 <b>업무공간</b> 비율이 적정 범위 내에 있습니다.');
+      msgs.push(DOT_STRONG + '<b>업무공간</b>이 평균(27.2%)보다 <b style="' + HL + '">' + Math.abs(OUR.emp-AVG.emp).toFixed(1) + '%p 부족합니다.</b> 팀원석 배치 방식 또는 규모 재검토를 권장합니다.');
+    else msgs.push(DOT_OK + '<b>업무공간</b> 비율이 적정 범위 내에 있습니다.');
 
     if (OUR.conf - AVG.conf < -2)
-      msgs.push('🔴 <b>회의공간</b>이 평균(11.7%)보다 <b style="color:#E8420A;">' + Math.abs(OUR.conf-AVG.conf).toFixed(1) + '%p 부족합니다.</b> 소형 회의실 추가를 검토해보세요.');
+      msgs.push(DOT_STRONG + '<b>회의공간</b>이 평균(11.7%)보다 <b style="' + HL + '">' + Math.abs(OUR.conf-AVG.conf).toFixed(1) + '%p 부족합니다.</b> 소형 회의실 추가를 검토해보세요.');
     else if (OUR.conf - AVG.conf > 2)
-      msgs.push('🟡 <b>회의공간</b>이 평균(11.7%)보다 <b>' + (OUR.conf-AVG.conf).toFixed(1) + '%p 많습니다.</b> 일부를 포커스룸·라운지로 전환하면 효율적입니다.');
-    else msgs.push('🟢 <b>회의공간</b> 비율이 적정 범위(11~13%) 내에 있습니다.');
+      msgs.push(DOT_MID + '<b>회의공간</b>이 평균(11.7%)보다 <b>' + (OUR.conf-AVG.conf).toFixed(1) + '%p 많습니다.</b> 일부를 포커스룸·라운지로 전환하면 효율적입니다.');
+    else msgs.push(DOT_OK + '<b>회의공간</b> 비율이 적정 범위(11~13%) 내에 있습니다.');
 
     if (OUR.lg === 0)
-      msgs.push('🔴 <b>휴게공간이 계획되어 있지 않습니다.</b> 기업평균 6.6% 기준, 오픈라운지 도입을 강력히 권고합니다.');
+      msgs.push(DOT_STRONG + '<b>휴게공간이 계획되어 있지 않습니다.</b> 기업평균 6.6% 기준, 오픈라운지 도입을 강력히 권고합니다.');
     else if (OUR.lg - AVG.lg < -2)
-      msgs.push('🟡 <b>휴게공간</b>이 평균(6.6%)보다 <b>' + Math.abs(OUR.lg-AVG.lg).toFixed(1) + '%p 적습니다.</b> 라운지 확충으로 직원 만족도를 높일 수 있습니다.');
-    else msgs.push('🟢 <b>휴게공간</b> 비율이 적정 범위 내에 있습니다.');
+      msgs.push(DOT_MID + '<b>휴게공간</b>이 평균(6.6%)보다 <b>' + Math.abs(OUR.lg-AVG.lg).toFixed(1) + '%p 적습니다.</b> 라운지 확충으로 직원 만족도를 높일 수 있습니다.');
+    else msgs.push(DOT_OK + '<b>휴게공간</b> 비율이 적정 범위 내에 있습니다.');
 
     if (OUR.stor - AVG.stor < -3)
-      msgs.push('🟡 <b>지원공간(탕비·수납)</b>이 평균(12.7%)보다 부족합니다. OA존·공용수납 배치를 추가로 검토해보세요.');
+      msgs.push(DOT_MID + '<b>지원공간(탕비·수납)</b>이 평균(12.7%)보다 부족합니다. OA존·공용수납 배치를 추가로 검토해보세요.');
 
     analysisEl.innerHTML = msgs.join('<br>');
   }
@@ -4649,7 +4671,7 @@ function renderPerPersonAnalysis(d) {
   var BENCH = [];
   if (execQty > 0)   BENCH.push({ label:'임원실 1개당 면적',  our:execPerRoom,  avg:26.3, unit:'m²', color:'#0D3D7A', desc:'퍼시스 DB 2023 기준 부(소)장실·국(단)장실 평균 26.3㎡ (약 8평)', ok:execPerRoom>=22.0, low:execPerRoom<17.0 });
   if (tmQty > 0)     BENCH.push({ label:'팀장석 1인당 면적',  our:tmPerPerson,  avg:5.8,  unit:'m²', color:'#1A5FB4', desc:'퍼시스 DB 2023 기준 팀장 1인당 업무공간 평균 5.8㎡',  ok:tmPerPerson>=5.0,  low:tmPerPerson<4.0  });
-  if (empTotal > 0)  BENCH.push({ label:'팀원석 1인당 면적',  our:empPerPerson, avg:3.35, unit:'m²', color:'#E8420A', desc:'퍼시스 DB 2023 기준 팀원 1인당 업무공간 평균 3.35㎡', ok:empPerPerson>=2.8, low:empPerPerson<2.3 });
+  if (empTotal > 0)  BENCH.push({ label:'팀원석 1인당 면적',  our:empPerPerson, avg:3.35, unit:'m²', color:'#4AB8FF', desc:'퍼시스 DB 2023 기준 팀원 1인당 업무공간 평균 3.35㎡', ok:empPerPerson>=2.8, low:empPerPerson<2.3 });
 
   el.innerHTML = '<div style="display:flex;flex-direction:column;gap:10px;">' + BENCH.map(function(item) {
     var barW = Math.min(item.our / item.avg * 60, 96);
@@ -4691,16 +4713,16 @@ function renderConfAnalysis(d) {
   var recMax = Math.ceil(empTotal * (5.2/75));
   var status, sc, sb, statusMsg;
   if (confCount === 0) {
-    status='⚠ 미계획'; sc='#E8420A'; sb='rgba(232,66,10,0.08)';
+    status='⚠ 미계획'; sc='#4AB8FF'; sb='rgba(74,158,255,0.1)';
     statusMsg='회의실이 계획되어 있지 않습니다. 직원 수 기준 최소 '+recMin+'개를 권장합니다.';
   } else if (confCount < recMin) {
-    status='🔴 부족'; sc='#E8420A'; sb='rgba(232,66,10,0.08)';
+    status='🔴 부족'; sc='#4AB8FF'; sb='rgba(74,158,255,0.1)';
     statusMsg='현재 '+confCount+'개는 직원 수 대비 부족합니다. '+(recMin-confCount)+'개 이상 추가를 권장합니다.';
   } else if (confCount > recMax+1) {
-    status='🟡 과다'; sc='#B87D0A'; sb='rgba(184,125,10,0.08)';
+    status='🟡 과다'; sc='#7DD8FF'; sb='rgba(125,216,255,0.1)';
     statusMsg='회의실이 다소 많은 편입니다. 일부를 포커스룸·라운지로 전환하면 공간 효율이 높아집니다.';
   } else {
-    status='🟢 적정'; sc='#E8420A'; sb='rgba(45,106,10,0.08)';
+    status='🟢 적정'; sc='#1A7FD4'; sb='rgba(26,127,212,0.1)';
     statusMsg='직원 수 대비 적정 수준의 회의실이 계획되어 있습니다.';
   }
 
@@ -4750,6 +4772,8 @@ function renderConfAnalysis(d) {
    보고서 저장하기 애니메이션
 ───────────────────────────────────────────── */
 function completeReport() {
+  var ICON_CHECK = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align:-3px;"><path d="M3 8.5l3.2 3.2L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var ICON_SPINNER = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align:-3px;animation:loadingSpin 0.8s linear infinite;display:inline-block;"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2" stroke-opacity="0.25"/><path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
   var btn  = document.getElementById('btn-report-done');
   var icon = document.getElementById('btn-report-icon');
   var text = document.getElementById('btn-report-text');
@@ -4777,19 +4801,19 @@ function completeReport() {
   }
 
   function resetBtn() {
-    if (icon) { icon.textContent = '✓'; icon.style.animation = 'none'; }
+    if (icon) { icon.innerHTML = ICON_CHECK; icon.style.animation = 'none'; }
     if (text) text.textContent = '보고서 저장하기';
     btn.disabled = false;
     btn.style.opacity = '1';
   }
   function done() {
-    if (icon) icon.textContent = '✓';
+    if (icon) icon.innerHTML = ICON_CHECK;
     if (text) text.textContent = '저장 완료!';
     btn.disabled = false;
     setTimeout(function() { go('s-next'); }, 800);
   }
 
-  if (icon) { icon.textContent = '⏳'; icon.style.animation = 'none'; }
+  if (icon) { icon.innerHTML = ICON_SPINNER; icon.style.animation = 'none'; }
   if (text) text.textContent = 'PDF 생성 중...';
   btn.disabled = true;
 
