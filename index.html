@@ -1305,6 +1305,11 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   to   { transform: rotate(0deg); }
 }
 
+@keyframes loadingPulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 36px rgba(0,212,255,0.55); }
+  50%      { transform: scale(1.08); box-shadow: 0 0 52px rgba(0,212,255,0.85); }
+}
+
 /* ═══════════════ S-NEXT 원스톱 서비스 ═══════════════ */
 .snext-wrap { padding-bottom: 40px; }
 
@@ -2394,11 +2399,12 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
 
     <!-- 애니메이션 아이콘 -->
-    <div style="position:relative;width:96px;height:96px;margin-bottom:24px;display:flex;align-items:center;justify-content:center;">
-      <div id="loading-ring1" style="position:absolute;width:96px;height:96px;border-radius:50%;border:2px dashed rgba(77,186,255,0.65);animation:loadingSpin 3s linear infinite;"></div>
-      <div id="loading-ring2" style="position:absolute;width:84px;height:84px;border-radius:50%;border:1.5px solid rgba(0,212,255,0.35);animation:loadingSpinReverse 4s linear infinite;"></div>
-      <div id="loading-icon" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#1A7FD4,#00D4FF);display:flex;align-items:center;justify-content:center;box-shadow:0 0 32px rgba(0,212,255,0.4);">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+    <div style="position:relative;width:110px;height:110px;margin-bottom:24px;display:flex;align-items:center;justify-content:center;">
+      <div id="loading-ring1" style="position:absolute;width:110px;height:110px;border-radius:50%;border:2px dashed rgba(77,186,255,0.7);animation:loadingSpin 2.2s linear infinite;"></div>
+      <div id="loading-ring2" style="position:absolute;width:94px;height:94px;border-radius:50%;border:1.5px dashed rgba(0,212,255,0.45);animation:loadingSpinReverse 3s linear infinite;"></div>
+      <div id="loading-ring3" style="position:absolute;width:80px;height:80px;border-radius:50%;border:1px solid rgba(77,186,255,0.25);animation:loadingSpin 4.5s linear infinite;"></div>
+      <div id="loading-icon" style="position:relative;width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,#1A7FD4,#00D4FF);display:flex;align-items:center;justify-content:center;box-shadow:0 0 36px rgba(0,212,255,0.55);animation:loadingPulse 1.6s ease-in-out infinite;">
+        <svg width="34" height="34" viewBox="0 0 36 36" fill="none" style="animation:loadingSpin 2.5s linear infinite;transform-origin:center;">
           <path d="M6 18h4M26 18h4M18 6v4M18 26v4" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
           <path d="M9.5 9.5l3 3M23.5 23.5l3 3M26.5 9.5l-3 3M12.5 23.5l-3 3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
           <circle cx="18" cy="18" r="4" fill="#fff"/>
@@ -3626,12 +3632,24 @@ function buildLeadPayload(action) {
     tel:      (document.getElementById('f-tel')      || {}).value || '',
     memo:     (document.getElementById('f-memo')     || {}).value || '',
     empTotal: d.empTotal  || 0,
+    // 평(py) 단위
     totalPy:  d.totalPy   ? d.totalPy.toFixed(1)  : 0,
     execArea: d.execArea  ? d.execArea.toFixed(1)  : 0,
+    tmArea:   d.tmArea    ? d.tmArea.toFixed(1)    : 0,
     empArea:  d.empArea   ? d.empArea.toFixed(1)   : 0,
     confArea: d.confArea  ? d.confArea.toFixed(1)  : 0,
     lgArea:   d.lgArea    ? d.lgArea.toFixed(1)    : 0,
     oaArea:   d.oaArea    ? d.oaArea.toFixed(1)    : 0,
+    storArea: d.storArea  ? d.storArea.toFixed(1)  : 0,
+    // 제곱미터(m²) 단위 — 평수와 함께 정확히 동봉
+    totalM2:  d.totalM2   ? d.totalM2.toFixed(1)   : 0,
+    execAreaM2: d.execArea ? (d.execArea*3.305).toFixed(1) : 0,
+    tmAreaM2:   d.tmArea   ? (d.tmArea*3.305).toFixed(1)   : 0,
+    empAreaM2:  d.empArea  ? (d.empArea*3.305).toFixed(1)  : 0,
+    confAreaM2: d.confArea ? (d.confArea*3.305).toFixed(1) : 0,
+    lgAreaM2:   d.lgArea   ? (d.lgArea*3.305).toFixed(1)   : 0,
+    oaAreaM2:   d.oaArea   ? (d.oaArea*3.305).toFixed(1)   : 0,
+    storAreaM2: d.storArea ? (d.storArea*3.305).toFixed(1) : 0,
   };
 }
 
@@ -4014,8 +4032,16 @@ function startLoadingAnimation() {
     // 로딩 링 회전 멈춤
     var ring1 = document.getElementById('loading-ring1');
     var ring2 = document.getElementById('loading-ring2');
+    var ring3 = document.getElementById('loading-ring3');
+    var coreIcon = document.getElementById('loading-icon');
     if (ring1) ring1.style.animation = 'none';
     if (ring2) ring2.style.animation = 'none';
+    if (ring3) ring3.style.animation = 'none';
+    if (coreIcon) {
+      coreIcon.style.animation = 'none';
+      var innerSvg = coreIcon.querySelector('svg');
+      if (innerSvg) innerSvg.style.animation = 'none';
+    }
 
     // S4로 전환
     buildReport();
@@ -4746,7 +4772,7 @@ function renderConfAnalysis(d) {
   var distHTML = '';
   if (confTotal2 > 0) {
     var DIST = [
-      { label:'집중공간 (1~2인)', count:confFocus, color:'#FFCFAA', bench:16.6 },
+      { label:'집중공간 (1~2인)', count:confFocus, color:'#7DD8FF', bench:16.6 },
       { label:'소형 (4~6인)',     count:confSmall, color:'#4AB8FF', bench:46.6 },
       { label:'중형 (8~12인)',    count:confMid,   color:'#1A5FB4', bench:27.7 },
       { label:'대형 (14인+)',     count:confLarge, color:'#0D3D7A', bench:9.1  },
