@@ -234,19 +234,19 @@ body {
 
 /* ── S4 리포트 전용 라이트 테마 (PDF 출력 안전) ── */
 #s4 {
-  --bg:      #F7F8FA;
-  --card:    #FFFFFF;
-  --text:    #1A1A1E;
-  --muted:   #6B6B72;
-  --border:  rgba(0,0,0,0.08);
-  --border-mid: rgba(0,0,0,0.12);
-  background: #F7F8FA;
-  color: #1A1A1E;
+  --bg:      #09090B;
+  --card:    #0F1419;
+  --text:    #FFFFFF;
+  --muted:   #999999;
+  --border:  rgba(255,255,255,0.08);
+  --border-mid: rgba(74,158,255,0.25);
+  background: #09090B;
+  color: #FFFFFF;
 }
 #s4 .report-header { background: #0F1419; }
-#s4 .ratio-bar { background: #ECECEC; }
-#s4 .email-note { background: #F0F0F0; border-color: rgba(0,0,0,0.1); }
-#s4 .email-note p { color: #6B6B72; }
+#s4 .ratio-bar { background: rgba(255,255,255,0.08); }
+#s4 .email-note { background: rgba(74,158,255,0.07); border-color: rgba(74,158,255,0.3); }
+#s4 .email-note p { color: var(--text-sub, #DDDDDD); }
 
 /* ─────────────────────────────────────────────
    LAYOUT
@@ -819,7 +819,7 @@ body {
 .rcard {
   background: var(--card);
   border-radius: var(--radius);
-  border: 1px solid var(--border-mid);
+  border: 1px solid rgba(74,158,255,0.25);
   padding: 14px 16px;
 }
 .rcard-cat {
@@ -1300,6 +1300,11 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   to   { transform: rotate(360deg); }
 }
 
+@keyframes loadingSpinReverse {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+
 /* ═══════════════ S-NEXT 원스톱 서비스 ═══════════════ */
 .snext-wrap { padding-bottom: 40px; }
 
@@ -1644,6 +1649,16 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   color: var(--muted); letter-spacing: 0.2px;
   margin-right: 6px;
 }
+
+.dark-select { color-scheme: dark; }
+.dark-select option {
+  background: #0F1419;
+  color: #FFFFFF;
+}
+.dark-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(74,158,255,0.18);
+}
 </style>
 </head>
 <body>
@@ -1763,7 +1778,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
 
 <div class="card">
-      <div class="card-title">🏢 임원공간<button onclick="openFpPreview('exec')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-exec"></span></div>
+      <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><rect x="4" y="3" width="16" height="18" rx="1" stroke="#4DBAFF" stroke-width="1.6"/><path d="M8 8h2M14 8h2M8 12h2M14 12h2M8 16h2M14 16h2" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/><path d="M10 21v-3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v3" stroke="#4DBAFF" stroke-width="1.6"/></svg> 임원공간<button onclick="openFpPreview('exec')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-exec"></span></div>
       <div class="sub-counter-row">
         <div class="sub-counter-label">
           대형 임원실
@@ -1824,7 +1839,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
 
 <div class="card">
-      <div class="card-title">👔 팀장석 <button onclick="openFpPreview('tm')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-tm"></span></div>
+      <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="12" cy="7" r="3.2" stroke="#4DBAFF" stroke-width="1.6"/><path d="M5 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/><path d="M9 11l1.5 2L12 11" stroke="#4DBAFF" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> 팀장석 <button onclick="openFpPreview('tm')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-tm"></span></div>
       <div style="margin-bottom:10px;">
         <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">W 1,600 시리즈</div>
         <div class="sub-counter-row">
@@ -1880,7 +1895,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   
     
 <div class="card">
-      <div class="card-title">👥 팀원석 <button onclick="openFpPreview('emp')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-emp">총 <span id="emp-total-badge">0</span>석</span></div>
+      <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="9" cy="8" r="2.6" stroke="#4DBAFF" stroke-width="1.6"/><circle cx="16" cy="9" r="2.2" stroke="#4DBAFF" stroke-width="1.6"/><path d="M3.5 20v-1.5A4 4 0 0 1 7.5 14.5h3A4 4 0 0 1 14.5 18.5V20" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/><path d="M15 14.8a3.4 3.4 0 0 1 5.5 2.7V20" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/></svg> 팀원석 <button onclick="openFpPreview('emp')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-emp">총 <span id="emp-total-badge">0</span>석</span></div>
       <div class="sub-counter-row">
         <div class="sub-counter-label">
           w1,200 팀원석
@@ -1952,7 +1967,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
 
 <div class="card">
-      <div class="card-title">🤝 회의공간<button onclick="openFpPreview('conf')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-conf"></span></div>
+      <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><rect x="3" y="6" width="18" height="11" rx="1.2" stroke="#4DBAFF" stroke-width="1.6"/><path d="M3 11h18M9 6v11M15 6v11" stroke="#4DBAFF" stroke-width="1.4"/></svg> 회의공간<button onclick="openFpPreview('conf')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-conf"></span></div>
 <div style="font-size:11px;font-weight:700;color:var(--muted);margin:0 0 6px;text-transform:uppercase;letter-spacing:0.5px;">소형 회의실 (4~6인)</div>
 <div class="sub-counter-row">
         <div class="sub-counter-label">
@@ -2041,7 +2056,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
 
 <div class="card">
-      <div class="card-title">☕ 오픈라운지<button onclick="openFpPreview('lg')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-lg"></span></div>
+      <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M5 19h14" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/><path d="M7 19V9a5 5 0 0 1 10 0v10" stroke="#4DBAFF" stroke-width="1.6"/><path d="M9 9h6" stroke="#4DBAFF" stroke-width="1.4" stroke-linecap="round"/></svg> 오픈라운지<button onclick="openFpPreview('lg')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-lg"></span></div>
       <div class="sub-counter-row">
         <div class="sub-counter-label">
           소형 라운지
@@ -2090,7 +2105,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
 
 <div class="card">
-      <div class="card-title">🎯 개인 집중공간<button onclick="openFpPreview('focus')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-focus"></span></div>
+      <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><rect x="4" y="4" width="11" height="16" rx="1.2" stroke="#4DBAFF" stroke-width="1.6"/><path d="M8 9h3M8 13h3" stroke="#4DBAFF" stroke-width="1.4" stroke-linecap="round"/><circle cx="17.5" cy="17.5" r="3" stroke="#4DBAFF" stroke-width="1.5"/><path d="M19.6 19.6L21.5 21.5" stroke="#4DBAFF" stroke-width="1.5" stroke-linecap="round"/></svg> 개인 집중공간<button onclick="openFpPreview('focus')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-focus"></span></div>
       <div class="sub-counter-row">
         <div class="sub-counter-label">
           폰부스
@@ -2117,7 +2132,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
     
 <div class="card">
-      <div class="card-title">📦 수납가구 <button onclick="openFpPreview('stor')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-stor">5EA 단위 기준</span></div>
+      <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><rect x="3.5" y="5" width="17" height="14" rx="1" stroke="#4DBAFF" stroke-width="1.6"/><path d="M3.5 11h17" stroke="#4DBAFF" stroke-width="1.4"/><path d="M8 5v6M16 5v6" stroke="#4DBAFF" stroke-width="1.3"/></svg> 수납가구 <button onclick="openFpPreview('stor')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-stor">5EA 단위 기준</span></div>
       <div class="sub-counter-row">
 <div style="height:2px;background:rgba(0,0,0,0.15);margin:10px 0 10px;"></div>
               <div class="sub-counter-label">
@@ -2146,7 +2161,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
     
 <div class="card">
-      <div class="card-title">🖨️ OA존<button onclick="openFpPreview('oa')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-oa"></span></div>
+      <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><rect x="4.5" y="9" width="15" height="8" rx="1" stroke="#4DBAFF" stroke-width="1.6"/><path d="M7 9V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v4" stroke="#4DBAFF" stroke-width="1.6"/><path d="M8 20h8" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/><circle cx="16" cy="12.3" r="0.9" fill="#4DBAFF"/></svg> OA존<button onclick="openFpPreview('oa')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-oa"></span></div>
       <div class="sub-counter-row">
         <div class="sub-counter-label">
           컴팩트형 (W3,400)
@@ -2172,7 +2187,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
 
     <div class="card">
-      <div class="card-title">☕ 탕비공간<button onclick="openFpPreview('tb')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-tb"></span></div>
+      <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M5 9h11v6a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V9z" stroke="#4DBAFF" stroke-width="1.6"/><path d="M16 10.5h1.8a2 2 0 0 1 0 4H16" stroke="#4DBAFF" stroke-width="1.5"/><path d="M8 5.5c0 1-1 1-1 2M11.5 5.5c0 1-1 1-1 2" stroke="#4DBAFF" stroke-width="1.3" stroke-linecap="round"/></svg> 탕비공간<button onclick="openFpPreview('tb')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-tb"></span></div>
       <div class="sub-counter-row">
         <div class="sub-counter-label">
           컴팩트형 (W3,400)
@@ -2279,7 +2294,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         </div>
       </div>
       <div class="blur-layer">
-        <div class="blur-icon">🔒</div>
+        <div class="blur-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto;"><rect x="5" y="11" width="14" height="9" rx="1.5" stroke="#4DBAFF" stroke-width="1.6"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#4DBAFF" stroke-width="1.6"/><circle cx="12" cy="15.3" r="1.3" fill="#4DBAFF"/></svg></div>
         <div class="blur-title">공간 분석 보고서를 무료로 받아보세요</div>
         <div class="blur-sub">✓ 공간 구성 비율 분석 &nbsp;·&nbsp; ✓ 면적 산출 근거 확인</div>
       </div>
@@ -2293,7 +2308,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
       <div class="form-group">
         <label class="form-label">업종 <span style="color:var(--accent);">*</span></label>
-        <select class="form-input" id="industry" onchange="checkFormReady()" style="height:46px;cursor:pointer;">
+        <select class="form-input dark-select" id="industry" onchange="checkFormReady()" style="height:46px;cursor:pointer;">
           <option value="">업종을 선택해 주세요</option>
           <option value="IT·소프트웨어">IT·소프트웨어</option>
           <option value="게임·엔터테인먼트">게임·엔터테인먼트</option>
@@ -2362,29 +2377,33 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;background:var(--bg);">
 
     <!-- 로고 -->
-    <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;letter-spacing:-0.5px;color:var(--brand);margin-bottom:40px;">
-      OFFICE<span style="color:var(--accent);">.</span>FLOW
+    <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;letter-spacing:-0.5px;color:#FFFFFF;margin-bottom:40px;">
+      OFFICE<span style="color:var(--glow-dot);">.</span>FLOW
     </div>
 
     <!-- 애니메이션 아이콘 -->
-    <div id="loading-icon" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#004D40,#1A7FD4);display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 0 32px rgba(0,212,255,0.3);animation:loadingSpin 2s linear infinite;">
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-        <path d="M6 18h4M26 18h4M18 6v4M18 26v4" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M9.5 9.5l3 3M23.5 23.5l3 3M26.5 9.5l-3 3M12.5 23.5l-3 3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="18" cy="18" r="4" fill="#fff"/>
-      </svg>
+    <div style="position:relative;width:96px;height:96px;margin-bottom:24px;display:flex;align-items:center;justify-content:center;">
+      <div id="loading-ring1" style="position:absolute;width:96px;height:96px;border-radius:50%;border:1.5px dashed rgba(77,186,255,0.4);animation:loadingSpin 3s linear infinite;"></div>
+      <div id="loading-ring2" style="position:absolute;width:84px;height:84px;border-radius:50%;border:1px solid rgba(77,186,255,0.2);animation:loadingSpinReverse 4s linear infinite;"></div>
+      <div id="loading-icon" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#1A7FD4,#00D4FF);display:flex;align-items:center;justify-content:center;box-shadow:0 0 32px rgba(0,212,255,0.4);">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <path d="M6 18h4M26 18h4M18 6v4M18 26v4" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M9.5 9.5l3 3M23.5 23.5l3 3M26.5 9.5l-3 3M12.5 23.5l-3 3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="4" fill="#fff"/>
+        </svg>
+      </div>
     </div>
 
-    <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;margin-bottom:8px;color:var(--brand);">오피스 공간 분석 중</div>
+    <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;margin-bottom:8px;color:#FFFFFF;">오피스 공간 분석 중</div>
     <div style="font-size:13px;color:var(--muted);margin-bottom:32px;">입력하신 데이터를 기반으로 최적 면적을 산출하고 있습니다</div>
 
     <!-- 프로그레스 바 -->
     <div style="width:100%;max-width:280px;margin-bottom:28px;">
       <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
         <span style="font-size:11px;color:var(--muted);">분석 진행률</span>
-        <span style="font-size:11px;font-weight:700;color:var(--accent);" id="loading-pct">0%</span>
+        <span style="font-size:11px;font-weight:700;color:var(--glow-dot);" id="loading-pct">0%</span>
       </div>
-      <div style="height:6px;background:var(--border);border-radius:3px;overflow:hidden;">
+      <div style="height:6px;background:var(--border-mid);border-radius:3px;overflow:hidden;">
         <div id="loading-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#1A7FD4,#00D4FF);border-radius:3px;transition:width 0.4s ease;"></div>
       </div>
     </div>
@@ -2392,24 +2411,24 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     <!-- 분석 항목 체크리스트 -->
     <div style="width:100%;max-width:280px;display:flex;flex-direction:column;gap:10px;">
       <div id="lc-1" style="display:flex;align-items:center;gap:10px;opacity:0.3;transition:opacity 0.3s;">
-        <div id="lc-1-icon" style="width:20px;height:20px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;">○</div>
-        <span style="font-size:13px;color:var(--brand);">공간 입력 데이터 수집</span>
+        <div id="lc-1-icon" style="width:20px;height:20px;border-radius:50%;background:var(--border-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--muted);">○</div>
+        <span style="font-size:13px;color:#FFFFFF;">공간 입력 데이터 수집</span>
       </div>
       <div id="lc-2" style="display:flex;align-items:center;gap:10px;opacity:0.3;transition:opacity 0.3s;">
-        <div id="lc-2-icon" style="width:20px;height:20px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;">○</div>
-        <span style="font-size:13px;color:var(--brand);">면적 기준 DB 대조</span>
+        <div id="lc-2-icon" style="width:20px;height:20px;border-radius:50%;background:var(--border-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--muted);">○</div>
+        <span style="font-size:13px;color:#FFFFFF;">면적 기준 DB 대조</span>
       </div>
       <div id="lc-3" style="display:flex;align-items:center;gap:10px;opacity:0.3;transition:opacity 0.3s;">
-        <div id="lc-3-icon" style="width:20px;height:20px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;">○</div>
-        <span style="font-size:13px;color:var(--brand);">공간 구성 비율 산출</span>
+        <div id="lc-3-icon" style="width:20px;height:20px;border-radius:50%;background:var(--border-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--muted);">○</div>
+        <span style="font-size:13px;color:#FFFFFF;">공간 구성 비율 산출</span>
       </div>
       <div id="lc-4" style="display:flex;align-items:center;gap:10px;opacity:0.3;transition:opacity 0.3s;">
-        <div id="lc-4-icon" style="width:20px;height:20px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;">○</div>
-        <span style="font-size:13px;color:var(--brand);">보고서 데이터 생성</span>
+        <div id="lc-4-icon" style="width:20px;height:20px;border-radius:50%;background:var(--border-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--muted);">○</div>
+        <span style="font-size:13px;color:#FFFFFF;">보고서 데이터 생성</span>
       </div>
       <div id="lc-5" style="display:flex;align-items:center;gap:10px;opacity:0.3;transition:opacity 0.3s;">
-        <div id="lc-5-icon" style="width:20px;height:20px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;">○</div>
-        <span style="font-size:13px;color:var(--brand);">최종 보고서 완성</span>
+        <div id="lc-5-icon" style="width:20px;height:20px;border-radius:50%;background:var(--border-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--muted);">○</div>
+        <span style="font-size:13px;color:#FFFFFF;">최종 보고서 완성</span>
       </div>
     </div>
 
@@ -2437,7 +2456,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   <!-- ── 이메일 발송 상태 토스트 ── -->
   <!-- ══ 보고서 표지 ══ -->
   <div style="background:var(--brand);padding:28px 24px;position:relative;overflow:hidden;">
-    <div style="position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;border:40px solid rgba(232,66,10,0.07);pointer-events:none;"></div>
+    <div style="position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;border:40px solid rgba(74,158,255,0.08);pointer-events:none;"></div>
 
     <!-- 배지 -->
     <div style="display:inline-block;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;letter-spacing:1px;margin-bottom:12px;">📋 오피스 면적 계획 Summary</div>
@@ -2497,9 +2516,9 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
     <!-- 하단 2열 카드 -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
-      <div style="background:var(--card);border:1px solid var(--border-mid);border-radius:14px;padding:18px;">
+      <div style="background:var(--card);border:1px solid rgba(74,158,255,0.25);border-radius:14px;padding:18px;">
         <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:8px;">통로 제외 가용 공간 (65%)</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1;color:var(--brand);" id="r-usable-py">—</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1;color:#FFFFFF;" id="r-usable-py">—</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px;" id="r-usable-m2">— m²</div>
       </div>
       <div style="background:var(--brand);border-radius:14px;padding:18px;">
@@ -2510,9 +2529,9 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
 
     <!-- 주석 박스 -->
-    <div style="background:#F0F4FF;border-radius:10px;border:1px solid #C8D5F0;padding:12px 16px;margin-bottom:28px;font-size:11px;color:#2A3A5C;line-height:1.8;">
-      <b style="color:var(--accent);">* 가용면적</b>이란 오피스 전체 면적에서 코어(화장실 포함) 면적을 제외한 면적입니다.<br>
-      <b style="color:var(--accent);">* 코어면적</b>: 엘리베이터 홀, 기계실, EPS실, 화장실, 계단실 등
+    <div style="background:rgba(74,158,255,0.07);border-radius:10px;border:1px solid rgba(74,158,255,0.3);padding:12px 16px;margin-bottom:28px;font-size:11px;color:var(--text-sub);line-height:1.8;">
+      <b style="color:var(--glow-dot);">* 가용면적</b>이란 오피스 전체 면적에서 코어(화장실 포함) 면적을 제외한 면적입니다.<br>
+      <b style="color:var(--glow-dot);">* 코어면적</b>: 엘리베이터 홀, 기계실, EPS실, 화장실, 계단실 등
     </div>
 
 <!-- ── Section 02: 국내기업 평균 비교 ── -->
@@ -2526,14 +2545,14 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
 
     <!-- 분석 요약 -->
-    <div id="analysis-summary-box" style="background:linear-gradient(135deg,#F8F7F3,#FFF5F2);border:1.5px solid #F0C4B0;border-radius:12px;padding:16px;margin-bottom:20px;">
+    <div id="analysis-summary-box" style="background:rgba(74,158,255,0.06);border:1.5px solid rgba(74,158,255,0.35);border-radius:12px;padding:16px;margin-bottom:20px;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-        <div style="width:28px;height:28px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1A7FD4,#00D4FF);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v6l3 3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><circle cx="7" cy="7" r="6" stroke="#fff" stroke-width="1.5"/></svg>
         </div>
-        <div style="font-size:13px;font-weight:800;color:var(--brand);">공간 구성 분석 요약</div>
+        <div style="font-size:13px;font-weight:800;color:#FFFFFF;">공간 구성 분석 요약</div>
       </div>
-      <div id="r-space-analysis" style="font-size:12px;color:#2A3A5C;line-height:1.9;"></div>
+      <div id="r-space-analysis" style="font-size:12px;color:var(--text-sub);line-height:1.9;"></div>
     </div>
 
     <!-- 범례 -->
@@ -2543,7 +2562,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         <span style="font-size:11px;color:var(--muted);" id="analysis-company-label">우리회사</span>
       </div>
       <div style="display:flex;align-items:center;gap:5px;">
-        <div style="width:14px;height:10px;border-radius:2px;background:#C4C2BC;"></div>
+        <div style="width:14px;height:10px;border-radius:2px;background:rgba(255,255,255,0.25);"></div>
         <span style="font-size:11px;color:var(--muted);">기업평균</span>
       </div>
     </div>
@@ -2586,8 +2605,8 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </table>
     </div>
 
-    <div style="background:#FFF8F5;border-radius:10px;border:1px solid #F0C4B0;padding:12px 16px;font-size:12px;color:#7A3020;line-height:1.7;margin-bottom:28px;">
-      본 결과는 신규 사무실 규모 검토를 위한 <b style="color:var(--accent);">예상 면적</b>입니다. 최종 면적은 <b style="color:var(--accent);">Test-Fit(공간 배치 검토)</b> 진행 후 확정됩니다.
+    <div style="background:rgba(74,158,255,0.07);border-radius:10px;border:1px solid rgba(74,158,255,0.3);padding:12px 16px;font-size:12px;color:var(--text-sub);line-height:1.7;margin-bottom:28px;">
+      본 결과는 신규 사무실 규모 검토를 위한 <b style="color:var(--glow-dot);">예상 면적</b>입니다. 최종 면적은 <b style="color:var(--glow-dot);">Test-Fit(공간 배치 검토)</b> 진행 후 확정됩니다.
     </div>
 
     <!-- 보고서 마무리 버튼 -->
@@ -3479,9 +3498,9 @@ function buildReport() {
   if (cardContainer) {
     cardContainer.innerHTML = '';
     const catColors = {
-      '임원공간':'#8B2200','팀장석':'#8B2200','업무공간':'#C43200',
+      '임원공간':'#0D3D7A','팀장석':'#0D3D7A','업무공간':'#1A5FB4',
       '집중공간':'#4DBAFF','회의공간':'#1A7FD4','OA·탕비':'#2196F3',
-      '수납가구':'#FFAD85','휴게공간':'#FF8552'
+      '수납가구':'#7DD8FF','휴게공간':'#4AB8FF'
     };
     // 렌더링 이미지 키 매핑
     // RENDER_MAP은 전역으로 이동됨;
@@ -3508,7 +3527,7 @@ function buildReport() {
           '<div style="font-size:15px;font-weight:900;color:var(--glow-dot);letter-spacing:-0.3px;">'  + info.cat + '</div>' +
           '<div style="font-size:12px;font-weight:700;color:var(--muted);background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:20px;white-space:nowrap;">'  + totalPy + '평 (' + totalM2 + 'm²)</div>' +
         '</div>' +
-        '<div style="font-size:13px;font-weight:700;color:var(--brand);margin-bottom:6px;">' + info.label + ' ×' + qty + '</div>' +
+        '<div style="font-size:13px;font-weight:700;color:#FFFFFF;margin-bottom:6px;">' + info.label + ' ×' + qty + '</div>' +
         '<div style="font-size:11px;color:var(--glow-dot);font-weight:600;margin-bottom:10px;">구성 가구 : ' + info.comp + '</div>' +
         renderImg;
       cardContainer.appendChild(card);
@@ -3980,9 +3999,11 @@ function startLoadingAnimation() {
 
   // 3.2초 후 S4로 이동
   setTimeout(function() {
-    // 로딩 아이콘 회전 멈춤
-    var icon = document.getElementById('loading-icon');
-    if (icon) icon.style.animation = 'none';
+    // 로딩 링 회전 멈춤
+    var ring1 = document.getElementById('loading-ring1');
+    var ring2 = document.getElementById('loading-ring2');
+    if (ring1) ring1.style.animation = 'none';
+    if (ring2) ring2.style.animation = 'none';
 
     // S4로 전환
     buildReport();
@@ -4425,11 +4446,11 @@ function renderStackedBar(d) {
   };
 
   var items = [
-    { label:'임원', val:exec, color:'#8B2200' },
-    { label:'업무', val:biz,  color:'#C43200' },
+    { label:'임원', val:exec, color:'#0D3D7A' },
+    { label:'업무', val:biz,  color:'#1A5FB4' },
     { label:'회의', val:conf, color:'#4DBAFF' },
-    { label:'휴게', val:lg,   color:'#FF8552' },
-    { label:'지원', val:supp, color:'#FFAD85' },
+    { label:'휴게', val:lg,   color:'#4AB8FF' },
+    { label:'지원', val:supp, color:'#7DD8FF' },
     { label:'통로', val:corr, color:'#FFCFAA' },
   ];
 
@@ -4513,11 +4534,11 @@ function renderAnalysis() {
   var AVG = { exec:8.2,  emp:27.2, conf:11.7, lg:5.7,  stor:12.7, corridor:33.7 }; // 퍼시스 DB 2023
 
   var LABELS = [
-    { key:'exec',     label:'임원공간',           colorOur:'#8B2200' },
-    { key:'emp',      label:'업무공간',            colorOur:'#C43200' },
+    { key:'exec',     label:'임원공간',           colorOur:'#0D3D7A' },
+    { key:'emp',      label:'업무공간',            colorOur:'#1A5FB4' },
     { key:'conf',     label:'회의공간',            colorOur:'#4DBAFF' },
-    { key:'lg',       label:'휴게공간',            colorOur:'#FF8552' },
-    { key:'stor',     label:'지원공간(탕비·수납)', colorOur:'#FFAD85' },
+    { key:'lg',       label:'휴게공간',            colorOur:'#4AB8FF' },
+    { key:'stor',     label:'지원공간(탕비·수납)', colorOur:'#7DD8FF' },
     { key:'corridor', label:'통로 및 여유공간',    colorOur:'#FFCFAA' },
   ];
 
@@ -4536,14 +4557,14 @@ function renderAnalysis() {
         ? 'rgba(45,106,10,0.08)' : diffAvg > 0
         ? 'rgba(232,66,10,0.08)' : 'rgba(24,95,165,0.08)';
       return [
-        '<div style="margin-bottom:12px;background:#fff;border-radius:10px;padding:12px 14px;border:1px solid var(--border);">',
+        '<div style="margin-bottom:12px;background:var(--card);border-radius:10px;padding:12px 14px;border:1px solid rgba(74,158,255,0.2);">',
           '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">',
-            '<span style="font-size:13px;font-weight:700;color:var(--brand);">' + item.label + '</span>',
+            '<span style="font-size:13px;font-weight:700;color:#FFFFFF;">' + item.label + '</span>',
             '<span style="font-size:11px;font-weight:700;color:' + diffColor + ';background:' + diffBg + ';padding:3px 9px;border-radius:20px;">' + diffLabel + '</span>',
           '</div>',
           '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">',
             '<div style="width:44px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60px;">' + companyName + '</div>',
-            '<div style="flex:1;height:22px;background:#F0EEE8;border-radius:4px;overflow:hidden;">',
+            '<div style="flex:1;height:22px;background:rgba(255,255,255,0.08);border-radius:4px;overflow:hidden;">',
               '<div style="height:100%;width:' + Math.max(our,2).toFixed(1) + '%;background:' + item.colorOur + ';border-radius:4px;">',
               '</div>',
             '</div>',
@@ -4551,8 +4572,8 @@ function renderAnalysis() {
           '</div>',
           '<div style="display:flex;align-items:center;gap:8px;">',
             '<div style="width:44px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0;">기업평균</div>',
-            '<div style="flex:1;height:14px;background:#F0EEE8;border-radius:4px;overflow:hidden;">',
-              '<div style="height:100%;width:' + avg + '%;background:#C4C2BC;border-radius:4px;">',
+            '<div style="flex:1;height:14px;background:rgba(255,255,255,0.08);border-radius:4px;overflow:hidden;">',
+              '<div style="height:100%;width:' + avg + '%;background:rgba(255,255,255,0.25);border-radius:4px;">',
               '</div>',
             '</div>',
             '<div style="width:36px;font-size:11px;font-weight:700;color:#888;text-align:left;flex-shrink:0;">' + avg + '%</div>',
@@ -4626,8 +4647,8 @@ function renderPerPersonAnalysis(d) {
   var execPerRoom = execQty > 0 ? execAreaTotal / execQty * 3.305 : 0;
 
   var BENCH = [];
-  if (execQty > 0)   BENCH.push({ label:'임원실 1개당 면적',  our:execPerRoom,  avg:26.3, unit:'m²', color:'#8B2200', desc:'퍼시스 DB 2023 기준 부(소)장실·국(단)장실 평균 26.3㎡ (약 8평)', ok:execPerRoom>=22.0, low:execPerRoom<17.0 });
-  if (tmQty > 0)     BENCH.push({ label:'팀장석 1인당 면적',  our:tmPerPerson,  avg:5.8,  unit:'m²', color:'#C43200', desc:'퍼시스 DB 2023 기준 팀장 1인당 업무공간 평균 5.8㎡',  ok:tmPerPerson>=5.0,  low:tmPerPerson<4.0  });
+  if (execQty > 0)   BENCH.push({ label:'임원실 1개당 면적',  our:execPerRoom,  avg:26.3, unit:'m²', color:'#0D3D7A', desc:'퍼시스 DB 2023 기준 부(소)장실·국(단)장실 평균 26.3㎡ (약 8평)', ok:execPerRoom>=22.0, low:execPerRoom<17.0 });
+  if (tmQty > 0)     BENCH.push({ label:'팀장석 1인당 면적',  our:tmPerPerson,  avg:5.8,  unit:'m²', color:'#1A5FB4', desc:'퍼시스 DB 2023 기준 팀장 1인당 업무공간 평균 5.8㎡',  ok:tmPerPerson>=5.0,  low:tmPerPerson<4.0  });
   if (empTotal > 0)  BENCH.push({ label:'팀원석 1인당 면적',  our:empPerPerson, avg:3.35, unit:'m²', color:'#E8420A', desc:'퍼시스 DB 2023 기준 팀원 1인당 업무공간 평균 3.35㎡', ok:empPerPerson>=2.8, low:empPerPerson<2.3 });
 
   el.innerHTML = '<div style="display:flex;flex-direction:column;gap:10px;">' + BENCH.map(function(item) {
@@ -4636,9 +4657,9 @@ function renderPerPersonAnalysis(d) {
     var sb = item.ok ? 'rgba(139,34,0,0.07)' : item.low ? 'rgba(255,173,133,0.15)' : 'rgba(232,66,10,0.08)';
     var sl = item.ok ? '✓ 적정' : item.low ? '⚠ 부족' : '△ 다소 부족';
     return [
-      '<div style="background:#fff;border-radius:10px;border:1px solid var(--border);padding:14px 16px;">',
+      '<div style="background:var(--card);border-radius:10px;border:1px solid rgba(74,158,255,0.2);padding:14px 16px;">',
         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">',
-          '<span style="font-size:13px;font-weight:700;color:var(--brand);">' + item.label + '</span>',
+          '<span style="font-size:13px;font-weight:700;color:#FFFFFF;">' + item.label + '</span>',
           '<span style="font-size:11px;font-weight:700;color:' + sc + ';background:' + sb + ';padding:3px 10px;border-radius:20px;">' + sl + '</span>',
         '</div>',
         '<div style="display:flex;align-items:flex-end;gap:16px;margin-bottom:10px;">',
@@ -4647,8 +4668,8 @@ function renderPerPersonAnalysis(d) {
           '<div style="text-align:center;"><div style="font-size:28px;font-weight:900;color:#888;letter-spacing:-1px;line-height:1;">' + item.avg + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">기업평균 (' + item.unit + ')</div></div>',
         '</div>',
         '<div style="margin-bottom:8px;">',
-          '<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><div style="width:52px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0;">' + companyName + '</div><div style="flex:1;height:18px;background:#F0EEE8;border-radius:4px;overflow:hidden;"><div style="height:100%;width:' + barW.toFixed(0) + '%;background:' + sc + ';border-radius:4px;"></div></div></div>',
-          '<div style="display:flex;align-items:center;gap:6px;"><div style="width:52px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0;">기업평균</div><div style="flex:1;height:12px;background:#F0EEE8;border-radius:4px;overflow:hidden;"><div style="height:100%;width:60%;background:#C4C2BC;border-radius:4px;"></div></div></div>',
+          '<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><div style="width:52px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0;">' + companyName + '</div><div style="flex:1;height:18px;background:rgba(255,255,255,0.08);border-radius:4px;overflow:hidden;"><div style="height:100%;width:' + barW.toFixed(0) + '%;background:' + sc + ';border-radius:4px;"></div></div></div>',
+          '<div style="display:flex;align-items:center;gap:6px;"><div style="width:52px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0;">기업평균</div><div style="flex:1;height:12px;background:rgba(255,255,255,0.08);border-radius:4px;overflow:hidden;"><div style="height:100%;width:60%;background:rgba(255,255,255,0.25);border-radius:4px;"></div></div></div>',
         '</div>',
         '<div style="font-size:11px;color:var(--muted);line-height:1.6;">' + item.desc + '</div>',
       '</div>'
@@ -4693,31 +4714,31 @@ function renderConfAnalysis(d) {
   if (confTotal2 > 0) {
     var DIST = [
       { label:'집중공간 (1~2인)', count:confFocus, color:'#FFCFAA', bench:16.6 },
-      { label:'소형 (4~6인)',     count:confSmall, color:'#FF8552', bench:46.6 },
-      { label:'중형 (8~12인)',    count:confMid,   color:'#E8420A', bench:27.7 },
-      { label:'대형 (14인+)',     count:confLarge, color:'#8B2200', bench:9.1  },
+      { label:'소형 (4~6인)',     count:confSmall, color:'#4AB8FF', bench:46.6 },
+      { label:'중형 (8~12인)',    count:confMid,   color:'#1A5FB4', bench:27.7 },
+      { label:'대형 (14인+)',     count:confLarge, color:'#0D3D7A', bench:9.1  },
     ];
     distHTML = '<div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">' +
       '<div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">규모별 분포 (권장 비율 비교)</div>' +
       DIST.map(function(item) {
         if (item.count === 0) return '';
         var ourPct = confTotal2 > 0 ? item.count / confTotal2 * 100 : 0;
-        return '<div style="margin-bottom:8px;"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;"><span style="font-weight:600;color:var(--brand);">' + item.label + ' (' + item.count + '개)</span><span style="color:var(--muted);">권장 ' + item.bench + '%</span></div><div style="display:flex;gap:4px;align-items:center;"><div style="flex:1;height:14px;background:#F0EEE8;border-radius:3px;overflow:hidden;"><div style="height:100%;width:' + ourPct.toFixed(0) + '%;background:' + item.color + ';border-radius:3px;"></div></div><span style="font-size:10px;font-weight:700;color:' + item.color + ';min-width:32px;text-align:right;">' + ourPct.toFixed(0) + '%</span></div></div>';
+        return '<div style="margin-bottom:8px;"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;"><span style="font-weight:600;color:#FFFFFF;">' + item.label + ' (' + item.count + '개)</span><span style="color:var(--muted);">권장 ' + item.bench + '%</span></div><div style="display:flex;gap:4px;align-items:center;"><div style="flex:1;height:14px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;"><div style="height:100%;width:' + ourPct.toFixed(0) + '%;background:' + item.color + ';border-radius:3px;"></div></div><span style="font-size:10px;font-weight:700;color:' + item.color + ';min-width:32px;text-align:right;">' + ourPct.toFixed(0) + '%</span></div></div>';
       }).join('') + '</div>';
   }
 
   el.innerHTML = [
-    '<div style="background:#fff;border-radius:10px;border:1px solid var(--border);padding:14px 16px;">',
+    '<div style="background:var(--card);border-radius:10px;border:1px solid rgba(74,158,255,0.2);padding:14px 16px;">',
       '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">',
-        '<div><div style="font-size:13px;font-weight:700;color:var(--brand);margin-bottom:4px;">회의실 수 적정성</div><div style="font-size:11px;color:var(--muted);">퍼시스 DB 기준: 직원 75명당 평균 4.6개</div></div>',
+        '<div><div style="font-size:13px;font-weight:700;color:#FFFFFF;margin-bottom:4px;">회의실 수 적정성</div><div style="font-size:11px;color:var(--muted);">퍼시스 DB 기준: 직원 75명당 평균 4.6개</div></div>',
         '<span style="font-size:11px;font-weight:700;color:' + sc + ';background:' + sb + ';padding:3px 10px;border-radius:20px;white-space:nowrap;">' + status + '</span>',
       '</div>',
       '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">',
-        '<div style="text-align:center;background:var(--bg);border-radius:8px;padding:10px;"><div style="font-size:26px;font-weight:900;color:' + sc + ';letter-spacing:-1px;">' + confCount + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">현재 계획</div></div>',
-        '<div style="text-align:center;background:var(--bg);border-radius:8px;padding:10px;"><div style="font-size:26px;font-weight:900;color:var(--brand);letter-spacing:-1px;">' + recommended + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">권장 수 (평균)</div></div>',
-        '<div style="text-align:center;background:var(--bg);border-radius:8px;padding:10px;"><div style="font-size:16px;font-weight:900;color:#888;letter-spacing:-0.5px;line-height:1.6;">' + recMin + '~' + recMax + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">권장 범위</div></div>',
+        '<div style="text-align:center;background:rgba(255,255,255,0.04);border-radius:8px;padding:10px;"><div style="font-size:26px;font-weight:900;color:' + sc + ';letter-spacing:-1px;">' + confCount + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">현재 계획</div></div>',
+        '<div style="text-align:center;background:rgba(255,255,255,0.04);border-radius:8px;padding:10px;"><div style="font-size:26px;font-weight:900;color:#FFFFFF;letter-spacing:-1px;">' + recommended + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">권장 수 (평균)</div></div>',
+        '<div style="text-align:center;background:rgba(255,255,255,0.04);border-radius:8px;padding:10px;"><div style="font-size:16px;font-weight:900;color:#999999;letter-spacing:-0.5px;line-height:1.6;">' + recMin + '~' + recMax + '</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">권장 범위</div></div>',
       '</div>',
-      '<div style="font-size:12px;color:#2A3A5C;line-height:1.7;background:' + sb + ';border-radius:8px;padding:10px 12px;">' + statusMsg + '</div>',
+      '<div style="font-size:12px;color:var(--text-sub);line-height:1.7;background:' + sb + ';border-radius:8px;padding:10px 12px;">' + statusMsg + '</div>',
       distHTML,
     '</div>',
 ''
@@ -4789,7 +4810,7 @@ function completeReport() {
       scale: scale,
       useCORS: true,
       allowTaint: false,
-      backgroundColor: '#F5F4F0',
+      backgroundColor: '#09090B',
       logging: false,
       scrollX: 0,
       scrollY: 0,
