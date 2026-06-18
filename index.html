@@ -4203,9 +4203,11 @@ function selectFpTab(idx) {
   var tabsEl = document.getElementById('fp-tabs');
   if (tabsEl) {
     tabsEl.querySelectorAll('button').forEach(function(btn, i) {
-      btn.style.background  = i === idx ? 'var(--brand)' : '#fff';
-      btn.style.color       = i === idx ? '#fff' : 'inherit';
-      btn.style.borderColor = i === idx ? 'var(--brand)' : 'var(--border)';
+      var active = i === idx;
+      btn.style.background  = active ? 'rgba(74,158,255,0.14)' : 'transparent';
+      btn.style.color       = active ? 'var(--glow-dot)' : 'var(--muted)';
+      btn.style.borderColor = active ? 'var(--accent)' : 'var(--border-mid)';
+      btn.style.boxShadow   = active ? '0 0 12px rgba(74,158,255,0.25)' : 'none';
     });
   }
 
