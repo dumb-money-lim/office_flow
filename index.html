@@ -1641,7 +1641,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 .snext-brand-logo {
   display: block;
   font-family: 'DM Sans', sans-serif;
-  font-size: 16px; font-weight: 800; color: var(--brand);
+  font-size: 16px; font-weight: 800; color: #FFFFFF;
   letter-spacing: -0.3px; margin-bottom: 4px;
 }
 .snext-brand-dot { color: var(--accent); }
@@ -2495,7 +2495,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       <div style="background:rgba(255,255,255,0.04);padding:12px 14px;">
         <div style="color:rgba(255,255,255,0.4);font-size:10px;margin-bottom:6px;">이용 안내</div>
         <div style="color:rgba(255,255,255,0.75);font-size:11px;line-height:1.8;">
-          본 보고서는 <b style="color:rgba(255,255,255,0.95);">OFFICE.FLOW</b>의 공간 분석 알고리즘 및 데이터베이스를 기반으로 산출된 결과물로, OFFICE.FLOW의 지적 재산에 해당합니다.<br>
+          본 보고서는 <b style="color:rgba(255,255,255,0.95);">OFFICE<span style="color:var(--glow-dot);">.</span>FLOW</b>의 공간 분석 알고리즘 및 데이터베이스를 기반으로 산출된 결과물로, OFFICE.FLOW의 지적 재산에 해당합니다.<br>
           본 보고서는 보고서 수신자의 사내 오피스 공간 계획 검토 목적으로만 활용하여야 하며, 제3자 제공·상업적 이용·무단 복제 및 재배포를 금합니다.
         </div>
       </div>
@@ -2504,9 +2504,9 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     <!-- 수신/발신 + 총 면적 -->
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;">
       <div style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.8;">
-        수신: <span id="r-company-name" style="color:rgba(255,255,255,0.7);font-weight:600;">담당자님</span><br>
+        수신: <span id="r-company-name" style="color:rgba(255,255,255,0.7);font-weight:600;word-break:keep-all;overflow-wrap:anywhere;">담당자님</span><br>
         발신: OfficeFlow 공간 분석팀<br>
-        문의: officeflow@example.com
+        문의: team.office.flow@gmail.com
       </div>
       <div style="text-align:right;">
         <div style="color:rgba(255,255,255,0.4);font-size:10px;margin-bottom:4px;">우리 회사 예상 필요 면적</div>
@@ -2628,9 +2628,9 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
 
     <!-- 보고서 마무리 버튼 -->
-    <div style="margin-top:32px;padding-bottom:8px;">
+    <div id="btn-report-done-area" style="margin-top:32px;padding-bottom:8px;">
       <div style="height:1px;background:var(--border);margin-bottom:24px;"></div>
-      <div style="text-align:center;margin-bottom:16px;">
+      <div id="report-pdf-footer" style="text-align:center;margin-bottom:16px;">
         <div style="font-size:12px;color:var(--muted);line-height:1.8;">
           본 보고서는 OFFICE.FLOW 공간 분석 시스템을 통해 산출된 결과입니다.<br>
           검토 완료 후 다음 단계로 진행해 주세요.
@@ -2805,12 +2805,12 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
           동료에게 공유하기
         </button>
       </div>
-      <div id="snext-share-done" class="snext-share-done">링크가 복사되었습니다 ✓</div>
+      <div id="snext-share-done" class="snext-share-done">URL이 복사되었습니다 ✓</div>
     </div>
 
     <div class="snext-brand">
       <span class="snext-brand-logo">OFFICE<span class="snext-brand-dot">.</span>FLOW</span>
-      <span class="snext-brand-tag">사무실 이전 공간 분석</span>
+      <span class="snext-brand-tag">오피스 이전의 모든 흐름, 한 번에</span>
     </div>
 
   </div>
@@ -3114,7 +3114,7 @@ function renderCalc() {
   // 이중 막대 차트 + 분석 요약 (renderAnalysis 함수로 분리)
   renderAnalysis();
 
-    set('r-company-date', companyName + dateStr + ' 작성');
+    set('r-company-date', companyName + dateStr + ' 작성'); document.getElementById('r-company-date').style.cssText += ';word-break:keep-all;overflow-wrap:anywhere;white-space:normal;';
 
   // S5 매물 자동설정
   set('re-auto', '약 ' + d.totalPy + '평 · 서울 전체 · 조건 미정');
@@ -3622,6 +3622,55 @@ function buildLeadPayload(action) {
   if (!window._leadId) {
     window._leadId = 'OF-' + ymd + '-' + String(Date.now()).slice(-4);
   }
+  // 세부항목 배열 (0개 항목 제외) — "세부항목" 시트 용
+  const ITEM_MAP = [
+    { key:'exec_xl', label:'임원실_대형(13.3평)',    py:13.3 },
+    { key:'exec_l',  label:'임원실_중대형(8.0평)',   py:8.0  },
+    { key:'exec_m',  label:'임원실_중형(5.4평)',     py:5.4  },
+    { key:'exec_s',  label:'임원실_소형(3.3평)',     py:3.3  },
+    { key:'tm_16rt', label:'팀장석_1600L자형',       py:2.0  },
+    { key:'tm_16ch', label:'팀장석_1600+보조',       py:1.4  },
+    { key:'tm_16l',  label:'팀장석_1600기본',        py:1.0  },
+    { key:'tm_18rt', label:'팀장석_1800L자형',       py:2.3  },
+    { key:'tm_18ch', label:'팀장석_1800+보조',       py:1.6  },
+    { key:'tm_18l',  label:'팀장석_1800기본',        py:1.1  },
+    { key:'emp_12',  label:'팀원석_1200',            py:0.7  },
+    { key:'emp_14',  label:'팀원석_1400',            py:0.8  },
+    { key:'emp_16',  label:'팀원석_1600',            py:0.9  },
+    { key:'emp_18',  label:'팀원석_1800',            py:1.0  },
+    { key:'emp_120', label:'팀원석_120도형',          py:0.7  },
+    { key:'conf_pb', label:'집중공간_폰부스',          py:0.5  },
+    { key:'conf_fr', label:'집중공간_포커스룸',        py:1.5  },
+    { key:'conf_4',  label:'회의실_4인',              py:2.4  },
+    { key:'conf_6',  label:'회의실_6인',              py:3.3  },
+    { key:'conf_8',  label:'회의실_8인',              py:5.4  },
+    { key:'conf_12', label:'회의실_12인',             py:8.2  },
+    { key:'conf_14', label:'회의실_14인',             py:10.5 },
+    { key:'conf_16', label:'회의실_16인이상',          py:14.2 },
+    { key:'lg_s',    label:'라운지_소형',              py:5.2  },
+    { key:'lg_m',    label:'라운지_중형',              py:6.0  },
+    { key:'lg_l',    label:'라운지_중대형',            py:12.8 },
+    { key:'oa_cs',   label:'OA존_컴팩트형',           py:1.5  },
+    { key:'oa_ss',   label:'OA존_표준형',             py:2.0  },
+    { key:'tb_cs',   label:'탕비실_컴팩트형',          py:1.5  },
+    { key:'tb_ss',   label:'탕비실_표준형',            py:2.0  },
+    { key:'stor_cab',label:'수납_캐비닛(5EA기준)',     py:0.5  },
+    { key:'stor_loc',label:'수납_락커(5EA기준)',       py:0.4  },
+  ];
+  var itemRows = [];
+  ITEM_MAP.forEach(function(item) {
+    var el = document.getElementById(item.key);
+    var qty = el ? (Math.max(0, parseInt(el.value) || 0)) : 0;
+    if (qty > 0) {
+      itemRows.push({
+        항목: item.label,
+        개수: qty,
+        평수: (item.py * qty).toFixed(1),
+        m2:   (item.py * qty * 3.305).toFixed(1)
+      });
+    }
+  });
+
   return {
     action: action,
     leadId:   window._leadId,
@@ -3641,7 +3690,7 @@ function buildLeadPayload(action) {
     lgArea:   d.lgArea    ? d.lgArea.toFixed(1)    : 0,
     oaArea:   d.oaArea    ? d.oaArea.toFixed(1)    : 0,
     storArea: d.storArea  ? d.storArea.toFixed(1)  : 0,
-    // 제곱미터(m²) 단위 — 평수와 함께 정확히 동봉
+    // 제곱미터(m²) 단위
     totalM2:  d.totalM2   ? d.totalM2.toFixed(1)   : 0,
     execAreaM2: d.execArea ? (d.execArea*3.305).toFixed(1) : 0,
     tmAreaM2:   d.tmArea   ? (d.tmArea*3.305).toFixed(1)   : 0,
@@ -3650,6 +3699,8 @@ function buildLeadPayload(action) {
     lgAreaM2:   d.lgArea   ? (d.lgArea*3.305).toFixed(1)   : 0,
     oaAreaM2:   d.oaArea   ? (d.oaArea*3.305).toFixed(1)   : 0,
     storAreaM2: d.storArea ? (d.storArea*3.305).toFixed(1) : 0,
+    // 세부항목 배열 (선택한 항목만, 0개 제외)
+    items: itemRows,
   };
 }
 
@@ -3720,6 +3771,7 @@ async function submitConsulting() {
 }
 
 function restartAnalysis() {
+  s2GoStep(1);  // 임원공간 페이지로
   // 처음 화면(공간 설정)으로 돌아가서 다시 시작
   window._leadId = null;  // 새 분석이므로 leadId 초기화
   go('s2');
@@ -4712,8 +4764,8 @@ function renderPerPersonAnalysis(d) {
 
   el.innerHTML = '<div style="display:flex;flex-direction:column;gap:10px;">' + BENCH.map(function(item) {
     var barW = Math.min(item.our / item.avg * 60, 96);
-    var sc = item.color || '#E8420A';
-    var sb = item.ok ? 'rgba(139,34,0,0.07)' : item.low ? 'rgba(255,173,133,0.15)' : 'rgba(232,66,10,0.08)';
+    var sc = item.ok ? '#1A7FD4' : item.low ? '#4DBAFF' : '#7DD8FF';
+    var sb = item.ok ? 'rgba(26,127,212,0.15)' : item.low ? 'rgba(77,186,255,0.15)' : 'rgba(125,216,255,0.12)';
     var sl = item.ok ? '✓ 적정' : item.low ? '⚠ 부족' : '△ 다소 부족';
     return [
       '<div style="background:var(--card);border-radius:10px;border:1px solid rgba(74,158,255,0.2);padding:14px 16px;">',
@@ -4854,7 +4906,7 @@ function completeReport() {
   if (text) text.textContent = 'PDF 생성 중...';
   btn.disabled = true;
 
-  var hideEls = s4.querySelectorAll('#btn-report-done-area, #ai-cta-section');
+  var hideEls = s4.querySelectorAll('#btn-report-done-area, #ai-cta-section, #report-pdf-footer');
   hideEls.forEach(function(el) { el.style.display = 'none'; });
 
   if (typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
