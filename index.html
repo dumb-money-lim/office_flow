@@ -2721,12 +2721,12 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     <!-- 하단 2열 카드 -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
       <div style="background:var(--card);border:1px solid var(--border-mid);border-radius:14px;padding:18px;">
-        <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:8px;">실제 업무공간 (전용면적의 65%)</div>
+        <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:8px;">실제 업무공간 (통로 제외)</div>
         <div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1;color:#FFFFFF;" id="r-usable-py">—</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px;" id="r-usable-m2">— m²</div>
       </div>
       <div style="background:var(--brand);border:1.5px solid rgba(74,158,255,0.4);border-radius:14px;padding:18px;box-shadow:0 0 20px rgba(74,158,255,0.12);">
-        <div style="font-size:11px;color:rgba(255,255,255,0.5);font-weight:600;margin-bottom:8px;">예상 필요 전용면적</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);font-weight:600;margin-bottom:8px;">통로 및 여유공간 (35%)</div>
         <div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1;color:var(--accent2);" id="r-total-py2">—</div>
         <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px;" id="r-total-m2-2">— m²</div>
       </div>
@@ -2736,7 +2736,8 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     <div style="background:rgba(74,158,255,0.07);border-radius:10px;border:1px solid rgba(74,158,255,0.3);padding:12px 16px;margin-bottom:28px;font-size:11px;color:var(--text-sub);line-height:1.8;">
       <b style="color:var(--glow-dot);">* 전용면적</b>이란 오피스 전체 면적에서 코어 면적을 제외한 실사용 가능 면적입니다.<br>
       <b style="color:var(--glow-dot);">* 코어면적</b>: 엘리베이터 홀, 기계실, EPS실, 화장실, 계단실 등<br>
-      <b style="color:var(--glow-dot);">* 본 보고서</b>의 모든 면적은 전용면적 기준이며, 실제 계약 시 임대면적(계약면적) 기준으로 환산이 필요합니다.
+      <b style="color:var(--glow-dot);">* 본 보고서</b>의 모든 면적은 전용면적 기준이며, 실제 계약 시 임대면적(계약면적) 기준으로 환산이 필요합니다.<br>
+      <b style="color:var(--glow-dot);">* 통로 및 여유공간 35%</b> 기준은 오피스 공간 설계 실무에서 통용되는 circulation factor(25~35%) 상한값을 적용한 것으로, BOMA(Building Owners and Managers Association International) 실무 가이드 및 국내 오피스 공간 설계 관행을 근거로 합니다.
     </div>
 
 <!-- ── Section 02: 국내기업 평균 비교 ── -->
@@ -4874,13 +4875,15 @@ function renderStackedBar(d) {
   // ── 하단 2열 카드 값 ──
   var usablePy  = Math.round(usableCore * 10) / 10;
   var usableM2  = Math.round(usableCore * 3.305 * 10) / 10;
+  var corrPy    = Math.round(corr * 10) / 10;
+  var corrM2    = Math.round(corr * 3.305 * 10) / 10;
   var totalPyV  = Math.round(total * 10) / 10;
   var totalM2V  = Math.round(total * 3.305 * 10) / 10;
 
   if (usablePyEl) usablePyEl.textContent = usablePy + '평';
   if (usableM2El) usableM2El.textContent = usableM2 + ' m²';
-  if (totalPy2El) totalPy2El.textContent = totalPyV + '평';
-  if (totalM22El) totalM22El.textContent = totalM2V + ' m²';
+  if (totalPy2El) totalPy2El.textContent = corrPy + '평';
+  if (totalM22El) totalM22El.textContent = corrM2 + ' m²';
 
   // 표지 + 흐름카드 임대면적 계산 (전용률 60~65% 기준)
   var coverMin = Math.round(parseFloat(totalPyV) / 0.65);
