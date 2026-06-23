@@ -1873,9 +1873,9 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
             <button class="sub-counter-btn" onclick="adj('tm_16l',1)">+</button>
           </div>
         </div>
-        <div class="sub-counter-row">
+        <div class="sub-counter-row" style="background:rgba(232,66,10,0.04);border-radius:8px;padding:10px 0 10px 6px;margin:2px 0;">
           <div class="sub-counter-label">
-            W1,600 L형 데스크 + 보조 테이블
+            W1,600 L형 + 보조 테이블 <span style="color:var(--accent);font-size:10px;font-weight:700;margin-left:4px;">추천</span>
             <small>2.0평 / 6.7㎡</small>
           </div>
           <div class="sub-counter-box">
@@ -2247,38 +2247,191 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     <div class="logo" onclick="goHome()" style="cursor:pointer;">OFFICE<span>.</span>FLOW</div>
   </nav>
 
-  <div class="section">
-    <div style="text-align:center;padding:8px 0 20px;">
-      <div style="width:56px;height:56px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:0 4px 16px rgba(232,66,10,0.3);">
+  <div class="section" style="padding-bottom:40px;">
+
+    <!-- 완료 헤더 -->
+    <div style="text-align:center;padding:8px 0 28px;">
+      <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#1A7FD4,#00D4FF);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:0 4px 20px rgba(0,212,255,0.35);">
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l6 6L22 8" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div style="font-size:20px;font-weight:900;letter-spacing:-0.5px;margin-bottom:4px;">공간 설정 완료!</div>
-      <div style="font-size:13px;color:var(--muted);">아래 면적을 확인하고 보고서를 요청하세요</div>
+      <div style="font-size:13px;color:var(--muted);">입력하신 공간을 바탕으로 필요 면적을 계산했어요</div>
     </div>
 
-    <!-- 면적 결과 배너 -->
-    <div class="total-banner" style="margin-bottom:20px;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
-        <div>
-          <div class="total-banner-label">실제 업무공간 (65%)</div>
-          <div style="color:rgba(255,255,255,0.7);font-size:20px;font-weight:700;" id="r2-usable-py">— 평</div>
-        </div>
-        <div style="text-align:right;">
-          <div class="total-banner-label">통로 및 여유공간 (35%)</div>
-          <div style="color:rgba(255,255,255,0.5);font-size:20px;font-weight:700;" id="r2-corridor-py">— 평</div>
+    <!-- STEP 1: 실제 업무공간 -->
+    <div class="result-step" id="rs-step1" style="opacity:0;transform:translateY(16px);transition:all 0.5s ease;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <div style="width:22px;height:22px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;color:var(--accent);">1</div>
+        <div style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;">실제 업무공간</div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(74,158,255,0.2);border-radius:14px;padding:16px 18px;">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:6px;">임원·업무·회의·휴게·지원 공간 합계</div>
+        <div style="display:flex;align-items:baseline;gap:6px;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:40px;font-weight:900;letter-spacing:-1.5px;color:#FFFFFF;" id="r2-usable-py">—</span>
+          <span style="font-size:16px;font-weight:700;color:var(--muted);">평</span>
         </div>
       </div>
-      <div style="height:1px;background:rgba(255,255,255,0.1);margin:14px 0;"></div>
-      <div class="total-banner-label">우리 회사 예상 필요 면적</div>
-      <div class="total-banner-num"><span id="r2-total-py" style="font-size:66px;font-weight:900;letter-spacing:-2px;font-family:'DM Sans',sans-serif;color:var(--accent2);">0</span><span style="font-size:22px;font-weight:700;letter-spacing:-0.5px;margin-left:6px;">평</span></div>
-      <div class="total-banner-m2" id="r2-total-m2">약 0 m²</div>
     </div>
 
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:4px;">
-      <button onclick="go('s2')" style="padding:12px 24px;border-radius:50px;border:1px solid rgba(77,186,255,0.35);background:transparent;font-size:14px;font-weight:700;color:var(--glow-dot);cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.background='rgba(77,186,255,0.12)';this.style.borderColor='var(--glow-dot)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(77,186,255,0.35)'">← 공간 설정</button>
-      <button onclick="go('s3')" style="padding:12px 24px;border-radius:50px;border:1px solid rgba(77,186,255,0.35);background:transparent;font-size:14px;font-weight:700;color:var(--glow-dot);cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.background='rgba(77,186,255,0.12)';this.style.borderColor='var(--glow-dot)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(77,186,255,0.35)'">보고서 요청하기 →</button>
+    <!-- 화살표 -->
+    <div class="result-arrow" id="rs-arrow1" style="opacity:0;transition:opacity 0.4s ease;text-align:center;padding:8px 0;">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M5 11l5 5 5-5" stroke="rgba(74,158,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <!-- STEP 2: 통로 및 여유공간 -->
+    <div class="result-step" id="rs-step2" style="opacity:0;transform:translateY(16px);transition:all 0.5s ease;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <div style="width:22px;height:22px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;color:var(--accent);">2</div>
+        <div style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;">통로 및 여유공간 추가</div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(74,158,255,0.2);border-radius:14px;padding:16px 18px;">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:6px;">의자 이동·통로·여유 공간 (업계 기준 35% 적용)</div>
+        <div style="display:flex;align-items:baseline;gap:6px;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:40px;font-weight:900;letter-spacing:-1.5px;color:#FFFFFF;" id="r2-corridor-py">—</span>
+          <span style="font-size:16px;font-weight:700;color:var(--muted);">평</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 화살표 -->
+    <div class="result-arrow" id="rs-arrow2" style="opacity:0;transition:opacity 0.4s ease;text-align:center;padding:8px 0;">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M5 11l5 5 5-5" stroke="rgba(74,158,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <!-- STEP 3: 전용면적 -->
+    <div class="result-step" id="rs-step3" style="opacity:0;transform:translateY(16px);transition:all 0.5s ease;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <div style="width:22px;height:22px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;color:var(--accent);">3</div>
+        <div style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;">전용면적</div>
+        <button onclick="showTooltip('tooltip-jeon')" style="width:16px;height:16px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);font-size:10px;font-weight:700;color:var(--accent);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">?</button>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(74,158,255,0.2);border-radius:14px;padding:16px 18px;">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:6px;">실제 업무공간 + 통로 및 여유공간</div>
+        <div style="display:flex;align-items:baseline;gap:6px;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:40px;font-weight:900;letter-spacing:-1.5px;color:#FFFFFF;" id="r2-total-py">—</span>
+          <span style="font-size:16px;font-weight:700;color:var(--muted);">평</span>
+          <span style="font-size:13px;color:var(--muted);" id="r2-total-m2"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 화살표 -->
+    <div class="result-arrow" id="rs-arrow3" style="opacity:0;transition:opacity 0.4s ease;text-align:center;padding:8px 0;">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M5 11l5 5 5-5" stroke="rgba(74,158,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <!-- STEP 4: 전용률 -->
+    <div class="result-step" id="rs-step4" style="opacity:0;transform:translateY(16px);transition:all 0.5s ease;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <div style="width:22px;height:22px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;color:var(--accent);">4</div>
+        <div style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;">전용률 적용</div>
+        <button onclick="showTooltip('tooltip-rate')" style="width:16px;height:16px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);font-size:10px;font-weight:700;color:var(--accent);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">?</button>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(74,158,255,0.2);border-radius:14px;padding:16px 18px;">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">서울 오피스 빌딩 통상 기준</div>
+        <div style="display:flex;gap:8px;">
+          <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">프라임급 대형빌딩</div>
+            <div style="font-size:16px;font-weight:800;color:#7DD8FF;">55~60%</div>
+          </div>
+          <div style="flex:1;background:rgba(74,158,255,0.1);border:1px solid rgba(74,158,255,0.3);border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">일반 오피스빌딩</div>
+            <div style="font-size:16px;font-weight:800;color:#4DBAFF;">60~65%</div>
+            <div style="font-size:9px;color:var(--accent);font-weight:700;margin-top:2px;">통상 기준</div>
+          </div>
+          <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">소규모·지식산업센터</div>
+            <div style="font-size:16px;font-weight:800;color:#7DD8FF;">65~75%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 화살표 -->
+    <div class="result-arrow" id="rs-arrow4" style="opacity:0;transition:opacity 0.4s ease;text-align:center;padding:8px 0;">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M5 11l5 5 5-5" stroke="rgba(74,158,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <!-- STEP 5: 임대면적 결론 -->
+    <div class="result-step" id="rs-step5" style="opacity:0;transform:translateY(16px);transition:all 0.5s ease;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#1A7FD4,#00D4FF);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div style="font-size:13px;font-weight:700;color:#FFFFFF;text-transform:uppercase;letter-spacing:0.5px;">필요 임대면적</div>
+        <button onclick="showTooltip('tooltip-lease')" style="width:16px;height:16px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);font-size:10px;font-weight:700;color:var(--accent);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">?</button>
+      </div>
+      <div style="background:linear-gradient(135deg,rgba(26,127,212,0.15),rgba(0,212,255,0.08));border:1.5px solid rgba(74,158,255,0.4);border-radius:14px;padding:20px 18px;box-shadow:0 0 24px rgba(0,212,255,0.1);">
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;">실제 계약해야 할 건물 크기 (전용률 60~65% 기준)</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;">
+          <span style="font-size:13px;color:var(--muted);">약</span>
+          <span style="font-family:'DM Sans',sans-serif;font-size:48px;font-weight:900;letter-spacing:-2px;color:var(--accent2);" id="r2-lease-min">—</span>
+          <span style="font-size:18px;font-weight:700;color:var(--muted);">~</span>
+          <span style="font-family:'DM Sans',sans-serif;font-size:48px;font-weight:900;letter-spacing:-2px;color:var(--accent2);" id="r2-lease-max">—</span>
+          <span style="font-size:18px;font-weight:700;color:var(--muted);">평</span>
+        </div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:6px;">약 <span id="r2-lease-min-m2">—</span> ~ <span id="r2-lease-max-m2">—</span> m²</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.6;">
+          * 실제 건물의 전용률에 따라 달라질 수 있어요<br>
+          * 계약 전 반드시 해당 건물의 전용률을 확인하세요
+        </div>
+      </div>
+    </div>
+
+    <!-- 버튼 -->
+    <div id="rs-buttons" style="opacity:0;transition:opacity 0.5s ease;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;">
+      <button onclick="go('s2')" style="padding:12px 24px;border-radius:50px;border:1px solid rgba(77,186,255,0.35);background:transparent;font-size:14px;font-weight:700;color:var(--glow-dot);cursor:pointer;white-space:nowrap;transition:all 0.15s;">← 공간 설정</button>
+      <button onclick="go('s3')" style="padding:12px 24px;border-radius:50px;background:linear-gradient(135deg,#1A7FD4,#00D4FF);border:none;font-size:14px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;box-shadow:0 4px 16px rgba(0,212,255,0.3);">보고서 요청하기 →</button>
+    </div>
+
+  </div>
+
+  <!-- 툴팁 팝업: 전용면적 -->
+  <div id="tooltip-jeon" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:24px;" onclick="this.style.display='none'">
+    <div style="background:#0F1419;border:1px solid rgba(74,158,255,0.3);border-radius:16px;padding:24px;max-width:340px;width:100%;" onclick="event.stopPropagation()">
+      <div style="font-size:16px;font-weight:900;color:#FFFFFF;margin-bottom:12px;">전용면적이란?</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.8;">
+        오피스 건물에서 <b style="color:#FFFFFF;">내가 실제로 독점해서 사용할 수 있는 공간</b>이에요.<br><br>
+        화장실, 엘리베이터, 비상계단처럼 다른 회사와 함께 쓰는 공용 공간은 포함되지 않아요.<br><br>
+        OfficeFlow의 계산 결과는 <b style="color:var(--accent2);">전용면적 기준</b>이에요.
+      </div>
+      <button onclick="document.getElementById('tooltip-jeon').style.display='none'" style="margin-top:16px;width:100%;padding:12px;border-radius:10px;background:rgba(74,158,255,0.15);border:1px solid rgba(74,158,255,0.3);color:var(--accent2);font-weight:700;cursor:pointer;font-size:14px;">확인</button>
     </div>
   </div>
+
+  <!-- 툴팁 팝업: 전용률 -->
+  <div id="tooltip-rate" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:24px;" onclick="this.style.display='none'">
+    <div style="background:#0F1419;border:1px solid rgba(74,158,255,0.3);border-radius:16px;padding:24px;max-width:340px;width:100%;" onclick="event.stopPropagation()">
+      <div style="font-size:16px;font-weight:900;color:#FFFFFF;margin-bottom:12px;">전용률이란?</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.8;">
+        계약한 면적 중에서 <b style="color:#FFFFFF;">실제로 내가 쓸 수 있는 공간의 비율</b>이에요.<br><br>
+        <b style="color:#FFFFFF;">예시)</b><br>
+        100평 계약 / 전용률 62%<br>
+        → 실제 사용 공간 62평<br><br>
+        오피스 건물에는 화장실, 엘리베이터, 비상계단 등 혼자 독점할 수 없는 공용 공간이 포함되어 있어서, 계약면적이 전용면적보다 항상 커요.<br><br>
+        OfficeFlow는 서울 오피스 빌딩의 <b style="color:var(--accent2);">통상적인 기준인 60~65%</b>를 적용했어요.
+      </div>
+      <button onclick="document.getElementById('tooltip-rate').style.display='none'" style="margin-top:16px;width:100%;padding:12px;border-radius:10px;background:rgba(74,158,255,0.15);border:1px solid rgba(74,158,255,0.3);color:var(--accent2);font-weight:700;cursor:pointer;font-size:14px;">확인</button>
+    </div>
+  </div>
+
+  <!-- 툴팁 팝업: 임대면적 -->
+  <div id="tooltip-lease" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:24px;" onclick="this.style.display='none'">
+    <div style="background:#0F1419;border:1px solid rgba(74,158,255,0.3);border-radius:16px;padding:24px;max-width:340px;width:100%;" onclick="event.stopPropagation()">
+      <div style="font-size:16px;font-weight:900;color:#FFFFFF;margin-bottom:12px;">임대면적이란?</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.8;">
+        부동산에서 매물을 찾을 때 기준이 되는 면적이에요.<br><br>
+        <b style="color:#FFFFFF;">전용면적 + 공용 공간</b>을 합친 면적으로, 실제 계약서에 기재되는 면적이에요.<br><br>
+        <b style="color:#FFFFFF;">예시)</b><br>
+        전용면적 120평 필요<br>
+        전용률 62% 건물이라면<br>
+        → 임대면적 약 194평 건물을 찾아야 해요<br><br>
+        <b style="color:var(--accent2);">부동산에 문의할 때 이 숫자를 기준으로 하세요.</b>
+      </div>
+      <button onclick="document.getElementById('tooltip-lease').style.display='none'" style="margin-top:16px;width:100%;padding:12px;border-radius:10px;background:rgba(74,158,255,0.15);border:1px solid rgba(74,158,255,0.3);color:var(--accent2);font-weight:700;cursor:pointer;font-size:14px;">확인</button>
+    </div>
+  </div>
+
 </div>
 
 <!-- ════════════════════════════════════════
@@ -2921,6 +3074,11 @@ function go(id) {
       var cname = (document.getElementById('f-company') || {}).value || '';
       cc.textContent = cname ? cname : '귀사';
     }
+  }
+
+  // s2result 진입 시 데이터 채우기 + 단계별 애니메이션
+  if (id === 's2result') {
+    setTimeout(function() { showS2Result(); }, 100);
   }
 }
 
@@ -4547,12 +4705,53 @@ function showS2Result() {
     var set = function(id, val) { var e = document.getElementById(id); if(e) e.textContent = val; };
     set('r2-total-py',    d.totalPy);
     set('r2-total-m2',   '약 ' + d.totalM2 + ' m²');
-    set('r2-usable-py',  Math.round(d.usablePy) + ' 평');
-    set('r2-corridor-py', Math.round(d.corridorPy) + ' 평');
+    set('r2-usable-py',  Math.round(d.usablePy));
+    set('r2-corridor-py', Math.round(d.corridorPy));
+
+    // 임대면적 계산 (전용률 60~65% 기준)
+    var leaseMin = Math.round(d.totalPy / 0.65);
+    var leaseMax = Math.round(d.totalPy / 0.60);
+    set('r2-lease-min', leaseMin);
+    set('r2-lease-max', leaseMax);
+    set('r2-lease-min-m2', Math.round(leaseMin * 3.305));
+    set('r2-lease-max-m2', Math.round(leaseMax * 3.305));
   }
+
+  // 단계별 등장 애니메이션 — 먼저 리셋
+  var allSteps = ['rs-step1','rs-arrow1','rs-step2','rs-arrow2','rs-step3','rs-arrow3','rs-step4','rs-arrow4','rs-step5','rs-buttons'];
+  allSteps.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+    }
+  });
+
+  // 단계별 등장 애니메이션
+  var steps = [
+    'rs-step1', 'rs-arrow1',
+    'rs-step2', 'rs-arrow2',
+    'rs-step3', 'rs-arrow3',
+    'rs-step4', 'rs-arrow4',
+    'rs-step5', 'rs-buttons'
+  ];
+  steps.forEach(function(id, i) {
+    setTimeout(function() {
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }
+    }, 300 + i * 400);
+  });
 }
 
-
+function showTooltip(id) {
+  var el = document.getElementById(id);
+  if (el) {
+    el.style.display = 'flex';
+  }
+}
 /* ─────────────────────────────────────────────
    RENDER ANALYSIS — 공간 구성 비율 이중 막대 + 분석
 ───────────────────────────────────────────── */
