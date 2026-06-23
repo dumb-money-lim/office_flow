@@ -2664,13 +2664,44 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         문의: team.office.flow@gmail.com
       </div>
       <div style="text-align:right;">
-        <div style="color:rgba(255,255,255,0.4);font-size:10px;margin-bottom:4px;">우리 회사 예상 필요 면적</div>
-        <div style="font-family:'DM Sans',sans-serif;color:var(--accent2);font-size:72px;font-weight:900;letter-spacing:-3px;line-height:1;" id="r-total-big">127<span style="font-size:24px;font-weight:700;margin-left:4px;letter-spacing:-0.5px;">평</span></div>
+        <div style="color:rgba(255,255,255,0.4);font-size:10px;margin-bottom:4px;">예상 필요 임대면적</div>
+        <div style="font-family:'DM Sans',sans-serif;color:var(--accent2);font-size:44px;font-weight:900;letter-spacing:-2px;line-height:1;">약 <span id="r-cover-lease-min">—</span><span style="font-size:18px;font-weight:700;margin:0 4px;">~</span><span id="r-cover-lease-max">—</span><span style="font-size:20px;font-weight:700;margin-left:4px;">평</span></div>
       </div>
     </div>
   </div>
 
   <div class="section">
+
+    <!-- 전용면적 → 전용률 → 임대면적 흐름 카드 -->
+    <div style="margin-bottom:24px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+        <div style="flex:1;background:var(--card);border:1px solid rgba(74,158,255,0.2);border-radius:12px;padding:14px;text-align:center;">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;">전용면적</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;letter-spacing:-1px;color:#FFFFFF;" id="r-cover-exclusive">—</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">평</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex-shrink:0;">
+          <div style="font-size:10px;color:var(--muted);">전용률</div>
+          <div style="font-size:16px;color:var(--accent);font-weight:700;">→</div>
+          <div style="font-size:10px;color:var(--accent);font-weight:700;">60~65%</div>
+        </div>
+        <div style="flex:1;background:rgba(74,158,255,0.1);border:1.5px solid rgba(74,158,255,0.35);border-radius:12px;padding:14px;text-align:center;box-shadow:0 0 16px rgba(0,212,255,0.08);">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;">임대면적</div>
+          <div style="font-size:14px;font-weight:900;color:var(--accent2);">약 <span id="r-cover-lease-min2">—</span>~<span id="r-cover-lease-max2">—</span></div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">평 (계약 기준)</div>
+        </div>
+      </div>
+      <div style="background:rgba(74,158,255,0.07);border-radius:10px;border:1px solid rgba(74,158,255,0.3);padding:12px 16px;font-size:11px;color:var(--text-sub);line-height:1.9;">
+        <b style="color:var(--glow-dot);">* 전용면적</b>: 코어(화장실·엘리베이터·계단실 등)를 제외한 실사용 가능 면적<br>
+        <b style="color:var(--glow-dot);">* 전용률</b>: 임대면적 중 전용면적 비율. 서울 오피스 빌딩 통상 60~65% 적용<br>
+        <b style="color:var(--glow-dot);">* 임대면적</b>: 실제 계약서 기재 면적. 부동산 매물 검색 시 이 기준으로 확인
+      </div>
+    </div>
+
+    <!-- 브릿지 문구 -->
+    <div style="border-left:3px solid rgba(74,158,255,0.5);border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:28px;background:rgba(255,255,255,0.03);">
+      <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.55);line-height:1.7;">아래 섹션은 임직원이 실제 사용하는 공간(전용면적)을 상세히 분석한 내용입니다.<br>공간 구성 비율, 1인당 면적, 회의실 적정성 등 공간 계획의 근거 데이터를 확인하세요.</div>
+    </div>
 
     <!-- ── Section 01: 공간 구성 비율 ── -->
     <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;">Section 01</div>
@@ -2781,59 +2812,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
     <div style="background:rgba(74,158,255,0.07);border-radius:10px;border:1px solid rgba(74,158,255,0.3);padding:12px 16px;font-size:12px;color:var(--text-sub);line-height:1.7;margin-bottom:28px;">
       본 결과는 신규 사무실 규모 검토를 위한 <b style="color:var(--glow-dot);">예상 면적</b>입니다. 최종 면적은 <b style="color:var(--glow-dot);">Test-Fit(공간 배치 검토)</b> 진행 후 확정됩니다.
-    </div>
-
-    <!-- ── Section 07: 실제 계약 면적 안내 ── -->
-    <div class="section" style="padding-top:0;">
-      <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:4px;">SECTION 07</div>
-      <div style="font-size:17px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;">실제 계약 면적 안내</div>
-      <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;">본 보고서의 면적은 전용면적 기준입니다. 실제 부동산 계약 시에는 임대면적(계약면적) 기준으로 물건을 찾아야 합니다.</div>
-
-      <!-- 전용면적 → 임대면적 흐름 카드 -->
-      <div class="rcard" style="margin-bottom:16px;">
-        <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.5px;">면적 기준 전환</div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:14px;text-align:center;">
-            <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">전용면적</div>
-            <div style="font-family:'DM Sans',sans-serif;font-size:28px;font-weight:900;letter-spacing:-1px;color:#FFFFFF;" id="r-s7-exclusive">—</div>
-            <div style="font-size:11px;color:var(--muted);margin-top:2px;">평</div>
-          </div>
-          <div style="color:var(--accent);font-size:20px;font-weight:700;">→</div>
-          <div style="flex:1;background:rgba(74,158,255,0.1);border:1px solid rgba(74,158,255,0.3);border-radius:10px;padding:14px;text-align:center;">
-            <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">임대면적 (계약 기준)</div>
-            <div style="font-family:'DM Sans',sans-serif;font-size:22px;font-weight:900;letter-spacing:-0.5px;color:var(--accent2);">약 <span id="r-s7-lease-min">—</span> ~ <span id="r-s7-lease-max">—</span></div>
-            <div style="font-size:11px;color:var(--muted);margin-top:2px;">평</div>
-          </div>
-        </div>
-        <div style="font-size:11px;color:var(--muted);text-align:center;">전용률 60~65% 적용 기준</div>
-      </div>
-
-      <!-- 전용률 설명 -->
-      <div class="rcard" style="margin-bottom:16px;">
-        <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;">전용률 기준 참고</div>
-        <div style="display:flex;gap:8px;">
-          <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:8px;padding:10px;text-align:center;">
-            <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">프라임급 대형빌딩</div>
-            <div style="font-size:15px;font-weight:800;color:#7DD8FF;">55~60%</div>
-          </div>
-          <div style="flex:1;background:rgba(74,158,255,0.08);border:1px solid rgba(74,158,255,0.25);border-radius:8px;padding:10px;text-align:center;">
-            <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">일반 오피스빌딩</div>
-            <div style="font-size:15px;font-weight:800;color:#4DBAFF;">60~65%</div>
-            <div style="font-size:9px;color:var(--accent);font-weight:700;margin-top:2px;">통상 기준</div>
-          </div>
-          <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:8px;padding:10px;text-align:center;">
-            <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">소규모·지식산업센터</div>
-            <div style="font-size:15px;font-weight:800;color:#7DD8FF;">65~75%</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 주석 -->
-      <div style="background:rgba(74,158,255,0.07);border-radius:10px;border:1px solid rgba(74,158,255,0.3);padding:12px 16px;font-size:11px;color:var(--text-sub);line-height:1.8;">
-        <b style="color:var(--glow-dot);">* 임대면적</b>이란 전용면적에 공용면적(복도·화장실·엘리베이터 등)을 더한 면적으로, 실제 계약서에 기재되는 면적입니다.<br>
-        <b style="color:var(--glow-dot);">* 전용률</b>은 건물마다 다르므로, 계약 전 반드시 해당 건물의 전용률을 확인하시기 바랍니다.<br>
-        <b style="color:var(--glow-dot);">* 위 임대면적</b>은 참고용 추정치이며, 실제 계약 면적은 부동산 전문가와 함께 확인하시기 바랍니다.
-      </div>
     </div>
 
     <!-- 보고서 마무리 버튼 -->
@@ -3913,7 +3891,9 @@ function buildLeadPayload(action) {
     lgAreaM2:   d.lgArea   ? (d.lgArea*3.305).toFixed(1)   : 0,
     oaAreaM2:   d.oaArea   ? (d.oaArea*3.305).toFixed(1)   : 0,
     storAreaM2: d.storArea ? (d.storArea*3.305).toFixed(1) : 0,
-    // 세부항목 배열 (선택한 항목만, 0개 제외)
+    // 임대면적 (전용률 60~65% 기준)
+    leaseAreaMin: d.totalPy ? Math.round(d.totalPy / 0.65) : 0,
+    leaseAreaMax: d.totalPy ? Math.round(d.totalPy / 0.60) : 0,
     items: itemRows,
   };
 }
@@ -3926,7 +3906,12 @@ async function saveLeadToSheet() {
     gtag('event', 'report_complete', {
       'event_category': 'conversion',
       'event_label': payload.leadId,
-      'company': payload.company
+      'company': payload.company,
+      'industry': payload.industry,
+      'emp_total': payload.empTotal,
+      'exclusive_area': payload.totalPy,
+      'lease_area_min': payload.leaseAreaMin,
+      'lease_area_max': payload.leaseAreaMax
     });
   } catch(e) {}
 
@@ -3953,7 +3938,12 @@ async function submitConsulting() {
     gtag('event', 'consulting_request', {
       'event_category': 'conversion',
       'event_label': payload.leadId,
-      'company': payload.company
+      'company': payload.company,
+      'industry': payload.industry,
+      'emp_total': payload.empTotal,
+      'exclusive_area': payload.totalPy,
+      'lease_area_min': payload.leaseAreaMin,
+      'lease_area_max': payload.leaseAreaMax
     });
   } catch(e) {}
 
@@ -4892,13 +4882,15 @@ function renderStackedBar(d) {
   if (totalPy2El) totalPy2El.textContent = totalPyV + '평';
   if (totalM22El) totalM22El.textContent = totalM2V + ' m²';
 
-  // Section 07 — 임대면적 계산
-  var s7Ex = document.getElementById('r-s7-exclusive');
-  var s7Min = document.getElementById('r-s7-lease-min');
-  var s7Max = document.getElementById('r-s7-lease-max');
-  if (s7Ex) s7Ex.textContent = totalPyV;
-  if (s7Min) s7Min.textContent = Math.round(parseFloat(totalPyV) / 0.65);
-  if (s7Max) s7Max.textContent = Math.round(parseFloat(totalPyV) / 0.60);
+  // 표지 + 흐름카드 임대면적 계산 (전용률 60~65% 기준)
+  var coverMin = Math.round(parseFloat(totalPyV) / 0.65);
+  var coverMax = Math.round(parseFloat(totalPyV) / 0.60);
+  var setEl = function(id, val) { var e = document.getElementById(id); if(e) e.textContent = val; };
+  setEl('r-cover-exclusive',  totalPyV);
+  setEl('r-cover-lease-min',  coverMin);
+  setEl('r-cover-lease-max',  coverMax);
+  setEl('r-cover-lease-min2', coverMin);
+  setEl('r-cover-lease-max2', coverMax);
 }
 
 function renderAnalysis() {
