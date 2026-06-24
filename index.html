@@ -1680,6 +1680,28 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   box-shadow: 0 0 0 3px rgba(74,158,255,0.18);
 }
 </style>
+
+<style>
+@keyframes recFadeIn {
+  from { opacity:0; transform:translateY(-4px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.rec-box {
+  display:inline-block;
+  background:rgba(74,158,255,0.08);
+  border:1px solid rgba(74,158,255,0.3);
+  border-radius:8px;
+  padding:7px 12px;
+  margin-top:8px;
+  font-size:13px;
+  font-weight:600;
+  color:#4DBAFF;
+  opacity:0;
+  animation:recFadeIn 0.4s ease 0.5s forwards;
+  width:100%;
+  box-sizing:border-box;
+}
+</style>
 </head>
 <body>
 <!-- 인앱 브라우저 안내 배너 (아이폰용) -->
@@ -1981,7 +2003,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <!-- ── 5. 회의실 ── -->
         <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
-      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">회의공간</span> 규모별 수량을 선택해 주세요.<br><span style="font-size:14px;font-weight:600;color:var(--muted);">💡 <span id="rec-conf-label">직원 수를 입력하면 권장 수량이 표시돼요</span></span></div>
+      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">회의공간</span> 규모별 수량을 선택해 주세요.<br><div class="rec-box" id="rec-conf-box">💡 <span id="rec-conf-label">직원 수를 입력하면 권장 수량이 표시돼요</span></div></div>
     </div>
 
 <div class="card">
@@ -2070,7 +2092,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <!-- ── 4. 오픈라운지 ── -->
     <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
-      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">휴게공간</span> 규모를 선택해 주세요.<br><span style="font-size:14px;font-weight:600;color:var(--muted);">💡 <span id="rec-lg-label">직원 수를 입력하면 권장 수량이 표시돼요</span></span></div>
+      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">휴게공간</span> 규모를 선택해 주세요.<br><div class="rec-box" id="rec-lg-box">💡 <span id="rec-lg-label">직원 수를 입력하면 권장 수량이 표시돼요</span></div></div>
     </div>
 
 <div class="card">
@@ -2119,7 +2141,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <!-- ── 5. 개인 집중공간 + 수납가구 + OA존·탕비공간 ── -->
     <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
-      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">지원공간</span>을 설정해 주세요.<br><span style="font-size:14px;font-weight:600;color:var(--muted);">💡 <span id="rec-supp-label">직원 수를 입력하면 권장 수량이 표시돼요</span></span></div>
+      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">지원공간</span>을 설정해 주세요.<br><div class="rec-box" id="rec-supp-box">💡 <span id="rec-supp-label">직원 수를 입력하면 권장 수량이 표시돼요</span></div></div>
     </div>
 
 <div class="card">
@@ -3369,6 +3391,12 @@ function updateRec() {
     getVal('tm_18rt') + getVal('tm_18ch') + getVal('tm_18l') +
     getVal('emp_12') + getVal('emp_14') + getVal('emp_16') + getVal('emp_18');
 
+  // 박스 애니메이션 재실행
+  ['rec-conf-box','rec-lg-box','rec-supp-box'].forEach(function(id) {
+    var box = document.getElementById(id);
+    if (box) { box.style.animation='none'; box.offsetHeight; box.style.animation=''; }
+  });
+
   if (staff <= 0) {
     ['rec-conf-label','rec-lg-label','rec-supp-label'].forEach(function(id) {
       var el = document.getElementById(id);
@@ -4176,6 +4204,15 @@ function generateAIAnalysis(d) {
   diffs.sort(function(a, b) { return b.abs - a.abs; });
 
   var pick = function(arr) { return arr[Math.floor(Math.random() * arr.length)]; };
+
+  // 임원/업무공간 제외 — 회의/휴게/지원공간 위주로 분석
+  var targetKeys = ['conf', 'lg', 'oa'];
+  var diffs = [];
+  targetKeys.forEach(function(k) {
+    diffs.push({ key: k, diff: pct[k] - avg[k], abs: Math.abs(pct[k] - avg[k]) });
+  });
+  diffs.sort(function(a, b) { return b.abs - a.abs; });
+
   var top = diffs[0];
 
   // ── 첫 문장: 가장 두드러진 특징 ──
@@ -4214,14 +4251,28 @@ function generateAIAnalysis(d) {
       '세부 동선과 가구 배치를 최적화하면 공간 효율을 한층 끌어올릴 수 있습니다.',
       '현재의 균형을 유지하면서 디테일한 레이아웃을 다듬으면 더욱 완성도 높은 공간이 됩니다.'
     ]);
-  } else if (top.key === 'exec' && top.diff > 0) {
-    sentence2 = '업무공간과의 균형을 검토하면 보다 효율적인 배치가 가능합니다.';
   } else if (top.key === 'conf' && top.diff < 0) {
-    sentence2 = '협업이 잦은 조직이라면 회의공간 보강을 검토해볼 수 있습니다.';
-  } else if (top.key === 'emp' && top.diff < 0) {
-    sentence2 = '직원 업무 환경의 쾌적성을 위해 업무공간 확보를 고려해볼 수 있습니다.';
+    sentence2 = pick([
+      '협업이 잦은 조직이라면 회의공간 보강을 검토해볼 수 있습니다.',
+      '회의실 수를 늘리거나 소형 회의실을 추가하면 업무 효율이 높아집니다.'
+    ]);
+  } else if (top.key === 'conf' && top.diff > 0) {
+    sentence2 = pick([
+      '일부 회의실을 포커스룸이나 협업 라운지로 전환하면 공간 다양성이 높아집니다.',
+      '소규모 집중 공간(폰부스·포커스룸)으로 전환하면 더 효율적인 구성이 됩니다.'
+    ]);
   } else if (top.key === 'lg' && top.diff < 0) {
-    sentence2 = '구성원의 만족도를 높이는 휴게공간 확충을 검토해볼 수 있습니다.';
+    sentence2 = pick([
+      '구성원의 만족도를 높이는 휴게공간 확충을 검토해볼 수 있습니다.',
+      '최근 직원 복지와 협업 문화 강화로 휴게공간 비중을 늘리는 기업이 증가하고 있습니다.'
+    ]);
+  } else if (top.key === 'lg' && top.diff > 0) {
+    sentence2 = '충분한 휴게공간을 갖춘 만큼 동선과 가구 배치를 최적화하면 더욱 효과적입니다.';
+  } else if (top.key === 'oa' && top.diff < 0) {
+    sentence2 = pick([
+      'OA존·탕비·수납공간 확충을 통해 업무 동선을 개선할 수 있습니다.',
+      '지원공간이 부족하면 업무 동선 혼잡으로 이어질 수 있어 보강이 필요합니다.'
+    ]);
   } else {
     sentence2 = pick([
       '공간 활용 목적에 맞춰 비중을 조정하면 더 효율적인 배치가 가능합니다.',
@@ -5031,7 +5082,7 @@ function renderAnalysis() {
     var HL = 'color:#4DBAFF;';
     var msgs = [];
     if (OUR.exec - AVG.exec > 2)
-      msgs.push(DOT_STRONG + '<b>임원공간</b>이 기업평균(8.2%)보다 <b style="' + HL + '">' + (OUR.exec-AVG.exec).toFixed(1) + '%p 높습니다.</b> 임원실 규모 또는 개수 조정을 검토해보세요. <span style="color:#7DD8FF;">→ 소형 임원실(3.3평) 1개 줄이면 라운지로 전환 가능해요</span>');
+      msgs.push(DOT_STRONG + '<b>임원공간</b>이 기업평균(8.2%)보다 <b style="' + HL + '">' + (OUR.exec-AVG.exec).toFixed(1) + '%p 높습니다.</b> 임원실 규모 또는 개수 조정을 검토해보세요.<br><span style="color:#7DD8FF;margin-left:14px;">→ 소형 임원실(3.3평) 1개 줄이면 라운지로 전환 가능해요</span>');
     else if (OUR.exec - AVG.exec < -2)
       msgs.push(DOT_OK + '<b>임원공간</b>이 기업평균(8.2%)보다 <b style="' + HL + '">' + Math.abs(OUR.exec-AVG.exec).toFixed(1) + '%p 효율적으로</b> 배분되어 있습니다.');
     else msgs.push(DOT_OK + '<b>임원공간</b> 비율이 기업평균(8.2%)과 유사합니다. 적정 수준입니다.');
@@ -5043,19 +5094,19 @@ function renderAnalysis() {
     else msgs.push(DOT_OK + '<b>업무공간</b> 비율이 적정 범위 내에 있습니다.');
 
     if (OUR.conf - AVG.conf < -2)
-      msgs.push(DOT_STRONG + '<b>회의공간</b>이 평균(11.7%)보다 <b style="' + HL + '">' + Math.abs(OUR.conf-AVG.conf).toFixed(1) + '%p 부족합니다.</b> 소형 회의실 추가를 검토해보세요. <span style="color:#7DD8FF;">→ 6인 회의실 1개 추가 시 약 2.2평 필요해요</span>');
+      msgs.push(DOT_STRONG + '<b>회의공간</b>이 평균(11.7%)보다 <b style="' + HL + '">' + Math.abs(OUR.conf-AVG.conf).toFixed(1) + '%p 부족합니다.</b> 소형 회의실 추가를 검토해보세요.<br><span style="color:#7DD8FF;margin-left:14px;">→ 6인 회의실 1개 추가 시 약 2.2평 필요해요</span>');
     else if (OUR.conf - AVG.conf > 2)
-      msgs.push(DOT_MID + '<b>회의공간</b>이 평균(11.7%)보다 <b>' + (OUR.conf-AVG.conf).toFixed(1) + '%p 많습니다.</b> 일부를 포커스룸·라운지로 전환하면 효율적입니다. <span style="color:#7DD8FF;">→ 회의실 1개를 포커스룸(1.5평)으로 전환 시 공간 효율이 높아져요</span>');
+      msgs.push(DOT_MID + '<b>회의공간</b>이 평균(11.7%)보다 <b>' + (OUR.conf-AVG.conf).toFixed(1) + '%p 많습니다.</b> 일부를 포커스룸·라운지로 전환하면 효율적입니다.<br><span style="color:#7DD8FF;margin-left:14px;">→ 회의실 1개를 포커스룸(1.5평)으로 전환 시 공간 효율이 높아져요</span>');
     else msgs.push(DOT_OK + '<b>회의공간</b> 비율이 적정 범위(11~13%) 내에 있습니다.');
 
     if (OUR.lg === 0)
-      msgs.push(DOT_STRONG + '<b>휴게공간이 계획되어 있지 않습니다.</b> 기업평균 6.6% 기준, 오픈라운지 도입을 강력히 권고합니다. <span style="color:#7DD8FF;">→ 소형 라운지(5.2평) 1개로 직원 협업·휴식 공간을 확보해보세요</span>');
+      msgs.push(DOT_STRONG + '<b>휴게공간이 계획되어 있지 않습니다.</b> 기업평균 6.6% 기준, 오픈라운지 도입을 강력히 권고합니다.<br><span style="color:#7DD8FF;margin-left:14px;">→ 소형 라운지(5.2평) 1개로 직원 협업·휴식 공간을 확보해보세요</span>');
     else if (OUR.lg - AVG.lg < -2)
-      msgs.push(DOT_MID + '<b>휴게공간</b>이 평균(6.6%)보다 <b>' + Math.abs(OUR.lg-AVG.lg).toFixed(1) + '%p 적습니다.</b> 라운지 확충으로 직원 만족도를 높일 수 있습니다. <span style="color:#7DD8FF;">→ 중형 라운지(6.0평) 1개 추가를 권장해요</span>');
+      msgs.push(DOT_MID + '<b>휴게공간</b>이 평균(6.6%)보다 <b>' + Math.abs(OUR.lg-AVG.lg).toFixed(1) + '%p 적습니다.</b> 라운지 확충으로 직원 만족도를 높일 수 있습니다.<br><span style="color:#7DD8FF;margin-left:14px;">→ 중형 라운지(6.0평) 1개 추가를 권장해요</span>');
     else msgs.push(DOT_OK + '<b>휴게공간</b> 비율이 적정 범위 내에 있습니다.');
 
     if (OUR.stor - AVG.stor < -3)
-      msgs.push(DOT_MID + '<b>지원공간(탕비·수납)</b>이 평균(12.7%)보다 부족합니다. OA존·공용수납 배치를 추가로 검토해보세요. <span style="color:#7DD8FF;">→ 컴팩트 OA존(1.5평) 또는 탕비공간(1.5평) 추가를 권장해요</span>');
+      msgs.push(DOT_MID + '<b>지원공간(탕비·수납)</b>이 평균(12.7%)보다 부족합니다. OA존·공용수납 배치를 추가로 검토해보세요.<br><span style="color:#7DD8FF;margin-left:14px;">→ 컴팩트 OA존(1.5평) 또는 탕비공간(1.5평) 추가를 권장해요</span>');
 
     analysisEl.innerHTML = msgs.join('<br>');
   }
