@@ -2685,7 +2685,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         </div>
         <div style="flex:1;background:rgba(74,158,255,0.1);border:1.5px solid rgba(74,158,255,0.35);border-radius:12px;padding:14px;text-align:center;box-shadow:0 0 16px rgba(0,212,255,0.08);">
           <div style="font-size:10px;color:var(--muted);margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;">임대면적</div>
-          <div style="font-size:14px;font-weight:900;color:var(--accent2);">약 <span id="r-cover-lease-min2">—</span>~<span id="r-cover-lease-max2">—</span></div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:900;letter-spacing:-1px;color:var(--accent2);">약 <span id="r-cover-lease-min2">—</span>~<span id="r-cover-lease-max2">—</span></div>
           <div style="font-size:10px;color:var(--muted);margin-top:2px;">평 (계약 기준)</div>
         </div>
       </div>
@@ -5046,7 +5046,7 @@ function renderPerPersonAnalysis(d) {
   var execPerRoom = execQty > 0 ? execAreaTotal / execQty * 3.305 : 0;
 
   var BENCH = [];
-  if (execQty > 0)   BENCH.push({ label:'임원실 1개당 면적',  our:execPerRoom,  avg:26.3, unit:'m²', color:'#0D3D7A', desc:'퍼시스 공간 DB 기준 부(소)장실·국(단)장실 평균 26.3㎡ (약 8평)', ok:execPerRoom>=22.0, low:execPerRoom<17.0 });
+  if (execQty > 0)   BENCH.push({ label:'임원실 1개당 면적',  our:execPerRoom,  avg:26.3, unit:'m²', color:'#0D3D7A', desc:'퍼시스 공간 DB 기준 임원공간 평균 약 8평 (26.3㎡)', ok:execPerRoom>=22.0, low:execPerRoom<17.0 });
   if (tmQty > 0)     BENCH.push({ label:'팀장석 1인당 면적',  our:tmPerPerson,  avg:5.8,  unit:'m²', color:'#1A5FB4', desc:'퍼시스 공간 DB 기준 팀장 1인당 업무공간 평균 5.8㎡',  ok:tmPerPerson>=5.0,  low:tmPerPerson<4.0  });
   if (empTotal > 0)  BENCH.push({ label:'팀원석 1인당 면적',  our:empPerPerson, avg:3.35, unit:'m²', color:'#4AB8FF', desc:'퍼시스 공간 DB 기준 팀원 1인당 업무공간 평균 3.35㎡', ok:empPerPerson>=2.8, low:empPerPerson<2.3 });
 
