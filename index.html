@@ -1981,7 +1981,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <!-- ── 5. 회의실 ── -->
         <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
-      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:var(--brand);"><span style="color:var(--accent);font-size:25px;">회의공간</span> 규모별 수량을 선택해 주세요.<br><span style="font-size:20px;font-weight:700;color:var(--muted);">직원 수 대비 적정 회의실 수는 보고서에서 확인할 수 있어요.</span></div>
+      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:var(--brand);"><span style="color:var(--accent);font-size:25px;">회의공간</span> 규모별 수량을 선택해 주세요.<br><span style="font-size:14px;font-weight:600;color:var(--muted);">💡 <span id="rec-conf-label">직원 수를 입력하면 권장 수량이 표시돼요</span></span></div>
     </div>
 
 <div class="card">
@@ -2070,7 +2070,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <!-- ── 4. 오픈라운지 ── -->
     <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
-      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:var(--brand);"><span style="color:var(--accent);font-size:25px;">휴게공간</span> 규모를 선택해 주세요.<br><span style="font-size:20px;font-weight:700;color:var(--muted);">휴게·미팅·탕비를 함께 활용하는 복합 공간이에요.</span></div>
+      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:var(--brand);"><span style="color:var(--accent);font-size:25px;">휴게공간</span> 규모를 선택해 주세요.<br><span style="font-size:14px;font-weight:600;color:var(--muted);">💡 <span id="rec-lg-label">직원 수를 입력하면 권장 수량이 표시돼요</span></span></div>
     </div>
 
 <div class="card">
@@ -2119,7 +2119,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <!-- ── 5. 개인 집중공간 + 수납가구 + OA존·탕비공간 ── -->
     <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
-      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:var(--brand);"><span style="color:var(--accent);font-size:25px;">지원공간</span>을 설정해 주세요.<br><span style="font-size:20px;font-weight:700;color:var(--muted);">최근 폰부스·포커스룸 수요가 빠르게 늘고 있어요.</span></div>
+      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:var(--brand);"><span style="color:var(--accent);font-size:25px;">지원공간</span>을 설정해 주세요.<br><span style="font-size:14px;font-weight:600;color:var(--muted);">💡 <span id="rec-supp-label">직원 수를 입력하면 권장 수량이 표시돼요</span></span></div>
     </div>
 
 <div class="card">
@@ -2150,12 +2150,12 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
     
 <div class="card">
-      <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><rect x="3.5" y="5" width="17" height="14" rx="1" stroke="#4DBAFF" stroke-width="1.6"/><path d="M3.5 11h17" stroke="#4DBAFF" stroke-width="1.4"/><path d="M8 5v6M16 5v6" stroke="#4DBAFF" stroke-width="1.3"/></svg> 수납가구 <button onclick="openFpPreview('stor')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-stor">5EA 단위 기준</span></div>
+      <div class="card-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><rect x="3.5" y="5" width="17" height="14" rx="1" stroke="#4DBAFF" stroke-width="1.6"/><path d="M3.5 11h17" stroke="#4DBAFF" stroke-width="1.4"/><path d="M8 5v6M16 5v6" stroke="#4DBAFF" stroke-width="1.3"/></svg> 공용 수납공간 <button onclick="openFpPreview('stor')" class="fp-preview-btn">👁 공간 예시 보기</button><span class="card-size-badge" id="badge-stor"></span></div>
       <div class="sub-counter-row">
 <div style="height:2px;background:rgba(0,0,0,0.15);margin:10px 0 10px;"></div>
               <div class="sub-counter-label">
-          캐비닛 (5EA 기준)
-          <small>0.5평 / 1.68㎡ · W 800</small>
+          3단 캐비닛 (1EA 기준)
+          <small>0.1평 / 0.33㎡ · W 800</small>
         </div>
         <div class="sub-counter-box">
           <button class="sub-counter-btn" onclick="adj('stor_cab',-1)">−</button>
@@ -2165,8 +2165,8 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
       <div class="sub-counter-row">
         <div class="sub-counter-label">
-          락커 (5EA 기준)
-          <small>0.4평 / 1.38㎡ · W 500</small>
+          창고 및 문서고
+          <small>2.8평 / 9.3㎡</small>
         </div>
         <div class="sub-counter-box">
           <button class="sub-counter-btn" onclick="adj('stor_loc',-1)">−</button>
@@ -3182,7 +3182,7 @@ function calc() {
   // 수납가구 (평)
   const stor_cab = v('stor_cab'); // 캐비닛 0.5
   const stor_loc = v('stor_loc'); // 락커 0.4
-  const storArea = stor_cab*0.5 + stor_loc*0.4;
+  const storArea = stor_cab*0.1 + stor_loc*2.8;
 
   // 오픈라운지 (평)
   const lg_s = v('lg_s'); // 소형 5.2
@@ -3358,7 +3358,51 @@ function updateStepBar(currentStep) {
   });
 }
 
-function sync() { renderCalc(); }
+function sync() { renderCalc(); updateRec(); }
+
+function updateRec() {
+  // 직원 수 파악 (팀장 + 팀원 합산)
+  var getVal = function(id) { var e = document.getElementById(id); return e ? parseInt(e.value)||0 : 0; };
+  var staff =
+    getVal('tm_16rt') + getVal('tm_16ch') + getVal('tm_16l') +
+    getVal('tm_18rt') + getVal('tm_18ch') + getVal('tm_18l') +
+    getVal('emp_12') + getVal('emp_14') + getVal('emp_16') + getVal('emp_18');
+
+  if (staff <= 0) {
+    ['rec-conf-label','rec-lg-label','rec-supp-label'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = '직원 수를 입력하면 권장 수량이 표시돼요';
+    });
+    return;
+  }
+
+  // ── 회의공간 권장 ──
+  var totalConf = Math.max(3, Math.round(staff / 10));
+  var confS = Math.max(1, Math.round(totalConf * 0.4)); // 6인
+  var confM = Math.max(1, Math.round(totalConf * 0.4)); // 8인
+  var confL = Math.max(1, Math.round(totalConf * 0.2)); // 12인
+  var confEl = document.getElementById('rec-conf-label');
+  if (confEl) confEl.textContent =
+    '직원 ' + staff + '명 기준 권장 수량 · 6인 ' + confS + '개 · 8인 ' + confM + '개 · 12인 ' + confL + '개';
+
+  // ── 휴게공간 권장 ──
+  var lgXl = staff <= 50 ? 1 : staff <= 100 ? 1 : staff <= 150 ? 2 : staff <= 200 ? 2 : 3;
+  var lgM  = staff <= 50 ? 0 : staff <= 100 ? 1 : staff <= 150 ? 1 : staff <= 200 ? 2 : 2;
+  var lgEl = document.getElementById('rec-lg-label');
+  if (lgEl) {
+    var lgStr = '중대형 ' + lgXl + '개';
+    if (lgM > 0) lgStr += ' · 중형 ' + lgM + '개';
+    lgEl.textContent = '직원 ' + staff + '명 기준 권장 수량 · ' + lgStr;
+  }
+
+  // ── 지원공간 권장 ──
+  var unit = Math.max(2, Math.round(staff / 25));
+  var cab  = Math.round(staff * 0.9);  // 3단 캐비닛 1EA 기준 (50명→45개)
+  var wh   = Math.max(1, Math.round(staff / 25));
+  var suppEl = document.getElementById('rec-supp-label');
+  if (suppEl) suppEl.textContent =
+    '직원 ' + staff + '명 기준 권장 수량 · 폰부스 ' + unit + '개 · 포커스룸 ' + unit + '개 · OA ' + unit + '개 · 탕비 ' + unit + '개 · 캐비닛 ' + cab + '개 · 창고 ' + wh + '개';
+}
 
 /* ─────────────────────────────────────────────
    CONCEPT PICKER
@@ -3604,8 +3648,8 @@ function buildReport() {
   oa_ss:   { cat:'OA·탕비', label:'OA존 표준형',    py:2.0, m2:6.3,  comp:'W4,200 표준형',    fur:'OA카운터+복합기+수납장' },
   tb_cs:   { cat:'OA·탕비', label:'탕비공간 컴팩트형', py:1.5, m2:5.1,  comp:'W3,400 컴팩트형',  fur:'싱크대+상부장+냉장고' },
   tb_ss:   { cat:'OA·탕비', label:'탕비공간 표준형',   py:2.0, m2:6.3,  comp:'W4,200 표준형',    fur:'싱크대+상부장+냉장고+수납' },
-    stor_cab:{ cat:'수납가구', label:'캐비닛 (5EA)',    py:0.5, m2:1.68, comp:'W800 공용캐비닛',    fur:'5단 캐비닛 5EA' },
-    stor_loc:{ cat:'수납가구', label:'락커 (5EA)',      py:0.4, m2:1.38, comp:'W500 개인락커',      fur:'개인 락커 5EA' },
+    stor_cab:{ cat:'공용 수납공간', label:'3단 캐비닛 (1EA)', py:0.1, m2:0.33, comp:'W800 3단 캐비닛', fur:'3단 캐비닛 1EA' },
+    stor_loc:{ cat:'공용 수납공간', label:'창고 및 문서고', py:2.8, m2:9.3,  comp:'창고 및 문서고',      fur:'창고 및 문서고' },
     lg_s:    { cat:'휴게공간', label:'오픈라운지 소형', py:5.2, m2:17.3, comp:'오픈캔틴+소파',      fur:'소파+바테이블+스툴' },
     lg_m:    { cat:'휴게공간', label:'오픈라운지 중형', py:6.0, m2:20.2, comp:'오픈캔틴+바테이블',  fur:'소파+바테이블+스툴' },
     lg_l:    { cat:'휴게공간', label:'오픈라운지 중대형',py:12.8,m2:42.2,comp:'대형 오픈캔틴+소파', fur:'대형소파+바테이블+스툴+캔틴카운터' },
@@ -3844,8 +3888,8 @@ function buildLeadPayload(action) {
     { key:'oa_ss',   label:'OA존_표준형',             py:2.0  },
     { key:'tb_cs',   label:'탕비실_컴팩트형',          py:1.5  },
     { key:'tb_ss',   label:'탕비실_표준형',            py:2.0  },
-    { key:'stor_cab',label:'수납_캐비닛(5EA기준)',     py:0.5  },
-    { key:'stor_loc',label:'수납_락커(5EA기준)',       py:0.4  },
+    { key:'stor_cab',label:'수납_3단캐비닛(1EA기준)', py:0.1  },
+    { key:'stor_loc',label:'수납_창고및문서고',        py:2.8  },
   ];
   var itemRows = [];
   ITEM_MAP.forEach(function(item) {
@@ -4458,7 +4502,7 @@ var FP_PREVIEW = {
   stor: {
     title: '수납가구 예시',
     items: [
-      { label: '캐비닛', key: 'stor_cab', desc: '서류·물품 수납' },
+      { label: '3단 캐비닛', key: 'stor_cab', desc: '서류·물품 수납 (1EA 기준)' },
       { label: '락커',   key: 'stor_loc', desc: '개인 물품 보관' },
     ]
   },
