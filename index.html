@@ -3402,7 +3402,7 @@ function updateRec() {
   var wh   = Math.max(1, Math.round(staff / 25));
   var suppEl = document.getElementById('rec-supp-label');
   if (suppEl) suppEl.textContent =
-    '직원 ' + staff + '명 기준 권장 수량 · 폰부스 ' + unit + '개 · 포커스룸 ' + unit + '개 · OA ' + unit + '개 · 탕비 ' + unit + '개 · 캐비닛 ' + cab + '개 · 창고 ' + wh + '개';
+    '직원 ' + staff + '명 기준 권장 수량 · 폰부스 ' + unit + '개 · 포커스룸 ' + unit + '개 · 3단 캐비닛 ' + cab + '개 · 창고 및 문서고 ' + wh + '개 · OA 컴팩트형 ' + unit + '개 · 탕비 컴팩트형 ' + unit + '개';
 }
 
 /* ─────────────────────────────────────────────
@@ -5129,10 +5129,10 @@ function renderConfAnalysis(d) {
   if (!el) return;
   var empTotal  = d.empTotal  || 0;
   var confCount = (d.conf_4||0)+(d.conf_6||0)+(d.conf_8||0)+(d.conf_12||0)+(d.conf_12||0)+(d.conf_14||0)+(d.conf_16||0)+(d.conf_16||0);
-  var BENCH_RATIO = 4.6 / 75;
-  var recommended = Math.round(empTotal * BENCH_RATIO);
-  var recMin = Math.floor(empTotal * (4.0/75));
-  var recMax = Math.ceil(empTotal * (5.2/75));
+  var BENCH_RATIO = 1 / 10;
+  var recommended = Math.max(3, Math.round(empTotal * BENCH_RATIO));
+  var recMin = Math.max(2, Math.floor(empTotal * (0.8/10)));
+  var recMax = Math.ceil(empTotal * (1.2/10));
   var status, sc, sb, statusMsg;
   if (confCount === 0) {
     status='⚠ 미계획'; sc='#4AB8FF'; sb='rgba(74,158,255,0.1)';
@@ -5174,7 +5174,7 @@ function renderConfAnalysis(d) {
   el.innerHTML = [
     '<div style="background:var(--card);border-radius:10px;border:1px solid rgba(74,158,255,0.2);padding:14px 16px;">',
       '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">',
-        '<div><div style="font-size:13px;font-weight:700;color:#FFFFFF;margin-bottom:4px;">회의실 수 적정성</div><div style="font-size:11px;color:var(--muted);">퍼시스 DB 기준: 직원 75명당 평균 4.6개</div></div>',
+        '<div><div style="font-size:13px;font-weight:700;color:#FFFFFF;margin-bottom:4px;">회의실 수 적정성</div><div style="font-size:11px;color:var(--muted);">권장 기준: 직원 10명당 회의실 1개</div></div>',
         '<span style="font-size:11px;font-weight:700;color:' + sc + ';background:' + sb + ';padding:3px 10px;border-radius:20px;white-space:nowrap;">' + status + '</span>',
       '</div>',
       '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">',
