@@ -1706,9 +1706,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <div id="s1" class="screen active">
   <nav class="topnav">
     <div class="logo" onclick="goHome()" style="cursor:pointer;">OFFICE<span>.</span>FLOW</div>
-    <div class="nav-right">
-      <span class="nav-domain">office-flow.co.kr</span>
-    </div>
+    <div class="nav-right"></div>
   </nav>
 
   <div class="hero">
@@ -2285,7 +2283,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         <div style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;">통로 및 여유공간 추가</div>
       </div>
       <div style="background:var(--card);border:1px solid rgba(74,158,255,0.2);border-radius:14px;padding:16px 18px;">
-        <div style="font-size:12px;color:var(--muted);margin-bottom:6px;">의자 이동·통로·여유 공간 (업계 기준 35% 적용)</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:6px;">의자 이동·통로·여유 공간 (퍼시스 공간 DB 기준 33.6% 적용)</div>
         <div style="display:flex;align-items:baseline;gap:6px;">
           <span style="font-family:'DM Sans',sans-serif;font-size:40px;font-weight:900;letter-spacing:-1.5px;color:#FFFFFF;" id="r2-corridor-py">—</span>
           <span style="font-size:16px;font-weight:700;color:var(--muted);">평</span>
@@ -2706,7 +2704,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     <!-- ── Section 01: 공간 구성 비율 ── -->
     <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;">Section 01</div>
     <div style="font-size:17px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;">오피스 공간 구성 비율</div>
-    <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;">전용면적에서 통로 공간은 약 35%를 차지합니다.<br>필요한 공간 프로그램과 통로 공간을 합산하여 오피스 필요 전용면적을 확인할 수 있습니다.</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;">오피스 전용면적의 66.4%는 실제 업무공간(임원실·회의실·업무석·휴게공간 등)으로 구성되며, 나머지 33.6%는 통로 및 여유공간입니다. 아래 공간 구성 비율을 통해 우리 회사의 오피스 면적 계획을 확인하세요.</div>
 
     <!-- 가로 누적 막대 차트 -->
     <div id="stacked-bar-chart" style="margin-bottom:12px;width:100%;">
@@ -2721,12 +2719,12 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     <!-- 하단 2열 카드 -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
       <div style="background:var(--card);border:1px solid var(--border-mid);border-radius:14px;padding:18px;">
-        <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:8px;">실제 업무공간 (65%)</div>
+        <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:8px;">실제 업무공간 (66.4%)</div>
         <div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1;color:#FFFFFF;" id="r-usable-py">—</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px;" id="r-usable-m2">— m²</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border-mid);border-radius:14px;padding:18px;">
-        <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:8px;">통로 및 여유공간 (35%)</div>
+        <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:8px;">통로 및 여유공간 (33.6%)</div>
         <div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1;color:#FFFFFF;" id="r-total-py2">—</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px;" id="r-total-m2-2">— m²</div>
       </div>
@@ -2734,14 +2732,15 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
     <!-- 주석 박스 -->
     <div style="background:rgba(74,158,255,0.07);border-radius:10px;border:1px solid rgba(74,158,255,0.3);padding:12px 16px;margin-bottom:28px;font-size:11px;color:var(--text-sub);line-height:1.8;">
-      <b style="color:var(--glow-dot);">* 실제 업무공간(65%)</b>이란 전용면적에서 통로 및 여유공간(35%)을 제외한 공간으로, 임원실·회의실·업무석·휴게공간 등 실제 사용 목적의 공간 전체를 의미합니다.<br>
-      <b style="color:var(--glow-dot);">* 통로 및 여유공간 35%</b> 기준은 오피스 공간 설계 실무에서 통용되는 circulation factor(25~35%) 상한값을 적용한 것으로, BOMA(Building Owners and Managers Association International) 실무 가이드 및 국내 오피스 공간 설계 관행을 근거로 합니다.
+      <b style="color:var(--glow-dot);">* 실제 업무공간(66.4%)</b>이란 전용면적에서 통로 및 여유공간(33.6%)을 제외한 공간으로, 임원실·회의실·업무석·휴게공간 등 실제 사용 목적의 공간 전체를 의미합니다.<br>
+      <b style="color:var(--glow-dot);">* 통로 및 여유공간(33.6%)</b> 기준은 BOMA(Building Owners and Managers Association International) 실무 가이드의 circulation factor(25~35%) 범위 내에서,<br>
+      &nbsp;&nbsp;퍼시스 공간 DB 국내 기업 평균(33.6%)을 적용한 값입니다.
     </div>
 
 <!-- ── Section 02: 국내기업 평균 비교 ── -->
     <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;">Section 02</div>
     <div style="font-size:17px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;">공간 구성 비율 국내기업 평균 비교</div>
-    <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;">우리 회사 예상 공간 구성과 국내 기업 평균을 비교한 결과입니다. <span style="font-size:11px;color:var(--muted);">(출처: 퍼시스 공간 DB 2023)</span></div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;">우리 회사 예상 공간 구성과 국내 기업 평균을 비교한 결과입니다. <span style="font-size:11px;color:var(--muted);">(출처: 퍼시스 공간 DB)</span></div>
 
     <!-- 이중 막대 비교 차트 -->
     <div id="dual-bar-chart" style="margin-bottom:20px;">
@@ -3193,9 +3192,9 @@ function calc() {
 
   // 합산
   const usableCore = execArea + tmArea + empArea + confArea + oaArea + storArea + lgArea;
-  const totalPy    = Math.round(usableCore / 0.65);
+  const totalPy    = Math.round(usableCore / 0.664 * 10) / 10;
   const usablePy   = Math.round(usableCore);
-  const corridorPy = Math.round(usableCore / 0.65 * 0.35);
+  const corridorPy = Math.round(usableCore / 0.664 * 0.336 * 10) / 10;
   const totalM2    = Math.round(totalPy * 3.305);
 
   // 팀원석 badge
@@ -4820,7 +4819,7 @@ function renderStackedBar(d) {
   var conf  = (d.confArea || 0) - ((d.conf_pb||0)*0.5) - ((d.conf_fr||0)*1.5);
   var lg    = d.lgArea || 0;
   var supp  = ((d.conf_pb||0)*0.5) + ((d.conf_fr||0)*1.5) + (d.oaArea||0) + (d.storArea||0);
-  var corr  = Math.round(usableCore / 0.65 * 0.35 * 10) / 10;
+  var corr  = Math.round(usableCore / 0.664 * 0.336 * 10) / 10;
   var total = usableCore + corr;
 
   // 비율 계산
@@ -4927,7 +4926,7 @@ function renderAnalysis() {
   if(pSum > 0) pEmp += (100 - pSum);
 
   var OUR = { exec:pExec, emp:pEmp, conf:pConf, lg:pLg, stor:pStor, corridor:pCorridor };
-  var AVG = { exec:8.2,  emp:27.2, conf:11.7, lg:5.7,  stor:12.7, corridor:33.7 }; // 퍼시스 DB 2023
+  var AVG = { exec:8.2,  emp:27.2, conf:11.7, lg:6.6,  stor:12.7, corridor:33.6 }; // 퍼시스 공간 DB
 
   var LABELS = [
     { key:'exec',     label:'임원공간',           colorOur:'#0D3D7A' },
@@ -5047,9 +5046,9 @@ function renderPerPersonAnalysis(d) {
   var execPerRoom = execQty > 0 ? execAreaTotal / execQty * 3.305 : 0;
 
   var BENCH = [];
-  if (execQty > 0)   BENCH.push({ label:'임원실 1개당 면적',  our:execPerRoom,  avg:26.3, unit:'m²', color:'#0D3D7A', desc:'퍼시스 DB 2023 기준 부(소)장실·국(단)장실 평균 26.3㎡ (약 8평)', ok:execPerRoom>=22.0, low:execPerRoom<17.0 });
-  if (tmQty > 0)     BENCH.push({ label:'팀장석 1인당 면적',  our:tmPerPerson,  avg:5.8,  unit:'m²', color:'#1A5FB4', desc:'퍼시스 DB 2023 기준 팀장 1인당 업무공간 평균 5.8㎡',  ok:tmPerPerson>=5.0,  low:tmPerPerson<4.0  });
-  if (empTotal > 0)  BENCH.push({ label:'팀원석 1인당 면적',  our:empPerPerson, avg:3.35, unit:'m²', color:'#4AB8FF', desc:'퍼시스 DB 2023 기준 팀원 1인당 업무공간 평균 3.35㎡', ok:empPerPerson>=2.8, low:empPerPerson<2.3 });
+  if (execQty > 0)   BENCH.push({ label:'임원실 1개당 면적',  our:execPerRoom,  avg:26.3, unit:'m²', color:'#0D3D7A', desc:'퍼시스 공간 DB 기준 부(소)장실·국(단)장실 평균 26.3㎡ (약 8평)', ok:execPerRoom>=22.0, low:execPerRoom<17.0 });
+  if (tmQty > 0)     BENCH.push({ label:'팀장석 1인당 면적',  our:tmPerPerson,  avg:5.8,  unit:'m²', color:'#1A5FB4', desc:'퍼시스 공간 DB 기준 팀장 1인당 업무공간 평균 5.8㎡',  ok:tmPerPerson>=5.0,  low:tmPerPerson<4.0  });
+  if (empTotal > 0)  BENCH.push({ label:'팀원석 1인당 면적',  our:empPerPerson, avg:3.35, unit:'m²', color:'#4AB8FF', desc:'퍼시스 공간 DB 기준 팀원 1인당 업무공간 평균 3.35㎡', ok:empPerPerson>=2.8, low:empPerPerson<2.3 });
 
   el.innerHTML = '<div style="display:flex;flex-direction:column;gap:10px;">' + BENCH.map(function(item) {
     var barW = Math.min(item.our / item.avg * 60, 96);
