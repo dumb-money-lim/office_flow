@@ -2900,7 +2900,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
 
       <button class="snext-cta-btn" onclick="submitConsulting()">
-        무료 컨설팅 신청하기
+        공간 최적화 컨설팅 문의하기
       </button>
       <div class="snext-cta-note">신청 즉시 보고서가 컨설턴트에게 전달됩니다</div>
     </div>
@@ -4012,7 +4012,7 @@ async function submitConsulting() {
       if (note) note.textContent = '신청이 접수되었습니다. 곧 연락드리겠습니다.';
     }
   } catch(err) {
-    if (btn) { btn.textContent = '컨설팅 신청하기'; btn.disabled = false; }
+    if (btn) { btn.textContent = '공간 최적화 컨설팅 문의하기'; btn.disabled = false; }
     alert('신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
   }
 }
@@ -5031,7 +5031,7 @@ function renderAnalysis() {
     var HL = 'color:#4DBAFF;';
     var msgs = [];
     if (OUR.exec - AVG.exec > 2)
-      msgs.push(DOT_STRONG + '<b>임원공간</b>이 기업평균(8.2%)보다 <b style="' + HL + '">' + (OUR.exec-AVG.exec).toFixed(1) + '%p 높습니다.</b> 임원실 규모 또는 개수 조정을 검토해보세요.');
+      msgs.push(DOT_STRONG + '<b>임원공간</b>이 기업평균(8.2%)보다 <b style="' + HL + '">' + (OUR.exec-AVG.exec).toFixed(1) + '%p 높습니다.</b> 임원실 규모 또는 개수 조정을 검토해보세요. <span style="color:#7DD8FF;">→ 소형 임원실(3.3평) 1개 줄이면 라운지로 전환 가능해요</span>');
     else if (OUR.exec - AVG.exec < -2)
       msgs.push(DOT_OK + '<b>임원공간</b>이 기업평균(8.2%)보다 <b style="' + HL + '">' + Math.abs(OUR.exec-AVG.exec).toFixed(1) + '%p 효율적으로</b> 배분되어 있습니다.');
     else msgs.push(DOT_OK + '<b>임원공간</b> 비율이 기업평균(8.2%)과 유사합니다. 적정 수준입니다.');
@@ -5043,19 +5043,19 @@ function renderAnalysis() {
     else msgs.push(DOT_OK + '<b>업무공간</b> 비율이 적정 범위 내에 있습니다.');
 
     if (OUR.conf - AVG.conf < -2)
-      msgs.push(DOT_STRONG + '<b>회의공간</b>이 평균(11.7%)보다 <b style="' + HL + '">' + Math.abs(OUR.conf-AVG.conf).toFixed(1) + '%p 부족합니다.</b> 소형 회의실 추가를 검토해보세요.');
+      msgs.push(DOT_STRONG + '<b>회의공간</b>이 평균(11.7%)보다 <b style="' + HL + '">' + Math.abs(OUR.conf-AVG.conf).toFixed(1) + '%p 부족합니다.</b> 소형 회의실 추가를 검토해보세요. <span style="color:#7DD8FF;">→ 6인 회의실 1개 추가 시 약 2.2평 필요해요</span>');
     else if (OUR.conf - AVG.conf > 2)
-      msgs.push(DOT_MID + '<b>회의공간</b>이 평균(11.7%)보다 <b>' + (OUR.conf-AVG.conf).toFixed(1) + '%p 많습니다.</b> 일부를 포커스룸·라운지로 전환하면 효율적입니다.');
+      msgs.push(DOT_MID + '<b>회의공간</b>이 평균(11.7%)보다 <b>' + (OUR.conf-AVG.conf).toFixed(1) + '%p 많습니다.</b> 일부를 포커스룸·라운지로 전환하면 효율적입니다. <span style="color:#7DD8FF;">→ 회의실 1개를 포커스룸(1.5평)으로 전환 시 공간 효율이 높아져요</span>');
     else msgs.push(DOT_OK + '<b>회의공간</b> 비율이 적정 범위(11~13%) 내에 있습니다.');
 
     if (OUR.lg === 0)
-      msgs.push(DOT_STRONG + '<b>휴게공간이 계획되어 있지 않습니다.</b> 기업평균 6.6% 기준, 오픈라운지 도입을 강력히 권고합니다.');
+      msgs.push(DOT_STRONG + '<b>휴게공간이 계획되어 있지 않습니다.</b> 기업평균 6.6% 기준, 오픈라운지 도입을 강력히 권고합니다. <span style="color:#7DD8FF;">→ 소형 라운지(5.2평) 1개로 직원 협업·휴식 공간을 확보해보세요</span>');
     else if (OUR.lg - AVG.lg < -2)
-      msgs.push(DOT_MID + '<b>휴게공간</b>이 평균(6.6%)보다 <b>' + Math.abs(OUR.lg-AVG.lg).toFixed(1) + '%p 적습니다.</b> 라운지 확충으로 직원 만족도를 높일 수 있습니다.');
+      msgs.push(DOT_MID + '<b>휴게공간</b>이 평균(6.6%)보다 <b>' + Math.abs(OUR.lg-AVG.lg).toFixed(1) + '%p 적습니다.</b> 라운지 확충으로 직원 만족도를 높일 수 있습니다. <span style="color:#7DD8FF;">→ 중형 라운지(6.0평) 1개 추가를 권장해요</span>');
     else msgs.push(DOT_OK + '<b>휴게공간</b> 비율이 적정 범위 내에 있습니다.');
 
     if (OUR.stor - AVG.stor < -3)
-      msgs.push(DOT_MID + '<b>지원공간(탕비·수납)</b>이 평균(12.7%)보다 부족합니다. OA존·공용수납 배치를 추가로 검토해보세요.');
+      msgs.push(DOT_MID + '<b>지원공간(탕비·수납)</b>이 평균(12.7%)보다 부족합니다. OA존·공용수납 배치를 추가로 검토해보세요. <span style="color:#7DD8FF;">→ 컴팩트 OA존(1.5평) 또는 탕비공간(1.5평) 추가를 권장해요</span>');
 
     analysisEl.innerHTML = msgs.join('<br>');
   }
