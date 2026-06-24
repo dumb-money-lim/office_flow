@@ -2005,7 +2005,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         </div>
         <div class="sub-counter-box">
           <button class="sub-counter-btn" onclick="adj('conf_6',-1)">−</button>
-          <input class="sub-counter-num" id="conf_6" type="number" value="2" min="0" oninput="calc()">
+          <input class="sub-counter-num" id="conf_6" type="number" value="0" min="0" oninput="calc()">
           <button class="sub-counter-btn" onclick="adj('conf_6',1)">+</button>
         </div>
       </div>
@@ -2018,7 +2018,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         </div>
         <div class="sub-counter-box">
           <button class="sub-counter-btn" onclick="adj('conf_8',-1)">−</button>
-          <input class="sub-counter-num" id="conf_8" type="number" value="1" min="0" oninput="calc()">
+          <input class="sub-counter-num" id="conf_8" type="number" value="0" min="0" oninput="calc()">
           <button class="sub-counter-btn" onclick="adj('conf_8',1)">+</button>
         </div>
       </div>
@@ -2093,7 +2093,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         </div>
         <div class="sub-counter-box">
           <button class="sub-counter-btn" onclick="adj('lg_m',-1)">−</button>
-          <input class="sub-counter-num" id="lg_m" type="number" value="1" min="0" oninput="calc()">
+          <input class="sub-counter-num" id="lg_m" type="number" value="0" min="0" oninput="calc()">
           <button class="sub-counter-btn" onclick="adj('lg_m',1)">+</button>
         </div>
       </div>
@@ -3384,7 +3384,7 @@ function updateRec() {
   var confL = Math.max(1, Math.round(totalConf * 0.2)); // 12인
   var confEl = document.getElementById('rec-conf-label');
   if (confEl) confEl.textContent =
-    '직원 ' + staff + '명 기준 권장 수량 · 6인 ' + confS + '개 · 8인 ' + confM + '개 · 12인 ' + confL + '개';
+    '직원 ' + staff + '명 기준 권장 수량 : 6인 ' + confS + '개 · 8인 ' + confM + '개 · 12인 ' + confL + '개';
 
   // ── 휴게공간 권장 ──
   var lgXl = staff <= 50 ? 1 : staff <= 100 ? 1 : staff <= 150 ? 2 : staff <= 200 ? 2 : 3;
@@ -3393,7 +3393,7 @@ function updateRec() {
   if (lgEl) {
     var lgStr = '중대형 ' + lgXl + '개';
     if (lgM > 0) lgStr += ' · 중형 ' + lgM + '개';
-    lgEl.textContent = '직원 ' + staff + '명 기준 권장 수량 · ' + lgStr;
+    lgEl.textContent = '직원 ' + staff + '명 기준 권장 수량 : ' + lgStr;
   }
 
   // ── 지원공간 권장 ──
@@ -3402,7 +3402,7 @@ function updateRec() {
   var wh   = Math.max(1, Math.round(staff / 25));
   var suppEl = document.getElementById('rec-supp-label');
   if (suppEl) suppEl.textContent =
-    '직원 ' + staff + '명 기준 권장 수량 · 폰부스 ' + unit + '개 · 포커스룸 ' + unit + '개 · 3단 캐비닛 ' + cab + '개 · 창고 및 문서고 ' + wh + '개 · OA 컴팩트형 ' + unit + '개 · 탕비 컴팩트형 ' + unit + '개';
+    '직원 ' + staff + '명 기준 권장 수량 : 폰부스 ' + unit + '개 · 포커스룸 ' + unit + '개 · 3단 캐비닛 ' + cab + '개 · 창고 및 문서고 ' + wh + '개 · OA 컴팩트형 ' + unit + '개 · 탕비 컴팩트형 ' + unit + '개';
 }
 
 /* ─────────────────────────────────────────────
