@@ -5614,12 +5614,14 @@ var ADJ_CONFIG = {
   stor: {
     title: '지원공간 조정',
     items: [
-      { id:'oa_cs',    label:'OA존 컴팩트형',    sub:'1.5평' },
-      { id:'oa_ss',    label:'OA존 표준형',      sub:'2.0평' },
-      { id:'tb_cs',    label:'탕비공간 컴팩트형', sub:'1.5평' },
-      { id:'tb_ss',    label:'탕비공간 표준형',   sub:'2.0평' },
-      { id:'stor_cab', label:'3단 캐비닛 (1EA)',  sub:'0.1평' },
-      { id:'stor_loc', label:'창고 및 문서고',    sub:'2.8평' },
+      { id:'conf_pb', label:'폰부스',              sub:'0.5평' },
+      { id:'conf_fr', label:'포커스룸',            sub:'1.5평' },
+      { id:'stor_cab', label:'3단 캐비닛 (1EA)',   sub:'0.1평' },
+      { id:'stor_loc', label:'창고 및 문서고',     sub:'2.8평' },
+      { id:'oa_cs',    label:'OA존 컴팩트형',      sub:'1.5평' },
+      { id:'oa_ss',    label:'OA존 표준형',        sub:'2.0평' },
+      { id:'tb_cs',    label:'탕비공간 컴팩트형',  sub:'1.5평' },
+      { id:'tb_ss',    label:'탕비공간 표준형',    sub:'2.0평' },
     ]
   }
 };
@@ -5657,6 +5659,22 @@ function adjChange(id, delta) {
   numEl.textContent = next;
 }
 
+// 토스트 메시지
+function showToast(msg, duration) {
+  var toast = document.getElementById('adj-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'adj-toast';
+    toast.style.cssText = 'position:fixed;top:72px;left:50%;transform:translateX(-50%);background:#1A3A5C;border:1px solid rgba(74,158,255,0.4);border-radius:20px;padding:10px 20px;font-size:13px;font-weight:700;color:#4DBAFF;z-index:9999;transition:opacity 0.3s ease;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.4);';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  if (duration) {
+    setTimeout(function() { toast.style.opacity = '0'; }, duration);
+  }
+}
+
 function applyAdj() {
   // 팝업 값을 실제 입력 필드에 반영
   var allIds = [];
@@ -5670,10 +5688,20 @@ function applyAdj() {
       inputEl.value = numEl.textContent;
     }
   });
-  // 계산 및 보고서 전체 업데이트
-  calc();
-  if (typeof buildReport === 'function') buildReport();
+
   closeAdjPanel();
+
+  // 토스트: 업데이트 중
+  showToast('⟳ 보고서 업데이트 중...', null);
+
+  // 0.7초 후 계산 및 보고서 업데이트
+  setTimeout(function() {
+    calc();
+    if (typeof buildReport === 'function') buildReport();
+
+    // 완료 메시지
+    showToast('✓ 업데이트 완료', 1500);
+  }, 700);
 }
 
 function closeAdjPanel() {
