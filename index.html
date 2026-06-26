@@ -5051,7 +5051,10 @@ function renderAnalysis() {
         '<div style="margin-bottom:12px;background:var(--card);border-radius:10px;padding:12px 14px;border:1px solid rgba(74,158,255,0.2);">',
           '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">',
             '<span style="font-size:13px;font-weight:700;color:#FFFFFF;">' + item.label + '</span>',
-            '<span style="font-size:11px;font-weight:700;color:' + diffColor + ';background:' + diffBg + ';padding:3px 9px;border-radius:20px;">' + diffLabel + '</span>',
+            '<div style="display:flex;align-items:center;gap:8px;">',
+              '<span style="font-size:11px;font-weight:700;color:' + diffColor + ';background:' + diffBg + ';padding:3px 9px;border-radius:20px;">' + diffLabel + '</span>',
+              item.key !== 'corridor' ? '<button onclick="openAdjPanel(\'' + item.key + '\')" style="font-size:11px;font-weight:700;color:#4DBAFF;background:rgba(74,158,255,0.1);border:1px solid rgba(74,158,255,0.3);border-radius:20px;padding:3px 10px;cursor:pointer;">조정</button>' : '',
+            '</div>',
           '</div>',
           '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">',
             '<div style="min-width:36px;max-width:60px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0;font-weight:600;word-break:break-all;line-height:1.3;">' + companyName + '</div>',
@@ -5499,6 +5502,184 @@ go = function(id) {
     <div id="fp-preview-desc" style="font-size:12px;color:var(--muted);text-align:center;"></div>
   </div>
 </div>
+
+<!-- ══════════════════════════════════════
+     공간 조정 팝업 (Section 02 [조정] 버튼)
+══════════════════════════════════════ -->
+<style>
+#adj-overlay {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  z-index:9000;
+  align-items:flex-end;
+  justify-content:center;
+}
+#adj-overlay.open { display:flex; }
+#adj-panel {
+  background:#12243a;
+  border:1px solid rgba(74,158,255,0.3);
+  border-radius:20px 20px 0 0;
+  width:100%;
+  max-width:480px;
+  padding:24px 20px 32px;
+  max-height:80vh;
+  overflow-y:auto;
+  animation: slideUp 0.3s ease;
+}
+@keyframes slideUp {
+  from { transform:translateY(100%); opacity:0; }
+  to   { transform:translateY(0);    opacity:1; }
+}
+.adj-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px solid rgba(74,158,255,0.1);
+}
+.adj-row:last-of-type { border-bottom:none; }
+.adj-label { font-size:13px; color:#FFFFFF; font-weight:600; }
+.adj-sub   { font-size:11px; color:var(--muted); margin-top:2px; }
+.adj-ctrl  { display:flex; align-items:center; gap:10px; }
+.adj-btn   {
+  width:32px; height:32px; border-radius:50%;
+  background:rgba(74,158,255,0.15);
+  border:1px solid rgba(74,158,255,0.4);
+  color:#4DBAFF; font-size:18px; font-weight:700;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
+.adj-btn:active { background:rgba(74,158,255,0.3); }
+.adj-num  { font-size:18px; font-weight:900; color:#FFFFFF; min-width:28px; text-align:center; font-family:'DM Sans',sans-serif; }
+</style>
+
+<div id="adj-overlay" onclick="if(event.target===this)closeAdjPanel()">
+  <div id="adj-panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div>
+        <div style="font-size:16px;font-weight:900;color:#FFFFFF;" id="adj-title">공간 조정</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">수량을 조정하면 보고서가 즉시 업데이트됩니다</div>
+      </div>
+      <button onclick="closeAdjPanel()" style="background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;padding:4px;">✕</button>
+    </div>
+    <div id="adj-items"></div>
+    <button onclick="applyAdj()" style="width:100%;margin-top:20px;padding:14px;background:linear-gradient(135deg,#1A7FD4,#00D4FF);border:none;border-radius:12px;color:#FFFFFF;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:-0.3px;">
+      적용하기
+    </button>
+  </div>
+</div>
+
+<script>
+// 공간별 팝업 항목 정의
+var ADJ_CONFIG = {
+  exec: {
+    title: '임원공간 조정',
+    items: [
+      { id:'exec_xl', label:'대형 임원실',   sub:'13.3평 · 임원SET+9인 회의' },
+      { id:'exec_l',  label:'중대형 임원실', sub:'8.0평 · 임원SET+7인 회의' },
+      { id:'exec_m',  label:'중형 임원실',   sub:'5.4평 · 임원SET+4인 회의' },
+      { id:'exec_s',  label:'소형 임원실',   sub:'3.3평 · 임원SET+보조좌석' },
+    ]
+  },
+  emp: {
+    title: '업무공간 조정',
+    items: [
+      { id:'tm_16rt', label:'팀장석 W1,600 L형+보조', sub:'2.0평' },
+      { id:'tm_18rt', label:'팀장석 W1,800 L형+보조', sub:'2.3평' },
+      { id:'emp_14',  label:'팀원석 W1,400', sub:'0.8평' },
+      { id:'emp_16',  label:'팀원석 W1,600', sub:'0.9평' },
+      { id:'emp_18',  label:'팀원석 W1,800', sub:'1.1평' },
+    ]
+  },
+  conf: {
+    title: '회의공간 조정',
+    items: [
+      { id:'conf_4',  label:'4인 회의실',  sub:'2.4평' },
+      { id:'conf_6',  label:'6인 회의실',  sub:'3.3평' },
+      { id:'conf_8',  label:'8인 회의실',  sub:'5.4평' },
+      { id:'conf_12', label:'12인 회의실', sub:'8.2평' },
+      { id:'conf_pb', label:'폰부스',       sub:'0.5평' },
+      { id:'conf_fr', label:'포커스룸',     sub:'1.5평' },
+    ]
+  },
+  lg: {
+    title: '휴게공간 조정',
+    items: [
+      { id:'lg_s', label:'오픈라운지 소형',   sub:'5.2평' },
+      { id:'lg_m', label:'오픈라운지 중형',   sub:'6.0평' },
+      { id:'lg_l', label:'오픈라운지 중대형', sub:'12.8평' },
+    ]
+  },
+  stor: {
+    title: '지원공간 조정',
+    items: [
+      { id:'oa_cs',    label:'OA존 컴팩트형',    sub:'1.5평' },
+      { id:'oa_ss',    label:'OA존 표준형',      sub:'2.0평' },
+      { id:'tb_cs',    label:'탕비공간 컴팩트형', sub:'1.5평' },
+      { id:'tb_ss',    label:'탕비공간 표준형',   sub:'2.0평' },
+      { id:'stor_cab', label:'3단 캐비닛 (1EA)',  sub:'0.1평' },
+      { id:'stor_loc', label:'창고 및 문서고',    sub:'2.8평' },
+    ]
+  }
+};
+
+function openAdjPanel(spaceKey) {
+  var cfg = ADJ_CONFIG[spaceKey];
+  if (!cfg) return;
+  document.getElementById('adj-title').textContent = cfg.title;
+  var html = cfg.items.map(function(item) {
+    var el = document.getElementById(item.id);
+    var val = el ? (parseInt(el.value)||0) : 0;
+    return [
+      '<div class="adj-row">',
+        '<div>',
+          '<div class="adj-label">' + item.label + '</div>',
+          '<div class="adj-sub">' + item.sub + '</div>',
+        '</div>',
+        '<div class="adj-ctrl">',
+          '<button class="adj-btn" onclick="adjChange(\'' + item.id + '\',-1)">−</button>',
+          '<div class="adj-num" id="ap-' + item.id + '">' + val + '</div>',
+          '<button class="adj-btn" onclick="adjChange(\'' + item.id + '\',1)">+</button>',
+        '</div>',
+      '</div>'
+    ].join('');
+  }).join('');
+  document.getElementById('adj-items').innerHTML = html;
+  document.getElementById('adj-overlay').classList.add('open');
+}
+
+function adjChange(id, delta) {
+  var numEl = document.getElementById('ap-' + id);
+  if (!numEl) return;
+  var cur = parseInt(numEl.textContent) || 0;
+  var next = Math.max(0, cur + delta);
+  numEl.textContent = next;
+}
+
+function applyAdj() {
+  // 팝업 값을 실제 입력 필드에 반영
+  var allIds = [];
+  Object.values(ADJ_CONFIG).forEach(function(cfg) {
+    cfg.items.forEach(function(item) { allIds.push(item.id); });
+  });
+  allIds.forEach(function(id) {
+    var numEl = document.getElementById('ap-' + id);
+    var inputEl = document.getElementById(id);
+    if (numEl && inputEl) {
+      inputEl.value = numEl.textContent;
+    }
+  });
+  // 계산 및 보고서 전체 업데이트
+  calc();
+  if (typeof buildReport === 'function') buildReport();
+  closeAdjPanel();
+}
+
+function closeAdjPanel() {
+  document.getElementById('adj-overlay').classList.remove('open');
+}
+</script>
 
 </body>
 </html>
