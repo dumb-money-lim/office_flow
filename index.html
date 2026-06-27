@@ -5824,6 +5824,62 @@ function closeGuide() {
   document.getElementById('guide-overlay').classList.remove('open');
 }
 </script>
+<!-- ══════════════════════════════════════
+     s-next 스크롤 페이드인 애니메이션
+══════════════════════════════════════ -->
+<style>
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+
+<script>
+(function() {
+  function initScrollFade() {
+    var targets = document.querySelectorAll('#s-next .snext-hero, #s-next .snext-dash, #s-next .snext-cta, #s-next .snext-soon-head, #s-next .snext-soon-grid');
+    targets.forEach(function(el) {
+      el.classList.add('scroll-fade');
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    targets.forEach(function(el) { observer.observe(el); });
+  }
+
+  // s-next 진입 시마다 초기화
+  var _origGo = window.go;
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof go === 'function') {
+      var __go = go;
+      window.go = function(id) {
+        __go(id);
+        if (id === 's-next') {
+          setTimeout(function() {
+            // visible 초기화 후 다시 관찰
+            document.querySelectorAll('#s-next .scroll-fade').forEach(function(el) {
+              el.classList.remove('visible');
+            });
+            initScrollFade();
+          }, 100);
+        }
+      };
+    }
+    initScrollFade();
+  });
+})();
+</script>
 </body>
 </html>
     </div>
