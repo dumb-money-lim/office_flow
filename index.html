@@ -3124,9 +3124,9 @@ function go(id) {
     setTimeout(function() { if (typeof showGuide === 'function') showGuide(_s2Step); }, 500);
   }
 
-  // s-next 진입 시 순차 등장 애니메이션
+  // s-next 진입 시 스크롤 페이드인 초기화
   if (id === 's-next') {
-    setTimeout(runSeqFade, 50);
+    setTimeout(initIOFade, 50);
   }
 
   // s-next 진입 시 AI 진단 멘트 생성 + 종결 블록 회사명
@@ -5830,54 +5830,64 @@ function closeGuide() {
 }
 </script>
 <!-- ══════════════════════════════════════
-     s-next 순차 등장 애니메이션
+     s-next 스크롤 페이드인 (Intersection Observer)
 ══════════════════════════════════════ -->
 <style>
-.seq-fade {
+.io-fade {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
 }
-.seq-fade.visible {
+.io-fade.io-visible {
   opacity: 1;
   transform: translateY(0);
 }
 </style>
 
 <script>
-function runSeqFade() {
-  var groups = [
-    { sels: ['.snext-hero'],                          delay: 150  },
-    { sels: ['.snext-dash'],                          delay: 400  },
-    { sels: ['.snext-cta-eyebrow',
-              '.snext-cta-analysis'],                 delay: 650  },
-    { sels: ['.snext-cta-gets'],                      delay: 850  },
-    { sels: ['.snext-cta-btn', '.snext-cta-note'],    delay: 1050 },
-    { sels: ['.snext-soon-head', '.snext-soon-grid'], delay: 1250 },
-  ];
-
+function initIOFade() {
   var snext = document.getElementById('s-next');
   if (!snext) return;
 
-  // 초기화: 모두 숨김
-  groups.forEach(function(g) {
-    g.sels.forEach(function(sel) {
-      snext.querySelectorAll(sel).forEach(function(el) {
-        el.classList.remove('visible');
-        el.classList.add('seq-fade');
-      });
+  var sels = [
+    '.snext-hero',
+    '.snext-dash',
+    '.snext-cta-eyebrow',
+    '.snext-cta-analysis',
+    '.snext-cta-gets',
+    '.snext-cta-btn',
+    '.snext-cta-note',
+    '.snext-soon-head',
+    '.snext-soon-grid',
+  ];
+
+  // 초기화: 클래스 리셋
+  sels.forEach(function(sel) {
+    snext.querySelectorAll(sel).forEach(function(el) {
+      el.classList.remove('io-visible');
+      el.classList.add('io-fade');
     });
   });
 
-  // 순차 등장
-  groups.forEach(function(g) {
-    setTimeout(function() {
-      g.sels.forEach(function(sel) {
-        snext.querySelectorAll(sel).forEach(function(el) {
-          el.classList.add('visible');
-        });
-      });
-    }, g.delay);
+  // IntersectionObserver 설정 (root: null = window 기준)
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('io-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,           // window 기준 (PC/모바일 공통)
+    threshold: 0.12,
+    rootMargin: '0px 0px -30px 0px'
+  });
+
+  sels.forEach(function(sel) {
+    snext.querySelectorAll(sel).forEach(function(el) {
+      observer.observe(el);
+    });
   });
 }
 </script>
