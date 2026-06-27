@@ -3124,6 +3124,11 @@ function go(id) {
     setTimeout(function() { if (typeof showGuide === 'function') showGuide(_s2Step); }, 500);
   }
 
+  // s-next 진입 시 순차 등장 애니메이션
+  if (id === 's-next') {
+    setTimeout(runSeqFade, 50);
+  }
+
   // s-next 진입 시 AI 진단 멘트 생성 + 종결 블록 회사명
   if (id === 's-next') {
     setTimeout(function() { generateAIAnalysis(window._calc || {}); }, 300);
@@ -5840,43 +5845,41 @@ function closeGuide() {
 </style>
 
 <script>
-function initSeqFade() {
-  var targets = [
-    { sel: '#s-next .snext-hero',     delay: 150  },
-    { sel: '#s-next .snext-dash',     delay: 350  },
-    { sel: '#s-next .snext-cta-eyebrow, #s-next .snext-cta-analysis', delay: 550 },
-    { sel: '#s-next .snext-cta-gets', delay: 750  },
-    { sel: '#s-next .snext-cta-btn',  delay: 950  },
-    { sel: '#s-next .snext-cta-note', delay: 1050 },
-    { sel: '#s-next .snext-soon-head, #s-next .snext-soon-grid', delay: 1200 },
+function runSeqFade() {
+  var groups = [
+    { sels: ['.snext-hero'],                          delay: 150  },
+    { sels: ['.snext-dash'],                          delay: 400  },
+    { sels: ['.snext-cta-eyebrow',
+              '.snext-cta-analysis'],                 delay: 650  },
+    { sels: ['.snext-cta-gets'],                      delay: 850  },
+    { sels: ['.snext-cta-btn', '.snext-cta-note'],    delay: 1050 },
+    { sels: ['.snext-soon-head', '.snext-soon-grid'], delay: 1250 },
   ];
 
-  // 초기화
-  targets.forEach(function(t) {
-    document.querySelectorAll(t.sel).forEach(function(el) {
-      el.classList.remove('visible');
-      el.classList.add('seq-fade');
+  var snext = document.getElementById('s-next');
+  if (!snext) return;
+
+  // 초기화: 모두 숨김
+  groups.forEach(function(g) {
+    g.sels.forEach(function(sel) {
+      snext.querySelectorAll(sel).forEach(function(el) {
+        el.classList.remove('visible');
+        el.classList.add('seq-fade');
+      });
     });
   });
 
   // 순차 등장
-  targets.forEach(function(t) {
+  groups.forEach(function(g) {
     setTimeout(function() {
-      document.querySelectorAll(t.sel).forEach(function(el) {
-        el.classList.add('visible');
+      g.sels.forEach(function(sel) {
+        snext.querySelectorAll(sel).forEach(function(el) {
+          el.classList.add('visible');
+        });
       });
-    }, t.delay);
+    }, g.delay);
   });
 }
-
-// go() 오버라이드 — s-next 진입 시 실행
-var _goOrigSeq = go;
-window.go = function(id) {
-  _goOrigSeq(id);
-  if (id === 's-next') {
-    setTimeout(initSeqFade, 80);
-  }
-};
 </script>
 </body>
 </html>
