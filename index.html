@@ -1814,7 +1814,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <!-- ── 1. 임원실 ── -->
         <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
-      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">임원공간</span> 규모와 수량을 선택해 주세요.<br><span style="font-size:20px;font-weight:700;color:var(--muted);">임원 수와 회의 스타일에 따라 면적이 달라져요.</span></div>
+      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">임원공간</span> 규모와 수량을 선택해 주세요.</div>
     </div>
 
 <div class="card">
@@ -1875,7 +1875,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <!-- ── 2. 업무공간 (팀장석 + 팀원석) ── -->
     <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
-      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">업무공간</span> 유형을 선택해 주세요.<br><span style="font-size:20px;font-weight:700;color:var(--muted);">직원 수와 업무 스타일에 맞게 구성할 수 있어요.</span></div>
+      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">업무공간</span> 유형을 선택해 주세요.</div>
     </div>
 
 <div class="card">
@@ -2003,7 +2003,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <!-- ── 5. 회의실 ── -->
         <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
-      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">회의공간</span> 규모별 수량을 선택해 주세요.<br><div class="rec-box" id="rec-conf-box">💡 <span id="rec-conf-label">직원 수를 입력하면 권장 수량이 표시돼요</span></div></div>
+      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">회의공간</span> 규모별 수량을 선택해 주세요.</div>
     </div>
 
 <div class="card">
@@ -2092,7 +2092,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <!-- ── 4. 오픈라운지 ── -->
     <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
-      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">휴게공간</span> 규모를 선택해 주세요.<br><div class="rec-box" id="rec-lg-box">💡 <span id="rec-lg-label">직원 수를 입력하면 권장 수량이 표시돼요</span></div></div>
+      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">휴게공간</span> 규모를 선택해 주세요.</div>
     </div>
 
 <div class="card">
@@ -2141,7 +2141,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 <!-- ── 5. 개인 집중공간 + 수납가구 + OA존·탕비공간 ── -->
     <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
-      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">지원공간</span>을 설정해 주세요.<br><div class="rec-box" id="rec-supp-box">💡 <span id="rec-supp-label">직원 수를 입력하면 권장 수량이 표시돼요</span></div></div>
+      <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">지원공간</span>을 설정해 주세요.</div>
     </div>
 
 <div class="card">
@@ -3117,6 +3117,11 @@ function go(id) {
   document.getElementById(id).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   sync();
+
+  // s2 진입 시 현재 단계 가이드 팝업
+  if (id === 's2') {
+    setTimeout(function() { if (typeof showGuide === 'function') showGuide(_s2Step); }, 500);
+  }
 
   // s-next 진입 시 AI 진단 멘트 생성 + 종결 블록 회사명
   if (id === 's-next') {
@@ -4791,6 +4796,11 @@ function s2GoStep(step) {
     if (screen) screen.scrollTop = 0;
   }
 
+  // 가이드 팝업 (0.5초 후, 세션 중 첫 진입 시만)
+  if (typeof showGuide === 'function') {
+    setTimeout(function() { showGuide(step); }, 500);
+  }
+
   // 진행률 업데이트
   var info = S2_STEPS[step - 1];
   if (info) {
@@ -5709,6 +5719,110 @@ function closeAdjPanel() {
 }
 </script>
 
+<!-- ══════════════════════════════════════
+     공간 입력 가이드 팝업
+══════════════════════════════════════ -->
+<style>
+#guide-overlay {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  z-index:8000;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+#guide-overlay.open { display:flex; }
+#guide-panel {
+  background:#0D1E30;
+  border:1px solid rgba(74,158,255,0.35);
+  border-radius:20px;
+  width:100%;
+  max-width:400px;
+  padding:28px 24px 24px;
+  animation: guideFadeIn 0.35s ease;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+}
+@keyframes guideFadeIn {
+  from { opacity:0; transform:scale(0.96); }
+  to   { opacity:1; transform:scale(1); }
+}
+#guide-title {
+  font-size:16px;
+  font-weight:900;
+  color:#4DBAFF;
+  margin-bottom:14px;
+  letter-spacing:-0.3px;
+}
+#guide-body {
+  font-size:13px;
+  color:#C8D8E8;
+  line-height:1.8;
+  margin-bottom:20px;
+}
+#guide-confirm {
+  width:100%;
+  padding:13px;
+  background:linear-gradient(135deg,#1A7FD4,#00D4FF);
+  border:none;
+  border-radius:12px;
+  color:#FFFFFF;
+  font-size:14px;
+  font-weight:800;
+  cursor:pointer;
+  letter-spacing:-0.3px;
+}
+</style>
+
+<div id="guide-overlay" onclick="if(event.target===this)closeGuide()">
+  <div id="guide-panel">
+    <div id="guide-title"></div>
+    <div id="guide-body"></div>
+    <button id="guide-confirm" onclick="closeGuide()">확인했어요</button>
+  </div>
+</div>
+
+<script>
+var GUIDE_SHOWN = {};
+
+var GUIDE_CONTENT = {
+  1: {
+    title: '💡 임원공간 입력 가이드',
+    body: '조직도의 직급별 임원 구성을 기준으로 임원실 규모를 선택해 주세요.<br><br>임원의 업무 형태에 따라 규모가 달라집니다.<br>결재·보고 중심 임원은 회의 공간이 포함된 중·대형,<br>팀과 함께 일하는 실무형 임원은 소형이 적합합니다.'
+  },
+  2: {
+    title: '💡 업무공간 입력 가이드',
+    body: '팀장과 팀원 전체 수를 기준으로 책상 유형과 수량을 선택해 주세요.<br><br>최근에는 팀장도 팀원과 동일한 사이즈의 책상을 사용하는 사례가 늘고 있어, 팀장·팀원 구분 없이 같은 유형으로 구성하는 경우도 많습니다.<br>같은 유형으로 구성한다면 해당 항목에 전체 수량을 입력해 주세요.'
+  },
+  3: {
+    title: '💡 회의공간 입력 가이드',
+    body: '지금 사무실에서 회의실이 부족하다고 느끼셨다면 충분히 반영해 주세요.<br><br>회의 참석 인원과 빈도를 기준으로 소형·중형·대형을 조합하는 것이 좋습니다.<br>중·소형 회의실(4~8인) 위주로 구성하는 것이 활용도가 가장 높습니다.'
+  },
+  4: {
+    title: '💡 휴게공간 입력 가이드',
+    body: '직원의 휴식과 자발적 협업을 위한 공간으로, 그 중요성이 지속적으로 높아지고 있습니다.<br><br>글로벌 오피스 트렌드에서는 전용면적의 10~15%를 휴게·협업공간으로 구성하는 것을 권장하며, 국내 기업도 점차 이 방향으로 확대되는 추세입니다.'
+  },
+  5: {
+    title: '💡 지원공간 입력 가이드',
+    body: '오픈오피스 확산으로 집중 업무를 위한 폰부스·포커스룸 수요가 빠르게 늘고 있습니다.<br><br>OA존은 부서별 분산보다 층별 통합 구성이 효율적입니다.<br>자료의 전산화·클라우드 전환으로 캐비닛 수요는 과거 대비 크게 줄었으며, 실제 사용량에 맞게 계획하는 것을 권장합니다.'
+  },
+};
+
+function showGuide(step) {
+  if (GUIDE_SHOWN[step]) return;
+  var cfg = GUIDE_CONTENT[step];
+  if (!cfg) return;
+  document.getElementById('guide-title').textContent = cfg.title;
+  document.getElementById('guide-body').innerHTML = cfg.body;
+  document.getElementById('guide-overlay').classList.add('open');
+  GUIDE_SHOWN[step] = true;
+}
+
+function closeGuide() {
+  document.getElementById('guide-overlay').classList.remove('open');
+}
+</script>
 </body>
 </html>
     </div>
