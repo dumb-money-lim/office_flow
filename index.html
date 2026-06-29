@@ -5877,38 +5877,53 @@ function closeGuide() {
   to   { opacity:1; transform:translateY(0); }
 }
 
-#fb-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: linear-gradient(135deg,#1A7FD4,#00D4FF);
-  border: none;
-  cursor: pointer;
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(74,158,255,0.4);
-  transition: transform 0.2s ease;
-  align-self: flex-end;
+/* 피드백 레이더 버튼 */
+#fb-radar {
   position: relative;
+  width: 64px;
+  height: 64px;
+  align-self: flex-end;
+  cursor: pointer;
 }
-#fb-btn:active { transform: scale(0.92); }
-#fb-btn::before,
-#fb-btn::after {
-  content: '';
+/* 동심원 3개 */
+.fb-ring {
   position: absolute;
-  inset: 0;
   border-radius: 50%;
-  background: rgba(74,158,255,0.3);
-  animation: fbPulse 2.5s ease-out infinite;
+  border: 1px solid rgba(77,186,255,0.25);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
 }
-#fb-btn::after {
-  animation-delay: 1.2s;
+.fb-ring-1 { width: 64px; height: 64px; border-color: rgba(77,186,255,0.2); }
+.fb-ring-2 { width: 46px; height: 46px; border-color: rgba(77,186,255,0.3); }
+.fb-ring-3 { width: 28px; height: 28px; border-color: rgba(77,186,255,0.4); }
+/* 중심 점 */
+.fb-dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #00D4FF;
+  box-shadow: 0 0 10px #00D4FF, 0 0 20px rgba(0,212,255,0.6);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
 }
-@keyframes fbPulse {
-  0%   { transform: scale(1);   opacity: 0.6; }
-  100% { transform: scale(2);   opacity: 0; }
+/* 퍼져나가는 링 애니메이션 */
+.fb-pulse {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(77,186,255,0.5);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%) scale(0.3);
+  width: 64px; height: 64px;
+  animation: fbRadar 3s ease-out infinite;
+  opacity: 0;
+}
+.fb-pulse:nth-child(5) { animation-delay: 1.5s; }
+@keyframes fbRadar {
+  0%   { transform: translate(-50%,-50%) scale(0.3); opacity: 0.7; }
+  100% { transform: translate(-50%,-50%) scale(2.2); opacity: 0; }
+}
+#fb-btn {
+  display: none; /* 기존 버튼 숨김 */
 }
 
 /* 팝업 */
@@ -5975,6 +5990,14 @@ function closeGuide() {
 <!-- 플로팅 버튼 -->
 <div id="fb-wrap">
   <div id="fb-bubble">솔직한 의견을 들려주세요 🙏</div>
+  <div id="fb-radar" onclick="openFbModal()">
+    <div class="fb-ring fb-ring-1"></div>
+    <div class="fb-ring fb-ring-2"></div>
+    <div class="fb-ring fb-ring-3"></div>
+    <div class="fb-pulse"></div>
+    <div class="fb-pulse" style="animation-delay:1.5s"></div>
+    <div class="fb-dot"></div>
+  </div>
   <button id="fb-btn" onclick="openFbModal()">💬</button>
 </div>
 
