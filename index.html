@@ -5891,8 +5891,25 @@ function closeGuide() {
   box-shadow: 0 4px 20px rgba(74,158,255,0.4);
   transition: transform 0.2s ease;
   align-self: flex-end;
+  position: relative;
 }
 #fb-btn:active { transform: scale(0.92); }
+#fb-btn::before,
+#fb-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(74,158,255,0.3);
+  animation: fbPulse 2.5s ease-out infinite;
+}
+#fb-btn::after {
+  animation-delay: 1.2s;
+}
+@keyframes fbPulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(2);   opacity: 0; }
+}
 
 /* 팝업 */
 #fb-modal-overlay {
@@ -5978,12 +5995,6 @@ function showFbBtn() {
   var wrap = document.getElementById('fb-wrap');
   if (!wrap) return;
   wrap.classList.add('show');
-  // 2초 후 말풍선 등장 (이미 show 상태)
-  // 5초 후 말풍선 숨김
-  setTimeout(function() {
-    var bubble = document.getElementById('fb-bubble');
-    if (bubble) bubble.style.display = 'none';
-  }, 5000);
 }
 
 function hideFbBtn() {
