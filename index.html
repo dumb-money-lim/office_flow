@@ -3124,9 +3124,12 @@ function go(id) {
     setTimeout(function() { if (typeof showGuide === 'function') showGuide(_s2Step); }, 500);
   }
 
-  // s-next 진입 시 순차 등장 애니메이션
+  // s-next 진입 시 순차 등장 애니메이션 + 피드백 버튼
   if (id === 's-next') {
     setTimeout(initSeqAnim, 50);
+    setTimeout(showFbBtn, 2000);
+  } else {
+    if (typeof hideFbBtn === 'function') hideFbBtn();
   }
 
   // s-next 진입 시 AI 진단 멘트 생성 + 종결 블록 회사명
@@ -5829,6 +5832,210 @@ function closeGuide() {
   document.getElementById('guide-overlay').classList.remove('open');
 }
 </script>
+
+<!-- ══════════════════════════════════════
+     피드백 플로팅 버튼
+══════════════════════════════════════ -->
+<style>
+#fb-wrap {
+  display: none;
+  position: fixed;
+  right: 20px;
+  bottom: 28px;
+  z-index: 8500;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 8px;
+}
+#fb-wrap.show { display: flex; }
+
+#fb-bubble {
+  background: #1A3A5C;
+  border: 1px solid rgba(74,158,255,0.4);
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #FFFFFF;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  animation: fbBubble 0.4s ease;
+  position: relative;
+}
+#fb-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  right: 18px;
+  width: 0; height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #1A3A5C;
+}
+@keyframes fbBubble {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+#fb-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#1A7FD4,#00D4FF);
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(74,158,255,0.4);
+  transition: transform 0.2s ease;
+  align-self: flex-end;
+}
+#fb-btn:active { transform: scale(0.92); }
+
+/* 팝업 */
+#fb-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 9500;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+#fb-modal-overlay.open { display: flex; }
+#fb-modal {
+  background: #0D1E30;
+  border: 1px solid rgba(74,158,255,0.3);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 360px;
+  padding: 24px 20px 20px;
+  animation: guideFadeIn 0.3s ease;
+}
+#fb-modal textarea {
+  width: 100%;
+  background: rgba(74,158,255,0.06);
+  border: 1px solid rgba(74,158,255,0.25);
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-size: 14px;
+  padding: 12px;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  margin-top: 12px;
+  height: 100px;
+}
+#fb-modal textarea::placeholder { color: var(--muted); }
+#fb-submit {
+  width: 100%;
+  margin-top: 14px;
+  padding: 13px;
+  background: linear-gradient(135deg,#1A7FD4,#00D4FF);
+  border: none;
+  border-radius: 12px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+#fb-skip {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+</style>
+
+<!-- 플로팅 버튼 -->
+<div id="fb-wrap">
+  <div id="fb-bubble">솔직한 의견을 들려주세요 🙏</div>
+  <button id="fb-btn" onclick="openFbModal()">💬</button>
+</div>
+
+<!-- 피드백 팝업 -->
+<div id="fb-modal-overlay" onclick="if(event.target===this)closeFbModal()">
+  <div id="fb-modal">
+    <div style="font-size:15px;font-weight:900;color:#FFFFFF;margin-bottom:4px;">의견 남기기</div>
+    <div style="font-size:12px;color:var(--muted);">불편하셨거나 개선이 필요한 점을 알려주세요.<br>더 나은 서비스를 만드는 데 큰 도움이 됩니다.</div>
+    <textarea id="fb-text" placeholder="자유롭게 작성해 주세요 (선택)"></textarea>
+    <button id="fb-submit" onclick="submitFeedback()">제출하기</button>
+    <button id="fb-skip" onclick="closeFbModal()">다음에 할게요</button>
+  </div>
+</div>
+
+<script>
+// s-next 진입 시 플로팅 버튼 표시
+function showFbBtn() {
+  var wrap = document.getElementById('fb-wrap');
+  if (!wrap) return;
+  wrap.classList.add('show');
+  // 2초 후 말풍선 등장 (이미 show 상태)
+  // 5초 후 말풍선 숨김
+  setTimeout(function() {
+    var bubble = document.getElementById('fb-bubble');
+    if (bubble) bubble.style.display = 'none';
+  }, 5000);
+}
+
+function hideFbBtn() {
+  var wrap = document.getElementById('fb-wrap');
+  if (wrap) wrap.classList.remove('show');
+}
+
+function openFbModal() {
+  document.getElementById('fb-modal-overlay').classList.add('open');
+}
+
+function closeFbModal() {
+  document.getElementById('fb-modal-overlay').classList.remove('open');
+  document.getElementById('fb-text').value = '';
+}
+
+async function submitFeedback() {
+  var text = document.getElementById('fb-text').value.trim();
+  var btn  = document.getElementById('fb-submit');
+
+  // 빈 의견도 제출 가능 (강제성 없음)
+  btn.textContent = '제출 중...';
+  btn.disabled = true;
+
+  // 회사명·면적 자동 포함
+  var d = window._calc || {};
+  var company = (document.getElementById('f-company') || {}).value || '';
+  var totalPy = d.totalPy || 0;
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action:   'feedback',
+        company:  company,
+        totalPy:  totalPy,
+        opinion:  text || '(의견 없음)',
+        date:     new Date().toLocaleDateString('ko-KR'),
+      })
+    });
+  } catch(e) {}
+
+  closeFbModal();
+  hideFbBtn();
+  showToast('✓ 소중한 의견 감사합니다', 2000);
+  btn.textContent = '제출하기';
+  btn.disabled = false;
+}
+</script>
+
 <!-- ══════════════════════════════════════
      s-next 순차 등장 애니메이션 (B안)
 ══════════════════════════════════════ -->
