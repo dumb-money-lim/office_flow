@@ -12,6 +12,28 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-PR98EB6S3K');
+
+  // ── GA4 이벤트 헬퍼 ──
+  function gtagEvent(name, params) {
+    try { gtag('event', name, params || {}); } catch(e) {}
+  }
+
+  // scroll_90: 페이지 90% 스크롤
+  (function() {
+    var fired = false;
+    window.addEventListener('scroll', function() {
+      if (fired) return;
+      var scrolled = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (scrolled >= 0.9) {
+        fired = true;
+        gtagEvent('scroll_90');
+      }
+    }, { passive: true });
+  })();
+
+  // time_on_page_60s: 60초 체류
+  setTimeout(function() { gtagEvent('time_on_page_60s'); }, 60000);
+
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -3258,6 +3280,10 @@ function calc() {
   };
   renderCalc();
   updateRec();
+  gtagEvent('calculation_completed', {
+    emp_total: window._calc ? (window._calc.empTotal || 0) : 0,
+    total_py:  window._calc ? (window._calc.totalPy  || 0) : 0,
+  });
 }
 
 function renderCalc() {
@@ -3611,6 +3637,7 @@ var COST_DATA = {
    REPORT BUILDER — S2 입력값 → S4 자동 반영
 ───────────────────────────────────────────── */
 function buildReport() {
+  gtagEvent('report_viewed');
   const d = window._calc;
   if (!d) return;
 
@@ -4013,6 +4040,7 @@ async function saveLeadToSheet() {
 }
 
 async function submitConsulting() {
+  gtagEvent('consultation_clicked');
   const btn = document.querySelector('[onclick="submitConsulting()"]');
   if (btn) { btn.textContent = '신청 중...'; btn.disabled = true; }
 
@@ -4092,6 +4120,7 @@ function goHome() {
 }
 
 function restartAnalysis() {
+  gtagEvent('restart_clicked');
   s2GoStep(1);  // 임원공간 페이지로
   // 처음 화면(공간 설정)으로 돌아가서 다시 시작
   window._leadId = null;  // 새 분석이므로 leadId 초기화
@@ -4442,6 +4471,10 @@ function startLoadingAnimation() {
     // S4로 전환
     buildReport();
     go('s4');
+    gtagEvent('email_submitted', {
+      company:  (document.getElementById('f-company') || {}).value || '',
+      industry: (document.getElementById('f-industry') || {}).value || '',
+    });
     // 보고서 요청 = 리드 저장 (GS + GA)
     saveLeadToSheet();
 
@@ -4790,6 +4823,10 @@ var S2_STEPS = [
 ];
 
 function s2GoStep(step) {
+  // calculator_started: 첫 진입 시
+  if (step === 1 && typeof _s2Step !== 'undefined' && _s2Step !== 1) {
+    gtagEvent('calculator_started');
+  }
   // 현재 단계 숨기기
   var cur = document.getElementById('s2-step-' + _s2Step);
   if (cur) cur.style.display = 'none';
@@ -5339,6 +5376,7 @@ function completeReport() {
       hideEls.forEach(function(el) { el.style.display = ''; });
 
       var imgData = canvas.toDataURL('image/jpeg', 0.88);
+      gtagEvent('pdf_downloaded');
       var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
       var pageW = 210, pageH = 297;
