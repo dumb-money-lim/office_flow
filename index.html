@@ -3223,6 +3223,7 @@ function calc() {
   const tm_18ch = v('tm_18ch'); // 1.6
   const tm_18l  = v('tm_18l');  // 1.1
   const tmArea = tm_16rt*2.0 + tm_16ch*1.4 + tm_16l*1.0 + tm_18rt*2.3 + tm_18ch*1.6 + tm_18l*1.1;
+  const tmTotal = tm_16rt + tm_16ch + tm_16l + tm_18rt + tm_18ch + tm_18l;
 
   // 팀원석 (평)
   const emp_12  = v('emp_12');  // 0.7
@@ -3283,7 +3284,7 @@ function calc() {
 
   // store globally
   window._calc = {
-    empTotal, exec_l, exec_m, exec_xl, exec_s,
+    empTotal, tmTotal, exec_l, exec_m, exec_xl, exec_s,
     conf_pb, conf_fr, conf_4, conf_6, conf_8, conf_12, conf_14, conf_16,
     confCount,
     totalPy, usablePy, corridorPy, totalM2,
@@ -3912,7 +3913,7 @@ function buildReport() {
     tbody.appendChild(corridorRow);
     const corr = document.createElement('tr');
     corr.innerHTML = `
-      <td style="padding:9px 12px;border-bottom:1px solid var(--border);">통로 및 여유공간 (35%)</td>
+      <td style="padding:9px 12px;border-bottom:1px solid var(--border);">통로 및 여유공간 (33.6%)</td>
       <td style="padding:9px 12px;border-bottom:1px solid var(--border);text-align:center;">—</td>
       <td style="padding:9px 12px;border-bottom:1px solid var(--border);text-align:center;">—</td>
       <td style="padding:9px 12px;border-bottom:1px solid var(--border);text-align:right;font-weight:700;">${d.corridorPy}평<br><span style="font-size:10px;color:var(--muted);font-weight:400;">${Math.round(d.corridorPy*3.305)}m²</span></td>`;
@@ -4250,7 +4251,8 @@ function generateAIAnalysis(d) {
   };
 
   // 국내 평균 (Fursys Space Database 2023 기준)
-  var avg = { exec: 8.0, emp: 26.6, conf: 14.8, lg: 3.2, oa: 10.4 };
+  // 퍼시스 공간 DB 기준 (AVG와 동일한 SOURCE)
+  var avg = { exec: 8.2, emp: 27.2, conf: 11.7, lg: 6.6, oa: 12.7 };
 
   // 평균 대비 편차(%p)가 가장 큰 항목 찾기
   var labels = {
@@ -5523,7 +5525,7 @@ go = function(id) {
       if(e) e.innerHTML = num + '<span class="snext-unit">' + unit + '</span>';
     };
     setU('snext-py',  (d.totalPy ? Math.round(d.totalPy) : '—'), '평');
-    setU('snext-emp', (d.empTotal || '—'), '명');
+    setU('snext-emp', (d.empTotal && d.tmTotal !== undefined ? d.empTotal + d.tmTotal : d.empTotal || '—'), '명');
     var confCnt = (d.conf_4||0)+(d.conf_6||0)+(d.conf_8||0)+(d.conf_12||0)+(d.conf_14||0)+(d.conf_16||0);
     setU('snext-conf', (confCnt || '—'), '개');
     // 리포트 번호 (leadId 뒷자리)
