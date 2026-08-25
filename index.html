@@ -3922,7 +3922,7 @@ function buildReport() {
     const totalRow = document.createElement('tr');
     totalRow.style.cssText = 'background:var(--brand);';
     totalRow.innerHTML = `
-      <td colspan="3" style="padding:12px;color:#fff;font-weight:700;font-size:14px;">우리 회사 예상 필요 면적 TOTAL</td>
+      <td colspan="3" style="padding:12px;color:#fff;font-weight:700;font-size:14px;">우리 회사 예상 전용 면적 TOTAL</td>
       <td style="padding:12px;color:var(--accent2);font-weight:900;font-size:14px;text-align:right;font-family:'DM Sans',sans-serif;">${d.totalPy}평<br><span style="font-size:11px;font-weight:700;opacity:0.8;">${Math.round(d.totalPy*3.305)}m²</span></td>`;
     tbody.appendChild(totalRow);
   }
