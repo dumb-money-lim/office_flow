@@ -4235,39 +4235,36 @@ function generateAIAnalysis(d) {
   var subject = company ? company + '의' : '귀사의';
 
   // 안전장치: 데이터 없으면 기본 멘트
-  if (!d || !d.usableCore) {
-    el.textContent = 'OFFICE.FLOW 분석 결과를 바탕으로 공간 전문가가 ' + (company || '귀사') + ' 맞춤형 공간 레이아웃 설계를 지원해 드립니다. 지금 신청하고 전문가와 상담해 보세요.';
+  if (!d || !d.totalPy) {
+    el.textContent = 'OFFICE.FLOW 분석 결과를 바탕으로 공간 전문가가 ' + (company || '귀사') + ' 맞춤형 공간 레이아웃 설계를 지원해 드립니다.';
     return;
   }
 
-  // 비율 계산
-  var core = d.usableCore || 1;
+  // ── 비율 계산 (Section 02 OUR와 동일한 분류 기준) ──
+  var totalPy = d.totalPy || 1;
+  var focusArea = ((d.conf_pb||0)*0.5) + ((d.conf_fr||0)*1.5);
+  var meetingArea = (d.confArea||0) - focusArea;
+  var supportArea = focusArea + (d.oaArea||0) + (d.storArea||0);
+
   var pct = {
-    exec: (d.execArea || 0) / core * 100,
-    emp:  ((d.tmArea || 0) + (d.empArea || 0)) / core * 100,
-    conf: (d.confArea || 0) / core * 100,
-    lg:   (d.lgArea || 0) / core * 100,
-    oa:   (d.oaArea || 0) / core * 100
+    exec: (d.execArea || 0) / totalPy * 100,
+    emp:  ((d.tmArea || 0) + (d.empArea || 0)) / totalPy * 100,
+    conf: meetingArea / totalPy * 100,
+    lg:   (d.lgArea  || 0) / totalPy * 100,
+    oa:   supportArea / totalPy * 100,
   };
 
-  // 국내 평균 (Fursys Space Database 2023 기준)
-  // 퍼시스 공간 DB 기준 (AVG와 동일한 SOURCE)
+  // ── 퍼시스 공간 DB 기준 평균 (Section 02와 동일한 SOURCE) ──
   var avg = { exec: 8.2, emp: 27.2, conf: 11.7, lg: 6.6, oa: 12.7 };
 
-  // 평균 대비 편차(%p)가 가장 큰 항목 찾기
   var labels = {
     exec: '임원공간', emp: '업무공간', conf: '회의공간',
     lg: '휴게공간', oa: '지원공간'
   };
-  var diffs = [];
-  Object.keys(pct).forEach(function(k) {
-    diffs.push({ key: k, diff: pct[k] - avg[k], abs: Math.abs(pct[k] - avg[k]) });
-  });
-  diffs.sort(function(a, b) { return b.abs - a.abs; });
 
   var pick = function(arr) { return arr[Math.floor(Math.random() * arr.length)]; };
 
-  // 임원/업무공간 제외 — 회의/휴게/지원공간 위주로 분석
+  // ── 편차 계산: 회의/휴게/지원 위주 ──
   var targetKeys = ['conf', 'lg', 'oa'];
   var diffs = [];
   targetKeys.forEach(function(k) {
@@ -4277,73 +4274,53 @@ function generateAIAnalysis(d) {
 
   var top = diffs[0];
 
-  // ── 첫 문장: 가장 두드러진 특징 ──
-  var sentence1;
-  if (top.abs < 3) {
-    // 전반적으로 균형
-    sentence1 = pick([
-      subject + ' 공간은 전반적으로 국내 기업 평균에 근접한 균형 잡힌 구성을 보입니다.',
-      subject + ' 공간 구성은 국내 평균과 비교해 고르게 분포되어 있어 안정적인 배치를 갖추고 있습니다.',
-      subject + ' 공간은 특정 영역에 치우치지 않고 평균 수준에서 균형을 이루고 있습니다.'
-    ]);
+  // ── 최대 편차가 2%p 미만이면 균형형 ──
+  var THRESHOLD = 2.0;
+
+  var sentence1, sentence2;
+
+  if (top.abs < THRESHOLD) {
+    // 균형형: 편차가 작은 공간들의 특징을 중립적으로 서술
+    var highKeys = diffs.filter(function(d) { return d.diff > 0; });
+    var lowKeys  = diffs.filter(function(d) { return d.diff < 0; });
+
+    sentence1 = subject + ' 공간 구성은 국내기업 평균과 전반적으로 유사한 수준입니다.';
+
+    var desc = '';
+    if (highKeys.length > 0 && lowKeys.length > 0) {
+      var highName = labels[highKeys[0].key];
+      var lowName  = labels[lowKeys[0].key];
+      desc = highName + '은 평균보다 다소 여유 있게, ' + lowName + '은 다소 효율적으로 계획되어 있으나 전체적으로 큰 편차 없이 균형 있게 구성되어 있습니다.';
+    } else {
+      desc = '전체 공간이 기업평균과 유사한 수준으로 고르게 계획되어 있습니다.';
+    }
+
+    sentence2 = desc + ' 실제 이전 단계에서는 분석된 데이터를 바탕으로 후보 사무실에서 계획한 공간 구성이 가능한지 Test-Fit과 레이아웃 설계를 통해 구체화할 수 있습니다.';
+
   } else {
-    var name = labels[top.key];
+    // 편차형: 가장 큰 차이를 보이는 공간 중심으로 서술
+    var name   = labels[top.key];
+    var ourVal = pct[top.key].toFixed(1);
     var avgVal = avg[top.key].toFixed(1);
+    var diffVal = Math.abs(top.diff).toFixed(1);
+
     if (top.diff > 0) {
-      // 평균보다 높음
-      sentence1 = pick([
-        subject + ' 공간은 ' + name + ' 비중이 국내 평균(' + avgVal + '%)보다 높게 구성되어 있습니다.',
-        subject + ' 공간 분석 결과, ' + name + '의 비중이 국내 평균(' + avgVal + '%) 대비 다소 높은 편으로 나타났습니다.',
-        subject + ' 공간에서는 ' + name + '이 국내 평균(' + avgVal + '%)보다 넉넉하게 배치되어 있습니다.'
+      sentence1 = subject + ' 공간에서 ' + name + '은 ' + ourVal + '%로, 국내 기업 평균(' + avgVal + '%)보다 ' + diffVal + '%p 높게 계획되었습니다.';
+      sentence2 = pick([
+        '해당 공간을 상대적으로 중시하는 조직 문화나 업무 방식이 반영된 구성입니다. 실제 이전 단계에서 Test-Fit을 통해 구체적인 레이아웃을 확인해보세요.',
+        '이 구성이 조직에 적합한지는 실제 사용 빈도와 업무 방식을 기준으로 전문가와 함께 검토하면 더욱 명확해집니다.',
       ]);
     } else {
-      // 평균보다 낮음
-      sentence1 = pick([
-        subject + ' 공간은 ' + name + ' 비중이 국내 평균(' + avgVal + '%)보다 낮은 편입니다.',
-        subject + ' 공간 분석 결과, ' + name + '의 비중이 국내 평균(' + avgVal + '%) 대비 다소 부족한 것으로 나타났습니다.',
-        subject + ' 공간에서는 ' + name + '이 국내 평균(' + avgVal + '%)에 비해 여유가 적은 편입니다.'
+      sentence1 = subject + ' 공간에서 ' + name + '은 ' + ourVal + '%로, 국내 기업 평균(' + avgVal + '%)보다 ' + diffVal + '%p 낮게 계획되었습니다.';
+      sentence2 = pick([
+        '다른 공간을 우선적으로 확보한 구성입니다. 실제 운영에서 해당 공간이 충분한지 레이아웃 단계에서 함께 확인해보세요.',
+        '조직의 업무 특성에 따라 적합한 구성일 수 있습니다. 실제 이용 빈도를 기준으로 전문가와 함께 검토해보세요.',
       ]);
     }
   }
 
-  // ── 둘째 문장: 제안 ──
-  var sentence2;
-  if (top.abs < 3) {
-    sentence2 = pick([
-      '세부 동선과 가구 배치를 최적화하면 공간 효율을 한층 끌어올릴 수 있습니다.',
-      '현재의 균형을 유지하면서 디테일한 레이아웃을 다듬으면 더욱 완성도 높은 공간이 됩니다.'
-    ]);
-  } else if (top.key === 'conf' && top.diff < 0) {
-    sentence2 = pick([
-      '협업이 잦은 조직이라면 회의공간 보강을 검토해볼 수 있습니다.',
-      '회의실 수를 늘리거나 소형 회의실을 추가하면 업무 효율이 높아집니다.'
-    ]);
-  } else if (top.key === 'conf' && top.diff > 0) {
-    sentence2 = pick([
-      '일부 회의실을 포커스룸이나 협업 라운지로 전환하면 공간 다양성이 높아집니다.',
-      '소규모 집중 공간(폰부스·포커스룸)으로 전환하면 더 효율적인 구성이 됩니다.'
-    ]);
-  } else if (top.key === 'lg' && top.diff < 0) {
-    sentence2 = pick([
-      '구성원의 만족도를 높이는 휴게공간 확충을 검토해볼 수 있습니다.',
-      '최근 직원 복지와 협업 문화 강화로 휴게공간 비중을 늘리는 기업이 증가하고 있습니다.'
-    ]);
-  } else if (top.key === 'lg' && top.diff > 0) {
-    sentence2 = '충분한 휴게공간을 갖춘 만큼 동선과 가구 배치를 최적화하면 더욱 효과적입니다.';
-  } else if (top.key === 'oa' && top.diff < 0) {
-    sentence2 = pick([
-      'OA존·탕비·수납공간 확충을 통해 업무 동선을 개선할 수 있습니다.',
-      '지원공간이 부족하면 업무 동선 혼잡으로 이어질 수 있어 보강이 필요합니다.'
-    ]);
-  } else {
-    sentence2 = pick([
-      '공간 활용 목적에 맞춰 비중을 조정하면 더 효율적인 배치가 가능합니다.',
-      '조직의 업무 특성을 반영해 구성을 다듬으면 공간 효율이 높아집니다.'
-    ]);
-  }
-
-  // ── 마무리 문장: 컨설팅 유도 ──
-  var sentence3 = '공간 전문가가 ' + subject + ' 데이터를 바탕으로 맞춤형 레이아웃 설계를 지원해 드립니다.';
+  // ── 마무리 문장 ──
+  var sentence3 = subject + ' 데이터를 바탕으로 공간 전문가가 맞춤형 레이아웃 설계와 Test-Fit을 지원해 드립니다.';
 
   el.textContent = sentence1 + ' ' + sentence2 + ' ' + sentence3;
 }
@@ -5159,32 +5136,92 @@ function renderAnalysis() {
     var DOT_OK     = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#7DD8FF;margin-right:6px;"></span>';
     var HL = 'color:#4DBAFF;';
     var msgs = [];
+
+    // ── 임원공간 ──
+    var execDiff = (OUR.exec - AVG.exec).toFixed(1);
+    var execAbs  = Math.abs(OUR.exec - AVG.exec).toFixed(1);
     if (OUR.exec - AVG.exec > 2)
-      msgs.push(DOT_STRONG + '<b>임원공간</b>이 기업평균(8.2%)보다 <b style="' + HL + '">' + (OUR.exec-AVG.exec).toFixed(1) + '%p 높습니다.</b> 임원실 규모 또는 개수 조정을 검토해보세요.<br><span style="color:#7DD8FF;margin-left:14px;">→ 소형 임원실(3.3평) 1개 줄이면 라운지로 전환 가능해요</span>');
+      msgs.push(DOT_MID +
+        '<b>임원공간</b>은 ' + OUR.exec.toFixed(1) + '%로 기업평균(8.2%)보다 <b style="' + HL + '">' + execDiff + '%p 높게</b> 계획되었습니다. ' +
+        '임원 직급 구성이 상대적으로 많거나, 임원실 규모를 여유 있게 설정한 구성입니다. ' +
+        '<span style="color:#7DD8FF;font-size:11px;">레이아웃 단계에서 임원공간 배치가 전체 동선에 미치는 영향을 함께 확인하세요.</span>');
     else if (OUR.exec - AVG.exec < -2)
-      msgs.push(DOT_OK + '<b>임원공간</b>이 기업평균(8.2%)보다 <b style="' + HL + '">' + Math.abs(OUR.exec-AVG.exec).toFixed(1) + '%p 효율적으로</b> 배분되어 있습니다.');
-    else msgs.push(DOT_OK + '<b>임원공간</b> 비율이 기업평균(8.2%)과 유사합니다. 적정 수준입니다.');
+      msgs.push(DOT_OK +
+        '<b>임원공간</b>은 ' + OUR.exec.toFixed(1) + '%로 기업평균(8.2%)보다 <b style="' + HL + '">' + execAbs + '%p 낮게</b> 계획되었습니다. ' +
+        '업무공간 또는 협업공간을 상대적으로 확보한 구성입니다.');
+    else
+      msgs.push(DOT_OK +
+        '<b>임원공간</b>은 ' + OUR.exec.toFixed(1) + '%로 기업평균(8.2%)과 유사한 수준입니다. ' +
+        '일반적인 기업 구성 범위 내에 있습니다.');
 
+    // ── 업무공간 ──
+    var empDiff = (OUR.emp - AVG.emp).toFixed(1);
+    var empAbs  = Math.abs(OUR.emp - AVG.emp).toFixed(1);
     if (OUR.emp - AVG.emp > 3)
-      msgs.push(DOT_OK + '<b>업무공간</b>이 평균(27.2%)보다 <b style="' + HL + '">' + (OUR.emp-AVG.emp).toFixed(1) + '%p 넓어</b> 직원 1인당 충분한 업무 환경이 확보됩니다.');
+      msgs.push(DOT_OK +
+        '<b>업무공간</b>은 ' + OUR.emp.toFixed(1) + '%로 기업평균(27.2%)보다 <b style="' + HL + '">' + empDiff + '%p 높게</b> 계획되었습니다. ' +
+        '직원 1인당 업무 환경을 넉넉하게 확보한 구성입니다.');
     else if (OUR.emp - AVG.emp < -3)
-      msgs.push(DOT_STRONG + '<b>업무공간</b>이 평균(27.2%)보다 <b style="' + HL + '">' + Math.abs(OUR.emp-AVG.emp).toFixed(1) + '%p 부족합니다.</b> 팀원석 배치 방식 또는 규모 재검토를 권장합니다.');
-    else msgs.push(DOT_OK + '<b>업무공간</b> 비율이 적정 범위 내에 있습니다.');
+      msgs.push(DOT_MID +
+        '<b>업무공간</b>은 ' + OUR.emp.toFixed(1) + '%로 기업평균(27.2%)보다 <b style="' + HL + '">' + empAbs + '%p 낮게</b> 계획되었습니다. ' +
+        '좌석 수 또는 책상 규격에 따라 실제 업무 환경이 다를 수 있습니다. ' +
+        '<span style="color:#7DD8FF;font-size:11px;">레이아웃 단계에서 1인당 실사용 면적을 확인하는 것이 좋습니다.</span>');
+    else
+      msgs.push(DOT_OK +
+        '<b>업무공간</b>은 ' + OUR.emp.toFixed(1) + '%로 기업평균(27.2%)과 유사한 수준입니다.');
 
+    // ── 회의공간 ──
+    var confDiff = (OUR.conf - AVG.conf).toFixed(1);
+    var confAbs  = Math.abs(OUR.conf - AVG.conf).toFixed(1);
     if (OUR.conf - AVG.conf < -2)
-      msgs.push(DOT_STRONG + '<b>회의공간</b>이 평균(11.7%)보다 <b style="' + HL + '">' + Math.abs(OUR.conf-AVG.conf).toFixed(1) + '%p 부족합니다.</b> 소형 회의실 추가를 검토해보세요.<br><span style="color:#7DD8FF;margin-left:14px;">→ 6인 회의실 1개 추가 시 약 2.2평 필요해요</span>');
+      msgs.push(DOT_MID +
+        '<b>회의공간</b>은 ' + OUR.conf.toFixed(1) + '%로 기업평균(11.7%)보다 <b style="' + HL + '">' + confAbs + '%p 낮게</b> 계획되었습니다. ' +
+        '업무 특성상 회의 빈도가 낮은 조직이라면 적합할 수 있습니다. ' +
+        '<span style="color:#7DD8FF;font-size:11px;">실제 회의 빈도와 참석 인원을 기준으로 충분한지 확인하세요.</span>');
     else if (OUR.conf - AVG.conf > 2)
-      msgs.push(DOT_MID + '<b>회의공간</b>이 평균(11.7%)보다 <b>' + (OUR.conf-AVG.conf).toFixed(1) + '%p 많습니다.</b> 일부를 포커스룸·라운지로 전환하면 효율적입니다.<br><span style="color:#7DD8FF;margin-left:14px;">→ 회의실 1개를 포커스룸(1.5평)으로 전환 시 공간 효율이 높아져요</span>');
-    else msgs.push(DOT_OK + '<b>회의공간</b> 비율이 적정 범위(11~13%) 내에 있습니다.');
+      msgs.push(DOT_OK +
+        '<b>회의공간</b>은 ' + OUR.conf.toFixed(1) + '%로 기업평균(11.7%)보다 <b style="' + HL + '">' + confDiff + '%p 높게</b> 계획되었습니다. ' +
+        '협업과 회의가 많은 조직 문화를 반영한 구성입니다.');
+    else
+      msgs.push(DOT_OK +
+        '<b>회의공간</b>은 ' + OUR.conf.toFixed(1) + '%로 기업평균(11.7%)과 유사한 수준입니다.');
 
+    // ── 휴게공간 ──
+    var lgDiff = (OUR.lg - AVG.lg).toFixed(1);
+    var lgAbs  = Math.abs(OUR.lg - AVG.lg).toFixed(1);
     if (OUR.lg === 0)
-      msgs.push(DOT_STRONG + '<b>휴게공간이 계획되어 있지 않습니다.</b> 기업평균 6.6% 기준, 오픈라운지 도입을 강력히 권고합니다.<br><span style="color:#7DD8FF;margin-left:14px;">→ 소형 라운지(5.2평) 1개로 직원 협업·휴식 공간을 확보해보세요</span>');
+      msgs.push(DOT_MID +
+        '<b>휴게공간</b>이 계획되어 있지 않습니다. ' +
+        '기업평균은 전용면적의 6.6%를 휴게·협업공간으로 구성합니다. ' +
+        '<span style="color:#7DD8FF;font-size:11px;">직원 복지와 비공식 협업을 위한 공간 확보를 검토해보세요.</span>');
     else if (OUR.lg - AVG.lg < -2)
-      msgs.push(DOT_MID + '<b>휴게공간</b>이 평균(6.6%)보다 <b>' + Math.abs(OUR.lg-AVG.lg).toFixed(1) + '%p 적습니다.</b> 라운지 확충으로 직원 만족도를 높일 수 있습니다.<br><span style="color:#7DD8FF;margin-left:14px;">→ 중형 라운지(6.0평) 1개 추가를 권장해요</span>');
-    else msgs.push(DOT_OK + '<b>휴게공간</b> 비율이 적정 범위 내에 있습니다.');
+      msgs.push(DOT_MID +
+        '<b>휴게공간</b>은 ' + OUR.lg.toFixed(1) + '%로 기업평균(6.6%)보다 <b>' + lgAbs + '%p 낮게</b> 계획되었습니다. ' +
+        '업무공간 확보를 우선한 구성입니다. ' +
+        '<span style="color:#7DD8FF;font-size:11px;">직원 만족도와 비공식 협업 공간의 필요성을 함께 고려해보세요.</span>');
+    else if (OUR.lg - AVG.lg > 2)
+      msgs.push(DOT_OK +
+        '<b>휴게공간</b>은 ' + OUR.lg.toFixed(1) + '%로 기업평균(6.6%)보다 <b style="' + HL + '">' + lgDiff + '%p 높게</b> 계획되었습니다. ' +
+        '직원 복지와 협업 문화를 중시하는 공간 구성입니다.');
+    else
+      msgs.push(DOT_OK +
+        '<b>휴게공간</b>은 ' + OUR.lg.toFixed(1) + '%로 기업평균(6.6%)과 유사한 수준입니다.');
 
+    // ── 지원공간 ──
+    var storDiff = (OUR.stor - AVG.stor).toFixed(1);
+    var storAbs  = Math.abs(OUR.stor - AVG.stor).toFixed(1);
     if (OUR.stor - AVG.stor < -3)
-      msgs.push(DOT_MID + '<b>지원공간(탕비·수납)</b>이 평균(12.7%)보다 부족합니다. OA존·공용수납 배치를 추가로 검토해보세요.<br><span style="color:#7DD8FF;margin-left:14px;">→ 컴팩트 OA존(1.5평) 또는 탕비공간(1.5평) 추가를 권장해요</span>');
+      msgs.push(DOT_MID +
+        '<b>지원공간</b>은 ' + OUR.stor.toFixed(1) + '%로 기업평균(12.7%)보다 <b>' + storAbs + '%p 낮게</b> 계획되었습니다. ' +
+        '업무공간을 상대적으로 확보한 대신 지원공간을 압축한 구성입니다. ' +
+        '<span style="color:#7DD8FF;font-size:11px;">레이아웃 단계에서 수납·OA·탕비공간이 충분히 확보되는지 확인하세요.</span>');
+    else if (OUR.stor - AVG.stor > 3)
+      msgs.push(DOT_OK +
+        '<b>지원공간</b>은 ' + OUR.stor.toFixed(1) + '%로 기업평균(12.7%)보다 <b style="' + HL + '">' + storDiff + '%p 높게</b> 계획되었습니다. ' +
+        '수납·탕비·OA공간을 여유 있게 확보한 구성입니다.');
+    else
+      msgs.push(DOT_OK +
+        '<b>지원공간</b>은 ' + OUR.stor.toFixed(1) + '%로 기업평균(12.7%)과 유사한 수준입니다.');
 
     analysisEl.innerHTML = msgs.join('<br>');
   }
@@ -5265,13 +5302,13 @@ function renderConfAnalysis(d) {
   var status, sc, sb, statusMsg;
   if (confCount === 0) {
     status='⚠ 미계획'; sc='#4AB8FF'; sb='rgba(74,158,255,0.1)';
-    statusMsg='회의실이 계획되어 있지 않습니다. 직원 수 기준 최소 '+recMin+'개를 권장합니다.';
+    statusMsg='회의실이 계획되어 있지 않습니다. 직원 수 기준으로 ' + recMin + '개 이상의 회의실을 검토해보세요.';
   } else if (confCount < recMin) {
-    status='🔴 부족'; sc='#4AB8FF'; sb='rgba(74,158,255,0.1)';
-    statusMsg='현재 '+confCount+'개는 직원 수 대비 부족합니다. '+(recMin-confCount)+'개 이상 추가를 권장합니다.';
+    status='🔴 검토 필요'; sc='#4AB8FF'; sb='rgba(74,158,255,0.1)';
+    statusMsg='현재 ' + confCount + '개는 직원 수 대비 다소 적은 편입니다. 회의 빈도와 인원을 고려해 ' + recMin + '개 이상이 적합한지 확인해보세요.';
   } else if (confCount > recMax+1) {
-    status='🟡 과다'; sc='#7DD8FF'; sb='rgba(125,216,255,0.1)';
-    statusMsg='회의실이 다소 많은 편입니다. 일부를 포커스룸·라운지로 전환하면 공간 효율이 높아집니다.';
+    status='🟡 여유 있음'; sc='#7DD8FF'; sb='rgba(125,216,255,0.1)';
+    statusMsg='회의실이 상대적으로 여유 있게 계획되어 있습니다. 협업과 회의가 많은 조직이라면 적합한 구성입니다.';
   } else {
     status='🟢 적정'; sc='#1A7FD4'; sb='rgba(26,127,212,0.1)';
     statusMsg='직원 수 대비 적정 수준의 회의실이 계획되어 있습니다.';
