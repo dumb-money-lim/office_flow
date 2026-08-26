@@ -13,12 +13,10 @@
   gtag('js', new Date());
   gtag('config', 'G-PR98EB6S3K');
 
-  // ── GA4 이벤트 헬퍼 ──
   function gtagEvent(name, params) {
     try { gtag('event', name, params || {}); } catch(e) {}
   }
 
-  // scroll_90: 페이지 90% 스크롤
   (function() {
     var fired = false;
     window.addEventListener('scroll', function() {
@@ -31,15 +29,11 @@
     }, { passive: true });
   })();
 
-  // time_on_page_60s: 60초 체류
   setTimeout(function() { gtagEvent('time_on_page_60s'); }, 60000);
 
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ═══════════════════════════════════════
-     PRIMARY SEO META
-════════════════════════════════════════ -->
 <title>오피스플로우(OFFICE FLOW) | 사무실 이전·공간계획 플랫폼</title>
 <meta name="description" content="오피스플로우(OFFICE FLOW)는 사무실 이전을 준비하는 기업의 총무·경영지원 담당자를 위한 사무공간 기획 플랫폼입니다. 직원 수와 공간 구성을 입력하면 필요한 전용면적과 임대면적을 계산합니다.">
 <meta name="keywords" content="사무실 이전, 오피스 이전, 사무실 면적 계산, 오피스 면적, 사옥 이전, 사무실 평수, 오피스 탐색기, 사무실 몇 평, 총무 담당자, 오피스 컨설팅, 사무실 구하기, 오피스 면적 계획, 사무실 인테리어, 퍼시스, 오피스 가구">
@@ -48,9 +42,6 @@
 <meta name="googlebot" content="index, follow">
 <link rel="canonical" href="https://office-flow.co.kr/">
 
-<!-- ═══════════════════════════════════════
-     OPEN GRAPH (카카오톡·페이스북 공유)
-════════════════════════════════════════ -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OfficeFlow">
 <meta property="og:title" content="오피스플로우(OFFICE FLOW) | 사무실 이전·공간계획 플랫폼">
@@ -62,9 +53,6 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="OfficeFlow — 사무실 이전 공간 분석 무료 리포트">
 
-<!-- ═══════════════════════════════════════
-     TWITTER CARD
-════════════════════════════════════════ -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="우리 회사에 딱 맞는 사무실 규모, 1분 만에 — OfficeFlow">
 <meta name="twitter:description" content="사무실 이전을 검토 중이신가요? 직원 수와 공간 구성만 입력하면 오피스 규모와 공간 계획을 분석하고 무료 리포트를 제공해드립니다.">
@@ -73,16 +61,9 @@
 <meta name="google-site-verification" content="aIaEAyoCSNymhbybVDq8lw4mOQY0I_NN2MlVIKtEDvQ" />
 <meta name="naver-site-verification" content="a29f5b7eb37bb247852cc0917690b84e52498b7c" />
 
-<!-- ═══════════════════════════════════════
-     FAVICON
-════════════════════════════════════════ -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231A1A2E'/><text y='.9em' font-size='70' x='12'>🏢</text></svg>">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231A1A2E'/><text y='.9em' font-size='70' x='12'>🏢</text></svg>">
 
-<!-- ═══════════════════════════════════════
-     구조화 데이터 (JSON-LD)
-     → 구글 리치결과·FAQ 카드 노출
-════════════════════════════════════════ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -203,17 +184,11 @@
 }
 </script>
 
-<!-- ═══════════════════════════════════════
-     성능 최적화
-════════════════════════════════════════ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=DM+Sans:wght@400;500;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet"></noscript>
 <style>
-/* ─────────────────────────────────────────────
-   RESET & BASE
-───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -224,7 +199,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ─── PC 앱 컨테이너 ─── */
 #app-shell {
   max-width: var(--max);
   margin: 0 auto;
@@ -232,49 +206,38 @@ body {
   min-height: 100vh;
 }
 
-/* ─────────────────────────────────────────────
-   OFFICE FLOW BRAND COLOR SYSTEM
-   Source: Brand Reel Color Extraction
-───────────────────────────────────────────── */
 :root {
-  /* Core */
   --brand:      #09090B;
   --bg:         #09090B;
   --bg-deep:    #050C0E;
   --card:       #0F1419;
   --card-hover: #141C22;
 
-  /* Text */
   --text:       #FFFFFF;
   --text-sub:   #DDDDDD;
   --muted:      #999999;
   --muted-dark: #888888;
 
-  /* Glow / Accent */
   --glow-core:  #00D4FF;
   --glow-mid:   #1A7FD4;
   --glow-dot:   #4DBAFF;
   --accent:     #4A9EFF;
   --accent2:    #00D4FF;
 
-  /* Status */
   --green:      #52C41A;
   --green-dim:  #4CAF50;
 
-  /* Border */
   --border:     rgba(255,255,255,0.08);
   --border-mid: rgba(255,255,255,0.13);
   --border-bright: rgba(255,255,255,0.22);
   --border-line: rgba(58,58,58,0.8);
 
-  /* Teal glow bg */
   --teal-glow:  rgba(0,102,85,0.35);
 
   --radius: 14px;
   --max:    720px;
 }
 
-/* ── S4 리포트 전용 라이트 테마 (PDF 출력 안전) ── */
 #s4 {
   --bg:      #09090B;
   --card:    #0F1419;
@@ -290,20 +253,11 @@ body {
 #s4 .email-note { background: rgba(74,158,255,0.07); border-color: rgba(74,158,255,0.3); }
 #s4 .email-note p { color: var(--text-sub, #DDDDDD); }
 
-/* ─────────────────────────────────────────────
-   LAYOUT
-───────────────────────────────────────────── */
 .wrap { max-width: var(--max); margin: 0 auto; }
 
-/* ─────────────────────────────────────────────
-   SCREENS
-───────────────────────────────────────────── */
 .screen { display: none; }
 .screen.active { display: block; }
 
-/* ─────────────────────────────────────────────
-   TOP NAV
-───────────────────────────────────────────── */
 .topnav {
   background: rgba(9,9,11,0.92);
   backdrop-filter: blur(12px);
@@ -339,9 +293,6 @@ body {
 }
 .nav-step { font-size: 12px; color: rgba(255,255,255,0.35); }
 
-/* ─────────────────────────────────────────────
-   STEP BAR
-───────────────────────────────────────────── */
 .step-bar {
   background: rgba(9,9,11,0.95);
   border-top: 1px solid var(--border-line);
@@ -385,16 +336,12 @@ body {
 
 .step-divider { width: 20px; height: 1px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
 
-/* ─────────────────────────────────────────────
-   HERO
-───────────────────────────────────────────── */
 .hero {
   background: #050C0E;
   padding: 48px 24px 44px;
   position: relative;
   overflow: hidden;
 }
-/* Teal glow — S04/S06 배경과 동일 */
 .hero::before {
   content: '';
   position: absolute;
@@ -421,7 +368,6 @@ body {
   pointer-events: none;
   box-shadow: 0 0 20px rgba(77,186,255,0.1);
 }
-/* 동심원 레이더 효과 */
 .hero-deco::before {
   content: '';
   position: absolute; inset: 18px;
@@ -494,9 +440,6 @@ body {
   box-shadow: 0 0 16px rgba(77,186,255,0.12);
 }
 
-/* ─────────────────────────────────────────────
-   BUTTONS
-───────────────────────────────────────────── */
 .btn-primary {
   background: transparent;
   color: var(--glow-dot);
@@ -542,9 +485,6 @@ body {
 }
 .btn-secondary.full { width: 100%; justify-content: center; }
 
-/* ─────────────────────────────────────────────
-   SECTION
-───────────────────────────────────────────── */
 .section { padding: 28px 24px; }
 .section + .section { padding-top: 0; }
 .section-title {
@@ -557,9 +497,6 @@ body {
 }
 .section-sub { font-size: 14px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
 
-/* ─────────────────────────────────────────────
-   CARDS
-───────────────────────────────────────────── */
 .card {
   background: var(--card);
   border-radius: var(--radius);
@@ -614,9 +551,6 @@ body {
   font-weight: 500;
 }
 
-/* ─────────────────────────────────────────────
-   COUNTER
-───────────────────────────────────────────── */
 .counter-wrap { display: flex; align-items: center; gap: 12px; }
 .counter-box {
   display: flex;
@@ -652,7 +586,6 @@ body {
 .counter-unit { font-size: 14px; color: var(--muted); }
 .counter-hint { font-size: 12px; color: var(--muted); margin-top: 7px; line-height: 1.5; }
 
-/* sub-counter (for exec/conf rows) */
 .sub-counter-row {
   display: flex;
   align-items: center;
@@ -681,9 +614,6 @@ body {
   outline: none; background: var(--card); color: #FFFFFF;
 }
 
-/* ─────────────────────────────────────────────
-   CHIPS
-───────────────────────────────────────────── */
 .chip-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
 .chip {
   padding: 8px 16px;
@@ -705,9 +635,6 @@ body {
   box-shadow: 0 0 10px rgba(77,186,255,0.15);
 }
 
-/* ─────────────────────────────────────────────
-   TOTAL BANNER
-───────────────────────────────────────────── */
 .total-banner {
   background: #050C0E;
   border-radius: var(--radius);
@@ -737,9 +664,6 @@ body {
 .total-banner-m2 { color: rgba(255,255,255,0.4); font-size: 14px; margin-top: 4px; }
 .total-banner-note { color: rgba(255,255,255,0.28); font-size: 11px; margin-top: 6px; }
 
-/* ─────────────────────────────────────────────
-   GATE SCREEN
-───────────────────────────────────────────── */
 .preview-wrap {
   background: var(--card);
   border-radius: var(--radius);
@@ -797,9 +721,6 @@ body {
 .form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .privacy-note { font-size: 11px; color: var(--muted); margin-top: 10px; display: flex; align-items: center; gap: 5px; }
 
-/* ─────────────────────────────────────────────
-   REPORT
-───────────────────────────────────────────── */
 .report-header {
   background: var(--brand);
   padding: 24px;
@@ -891,9 +812,6 @@ body {
 }
 .email-note p { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-/* ─────────────────────────────────────────────
-   REAL ESTATE
-───────────────────────────────────────────── */
 .re-notice {
   background: rgba(82,196,26,0.08);
   border-radius: var(--radius);
@@ -925,9 +843,6 @@ body {
 }
 .pm-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 8px; }
 
-/* ─────────────────────────────────────────────
-   CONCEPT
-───────────────────────────────────────────── */
 .wait-bar {
   background: #050C0E;
   border-top: 1px solid var(--border-line);
@@ -987,9 +902,6 @@ body {
 .concept-info-name { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
 .concept-info-text { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
-/* ─────────────────────────────────────────────
-   COST
-───────────────────────────────────────────── */
 .cost-header {
   background: var(--brand);
   padding: 22px 24px;
@@ -1041,9 +953,6 @@ body {
 .fursys-tip-title { font-size: 12px; font-weight: 700; color: var(--glow-dot); margin-bottom: 3px; }
 .fursys-tip-text { font-size: 12px; color: var(--text-sub); line-height: 1.6; }
 
-/* ─────────────────────────────────────────────
-   FINAL CTA
-───────────────────────────────────────────── */
 .final-hero {
   background: #050C0E;
   border-top: 1px solid var(--border-mid);
@@ -1096,9 +1005,6 @@ body {
 .restart-area { text-align: center; padding: 24px 0 8px; }
 .restart-area p { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
 
-/* ─────────────────────────────────────────────
-   LANDING PAGE EXTRAS
-───────────────────────────────────────────── */
 .stat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
 .stat-card {
   background: var(--card);
@@ -1127,9 +1033,6 @@ body {
 .target-item:last-child { margin-bottom: 0; }
 .target-arrow { color: var(--glow-dot); font-size: 16px; font-weight: 700; flex-shrink: 0; }
 
-/* ─────────────────────────────────────────────
-   FOOTER
-───────────────────────────────────────────── */
 footer {
   background: #000000;
   border-top: 1px solid var(--border-line);
@@ -1139,16 +1042,6 @@ footer {
 }
 footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
-/* ─────────────────────────────────────────────
-   RESPONSIVE — PC
-───────────────────────────────────────────── */
-
-
-
-
-/* ─────────────────────────────────────────────
-   UTILITY
-───────────────────────────────────────────── */
 .mt8  { margin-top: 8px; }
 .mt12 { margin-top: 12px; }
 .mt16 { margin-top: 16px; }
@@ -1159,11 +1052,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 .row > * { flex: 1; }
 .divider { height: 1px; background: var(--border); margin: 16px 0; }
 
-/* ═══════════════════════════════════════
-   RESPONSIVE — MOBILE FIRST
-═══════════════════════════════════════ */
-
-/* 기본(모바일 ~480px): 단일 컬럼, 큰 터치 영역 */
 @media (max-width: 480px) {
   :root { --max: 100%; }
   body { background: var(--bg); }
@@ -1173,77 +1061,63 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   .section-title { font-size: 20px; }
   .section-sub { font-size: 13px; }
 
-  /* 3열 → 1열 */
   .grid-3col,
   [style*="grid-template-columns:1fr 1fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
 
-  /* 2열 유지 (가구 수량 요약, 스타일 이미지 등) */
   [style*="grid-template-columns:1fr 1fr"] {
     grid-template-columns: 1fr 1fr !important;
   }
 
-  /* 폰트 최소 크기 */
   [style*="font-size:9px"],
   [style*="font-size: 9px"] { font-size: 10px !important; }
   [style*="font-size:10px"],
   [style*="font-size: 10px"] { font-size: 11px !important; }
 
-  /* 버튼 터치 영역 */
   .btn-primary, .btn-secondary {
     min-height: 48px;
     font-size: 15px;
   }
 
-  /* 카드 패딩 */
   .card { padding: 14px 12px; }
   .cost-block { margin-bottom: 14px; }
   .cost-row { padding: 10px 0; }
 
-  /* S4 다음단계 3열 → 1열 */
   #s4 [style*="grid-template-columns:1fr 1fr 1fr"] {
     grid-template-columns: 1fr !important;
     gap: 8px !important;
   }
 
-  /* S5 권역별 3열 → 1열 */
   #s5 [style*="grid-template-columns:1fr 1fr 1fr"] {
     grid-template-columns: 1fr !important;
     gap: 6px !important;
   }
 
-  /* S7 비용 탭 */
   #s7 [style*="grid-template-columns:1fr 1fr"] {
     grid-template-columns: 1fr 1fr !important;
   }
 
-  /* S8 가구 테이블 헤더·행 */
   #s8 [style*="grid-template-columns:1fr 1fr 1fr"] {
     grid-template-columns: 1.5fr 1fr 1fr !important;
     font-size: 10px !important;
   }
 
-  /* S8 퍼시스 신뢰 배지 2×2 유지 */
   #s9 [style*="grid-template-columns:1fr 1fr"] {
     grid-template-columns: 1fr 1fr !important;
   }
 
-  /* 히어로 영역 */
   .hero { padding: 32px 20px 28px; }
   .hero-title { font-size: 26px; }
   .hero-sub { font-size: 13px; }
 
-  /* topnav */
   .topnav { padding: 14px 16px; }
   .logo { font-size: 16px; }
 
-  /* 보고서 카드 그리드 */
   #r-space-cards {
     grid-template-columns: 1fr !important;
   }
 
-  /* 비용 총계 */
   .cost-total {
     flex-direction: column;
     gap: 6px;
@@ -1251,24 +1125,20 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   }
   .cost-total-num { font-size: 22px; }
 
-  /* 입력 필드 */
   .form-input { font-size: 15px; min-height: 48px; }
   .adj-btn { width: 36px; height: 36px; font-size: 18px; }
 }
 
-/* 태블릿 (481px ~ 767px): 2열 레이아웃 */
 @media (min-width: 481px) and (max-width: 767px) {
   :root { --max: 600px; }
 
   .section { padding: 24px 20px; }
 
-  /* 3열 → 2열 */
   #s4 [style*="grid-template-columns:1fr 1fr 1fr"],
   #s5 [style*="grid-template-columns:1fr 1fr 1fr"] {
     grid-template-columns: 1fr 1fr !important;
   }
 
-  /* 보고서 카드 2열 유지 */
   #r-space-cards {
     grid-template-columns: 1fr 1fr !important;
   }
@@ -1278,7 +1148,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   }
 }
 
-/* PC (768px~): 여백·폰트 여유있게 */
 @media (min-width: 768px) {
   :root { --max: 680px; }
   body { background: #000000; }
@@ -1293,17 +1162,14 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   .section-title { font-size: 22px; }
   .card { padding: 18px; }
 
-  /* 보고서 카드 2열 */
   #r-space-cards {
     grid-template-columns: 1fr 1fr !important;
   }
 
-  /* S5 권역별 3열 유지 */
   #s5 [style*="grid-template-columns:1fr 1fr 1fr"] {
     grid-template-columns: 1fr 1fr 1fr !important;
   }
 
-  /* S4 다음단계 3열 유지 */
   #s4 [style*="grid-template-columns:1fr 1fr 1fr"] {
     grid-template-columns: 1fr 1fr 1fr !important;
   }
@@ -1316,7 +1182,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   .cost-total-num { font-size: 26px; }
 }
 
-/* 와이드 PC (1100px~): 최대 860px 컨테이너 */
 @media (min-width: 1100px) {
   :root { --max: 860px; }
   body { background: #000000; }
@@ -1328,7 +1193,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
   .section { padding: 36px 32px; }
 
-  /* 2열 레이아웃 활용 */
   .two-col-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1351,10 +1215,8 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   50%      { transform: scale(1.08); box-shadow: 0 0 52px rgba(0,212,255,0.85); }
 }
 
-/* ═══════════════ S-NEXT 원스톱 서비스 ═══════════════ */
 .snext-wrap { padding-bottom: 40px; }
 
-/* HERO */
 .snext-hero { margin-bottom: 22px; }
 .snext-eyebrow {
   display: inline-flex; align-items: center; gap: 7px;
@@ -1389,7 +1251,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   margin: 0; max-width: 90%;
 }
 
-/* DATA DASHBOARD */
 .snext-dash {
   background: var(--brand);
   border-radius: 16px;
@@ -1441,7 +1302,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   margin: 4px 0;
 }
 
-/* MAIN CTA */
 .snext-cta {
   position: relative; overflow: hidden;
   background: rgba(5,12,14,0.95);
@@ -1524,7 +1384,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   margin-top: 11px; position: relative;
 }
 
-/* SOON SERVICES */
 .snext-soon-head {
   display: flex; align-items: center; gap: 12px;
   margin-bottom: 16px;
@@ -1586,13 +1445,11 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 }
 
 
-/* 단위 (숫자 강조) */
 .snext-unit {
   font-size: 14px; font-weight: 600;
   color: rgba(255,255,255,0.6);
   margin-left: 2px; letter-spacing: 0;
 }
-/* 잠긴 서비스 - 곧 열림 느낌 */
 .snext-svc { position: relative; }
 .snext-svc-soon {
   font-family: 'DM Sans', sans-serif;
@@ -1603,7 +1460,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 }
 .snext-svc-lock { display: none; }
 
-/* 오픈 예정 서비스 - 관심도 수집 */
 .snext-soon-guide {
   text-align: center; font-size: 15px; font-weight: 700;
   color: var(--accent); margin-bottom: 16px; letter-spacing: -0.2px;
@@ -1625,7 +1481,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 }
 .snext-svc.pop { animation: svcPop 0.3s ease; }
 
-/* ───── 종결 블록 ───── */
 .snext-closing {
   margin-top: 28px;
   padding: 28px 22px;
@@ -1673,7 +1528,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 }
 .snext-share-done.show { display: block; }
 
-/* ───── 브랜드 마크 (페이지 끝 신호) ───── */
 .snext-brand {
   margin-top: 32px; padding-top: 24px;
   border-top: 1px solid var(--border);
@@ -1699,13 +1553,12 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
 .dark-select { color-scheme: dark; }
 
-/* 공간 예시 보기 모달 - 이미지 영역 스크롤바 숨김 (스크롤 기능은 유지) */
 .fp-img-scroll {
-  scrollbar-width: none;     /* Firefox */
-  -ms-overflow-style: none;  /* IE/Edge legacy */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 .fp-img-scroll::-webkit-scrollbar {
-  display: none;             /* Chrome/Safari */
+  display: none;
   width: 0;
   height: 0;
 }
@@ -1742,7 +1595,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 </style>
 </head>
 <body>
-<!-- 인앱 브라우저 안내 배너 (아이폰용) -->
 <div id="inapp-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:99999;background:#1A1A2E;color:#fff;padding:14px 16px;box-shadow:0 2px 12px rgba(0,0,0,0.2);font-family:'Noto Sans KR',sans-serif;">
   <div style="display:flex;align-items:flex-start;gap:10px;max-width:720px;margin:0 auto;">
     <div style="flex:1;">
@@ -1760,9 +1612,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
 <div id="app-shell">
 
-<!-- ════════════════════════════════════════
-     SCREEN 1 — LANDING
-════════════════════════════════════════ -->
 <div id="s1" class="screen active">
   <nav class="topnav">
     <div class="logo" onclick="goHome()" style="cursor:pointer;">Office<span>.</span>Flow</div>
@@ -1803,13 +1652,16 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       <div class="target-item"><span class="target-arrow">→</span>직원 수 증가로 더 넓은 사무실이 필요한 기업</div>
       <div class="target-item"><span class="target-arrow">→</span>사무실 리뉴얼을 검토 중인 총무 담당자</div>
     </div>
+    <a href="/guide/office-relocation/" style="display:block;margin-top:14px;text-decoration:none;padding:16px 18px;border-radius:12px;background:rgba(74,158,255,0.05);border:1.5px dashed rgba(77,186,255,0.3);" onclick="gtagEvent('main_guide_click')">
+      <div style="font-size:13px;color:#DDDDDD;margin-bottom:6px;">사무실 이전, 무엇부터 결정해야 할까요?</div>
+      <div style="font-size:14px;font-weight:700;color:var(--glow-dot);">사무실 이전 준비 가이드 →</div>
+    </a>
   </div>
 
   <footer>
     <p>OFFICE.FLOW &nbsp;|&nbsp; 오피스 이전의 모든 흐름, 한 번에</p>
   </footer>
 
-  <!-- S1 하단 고정 시작 버튼 -->
   <div style="position:sticky;bottom:0;padding:12px 20px 24px;background:linear-gradient(transparent,rgba(9,9,11,0.92) 35%,#09090B);z-index:10;">
     <button class="btn-primary full" onclick="go('s2')" style="background:linear-gradient(135deg,#1A7FD4,#00D4FF);color:#fff;border:none;box-shadow:0 4px 24px rgba(0,212,255,0.35);font-size:16px;padding:18px;">
       지금 바로 시작하기 ›
@@ -1817,10 +1669,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   </div>
 </div>
 
-
-<!-- ════════════════════════════════════════
-     SCREEN 2 — 공간 입력
-════════════════════════════════════════ -->
 <div id="s2" class="screen">
   <nav class="topnav">
     <div class="logo" onclick="goHome()" style="cursor:pointer;">Office<span>.</span>Flow</div>
@@ -1835,7 +1683,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   </div>
 
   
-  <!-- 진행률 바 -->
   <div style="background:var(--bg);padding:12px 20px 0;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
       <div style="font-size:11px;font-weight:700;color:var(--muted);" id="s2-step-label">1 / 5단계</div>
@@ -1847,11 +1694,8 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
   <div class="section" style="padding-top:16px;">
 
-    <!-- ── STEP 1: 임원실 ── -->
     <div id="s2-step-1" style="display:block;">
-<!-- ── 1. 임원실 ── -->
-        <!-- 단계 안내 문구 -->
-    <div style="padding:16px 0 8px;">
+        <div style="padding:16px 0 8px;">
       <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">임원공간</span> 규모와 수량을 선택해 주세요.</div>
     </div>
 
@@ -1908,10 +1752,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-    <!-- ── STEP 2: 팀장석 ── -->
     <div id="s2-step-2" style="display:none;">
-<!-- ── 2. 업무공간 (팀장석 + 팀원석) ── -->
-    <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
       <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">업무공간</span> 유형을 선택해 주세요.</div>
     </div>
@@ -2038,8 +1879,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   </div>
 
     <div id="s2-step-3" style="display:none;">
-<!-- ── 5. 회의실 ── -->
-        <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
       <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">회의공간</span> 규모별 수량을 선택해 주세요.</div>
     </div>
@@ -2127,8 +1966,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   </div>
 
     <div id="s2-step-4" style="display:none;">
-<!-- ── 4. 오픈라운지 ── -->
-    <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
       <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">휴게공간</span> 규모를 선택해 주세요.</div>
     </div>
@@ -2176,8 +2013,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   </div>
 
     <div id="s2-step-5" style="display:none;">
-<!-- ── 5. 개인 집중공간 + 수납가구 + OA존·탕비공간 ── -->
-    <!-- 단계 안내 문구 -->
     <div style="padding:16px 0 8px;">
       <div style="font-weight:900;letter-spacing:-0.8px;line-height:1.5;color:#FFFFFF;"><span style="color:var(--accent);font-size:25px;">지원공간</span>을 설정해 주세요.</div>
     </div>
@@ -2297,9 +2132,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     SCREEN 2R — 공간 설정 결과
-════════════════════════════════════════ -->
 <div id="s2result" class="screen">
   <nav class="topnav">
     <div class="logo" onclick="goHome()" style="cursor:pointer;">Office<span>.</span>Flow</div>
@@ -2307,7 +2139,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
   <div class="section" style="padding-bottom:40px;">
 
-    <!-- 완료 헤더 -->
     <div style="text-align:center;padding:8px 0 28px;">
       <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#1A7FD4,#00D4FF);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:0 4px 20px rgba(0,212,255,0.35);">
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l6 6L22 8" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2316,7 +2147,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       <div style="font-size:13px;color:var(--muted);">입력하신 공간을 바탕으로 필요 면적을 계산했어요</div>
     </div>
 
-    <!-- STEP 1: 실제 업무공간 -->
     <div class="result-step" id="rs-step1" style="opacity:0;transform:translateY(16px);transition:all 0.5s ease;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
         <div style="width:22px;height:22px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;color:var(--accent);">1</div>
@@ -2331,12 +2161,10 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-    <!-- 화살표 -->
     <div class="result-arrow" id="rs-arrow1" style="opacity:0;transition:opacity 0.4s ease;text-align:center;padding:8px 0;">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M5 11l5 5 5-5" stroke="rgba(74,158,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
 
-    <!-- STEP 2: 통로 및 여유공간 -->
     <div class="result-step" id="rs-step2" style="opacity:0;transform:translateY(16px);transition:all 0.5s ease;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
         <div style="width:22px;height:22px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;color:var(--accent);">2</div>
@@ -2351,12 +2179,10 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-    <!-- 화살표 -->
     <div class="result-arrow" id="rs-arrow2" style="opacity:0;transition:opacity 0.4s ease;text-align:center;padding:8px 0;">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M5 11l5 5 5-5" stroke="rgba(74,158,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
 
-    <!-- STEP 3: 전용면적 -->
     <div class="result-step" id="rs-step3" style="opacity:0;transform:translateY(16px);transition:all 0.5s ease;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
         <div style="width:22px;height:22px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;color:var(--accent);">3</div>
@@ -2373,12 +2199,10 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-    <!-- 화살표 -->
     <div class="result-arrow" id="rs-arrow3" style="opacity:0;transition:opacity 0.4s ease;text-align:center;padding:8px 0;">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M5 11l5 5 5-5" stroke="rgba(74,158,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
 
-    <!-- STEP 4: 전용률 -->
     <div class="result-step" id="rs-step4" style="opacity:0;transform:translateY(16px);transition:all 0.5s ease;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
         <div style="width:22px;height:22px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;color:var(--accent);">4</div>
@@ -2405,12 +2229,10 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-    <!-- 화살표 -->
     <div class="result-arrow" id="rs-arrow4" style="opacity:0;transition:opacity 0.4s ease;text-align:center;padding:8px 0;">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M5 11l5 5 5-5" stroke="rgba(74,158,255,0.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
 
-    <!-- STEP 5: 임대면적 결론 -->
     <div class="result-step" id="rs-step5" style="opacity:0;transform:translateY(16px);transition:all 0.5s ease;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
         <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#1A7FD4,#00D4FF);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -2436,7 +2258,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-    <!-- 버튼 -->
     <div id="rs-buttons" style="opacity:0;transition:opacity 0.5s ease;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;">
       <button onclick="go('s2')" style="padding:12px 24px;border-radius:50px;border:1px solid rgba(77,186,255,0.35);background:transparent;font-size:14px;font-weight:700;color:var(--glow-dot);cursor:pointer;white-space:nowrap;transition:all 0.15s;">← 공간 설정</button>
       <button onclick="go('s3')" style="padding:12px 24px;border-radius:50px;background:linear-gradient(135deg,#1A7FD4,#00D4FF);border:none;font-size:14px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;box-shadow:0 4px 16px rgba(0,212,255,0.3);">보고서 요청하기 →</button>
@@ -2444,7 +2265,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
   </div>
 
-  <!-- 툴팁 팝업: 전용면적 -->
   <div id="tooltip-jeon" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:24px;" onclick="this.style.display='none'">
     <div style="background:#0F1419;border:1px solid rgba(74,158,255,0.3);border-radius:16px;padding:24px;max-width:340px;width:100%;" onclick="event.stopPropagation()">
       <div style="font-size:16px;font-weight:900;color:#FFFFFF;margin-bottom:12px;">전용면적이란?</div>
@@ -2457,7 +2277,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
   </div>
 
-  <!-- 툴팁 팝업: 전용률 -->
   <div id="tooltip-rate" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:24px;" onclick="this.style.display='none'">
     <div style="background:#0F1419;border:1px solid rgba(74,158,255,0.3);border-radius:16px;padding:24px;max-width:340px;width:100%;" onclick="event.stopPropagation()">
       <div style="font-size:16px;font-weight:900;color:#FFFFFF;margin-bottom:12px;">전용률이란?</div>
@@ -2473,7 +2292,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </div>
   </div>
 
-  <!-- 툴팁 팝업: 임대면적 -->
   <div id="tooltip-lease" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:24px;" onclick="this.style.display='none'">
     <div style="background:#0F1419;border:1px solid rgba(74,158,255,0.3);border-radius:16px;padding:24px;max-width:340px;width:100%;" onclick="event.stopPropagation()">
       <div style="font-size:16px;font-weight:900;color:#FFFFFF;margin-bottom:12px;">임대면적이란?</div>
@@ -2492,9 +2310,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
 </div>
 
-<!-- ════════════════════════════════════════
-     SCREEN 3 — 정보 게이트
-════════════════════════════════════════ -->
 <div id="s3" class="screen">
   <nav class="topnav">
     <div class="logo" onclick="goHome()" style="cursor:pointer;">Office<span>.</span>Flow</div>
@@ -2578,7 +2393,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       <div class="privacy-note">🔒 입력하신 정보는 공간 분석 보고서 발송 및 상담 안내 목적으로만 사용됩니다.</div>
     </div>
 
-    <!-- 개인정보 수집·이용 동의 -->
     <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:16px;">
       <div style="font-size:12px;font-weight:700;color:#FFFFFF;margin-bottom:8px;">개인정보 수집·이용 동의 <span style="color:var(--accent);">*</span><a href="privacy.html" target="_blank" style="font-size:11px;font-weight:600;color:var(--muted);margin-left:8px;text-decoration:underline;">처리방침 보기</a></div>
       <div style="font-size:11px;color:var(--muted);line-height:1.8;margin-bottom:10px;">
@@ -2600,18 +2414,13 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     SCREEN LOADING — 분석 중
-════════════════════════════════════════ -->
 <div id="s-loading" class="screen">
   <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;background:var(--bg);">
 
-    <!-- 로고 -->
     <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;letter-spacing:-0.5px;color:#FFFFFF;margin-bottom:40px;">
       OFFICE<span style="color:var(--glow-dot);">.</span>FLOW
     </div>
 
-    <!-- 애니메이션 아이콘 -->
     <div style="position:relative;width:110px;height:110px;margin-bottom:24px;display:flex;align-items:center;justify-content:center;">
       <div id="loading-ring1" style="position:absolute;width:110px;height:110px;border-radius:50%;border:2px dashed rgba(77,186,255,0.7);animation:loadingSpin 2.2s linear infinite;"></div>
       <div id="loading-ring2" style="position:absolute;width:94px;height:94px;border-radius:50%;border:1.5px dashed rgba(0,212,255,0.45);animation:loadingSpinReverse 3s linear infinite;"></div>
@@ -2628,7 +2437,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;margin-bottom:8px;color:#FFFFFF;">오피스 공간 분석 중</div>
     <div style="font-size:13px;color:var(--muted);margin-bottom:32px;">입력하신 데이터를 기반으로 최적 면적을 산출하고 있습니다</div>
 
-    <!-- 프로그레스 바 -->
     <div style="width:100%;max-width:280px;margin-bottom:28px;">
       <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
         <span style="font-size:11px;color:var(--muted);">분석 진행률</span>
@@ -2639,7 +2447,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-    <!-- 분석 항목 체크리스트 -->
     <div style="width:100%;max-width:280px;display:flex;flex-direction:column;gap:10px;">
       <div id="lc-1" style="display:flex;align-items:center;gap:10px;opacity:0.3;transition:opacity 0.3s;">
         <div id="lc-1-icon" style="width:20px;height:20px;border-radius:50%;background:var(--border-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--muted);">○</div>
@@ -2668,9 +2475,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
 
 
-<!-- ════════════════════════════════════════
-     SCREEN 4 — 보고서 (입력값 자동 반영 + 이메일 발송)
-════════════════════════════════════════ -->
 <div id="s4" class="screen">
   <nav class="topnav">
     <div class="logo" onclick="goHome()" style="cursor:pointer;">Office<span>.</span>Flow</div>
@@ -2684,22 +2488,16 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     <div class="step-item active"><div class="step-num">3</div>보고서 확인</div>
   </div>
 
-  <!-- ── 이메일 발송 상태 토스트 ── -->
-  <!-- ══ 보고서 표지 ══ -->
   <div style="background:var(--brand);padding:28px 24px;position:relative;overflow:hidden;">
     <div style="position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;border:40px solid rgba(74,158,255,0.08);pointer-events:none;"></div>
 
-    <!-- 배지 -->
     <div style="display:inline-block;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;letter-spacing:1px;margin-bottom:12px;">📋 오피스 면적 계획 Summary</div>
 
-    <!-- 타이틀 -->
     <div style="font-family:'DM Sans',sans-serif;color:#fff;font-size:22px;font-weight:900;letter-spacing:-0.5px;margin-bottom:4px;">공간 분석 보고서</div>
 
-    <!-- 날짜 + 업종 -->
     <div style="color:rgba(255,255,255,0.45);font-size:12px;margin-bottom:8px;" id="r-company-date">2025년 7월 작성</div>
     <div id="r-industry" style="display:none;margin-bottom:16px;background:rgba(255,255,255,0.12);border-radius:20px;padding:3px 12px;font-size:11px;font-weight:700;color:rgba(255,255,255,0.8);width:fit-content;"></div>
 
-    <!-- 작성일 + 분석 요약 카드 -->
     <div style="display:grid;grid-template-columns:1fr 2fr;gap:1px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;margin-bottom:20px;">
       <div style="background:rgba(255,255,255,0.04);padding:12px 14px;">
         <div style="color:rgba(255,255,255,0.4);font-size:10px;margin-bottom:4px;">작성일</div>
@@ -2714,7 +2512,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-    <!-- 수신/발신 + 총 면적 -->
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;">
       <div style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.8;">
         수신: <span id="r-company-name" style="color:rgba(255,255,255,0.7);font-weight:600;word-break:keep-all;overflow-wrap:anywhere;">담당자님</span><br>
@@ -2730,7 +2527,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
   <div class="section">
 
-    <!-- 전용면적 → 전용률 → 임대면적 흐름 카드 -->
     <div style="margin-bottom:24px;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
         <div style="flex:1;background:var(--card);border:1px solid rgba(74,158,255,0.2);border-radius:12px;padding:14px;text-align:center;">
@@ -2756,27 +2552,20 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-    <!-- 브릿지 문구 -->
     <div style="border-left:3px solid rgba(74,158,255,0.5);border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:28px;background:rgba(255,255,255,0.03);">
       <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.55);line-height:1.7;">아래 섹션은 임직원이 실제 사용하는 공간(전용면적)을 상세히 분석한 내용입니다.<br>공간 구성 비율, 1인당 면적, 회의실 적정성 등 공간 계획의 근거 데이터를 확인하세요.</div>
     </div>
 
-    <!-- ── Section 01: 공간 구성 비율 ── -->
     <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;">Section 01</div>
     <div style="font-size:17px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;">오피스 공간 구성 비율</div>
     <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;">오피스 전용면적의 66.4%는 실제 업무공간(임원실·회의실·업무석·휴게공간 등)으로 구성되며, 나머지 33.6%는 통로 및 여유공간입니다. 아래 공간 구성 비율을 통해 우리 회사의 오피스 면적 계획을 확인하세요.</div>
 
-    <!-- 가로 누적 막대 차트 -->
     <div id="stacked-bar-chart" style="margin-bottom:12px;width:100%;">
-      <!-- JS로 채워짐 -->
     </div>
 
-    <!-- 범례 -->
     <div id="stacked-bar-legend" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
-      <!-- JS로 채워짐 -->
     </div>
 
-    <!-- 하단 2열 카드 -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
       <div style="background:var(--card);border:1px solid var(--border-mid);border-radius:14px;padding:18px;">
         <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:8px;">실제 업무공간 (66.4%)</div>
@@ -2790,24 +2579,19 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-    <!-- 주석 박스 -->
     <div style="background:rgba(74,158,255,0.07);border-radius:10px;border:1px solid rgba(74,158,255,0.3);padding:12px 16px;margin-bottom:28px;font-size:11px;color:var(--text-sub);line-height:1.8;">
       <b style="color:var(--glow-dot);">* 실제 업무공간(66.4%)</b>이란 전용면적에서 통로 및 여유공간(33.6%)을 제외한 공간으로, 임원실·회의실·업무석·휴게공간 등 실제 사용 목적의 공간 전체를 의미합니다.<br>
       <b style="color:var(--glow-dot);">* 통로 및 여유공간(33.6%)</b> 기준은 BOMA(Building Owners and Managers Association International) 실무 가이드의 circulation factor(25~35%) 범위 내에서,<br>
       &nbsp;&nbsp;퍼시스 공간 DB 국내 기업 평균(33.6%)을 적용한 값입니다.
     </div>
 
-<!-- ── Section 02: 국내기업 평균 비교 ── -->
     <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;">Section 02</div>
     <div style="font-size:17px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;">공간 구성 비율 국내기업 평균 비교</div>
     <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;">우리 회사 예상 공간 구성과 국내 기업 평균을 비교한 결과입니다. <span style="font-size:11px;color:var(--muted);">(출처: 퍼시스 공간 DB)</span></div>
 
-    <!-- 이중 막대 비교 차트 -->
     <div id="dual-bar-chart" style="margin-bottom:20px;">
-      <!-- JS로 채워짐 -->
     </div>
 
-    <!-- 분석 요약 -->
     <div id="analysis-summary-box" style="background:rgba(74,158,255,0.06);border:1.5px solid rgba(74,158,255,0.35);border-radius:12px;padding:16px;margin-bottom:20px;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
         <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1A7FD4,#00D4FF);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -2818,7 +2602,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       <div id="r-space-analysis" style="font-size:12px;color:var(--text-sub);line-height:1.9;"></div>
     </div>
 
-    <!-- 범례 -->
     <div style="display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
       <div style="display:flex;align-items:center;gap:5px;">
         <div style="width:14px;height:10px;border-radius:2px;background:var(--accent);"></div>
@@ -2830,26 +2613,22 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-<!-- ── Section 03: 1인당 면적 적정성 ── -->
     <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;margin-top:28px;">Section 03</div>
     <div style="font-size:17px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;">1인당 업무공간 적정성 분석</div>
     <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;">직급별 1인당 면적을 기업평균과 비교합니다.</div>
     <div id="per-person-analysis" style="margin-bottom:28px;"></div>
 
-    <!-- ── Section 04: 회의실 적정성 ── -->
     <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;">Section 04</div>
     <div style="font-size:17px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;">회의실 수 적정성 분석</div>
     <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;">직원 수 대비 회의실 계획의 적정성을 분석합니다.</div>
     <div id="conf-analysis" style="margin-bottom:28px;"></div>
 
-    <!-- ── Section 05: 공간별 상세 계획 ── -->
     <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;">Section 05</div>
     <div style="font-size:17px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;">공간별 상세 면적 계획</div>
     <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;">입력하신 공간 프로그램을 기반으로 표준 면적 DB를 적용하여 산출한 계획입니다.</div>
 
     <div id="r-space-cards" class="report-grid"></div>
 
-    <!-- ── Section 06: 면적 합산표 ── -->
     <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;margin-top:28px;">Section 06</div>
     <div style="font-size:17px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;">공간별 면적 산출 내역</div>
     <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;">입력하신 공간 구성과 수량을 기준으로 산출한 공간별 면적 내역입니다.</div>
@@ -2872,7 +2651,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       본 결과는 신규 사무실 규모 검토를 위한 <b style="color:var(--glow-dot);">예상 면적</b>입니다. 최종 면적은 <b style="color:var(--glow-dot);">Test-Fit(공간 배치 검토)</b> 진행 후 확정됩니다.
     </div>
 
-    <!-- 보고서 마무리 버튼 -->
     <div id="btn-report-done-area" style="margin-top:32px;padding-bottom:8px;">
       <div style="height:1px;background:var(--border);margin-bottom:24px;"></div>
       <div id="report-pdf-footer" style="text-align:center;margin-bottom:16px;">
@@ -2890,9 +2668,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     SCREEN S-NEXT — 서비스 연결
-════════════════════════════════════════ -->
 <div id="s-next" class="screen">
   <nav class="topnav">
     <div class="logo" onclick="goHome()" style="cursor:pointer;">Office<span>.</span>Flow</div>
@@ -2900,7 +2675,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
   <div class="section snext-wrap">
 
-    <!-- ───── HERO: 분석 완료 상태 선언 ───── -->
     <div class="snext-hero">
       <div class="snext-eyebrow">
         <span class="snext-livedot"></span>
@@ -2917,7 +2691,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </p>
     </div>
 
-    <!-- ───── 데이터 대시보드 ───── -->
     <div class="snext-dash">
       <div class="snext-dash-head">
         <span>분석 완료된 우리 회사 데이터</span>
@@ -2941,7 +2714,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
     </div>
 
-    <!-- ───── 메인 CTA: 컨설팅 (주인공) ───── -->
     <div class="snext-cta" id="ai-cta-section">
       <div class="snext-cta-glow"></div>
       <div class="snext-cta-eyebrow">OFFICE.FLOW 공간 진단 결과</div>
@@ -2966,7 +2738,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       <div class="snext-cta-note">신청 즉시 보고서가 컨설턴트에게 전달됩니다</div>
     </div>
 
-    <!-- ───── 오픈 예정 서비스 (관심도 수집) ───── -->
     <div class="snext-soon-head">
       <span class="snext-soon-line"></span>
       <span class="snext-soon-label">오픈 예정 서비스</span>
@@ -2976,7 +2747,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     <div class="snext-soon-guide">관심 있는 서비스를 눌러주세요</div>
 
     <div class="snext-services">
-      <!-- 매물 탐색 -->
       <div class="snext-svc" id="svc-realty" onclick="markInterest('realty', this)">
         <div class="snext-svc-ic snext-svc-ic1">
           <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
@@ -2992,7 +2762,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         <div class="snext-svc-soon">오픈 예정</div>
       </div>
 
-      <!-- 인테리어 -->
       <div class="snext-svc" id="svc-interior" onclick="markInterest('interior', this)">
         <div class="snext-svc-ic snext-svc-ic2">
           <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
@@ -3009,7 +2778,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         <div class="snext-svc-soon">오픈 예정</div>
       </div>
 
-      <!-- 가구 상담 -->
       <div class="snext-svc" id="svc-furniture" onclick="markInterest('furniture', this)">
         <div class="snext-svc-ic snext-svc-ic3">
           <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
@@ -3030,7 +2798,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       연동 서비스는 순차적으로 열립니다.
     </div>
 
-    <!-- ───── 종결 블록 ───── -->
     <div class="snext-closing">
       <div class="snext-closing-check">
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
@@ -3065,15 +2832,8 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
 <script src="floor_imgs.js" defer></script>
 <script>
-/* ─────────────────────────────────────────────
-   NAVIGATION
-───────────────────────────────────────────── */
-// ─────────────────────────────────────────────
-//  인앱 브라우저 감지 & 대응
-// ─────────────────────────────────────────────
 function isInAppBrowser() {
   var ua = navigator.userAgent || '';
-  // 카카오톡, 네이버, 페이스북, 인스타, 라인 등 인앱 브라우저
   return /KAKAOTALK|NAVER|FBAN|FBAV|Instagram|Line|DaumApps|everytimeApp|wadiz|kakaostory/i.test(ua);
 }
 function isAndroid() {
@@ -3111,31 +2871,26 @@ function handleInAppBrowser() {
   var url = window.location.href;
 
   if (isAndroid()) {
-    // 안드로이드: 크롬으로 자동 전환 시도 (intent URL)
     var cleanUrl = url.replace(/^https?:\/\//, '');
     var intentUrl = 'intent://' + cleanUrl + '#Intent;scheme=https;package=com.android.chrome;end';
     try {
       window.location.href = intentUrl;
     } catch(e) {
-      // 실패 시 배너라도 표시
       var b = document.getElementById('inapp-banner');
       if (b) b.style.display = 'block';
     }
   } else if (isIOS()) {
-    // 아이폰: 자동 전환 불가 → 안내 배너 표시
     var b = document.getElementById('inapp-banner');
     if (b) b.style.display = 'block';
   }
 }
 
-// 페이지 로드 시 인앱 브라우저 체크
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', handleInAppBrowser);
 } else {
   handleInAppBrowser();
 }
 
-// URL 해시로 특정 화면 바로가기 (#s4, #s-next 등) — 개발/확인용
 function goToHashScreen() {
   var hash = (window.location.hash || '').replace('#', '');
   var valid = ['s1', 's2', 's2result', 's3', 's-loading', 's4', 's-next'];
@@ -3148,7 +2903,6 @@ if (document.readyState === 'loading') {
 } else {
   setTimeout(goToHashScreen, 100);
 }
-// 주소창에서 해시를 직접 바꿔도 이동
 window.addEventListener('hashchange', goToHashScreen);
 
 function go(id) {
@@ -3157,12 +2911,10 @@ function go(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   sync();
 
-  // s2 진입 시 현재 단계 가이드 팝업
   if (id === 's2') {
     setTimeout(function() { if (typeof showGuide === 'function') showGuide(_s2Step); }, 500);
   }
 
-  // s-next 진입 시 순차 등장 애니메이션 + 피드백 버튼
   if (id === 's-next') {
     setTimeout(initSeqAnim, 50);
     setTimeout(showFbBtn, 2000);
@@ -3170,7 +2922,6 @@ function go(id) {
     if (typeof hideFbBtn === 'function') hideFbBtn();
   }
 
-  // s-next 진입 시 AI 진단 멘트 생성 + 종결 블록 회사명
   if (id === 's-next') {
     setTimeout(function() { generateAIAnalysis(window._calc || {}); }, 300);
     var cc = document.getElementById('snext-closing-company');
@@ -3180,108 +2931,87 @@ function go(id) {
     }
   }
 
-  // s2result 진입 시 데이터 채우기 + 단계별 애니메이션
   if (id === 's2result') {
     setTimeout(function() { showS2Result(); }, 100);
   }
 }
 
-/* ─────────────────────────────────────────────
-   COUNTER HELPERS
-───────────────────────────────────────────── */
 function adj(id, delta) {
   const el = document.getElementById(id);
   el.value = Math.max(0, parseInt(el.value || 0) + delta);
   calc();
 }
 
-/* ─────────────────────────────────────────────
-   CHIP HELPERS
-───────────────────────────────────────────── */
-/* ─────────────────────────────────────────────
-   CALCULATION — 엑셀 DB 기준 전체 항목
-───────────────────────────────────────────── */
 function calc() {
   const v = (id) => {
     const el = document.getElementById(id);
     return el ? Math.max(0, parseInt(el.value) || 0) : 0;
   };
 
-  // 임원실 (평)
-  const exec_xl = v('exec_xl'); // 대형 13.3
-  const exec_l  = v('exec_l');  // 중대형 8.0
-  const exec_m  = v('exec_m');  // 중형 5.4
-  const exec_s  = v('exec_s');  // 소형 3.3
+  const exec_xl = v('exec_xl');
+  const exec_l  = v('exec_l');
+  const exec_m  = v('exec_m');
+  const exec_s  = v('exec_s');
   const execArea = exec_xl*13.3 + exec_l*8.0 + exec_m*5.4 + exec_s*3.3;
 
-  // 팀장석 (평)
-  const tm_16rt = v('tm_16rt'); // 2.0
-  const tm_16ch = v('tm_16ch'); // 1.4
-  const tm_16l  = v('tm_16l');  // 1.0
-  const tm_18rt = v('tm_18rt'); // 2.3
-  const tm_18ch = v('tm_18ch'); // 1.6
-  const tm_18l  = v('tm_18l');  // 1.1
+  const tm_16rt = v('tm_16rt');
+  const tm_16ch = v('tm_16ch');
+  const tm_16l  = v('tm_16l');
+  const tm_18rt = v('tm_18rt');
+  const tm_18ch = v('tm_18ch');
+  const tm_18l  = v('tm_18l');
   const tmArea = tm_16rt*2.0 + tm_16ch*1.4 + tm_16l*1.0 + tm_18rt*2.3 + tm_18ch*1.6 + tm_18l*1.1;
   const tmTotal = tm_16rt + tm_16ch + tm_16l + tm_18rt + tm_18ch + tm_18l;
 
-  // 팀원석 (평)
-  const emp_12  = v('emp_12');  // 0.7
-  const emp_14  = v('emp_14');  // 0.8
-  const emp_16  = v('emp_16');  // 0.9
-  const emp_18  = v('emp_18');  // 1.0
-  const emp_120 = v('emp_120'); // 0.7
+  const emp_12  = v('emp_12');
+  const emp_14  = v('emp_14');
+  const emp_16  = v('emp_16');
+  const emp_18  = v('emp_18');
+  const emp_120 = v('emp_120');
   const empArea = emp_12*0.7 + emp_14*0.8 + emp_16*0.9 + emp_18*1.0 + emp_120*0.7;
   const empTotal = emp_12 + emp_14 + emp_16 + emp_18 + emp_120;
 
-  // 집중공간·회의실 (평)
-  const conf_pb = v('conf_pb'); // 폰부스 0.5
-  const conf_fr = v('conf_fr'); // 포커스룸 1.5
-  const conf_4  = v('conf_4');  // 4인 2.4
-  const conf_6  = v('conf_6');  // 6인 3.3
-  const conf_8  = v('conf_8');  // 8인 5.4
-  const conf_12 = v('conf_12'); // 12인 8.2
+  const conf_pb = v('conf_pb');
+  const conf_fr = v('conf_fr');
+  const conf_4  = v('conf_4');
+  const conf_6  = v('conf_6');
+  const conf_8  = v('conf_8');
+  const conf_12 = v('conf_12');
   
-  const conf_14 = v('conf_14'); // 14인 10.5
-  const conf_16 = v('conf_16'); // 16인+α 14.2
+  const conf_14 = v('conf_14');
+  const conf_16 = v('conf_16');
   
   const confArea = conf_pb*0.5 + conf_fr*1.5 + conf_4*2.4 + conf_6*3.3 + conf_8*5.4 + conf_12*8.2 + conf_14*10.5 + conf_16*14.2;
   const confCount = conf_pb + conf_fr + conf_4 + conf_6 + conf_8 + conf_12 + conf_14 + conf_16;
 
-  // OA존·탕비실 (평)
-  const oa_cs = v('oa_cs'); // OA 컴팩트형 1.5
-  const oa_ss = v('oa_ss'); // OA 표준형 2.0
-  const tb_cs = v('tb_cs'); // 탕비 컴팩트형 1.5
-  const tb_ss = v('tb_ss'); // 탕비 표준형 2.0
+  const oa_cs = v('oa_cs');
+  const oa_ss = v('oa_ss');
+  const tb_cs = v('tb_cs');
+  const tb_ss = v('tb_ss');
   const oaArea = oa_cs*1.5 + oa_ss*2.0 + tb_cs*1.5 + tb_ss*2.0;
 
-  // 수납가구 (평)
-  const stor_cab = v('stor_cab'); // 캐비닛 0.5
-  const stor_loc = v('stor_loc'); // 락커 0.4
+  const stor_cab = v('stor_cab');
+  const stor_loc = v('stor_loc');
   const storArea = stor_cab*0.1 + stor_loc*2.8;
 
-  // 오픈라운지 (평)
-  const lg_s = v('lg_s'); // 소형 5.2
-  const lg_m = v('lg_m'); // 중형 6.0
-  const lg_l = v('lg_l'); // 중대형 12.8
+  const lg_s = v('lg_s');
+  const lg_m = v('lg_m');
+  const lg_l = v('lg_l');
   const lgArea = lg_s*5.2 + lg_m*6.0 + lg_l*12.8;
 
-  // 합산
   const usableCore = execArea + tmArea + empArea + confArea + oaArea + storArea + lgArea;
   const totalPy    = Math.round(usableCore / 0.664 * 10) / 10;
   const usablePy   = Math.round(usableCore);
   const corridorPy = Math.round(usableCore / 0.664 * 0.336 * 10) / 10;
   const totalM2    = Math.round(totalPy * 3.305);
 
-  // 팀원석 badge
   const badge = document.getElementById('emp-total-badge');
   if (badge) badge.textContent = empTotal;
 
-  // 요약 배너
   const set = (id, val) => { const e = document.getElementById(id); if(e) e.textContent = val; };
   set('usable-py', usablePy.toFixed(1) + ' 평');
   set('corridor-py', corridorPy.toFixed(1) + ' 평');
 
-  // store globally
   window._calc = {
     empTotal, tmTotal, exec_l, exec_m, exec_xl, exec_s,
     conf_pb, conf_fr, conf_4, conf_6, conf_8, conf_12, conf_14, conf_16,
@@ -3310,18 +3040,14 @@ function renderCalc() {
   const set = (id, val) => { const e = document.getElementById(id); if(e) e.textContent = val; };
   const setHTML = (id, val) => { const e = document.getElementById(id); if(e) e.innerHTML = val; };
 
-  // S2 총 면적 배너
-  // step-8 결과 배너 업데이트
   set('total-py-val', d.totalPy);
   set('total-m2', '약 ' + d.totalM2 + ' m²');
   set('usable-py', Math.round(d.usablePy) + ' 평');
   set('corridor-py', Math.round(d.corridorPy) + ' 평');
 
-  // S3 미리보기
   set('pv-py', d.totalPy);
   set('pv-conf', d.confCount);
 
-  // S4 보고서 헤더
   set('r-total-big', d.totalPy + '평');
   set('r-usable-py', Math.round(d.usablePy) + '평');
   set('r-corridor-py', d.corridorPy + '평');
@@ -3337,21 +3063,13 @@ function renderCalc() {
   set('r-exec-l-name', '중대형 임원실 ×' + d.exec_l);
   set('r-exec-m-name', '중형 임원실 ×' + d.exec_m);
 
-  // 회사명 + 날짜
   const company = document.getElementById('f-company');
   const dateStr = new Date().toLocaleDateString('ko-KR', {year:'numeric',month:'long',day:'numeric'});
   const companyName = (company && company.value) ? company.value + ' · ' : '';
-  // ── 공간 구성 비율 계산 (실제 입력값 기반) ──
   var totalAll  = d.totalPy || 1;
   var corridorArea = totalAll - (d.usableCore || 0);
 
-  // 공간 분류 기준:
-  // 임원: 임원실 / 업무: 팀장석+팀원석 / 회의: 소형~대형 회의실
-  // 휴게: 라운지 / 지원: 폰부스+포커스룸+OA존+탕비실+수납
-
-  // 폰부스·포커스룸 면적 (지원으로 분류)
   var focusArea = ((d.conf_pb||0)*0.5) + ((d.conf_fr||0)*1.5);
-  // 회의실: 4인 이상만 (폰부스·포커스룸 제외)
   var meetingArea = (d.confArea||0) - focusArea;
 
   var rExecArea  = d.execArea  || 0;
@@ -3367,11 +3085,9 @@ function renderCalc() {
   var pStor  = Math.round(rStorArea  / totalAll * 100);
   var pCorridor = Math.round(corridorArea / totalAll * 100);
 
-  // 합계 100% 보정
   var pSum = pExec + pEmp + pConf + pLg + pStor + pCorridor;
   if (pSum !== 100) pEmp += (100 - pSum);
 
-  // 막대 너비 + 수치 업데이트
   var setBar = function(id, pct) {
     var el = document.getElementById(id);
     if (el) el.style.width = Math.max(pct, 4) + '%';
@@ -3381,22 +3097,18 @@ function renderCalc() {
     if (el) el.textContent = pct + '%';
   };
 
-  // 이중 막대 차트 + 분석 요약 (renderAnalysis 함수로 분리)
   renderAnalysis();
 
     set('r-company-date', companyName + dateStr + ' 작성'); document.getElementById('r-company-date').style.cssText += ';word-break:keep-all;overflow-wrap:anywhere;white-space:normal;';
 
-  // S5 매물 자동설정
   set('re-auto', '약 ' + d.totalPy + '평 · 서울 전체 · 조건 미정');
 
-  // S7 비용 레이블 + 가구 견적
   set('cost-area-lbl', d.totalPy + '평 기준 · VAT 별도');
   const execCost = Math.round((d.exec_xl*2400 + d.exec_l*1200 + d.exec_m*600 + d.exec_s*350) / 100) * 100;
   const deskCost = Math.round(d.empTotal * 110 / 100) * 100;
   set('c-exec', '약 ' + execCost.toLocaleString() + '만원');
   set('c-desk', '약 ' + deskCost.toLocaleString() + '만원');
 
-  // 각 카드 badge에 합산 면적 실시간 표시
   var setBadge = function(id, val) {
     var e = document.getElementById(id);
     if (!e) return;
@@ -3422,12 +3134,10 @@ function renderCalc() {
 
 
 
-  // 분석 함수 호출
   if (typeof renderAnalysis === 'function') renderAnalysis();
 }
 
 function updateStepBar(currentStep) {
-  // 모든 step-bar의 step-item 업데이트 (S2/S3/S4 각각 존재)
   document.querySelectorAll('.step-bar').forEach(function(bar) {
     var items = bar.querySelectorAll('.step-item');
     items.forEach(function(el, i) {
@@ -3441,14 +3151,12 @@ function updateStepBar(currentStep) {
 function sync() { renderCalc(); updateRec(); }
 
 function updateRec() {
-  // 직원 수 파악 (팀장 + 팀원 합산)
   var getVal = function(id) { var e = document.getElementById(id); return e ? parseInt(e.value)||0 : 0; };
   var staff =
     getVal('tm_16rt') + getVal('tm_16ch') + getVal('tm_16l') +
     getVal('tm_18rt') + getVal('tm_18ch') + getVal('tm_18l') +
     getVal('emp_12') + getVal('emp_14') + getVal('emp_16') + getVal('emp_18');
 
-  // 박스 애니메이션 재실행
   ['rec-conf-box','rec-lg-box','rec-supp-box'].forEach(function(id) {
     var box = document.getElementById(id);
     if (box) { box.style.animation='none'; box.offsetHeight; box.style.animation=''; }
@@ -3462,16 +3170,14 @@ function updateRec() {
     return;
   }
 
-  // ── 회의공간 권장 ──
   var totalConf = Math.max(3, Math.round(staff / 10));
-  var confS = Math.max(1, Math.round(totalConf * 0.4)); // 6인
-  var confM = Math.max(1, Math.round(totalConf * 0.4)); // 8인
-  var confL = Math.max(1, Math.round(totalConf * 0.2)); // 12인
+  var confS = Math.max(1, Math.round(totalConf * 0.4));
+  var confM = Math.max(1, Math.round(totalConf * 0.4));
+  var confL = Math.max(1, Math.round(totalConf * 0.2));
   var confEl = document.getElementById('rec-conf-label');
   if (confEl) confEl.textContent =
     '직원 ' + staff + '명 기준 권장 수량 : 6인 ' + confS + '개 · 8인 ' + confM + '개 · 12인 ' + confL + '개';
 
-  // ── 휴게공간 권장 ──
   var lgXl = staff <= 50 ? 1 : staff <= 100 ? 1 : staff <= 150 ? 2 : staff <= 200 ? 2 : 3;
   var lgM  = staff <= 50 ? 0 : staff <= 100 ? 1 : staff <= 150 ? 1 : staff <= 200 ? 2 : 2;
   var lgEl = document.getElementById('rec-lg-label');
@@ -3481,18 +3187,14 @@ function updateRec() {
     lgEl.textContent = '직원 ' + staff + '명 기준 권장 수량 : ' + lgStr;
   }
 
-  // ── 지원공간 권장 ──
   var unit = Math.max(2, Math.round(staff / 25));
-  var cab  = Math.round(staff * 0.9);  // 3단 캐비닛 1EA 기준 (50명→45개)
+  var cab  = Math.round(staff * 0.9);
   var wh   = Math.max(1, Math.round(staff / 25));
   var suppEl = document.getElementById('rec-supp-label');
   if (suppEl) suppEl.textContent =
     '직원 ' + staff + '명 기준 권장 수량 : 폰부스 ' + unit + '개 · 포커스룸 ' + unit + '개 · 3단 캐비닛 ' + cab + '개 · 창고 및 문서고 ' + wh + '개 · OA 컴팩트형 ' + unit + '개 · 탕비 컴팩트형 ' + unit + '개';
 }
 
-/* ─────────────────────────────────────────────
-   CONCEPT PICKER
-───────────────────────────────────────────── */
 const conceptDB = {
   modern:  { name: '모던 시티', text: '다크 컬러와 메탈릭 소재로 강렬하고 세련된 인상을 줍니다. 스틸 파티션과 블랙 프레임 가구로 도시적인 분위기를 연출해요. IT·금융·컨설팅 업종에 잘 어울립니다.' },
   natural: { name: '네추럴 그린', text: '우드와 그린 계열로 자연 친화적인 환경을 만듭니다. 식물과 원목 소재를 활용해 편안하고 창의적인 분위기를 조성해요. 스타트업·크리에이티브 업종에 인기 있어요.' },
@@ -3508,22 +3210,18 @@ function pickConcept(key) {
     industrial:  '인더스트리얼 (Industrial Creative)',
   };
 
-  // 모든 카드 선택 해제
   document.querySelectorAll('.concept-card').forEach(function(c) {
     c.style.border = '2px solid var(--border)';
     c.style.boxShadow = 'none';
   });
 
-  // 선택 카드 강조
   var selected = document.getElementById('concept-' + key);
   if (selected) {
     selected.style.border = '2px solid var(--accent)';
     selected.style.boxShadow = '0 6px 24px rgba(232,66,10,0.18)';
-    // 선택한 카드로 부드럽게 스크롤
     selected.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  // 선택 완료 바 표시
   var bar = document.getElementById('concept-selected-bar');
   if (bar) {
     bar.style.display = 'flex';
@@ -3531,7 +3229,6 @@ function pickConcept(key) {
     if (nameEl) nameEl.textContent = conceptNames[key] || key;
   }
 
-  // S7 컨셉 라벨 연동
   var lbl = document.getElementById('cost-concept-lbl');
   if (lbl) lbl.textContent = (conceptNames[key] || key) + ' 컨셉 기준';
 
@@ -3539,14 +3236,12 @@ function pickConcept(key) {
 }
 
 function switchImg(concept, idx) {
-  // 해당 컨셉의 이미지 전환
   for (var i = 0; i < 3; i++) {
     var img = document.getElementById('img-' + concept + '-' + i);
     if (img) img.style.opacity = (i === idx) ? '1' : '0';
   }
 }
 
-// 각 컨셉 이미지 자동 슬라이드
 (function() {
   var timers = {};
   var conceptKeys = ['biophilic', 'modern', 'hospitality', 'industrial'];
@@ -3559,7 +3254,6 @@ function switchImg(concept, idx) {
     }, 3500 + Math.random() * 500);
   }
 
-  // 페이지 로드 후 시작
   window.addEventListener('load', function() {
     conceptKeys.forEach(function(k, i) {
       setTimeout(function() { startSlide(k); }, i * 800);
@@ -3567,61 +3261,43 @@ function switchImg(concept, idx) {
   });
 })();
 
-/* ─────────────────────────────────────────────
-   RENDER MAP (렌더링 이미지 — 전역)
-───────────────────────────────────────────── */
 var RENDER_MAP = {
-  // 임원공간
   exec_xl: 'images/exec_xl.png',
   exec_l:  'images/exec_l.png',
   exec_m:  'images/exec_m.png',
   exec_s:  'images/exec_s.png',
-  // 팀장석
   tm_16rt: 'images/tm_16rt.png',
   tm_16ch: 'images/tm_16ch.png',
   tm_16l:  'images/tm_16l.png',
   tm_18rt: 'images/tm_18rt.png',
   tm_18ch: 'images/tm_18ch.png',
   tm_18l:  'images/tm_18l.png',
-  // 팀원석
   emp_12:  'images/emp_12.png',
   emp_14:  'images/emp_14.png',
   emp_16:  'images/emp_16.png',
   emp_18:  'images/emp_18.png',
   emp_120: 'images/emp_120.png',
-  // 회의실
   conf_4:  'images/conf_4.png',
   conf_6:  'images/conf_6.png',
   conf_8:  'images/conf_8.png',
   conf_12: 'images/conf_12.png',
   conf_14: 'images/conf_14.png',
   conf_16: 'images/conf_16.png',
-  // 집중공간
   conf_pb: 'images/conf_pb.png',
   conf_fr: 'images/conf_fr.png',
-  // 라운지
   lg_s:    'images/lg_s.png',
   lg_m:    'images/lg_m.png',
   lg_l:    'images/lg_l.png',
-  // 수납
   stor_cab: 'images/stor_cab.png',
   stor_loc: 'images/stor_loc.png',
-  // OA존
   oa_cs:   'images/oa_cs.png',
   oa_ss:   'images/oa_ss.png',
-  // 탕비공간
   tb_cs:   'images/tb_cs.png',
   tb_ss:   'images/tb_ss.png',
 };
 
-/* ─────────────────────────────────────────────
-   INIT
-───────────────────────────────────────────── */
 calc();
 
-/* ─────────────────────────────────────────────
-   COST TAB 전환 (표준형 / 프리미엄)
-───────────────────────────────────────────── */
 var _costTab = 'standard';
 var _selectedStyles = [];
 
@@ -3650,9 +3326,6 @@ var COST_DATA = {
   }
 };
 
-/* ─────────────────────────────────────────────
-   REPORT BUILDER — S2 입력값 → S4 자동 반영
-───────────────────────────────────────────── */
 function buildReport() {
   gtagEvent('report_viewed');
   const d = window._calc;
@@ -3663,12 +3336,10 @@ function buildReport() {
   const set = (id, val) => { const e = document.getElementById(id); if(e) e.textContent = val; };
   const industry = gs('industry');
 
-  // 날짜
   const now = new Date();
   const dateStr = now.getFullYear() + '년 ' + (now.getMonth()+1) + '월 ' + now.getDate() + '일 작성';
   const dateShort = now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0');
   set('r-company-date', (gs('f-company') ? gs('f-company') + ' · ' : '') + dateStr);
-  // 분석 요약 자동 생성
   var summaryEl = document.getElementById('r-analysis-summary');
   if (summaryEl && d) {
     var empT = d.empTotal || 0;
@@ -3677,7 +3348,6 @@ function buildReport() {
     summaryEl.textContent = '직원 ' + empT + '명 · 회의실 ' + confT + '개소 기준, 예상 필요 면적 ' + pyT + '평 (가용 ' + Math.round(d.usablePy||0) + '평 + 통로 ' + Math.round(d.corridorPy||0) + '평)';
   }
 
-  // 업종 배지
   var indEl = document.getElementById('r-industry');
   if (indEl) {
     indEl.textContent = industry;
@@ -3685,7 +3355,6 @@ function buildReport() {
   }
   set('r-date-cover', dateShort);
 
-  // 표지 메타
   set('r-emp-cover', d.empTotal + '명');
   set('r-conf-cover', d.confCount + '개소');
   set('r-total-big', d.totalPy + '평');
@@ -3695,7 +3364,6 @@ function buildReport() {
   set('r-usable-m2', '약 ' + Math.round(d.usablePy * 3.305) + ' m²');
   set('r-corridor-py', d.corridorPy + '평');
 
-  // 수신자
   const company = gs('f-company');
   const name    = gs('f-name');
   const email    = gs('f-email');
@@ -3706,7 +3374,6 @@ function buildReport() {
   set('r-company-name', recipient);
   if (email) set('r-email-note', '보고서가 ' + email + ' 로 발송됩니다. 상사 보고 자료로 활용하세요');
 
-  // ── 공간 카드 동적 생성 ──
   const DB = {
     exec_xl: { cat:'임원공간', label:'대형 임원실',    py:13.3, m2:44,   comp:'임원SET+9인 회의',  fur:'임원 데스크+크레덴자+소파SET' },
     exec_l:  { cat:'임원공간', label:'중대형 임원실',  py:8.0,  m2:26.4, comp:'임원SET+7인 회의',  fur:'임원 데스크+크레덴자+회의테이블' },
@@ -3742,48 +3409,37 @@ function buildReport() {
     lg_l:    { cat:'휴게공간', label:'오픈라운지 중대형',py:12.8,m2:42.2,comp:'대형 오픈캔틴+소파', fur:'대형소파+바테이블+스툴+캔틴카운터' },
   };
 
-  // ── SVG 평면도 라이브러리 ──
   function getFloorPlan(key) {
-    // 이미지 키 매핑 (JPG 실제 도면 우선, 없으면 SVG 폴백)
     const IMG_MAP = {
-      // 임원실
       exec_xl:  'exec_xl',
       exec_l:   'exec_l',
       exec_m:   'exec_m',
       exec_s:   'exec_s_desk',
-      // 팀장석
       tm_16rt:  'tm_16rt',
       tm_16ch:  'tm_ch',
       tm_16l:   null,
       tm_18rt:  'tm_18rt',
       tm_18ch:  'tm_18ch',
       tm_18l:   null,
-      // 팀원석
       emp_12:   'emp_12_w',
       emp_14:   'emp_14_w',
       emp_16:   'emp_16_w',
       emp_18:   'emp_18_w',
       emp_120:  'emp_120_3',
-      // 집중공간·회의실
       conf_pb:  null,
       conf_fr:  'conf_fr',
       conf_4:   'conf_4',
       conf_6:   'conf_6',
       conf_8:   'conf_8',
       conf_12:  'conf_12',
-      conf_12:  'conf_12',
       conf_14:  'conf_14',
       conf_16:  'conf_16',
-      conf_16:  'conf_16',
-      // OA·탕비실
       oa_ss:    'oa_ss',
       oa_cs:    'oa_cs',
       oa_cc:    'oa_cc',
       oa_sc:    'oa_sc',
-      // 수납가구
       stor_cab: 'stor_cab',
       stor_loc: 'stor_loc',
-      // 오픈라운지
       lg_s:     'lg_s',
       lg_m:     'lg_s2',
       lg_l:     'lg_l',
@@ -3792,47 +3448,9 @@ function buildReport() {
     if (imgKey && typeof FLOOR_IMGS !== 'undefined' && FLOOR_IMGS[imgKey]) {
       return '<img src="' + FLOOR_IMGS[imgKey] + '" style="width:100%;height:auto;display:block;border-radius:4px;" alt="평면도" loading="lazy">';
     }
-    // SVG 폴백으로 넘어감
-    const _svgFallback = true; // marker
-    if (!_svgFallback) return '';
-
-    const plans = {
-      exec_xl: '<svg viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="120" height="160" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="116" height="156" fill="none" stroke="#999" stroke-width="1.5" rx="1"/><rect x="30" y="8" width="60" height="28" fill="#fff" stroke="#555" stroke-width="1"/><rect x="8" y="8" width="20" height="28" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="60" cy="42" r="6" fill="#fff" stroke="#555" stroke-width="1"/><rect x="25" y="60" width="70" height="55" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="65" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="10" y="80" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="10" y="95" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="98" y="65" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="98" y="80" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="98" y="95" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="32" y="118" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="54" y="118" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="76" y="118" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="8" y="138" width="50" height="14" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><line x1="88" y1="156" x2="88" y2="148" stroke="#555" stroke-width="1.5"/><path d="M88 156 Q104 156 104 140" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
-      exec_l:  '<svg viewBox="0 0 110 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="110" height="150" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="106" height="146" fill="none" stroke="#999" stroke-width="1.5" rx="1"/><rect x="25" y="8" width="60" height="26" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="8" width="17" height="26" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="55" cy="40" r="6" fill="#fff" stroke="#555" stroke-width="1"/><rect x="22" y="58" width="66" height="48" fill="#fff" stroke="#555" stroke-width="1"/><rect x="7" y="62" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="7" y="75" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="7" y="88" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="91" y="62" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="91" y="75" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="91" y="88" width="12" height="9" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="50" y="109" width="12" height="10" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="6" y="125" width="98" height="14" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><line x1="80" y1="148" x2="80" y2="140" stroke="#555" stroke-width="1.5"/><path d="M80 148 Q96 148 96 132" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
-      exec_m:  '<svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="100" height="130" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="96" height="126" fill="none" stroke="#999" stroke-width="1.5" rx="1"/><rect x="20" y="8" width="56" height="24" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="8" width="12" height="24" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="50" cy="38" r="5.5" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="50" cy="85" r="26" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="50" cy="54" r="5" fill="#fff" stroke="#666" stroke-width="0.8"/><circle cx="50" cy="116" r="5" fill="#fff" stroke="#666" stroke-width="0.8"/><circle cx="19" cy="85" r="5" fill="#fff" stroke="#666" stroke-width="0.8"/><circle cx="81" cy="85" r="5" fill="#fff" stroke="#666" stroke-width="0.8"/><line x1="72" y1="128" x2="72" y2="120" stroke="#555" stroke-width="1.5"/><path d="M72 128 Q88 128 88 112" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
-      exec_s:  '<svg viewBox="0 0 90 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="90" height="110" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="86" height="106" fill="none" stroke="#999" stroke-width="1.5" rx="1"/><rect x="15" y="8" width="60" height="22" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="45" cy="36" r="5.5" fill="#fff" stroke="#555" stroke-width="1"/><rect x="18" y="58" width="14" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="58" y="58" width="14" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="30" y="55" width="30" height="18" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="6" y="85" width="78" height="14" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><line x1="62" y1="108" x2="62" y2="100" stroke="#555" stroke-width="1.5"/><path d="M62 108 Q78 108 78 92" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
-      tm_16rt: '<svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="100" height="80" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="96" height="76" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="50" height="24" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="32" width="20" height="18" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="50" cy="34" r="5" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="80" cy="42" r="16" fill="#fff" stroke="#888" stroke-width="0.8"/><circle cx="80" cy="23" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="80" cy="61" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="61" cy="42" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="99" cy="42" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/></svg>',
-      tm_16ch: '<svg viewBox="0 0 95 75" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="95" height="75" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="91" height="71" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="52" height="24" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="32" width="20" height="16" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="52" cy="34" r="5" fill="#fff" stroke="#555" stroke-width="0.8"/><rect x="70" y="30" width="18" height="14" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><rect x="70" y="48" width="18" height="14" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/></svg>',
-      tm_16l:  '<svg viewBox="0 0 85 65" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="85" height="65" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="81" height="61" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="46" height="20" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="28" width="18" height="16" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="36" cy="32" r="5" fill="#fff" stroke="#555" stroke-width="0.8"/></svg>',
-      tm_18rt: '<svg viewBox="0 0 110 85" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="110" height="85" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="106" height="81" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="56" height="26" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="34" width="22" height="20" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="57" cy="37" r="5.5" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="86" cy="45" r="18" fill="#fff" stroke="#888" stroke-width="0.8"/><circle cx="86" cy="24" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="86" cy="66" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="65" cy="45" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/><circle cx="107" cy="45" r="5" fill="#fff" stroke="#666" stroke-width="0.7"/></svg>',
-      tm_18ch: '<svg viewBox="0 0 105 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="105" height="80" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="101" height="76" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="58" height="26" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="34" width="22" height="18" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="58" cy="37" r="5.5" fill="#fff" stroke="#555" stroke-width="0.8"/><rect x="78" y="30" width="20" height="15" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><rect x="78" y="50" width="20" height="15" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/></svg>',
-      tm_18l:  '<svg viewBox="0 0 95 70" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="95" height="70" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="91" height="66" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="52" height="22" fill="#fff" stroke="#555" stroke-width="1"/><rect x="6" y="30" width="20" height="18" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="40" cy="34" r="5" fill="#fff" stroke="#555" stroke-width="0.8"/></svg>',
-      emp_12:  '<svg viewBox="0 0 55 50" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="55" height="50" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="51" height="46" fill="none" stroke="#999" stroke-width="1.2"/><rect x="5" y="7" width="45" height="18" fill="#fff" stroke="#555" stroke-width="1"/><rect x="40" y="7" width="10" height="18" fill="#f0f0f0" stroke="#888" stroke-width="0.7"/><circle cx="24" cy="32" r="6" fill="#fff" stroke="#555" stroke-width="1"/></svg>',
-      emp_14:  '<svg viewBox="0 0 62 52" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="62" height="52" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="58" height="48" fill="none" stroke="#999" stroke-width="1.2"/><rect x="5" y="7" width="50" height="20" fill="#fff" stroke="#555" stroke-width="1"/><rect x="44" y="7" width="11" height="20" fill="#f0f0f0" stroke="#888" stroke-width="0.7"/><circle cx="27" cy="35" r="6" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="43" width="42" height="5" fill="#e0e0e0" stroke="#888" stroke-width="0.6" rx="1"/></svg>',
-      emp_16:  '<svg viewBox="0 0 70 55" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="70" height="55" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="66" height="51" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="58" height="22" fill="#fff" stroke="#555" stroke-width="1"/><rect x="52" y="8" width="12" height="22" fill="#f0f0f0" stroke="#888" stroke-width="0.7"/><circle cx="30" cy="36" r="6.5" fill="#fff" stroke="#555" stroke-width="1"/><rect x="12" y="44" width="46" height="6" fill="#e0e0e0" stroke="#888" stroke-width="0.6" rx="1"/></svg>',
-      emp_18:  '<svg viewBox="0 0 80 58" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="80" height="58" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="76" height="54" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="8" width="68" height="24" fill="#fff" stroke="#555" stroke-width="1"/><rect x="60" y="8" width="14" height="24" fill="#f0f0f0" stroke="#888" stroke-width="0.7"/><circle cx="36" cy="38" r="7" fill="#fff" stroke="#555" stroke-width="1"/><rect x="14" y="47" width="52" height="7" fill="#e0e0e0" stroke="#888" stroke-width="0.6" rx="1"/></svg>',
-      emp_120: '<svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="80" height="70" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="76" height="66" fill="none" stroke="#999" stroke-width="1.2"/><polygon points="40,8 72,50 8,50" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="40" cy="58" r="6" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="14" cy="36" r="6" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="66" cy="36" r="6" fill="#fff" stroke="#555" stroke-width="0.8"/></svg>',
-      conf_pb: '<svg viewBox="0 0 55 65" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="55" height="65" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="51" height="61" fill="none" stroke="#999" stroke-width="1.2"/><rect x="8" y="8" width="39" height="22" fill="#fff" stroke="#555" stroke-width="1"/><circle cx="27" cy="44" r="10" fill="#fff" stroke="#555" stroke-width="1"/><line x1="27" y1="34" x2="27" y2="54" stroke="#bbb" stroke-width="0.5"/><line x1="17" y1="44" x2="37" y2="44" stroke="#bbb" stroke-width="0.5"/></svg>',
-      conf_fr: '<svg viewBox="0 0 85 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="85" height="90" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="81" height="86" fill="none" stroke="#999" stroke-width="1.2"/><rect x="8" y="8" width="69" height="28" fill="#fff" stroke="#555" stroke-width="1"/><rect x="14" y="46" width="26" height="20" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="44" y="46" width="26" height="20" fill="#fff" stroke="#888" stroke-width="0.8"/><circle cx="28" cy="38" r="7" fill="#fff" stroke="#555" stroke-width="0.8"/><circle cx="58" cy="38" r="7" fill="#fff" stroke="#555" stroke-width="0.8"/></svg>',
-      conf_4:  '<svg viewBox="0 0 90 85" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="90" height="85" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="86" height="81" fill="none" stroke="#999" stroke-width="1.2"/><rect x="18" y="22" width="54" height="35" fill="#fff" stroke="#555" stroke-width="1"/><rect x="28" y="9" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="50" y="9" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="28" y="58" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="50" y="58" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="5" y="30" width="11" height="14" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="74" y="30" width="11" height="14" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><line x1="60" y1="83" x2="60" y2="74" stroke="#555" stroke-width="1.5"/><path d="M60 83 Q76 83 76 67" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
-      conf_6:  '<svg viewBox="0 0 100 105" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="100" height="105" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="96" height="101" fill="none" stroke="#999" stroke-width="1.2"/><rect x="18" y="22" width="64" height="55" fill="#fff" stroke="#555" stroke-width="1"/><rect x="26" y="9" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="58" y="9" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="26" y="80" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="58" y="80" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="56" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="84" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="84" y="56" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><line x1="68" y1="103" x2="68" y2="93" stroke="#555" stroke-width="1.5"/><path d="M68 103 Q84 103 84 87" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
-      conf_8:  '<svg viewBox="0 0 110 135" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="110" height="135" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="106" height="131" fill="none" stroke="#999" stroke-width="1.2"/><rect x="18" y="20" width="74" height="85" fill="#fff" stroke="#555" stroke-width="1"/><rect x="18" y="20" width="74" height="8" fill="#ddd" stroke="#888" stroke-width="0.6"/><rect x="28" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="66" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="28" y="107" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="66" y="107" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="94" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="94" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="94" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><line x1="76" y1="133" x2="76" y2="122" stroke="#555" stroke-width="1.5"/><path d="M76 133 Q92 133 92 117" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
-      conf_12: '<svg viewBox="0 0 115 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="115" height="150" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="111" height="146" fill="none" stroke="#999" stroke-width="1.2"/><rect x="18" y="20" width="79" height="100" fill="#fff" stroke="#555" stroke-width="1"/><rect x="18" y="20" width="79" height="8" fill="#ddd" stroke="#888" stroke-width="0.6"/><rect x="25" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="55" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="25" y="122" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="55" y="122" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="88" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="99" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="99" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="99" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="99" y="88" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><line x1="80" y1="148" x2="80" y2="136" stroke="#555" stroke-width="1.5"/><path d="M80 148 Q96 148 96 132" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
-      conf_12: '<svg viewBox="0 0 120 165" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="120" height="165" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="116" height="161" fill="none" stroke="#999" stroke-width="1.2"/><rect x="18" y="20" width="84" height="115" fill="#fff" stroke="#555" stroke-width="1"/><rect x="18" y="20" width="84" height="8" fill="#ddd" stroke="#888" stroke-width="0.6"/><rect x="28" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="60" y="7" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="28" y="137" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="60" y="137" width="14" height="11" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="88" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="4" y="108" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="104" y="28" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="104" y="48" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="104" y="68" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="104" y="88" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><rect x="104" y="108" width="12" height="12" fill="#fff" stroke="#666" stroke-width="0.8" rx="1"/><line x1="84" y1="163" x2="84" y2="150" stroke="#555" stroke-width="1.5"/><path d="M84 163 Q100 163 100 147" fill="none" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/></svg>',
-      oa_ss:   '<svg viewBox="0 0 130 55" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="130" height="55" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="126" height="51" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="118" height="26" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="10" width="22" height="18" fill="#e0e0e0" stroke="#888" stroke-width="0.8" rx="1"/><rect x="14" y="13" width="14" height="8" fill="#ccc" stroke="#999" stroke-width="0.5"/><rect x="40" y="10" width="18" height="18" fill="#f5f5f5" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="49" cy="19" r="5" fill="#ddd" stroke="#999" stroke-width="0.5"/><rect x="6" y="36" width="118" height="14" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><line x1="65" y1="36" x2="65" y2="50" stroke="#aaa" stroke-width="0.5"/></svg>',
-      oa_cs:   '<svg viewBox="0 0 110 50" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="110" height="50" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="106" height="46" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="98" height="24" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="9" width="20" height="18" fill="#e0e0e0" stroke="#888" stroke-width="0.8" rx="1"/><rect x="35" y="9" width="16" height="18" fill="#f5f5f5" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="43" cy="18" r="5" fill="#ddd" stroke="#999" stroke-width="0.5"/><rect x="6" y="34" width="98" height="12" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/></svg>',
-      oa_cc:   '<svg viewBox="0 0 100 48" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="100" height="48" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="96" height="44" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="88" height="22" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="9" width="20" height="16" fill="#e0e0e0" stroke="#888" stroke-width="0.8" rx="1"/><rect x="35" y="9" width="16" height="16" fill="#f5f5f5" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="43" cy="17" r="5" fill="#ddd" stroke="#999" stroke-width="0.5"/><rect x="6" y="32" width="88" height="12" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/></svg>',
-      oa_sc:   '<svg viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="120" height="48" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="116" height="44" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="108" height="22" fill="#fff" stroke="#555" stroke-width="1"/><rect x="10" y="9" width="22" height="16" fill="#e0e0e0" stroke="#888" stroke-width="0.8" rx="1"/><rect x="38" y="9" width="18" height="16" fill="#f5f5f5" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="47" cy="17" r="5" fill="#ddd" stroke="#999" stroke-width="0.5"/><rect x="6" y="32" width="108" height="12" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/></svg>',
-      stor_cab:'<svg viewBox="0 0 90 40" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="90" height="40" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="86" height="36" fill="none" stroke="#999" stroke-width="1.2"/><rect x="5" y="5" width="16" height="30" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="23" y="5" width="16" height="30" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="41" y="5" width="16" height="30" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="59" y="5" width="16" height="30" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="69" y="5" width="16" height="30" fill="#fff" stroke="#888" stroke-width="0.8"/><circle cx="13" cy="20" r="2" fill="#bbb"/><circle cx="31" cy="20" r="2" fill="#bbb"/><circle cx="49" cy="20" r="2" fill="#bbb"/><circle cx="67" cy="20" r="2" fill="#bbb"/><circle cx="77" cy="20" r="2" fill="#bbb"/></svg>',
-      stor_loc:'<svg viewBox="0 0 90 50" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="90" height="50" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="86" height="46" fill="none" stroke="#999" stroke-width="1.2"/><rect x="5" y="5" width="16" height="40" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="23" y="5" width="16" height="40" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="41" y="5" width="16" height="40" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="59" y="5" width="16" height="40" fill="#fff" stroke="#888" stroke-width="0.8"/><rect x="69" y="5" width="16" height="40" fill="#fff" stroke="#888" stroke-width="0.8"/><circle cx="13" cy="18" r="2" fill="#bbb"/><circle cx="31" cy="18" r="2" fill="#bbb"/><circle cx="49" cy="18" r="2" fill="#bbb"/><circle cx="67" cy="18" r="2" fill="#bbb"/><circle cx="77" cy="18" r="2" fill="#bbb"/></svg>',
-      lg_s:    '<svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="130" height="100" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="126" height="96" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="118" height="20" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><rect x="6" y="36" width="55" height="20" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="6" y="56" width="55" height="8" fill="#ccc" stroke="#888" stroke-width="0.6" rx="1"/><rect x="72" y="36" width="52" height="16" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="80" cy="60" r="6" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="96" cy="60" r="6" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="112" cy="60" r="6" fill="#fff" stroke="#888" stroke-width="0.7"/><rect x="20" y="78" width="28" height="14" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/></svg>',
-      lg_m:    '<svg viewBox="0 0 140 115" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="140" height="115" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="136" height="111" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="128" height="22" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><rect x="6" y="38" width="60" height="22" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="6" y="60" width="22" height="30" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="66" y="60" width="22" height="30" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="30" y="66" width="34" height="20" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><rect x="96" y="38" width="38" height="16" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="104" cy="62" r="6" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="118" cy="62" r="6" fill="#fff" stroke="#888" stroke-width="0.7"/><rect x="96" y="76" width="16" height="22" fill="#ddd" stroke="#888" stroke-width="0.7" rx="2"/><rect x="118" y="76" width="16" height="22" fill="#ddd" stroke="#888" stroke-width="0.7" rx="2"/></svg>',
-      lg_l:    '<svg viewBox="0 0 170 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="170" height="130" fill="#F5F4F0" rx="2"/><rect x="2" y="2" width="166" height="126" fill="none" stroke="#999" stroke-width="1.2"/><rect x="6" y="6" width="158" height="24" fill="#e8e8e8" stroke="#888" stroke-width="0.8"/><rect x="10" y="9" width="24" height="18" fill="#e0e0e0" stroke="#999" stroke-width="0.6" rx="1"/><rect x="6" y="42" width="80" height="20" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="6" y="62" width="20" height="40" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="66" y="62" width="20" height="40" fill="#ddd" stroke="#888" stroke-width="0.8" rx="2"/><rect x="28" y="68" width="36" height="26" fill="#fff" stroke="#888" stroke-width="0.8" rx="2"/><rect x="96" y="42" width="68" height="18" fill="#fff" stroke="#888" stroke-width="0.8" rx="1"/><circle cx="106" cy="68" r="7" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="120" cy="68" r="7" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="134" cy="68" r="7" fill="#fff" stroke="#888" stroke-width="0.7"/><circle cx="150" cy="68" r="7" fill="#fff" stroke="#888" stroke-width="0.7"/><rect x="96" y="86" width="20" height="24" fill="#ddd" stroke="#888" stroke-width="0.7" rx="2"/><rect x="122" y="86" width="20" height="24" fill="#ddd" stroke="#888" stroke-width="0.7" rx="2"/><rect x="148" y="86" width="16" height="24" fill="#ddd" stroke="#888" stroke-width="0.7" rx="2"/></svg>',
-    };
-    return plans[key] || '';
+    return '';
   }
 
-  // 카드 생성 (텍스트 + 렌더링 이미지)
   const cardContainer = document.getElementById('r-space-cards');
   if (cardContainer) {
     cardContainer.innerHTML = '';
@@ -3841,8 +3459,6 @@ function buildReport() {
       '집중공간':'#4DBAFF','회의공간':'#1A7FD4','OA·탕비':'#2196F3',
       '수납가구':'#7DD8FF','휴게공간':'#4AB8FF'
     };
-    // 렌더링 이미지 키 매핑
-    // RENDER_MAP은 전역으로 이동됨;
 
     for (const [key, info] of Object.entries(DB)) {
       const qty = v(key);
@@ -3875,7 +3491,6 @@ function buildReport() {
       cardContainer.innerHTML = '<div style="grid-column:1/3;text-align:center;color:var(--muted);font-size:13px;padding:20px;">입력된 공간 항목이 없습니다.</div>';
     }
   }
-  // ── 합산표 동적 생성 ──
   const tbody = document.getElementById('r-table-body');
   if (tbody) {
     tbody.innerHTML = '';
@@ -3905,7 +3520,6 @@ function buildReport() {
         tbody.appendChild(tr);
       });
     });
-    // 통로
     const corridorRow = document.createElement('tr');
     corridorRow.style.cssText = 'background:rgba(232,66,10,0.04);';
     corridorRow.innerHTML = `<td colspan="4" style="padding:8px 12px;font-weight:700;font-size:11px;color:var(--accent);">통로 및 여유공간</td>`;
@@ -3917,7 +3531,6 @@ function buildReport() {
       <td style="padding:9px 12px;border-bottom:1px solid var(--border);text-align:center;">—</td>
       <td style="padding:9px 12px;border-bottom:1px solid var(--border);text-align:right;font-weight:700;">${d.corridorPy}평<br><span style="font-size:10px;color:var(--muted);font-weight:400;">${Math.round(d.corridorPy*3.305)}m²</span></td>`;
     tbody.appendChild(corr);
-    // TOTAL
     const totalRow = document.createElement('tr');
     totalRow.style.cssText = 'background:var(--brand);';
     totalRow.innerHTML = `
@@ -3927,10 +3540,6 @@ function buildReport() {
   }
 }
 
-
-
-
-
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzzQZc7SZhDOwzkM_t4Tw6JBr8bFLKVYHs3WlcpJ9ggJUPObpgfRI0Qz3QhvDMi_A/exec';
 
 function buildLeadPayload(action) {
@@ -3939,11 +3548,9 @@ function buildLeadPayload(action) {
   const ymd = now.getFullYear().toString().slice(2)
     + String(now.getMonth()+1).padStart(2,'0')
     + String(now.getDate()).padStart(2,'0');
-  // leadId는 세션에 저장해서 보고서 요청~컨설팅까지 동일하게 유지
   if (!window._leadId) {
     window._leadId = 'OF-' + ymd + '-' + String(Date.now()).slice(-4);
   }
-  // 세부항목 배열 (0개 항목 제외) — "세부항목" 시트 용
   const ITEM_MAP = [
     { key:'exec_xl', label:'임원실_대형(13.3평)',    py:13.3 },
     { key:'exec_l',  label:'임원실_중대형(8.0평)',   py:8.0  },
@@ -4002,7 +3609,6 @@ function buildLeadPayload(action) {
     tel:      (document.getElementById('f-tel')      || {}).value || '',
     memo:     (document.getElementById('f-memo')     || {}).value || '',
     empTotal: d.empTotal  || 0,
-    // 평(py) 단위
     totalPy:  d.totalPy   ? d.totalPy.toFixed(1)  : 0,
     execArea: d.execArea  ? d.execArea.toFixed(1)  : 0,
     tmArea:   d.tmArea    ? d.tmArea.toFixed(1)    : 0,
@@ -4011,7 +3617,6 @@ function buildLeadPayload(action) {
     lgArea:   d.lgArea    ? d.lgArea.toFixed(1)    : 0,
     oaArea:   d.oaArea    ? d.oaArea.toFixed(1)    : 0,
     storArea: d.storArea  ? d.storArea.toFixed(1)  : 0,
-    // 제곱미터(m²) 단위
     totalM2:  d.totalM2   ? d.totalM2.toFixed(1)   : 0,
     execAreaM2: d.execArea ? (d.execArea*3.305).toFixed(1) : 0,
     tmAreaM2:   d.tmArea   ? (d.tmArea*3.305).toFixed(1)   : 0,
@@ -4020,14 +3625,12 @@ function buildLeadPayload(action) {
     lgAreaM2:   d.lgArea   ? (d.lgArea*3.305).toFixed(1)   : 0,
     oaAreaM2:   d.oaArea   ? (d.oaArea*3.305).toFixed(1)   : 0,
     storAreaM2: d.storArea ? (d.storArea*3.305).toFixed(1) : 0,
-    // 임대면적 (전용률 60~65% 기준)
     leaseAreaMin: d.totalPy ? Math.round(d.totalPy / 0.65) : 0,
     leaseAreaMax: d.totalPy ? Math.round(d.totalPy / 0.60) : 0,
     items: itemRows,
   };
 }
 
-// 보고서 요청 시 — Google Sheets 저장 + GA
 async function saveLeadToSheet() {
   const payload = buildLeadPayload('save_lead');
 
@@ -4063,7 +3666,6 @@ async function submitConsulting() {
 
   const payload = buildLeadPayload('send_email');
 
-  // GA 이벤트
   try {
     gtag('event', 'consulting_request', {
       'event_category': 'conversion',
@@ -4077,7 +3679,6 @@ async function submitConsulting() {
     });
   } catch(e) {}
 
-  // 이메일 발송 요청
   try {
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
@@ -4107,40 +3708,32 @@ async function submitConsulting() {
 function goHome() {
   if (!confirm('처음으로 돌아가시겠어요?\n입력하신 수량과 정보가 모두 초기화됩니다.')) return;
 
-  // 모든 숫자 입력(스텝퍼) 0으로 초기화
   document.querySelectorAll('input[type="number"], input[id^="exec_"], input[id^="tm_"], input[id^="emp_"], input[id^="conf_"], input[id^="oa_"], input[id^="tb_"], input[id^="stor_"], input[id^="lg_"]')
     .forEach(function(el) { el.value = 0; });
 
-  // 텍스트 입력 초기화
   ['f-company','f-name','f-tel','f-email','f-memo'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.value = '';
   });
 
-  // 업종 선택 초기화
   var ind = document.getElementById('industry');
   if (ind) ind.value = '';
 
-  // 개인정보 동의 체크 해제
   var chk = document.getElementById('privacy-agree');
   if (chk) { chk.checked = false; togglePrivacyAgree(); }
 
-  // 내부 상태 초기화
   window._calc  = null;
   window._leadId = null;
 
-  // 공간 설정 스텝도 첫 단계로
   s2GoStep(1);
 
-  // 첫 페이지로 이동
   go('s1');
 }
 
 function restartAnalysis() {
   gtagEvent('restart_clicked');
-  s2GoStep(1);  // 임원공간 페이지로
-  // 처음 화면(공간 설정)으로 돌아가서 다시 시작
-  window._leadId = null;  // 새 분석이므로 leadId 초기화
+  s2GoStep(1);
+  window._leadId = null;
   go('s2');
 }
 
@@ -4152,15 +3745,12 @@ function shareOfficeFlow() {
     url: url
   };
 
-  // 모바일 네이티브 공유 시트 우선
   if (navigator.share) {
     navigator.share(shareData).catch(function(){});
-    // GA 이벤트
     try { gtag('event', 'share', { 'method': 'native', 'leadId': window._leadId || '' }); } catch(e) {}
     return;
   }
 
-  // PC: URL 복사
   function showDone() {
     var d = document.getElementById('snext-share-done');
     if (d) { d.classList.add('show'); setTimeout(function(){ d.classList.remove('show'); }, 2500); }
@@ -4182,15 +3772,13 @@ function markInterest(service, el) {
   var soonEl = el.querySelector('.snext-svc-soon');
   var already = el.classList.contains('interested');
 
-  // 팝 애니메이션
   el.classList.remove('pop');
-  void el.offsetWidth; // 리플로우로 애니메이션 재생
+  void el.offsetWidth;
   el.classList.add('pop');
 
   if (!already) {
     el.classList.add('interested');
     if (soonEl) soonEl.textContent = '관심 표시 완료';
-    // GA 이벤트 기록 (관심도 데이터)
     try {
       gtag('event', 'service_interest', {
         'event_category': 'demand',
@@ -4200,7 +3788,6 @@ function markInterest(service, el) {
       });
     } catch(e) {}
 
-    // Google Sheets에 관심 기록 저장
     try {
       var d = window._calc || {};
       var interestPayload = {
@@ -4220,7 +3807,6 @@ function markInterest(service, el) {
       });
     } catch(e) {}
   } else {
-    // 다시 누르면 해제
     el.classList.remove('interested');
     if (soonEl) soonEl.textContent = '오픈 예정';
   }
@@ -4233,13 +3819,11 @@ function generateAIAnalysis(d) {
   var company = (document.getElementById('f-company') || {}).value || '';
   var subject = company ? company + '의' : '귀사의';
 
-  // 안전장치: 데이터 없으면 기본 멘트
   if (!d || !d.totalPy) {
     el.textContent = 'OFFICE.FLOW 분석 결과를 바탕으로 공간 전문가가 ' + (company || '귀사') + ' 맞춤형 공간 레이아웃 설계를 지원해 드립니다.';
     return;
   }
 
-  // ── 비율 계산 (Section 02 OUR와 동일한 분류 기준) ──
   var totalPy = d.totalPy || 1;
   var focusArea = ((d.conf_pb||0)*0.5) + ((d.conf_fr||0)*1.5);
   var meetingArea = (d.confArea||0) - focusArea;
@@ -4253,7 +3837,6 @@ function generateAIAnalysis(d) {
     oa:   supportArea / totalPy * 100,
   };
 
-  // ── 퍼시스 공간 DB 기준 평균 (Section 02와 동일한 SOURCE) ──
   var avg = { exec: 8.2, emp: 27.2, conf: 11.7, lg: 6.6, oa: 12.7 };
 
   var labels = {
@@ -4263,7 +3846,6 @@ function generateAIAnalysis(d) {
 
   var pick = function(arr) { return arr[Math.floor(Math.random() * arr.length)]; };
 
-  // ── 편차 계산: 회의/휴게/지원 위주 ──
   var targetKeys = ['conf', 'lg', 'oa'];
   var diffs = [];
   targetKeys.forEach(function(k) {
@@ -4273,13 +3855,11 @@ function generateAIAnalysis(d) {
 
   var top = diffs[0];
 
-  // ── 최대 편차가 2%p 미만이면 균형형 ──
   var THRESHOLD = 2.0;
 
   var sentence1, sentence2;
 
   if (top.abs < THRESHOLD) {
-    // 균형형: 편차가 작은 공간들의 특징을 중립적으로 서술
     var highKeys = diffs.filter(function(d) { return d.diff > 0; });
     var lowKeys  = diffs.filter(function(d) { return d.diff < 0; });
 
@@ -4297,7 +3877,6 @@ function generateAIAnalysis(d) {
     sentence2 = desc + ' 실제 이전 단계에서는 분석된 데이터를 바탕으로 후보 사무실에서 계획한 공간 구성이 가능한지 Test-Fit과 레이아웃 설계를 통해 구체화할 수 있습니다.';
 
   } else {
-    // 편차형: 가장 큰 차이를 보이는 공간 중심으로 서술
     var name   = labels[top.key];
     var ourVal = pct[top.key].toFixed(1);
     var avgVal = avg[top.key].toFixed(1);
@@ -4318,7 +3897,6 @@ function generateAIAnalysis(d) {
     }
   }
 
-  // ── 마무리 문장 ──
   var sentence3 = subject + ' 데이터를 바탕으로 공간 전문가가 맞춤형 레이아웃 설계와 Test-Fit을 지원해 드립니다.';
 
   el.textContent = sentence1 + ' ' + sentence2 + ' ' + sentence3;
@@ -4326,20 +3904,9 @@ function generateAIAnalysis(d) {
 
 
 
-/* ─────────────────────────────────────────────
-   go() 함수 오버라이드 — S4 진입 시 자동 실행
-───────────────────────────────────────────── */
 const _goOriginal = go;
-/* ─────────────────────────────────────────────
-   FURNITURE TAB (데이터는 추후 입력 예정)
-───────────────────────────────────────────── */
 var _furnitureTab = 'standard';
 
-// ★ 데이터 입력 포맷 안내 ★
-// 아래 FURNITURE_DATA에 시리즈명·소비자가를 입력해 주세요
-// 25%·30% 할인가는 자동 계산됩니다
-// ★ 아래 데이터를 실제 퍼시스 시리즈명·소비자가로 교체해 주세요
-// 25% 할인가는 자동 계산됩니다
 var FURNITURE_DATA = {
   standard: {
     desk:  { name: '시리즈명 입력', spec: '모델명 입력', price: 0 },
@@ -4402,7 +3969,6 @@ function submitReport() {
     alert('개인정보 수집·이용에 동의해 주세요.');
     return;
   }
-  // 형식 검증 (안전장치)
   var tel   = (document.getElementById('f-tel')   || {}).value || '';
   var email = (document.getElementById('f-email') || {}).value || '';
   if (!isValidTel(tel)) {
@@ -4413,7 +3979,6 @@ function submitReport() {
     alert('올바른 이메일 주소를 입력해 주세요.');
     return;
   }
-  // 로딩 스크린 먼저 표시
   go('s-loading');
   startLoadingAnimation();
 }
@@ -4429,13 +3994,11 @@ function startLoadingAnimation() {
 
   steps.forEach(function(step) {
     setTimeout(function() {
-      // 프로그레스 바
       var bar = document.getElementById('loading-bar');
       var pct = document.getElementById('loading-pct');
       if (bar) bar.style.width = step.pct + '%';
       if (pct) pct.textContent = step.pct + '%';
 
-      // 체크 항목 활성화
       var item = document.getElementById('lc-' + step.id);
       var icon = document.getElementById('lc-' + step.id + '-icon');
       if (item) item.style.opacity = '1';
@@ -4447,9 +4010,7 @@ function startLoadingAnimation() {
     }, step.delay);
   });
 
-  // 3.2초 후 S4로 이동
   setTimeout(function() {
-    // 로딩 링 회전 멈춤
     var ring1 = document.getElementById('loading-ring1');
     var ring2 = document.getElementById('loading-ring2');
     var ring3 = document.getElementById('loading-ring3');
@@ -4463,17 +4024,14 @@ function startLoadingAnimation() {
       if (innerSvg) innerSvg.style.animation = 'none';
     }
 
-    // S4로 전환
     buildReport();
     go('s4');
     gtagEvent('email_submitted', {
       company:  (document.getElementById('f-company') || {}).value || '',
       industry: (document.getElementById('f-industry') || {}).value || '',
     });
-    // 보고서 요청 = 리드 저장 (GS + GA)
     saveLeadToSheet();
 
-    // 로딩 상태 초기화 (다음 사용을 위해)
     setTimeout(function() {
       var bar = document.getElementById('loading-bar');
       var pct = document.getElementById('loading-pct');
@@ -4498,7 +4056,6 @@ function isValidEmail(v) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 }
 function isValidTel(v) {
-  // 숫자만 추출해서 9~11자리면 통과 (휴대폰/유선 모두 허용)
   var digits = v.replace(/[^0-9]/g, '');
   return digits.length >= 9 && digits.length <= 11;
 }
@@ -4514,12 +4071,10 @@ function checkFormReady() {
   var tel      = (document.getElementById('f-tel')      || {}).value || '';
   var email    = (document.getElementById('f-email')    || {}).value || '';
 
-  // 전화번호 형식 안내
   var telErr = document.getElementById('f-tel-err');
   if (telErr) {
     telErr.style.display = (tel.trim() !== '' && !isValidTel(tel)) ? 'block' : 'none';
   }
-  // 이메일 형식 안내
   var emailErr = document.getElementById('f-email-err');
   if (emailErr) {
     emailErr.style.display = (email.trim() !== '' && !isValidEmail(email)) ? 'block' : 'none';
@@ -4536,9 +4091,6 @@ function checkFormReady() {
   btn.style.pointerEvents = ready ? 'auto' : 'none';
 }
 
-/* ─────────────────────────────────────────────
-   FLOOR PLAN PREVIEW (S2 예시 보기)
-───────────────────────────────────────────── */
 var FP_PREVIEW = {
   exec: {
     title: '임원공간 예시 이미지',
@@ -4627,14 +4179,11 @@ function openFpPreview(categoryKey) {
 
   _fpCurrentKey = categoryKey;
 
-  // 제목 설정
   var titleEl = document.getElementById('fp-sheet-title');
   if (titleEl) titleEl.textContent = data.title;
 
-  // 탭 버튼 생성
   var tabsEl = document.getElementById('fp-tabs');
   if (tabsEl) {
-    // 탭 버튼 DOM 직접 생성 (쿼트 충돌 방지)
     tabsEl.innerHTML = '';
     data.items.forEach(function(item, i) {
       var btn = document.createElement('button');
@@ -4647,7 +4196,6 @@ function openFpPreview(categoryKey) {
     var dummy = ''
   }
 
-  // 이 카테고리의 모든 이미지 미리 불러오기 (버퍼링 방지)
   if (typeof RENDER_MAP !== 'undefined') {
     data.items.forEach(function(item) {
       if (RENDER_MAP[item.key]) {
@@ -4657,16 +4205,13 @@ function openFpPreview(categoryKey) {
     });
   }
 
-  // 첫 번째 탭 선택
   selectFpTab(0);
 
-  // 바텀시트 표시
   var overlay = document.getElementById('fp-overlay');
   var sheet   = document.getElementById('fp-sheet');
   if (overlay) { overlay.style.display = 'block'; }
   if (sheet)   { sheet.style.display = 'flex'; }
 
-  // 배경 스크롤 잠금 (모달 열림 동안 스크롤바 숨김)
   _fpScrollY = window.scrollY || document.documentElement.scrollTop || 0;
   document.body.style.position = 'fixed';
   document.body.style.top = '-' + _fpScrollY + 'px';
@@ -4674,7 +4219,6 @@ function openFpPreview(categoryKey) {
   document.body.style.right = '0';
   document.body.style.width = '100%';
 
-  // 스와이프 초기화 + 화살표 표시 (아이템 2개 이상일 때만)
   setTimeout(initFpSwipe, 100);
   var showArrows = data.items.length > 1;
   var prevBtn = document.getElementById('fp-prev-btn');
@@ -4691,7 +4235,6 @@ function selectFpTab(idx) {
   if (!item) return;
   _fpCurrentIdx = idx;
 
-  // 탭 활성화
   var tabsEl = document.getElementById('fp-tabs');
   if (tabsEl) {
     tabsEl.querySelectorAll('button').forEach(function(btn, i) {
@@ -4708,7 +4251,6 @@ function selectFpTab(idx) {
   var descEl   = document.getElementById('fp-preview-desc');
   var noImgEl  = document.getElementById('fp-no-img');
 
-  // 렌더링 이미지 (RENDER_MAP에서 조회)
   var renderSrc = '';
   if (typeof RENDER_MAP !== 'undefined' && RENDER_MAP[item.key]) {
     renderSrc = RENDER_MAP[item.key];
@@ -4716,11 +4258,9 @@ function selectFpTab(idx) {
 
   if (imgEl) {
     if (renderSrc) {
-      // 이미 로드된(캐시된) 이미지면 즉시, 아니면 로드 후 표시
       imgEl.style.opacity = '0';
       imgEl.onload = function() { imgEl.style.opacity = '1'; };
       imgEl.src = renderSrc;
-      // 캐시되어 onload가 안 걸리는 경우 대비
       if (imgEl.complete) { imgEl.style.opacity = '1'; }
       imgEl.style.display = 'block';
       if (noImgEl) noImgEl.style.display = 'none';
@@ -4750,7 +4290,6 @@ function fpSwipe(dir) {
   }
 }
 
-// 터치 스와이프 감지
 var _fpTouchStartX = 0;
 var _fpTouchEndX = 0;
 
@@ -4778,7 +4317,6 @@ function closeFpPreview() {
   if (overlay) overlay.style.display = 'none';
   if (sheet)   sheet.style.display   = 'none';
 
-  // 배경 스크롤 잠금 해제 (원래 위치로 복원)
   document.body.style.position = '';
   document.body.style.top = '';
   document.body.style.left = '';
@@ -4788,9 +4326,6 @@ function closeFpPreview() {
 }
 
 
-/* ─────────────────────────────────────────────
-   S2 WIZARD — 단계별 진행
-───────────────────────────────────────────── */
 var _s2Step = 1;
 
 function getStepAreaValues() {
@@ -4818,31 +4353,25 @@ var S2_STEPS = [
 ];
 
 function s2GoStep(step) {
-  // calculator_started: 첫 진입 시
   if (step === 1 && typeof _s2Step !== 'undefined' && _s2Step !== 1) {
     gtagEvent('calculator_started');
   }
-  // 현재 단계 숨기기
   var cur = document.getElementById('s2-step-' + _s2Step);
   if (cur) cur.style.display = 'none';
 
   _s2Step = step;
 
-  // 새 단계 보이기
   var next = document.getElementById('s2-step-' + step);
   if (next) {
     next.style.display = 'block';
-    // 스크롤 상단으로
     var screen = document.getElementById('s2');
     if (screen) screen.scrollTop = 0;
   }
 
-  // 가이드 팝업 (0.5초 후, 세션 중 첫 진입 시만)
   if (typeof showGuide === 'function') {
     setTimeout(function() { showGuide(step); }, 500);
   }
 
-  // 진행률 업데이트
   var info = S2_STEPS[step - 1];
   if (info) {
     var bar   = document.getElementById('s2-progress');
@@ -4853,7 +4382,6 @@ function s2GoStep(step) {
     if (label) label.textContent = (step <= 5 ? step + ' / 5단계' : '완료');
     if (name)  name.textContent  = info.label;
 
-    // 공간 카테고리명 업데이트
     var spaceNames = { 1:'임원공간', 2:'업무공간', 3:'회의공간', 4:'휴게공간', 5:'지원공간' };
     var spaceLabel = document.getElementById('s2-space-label');
     if (spaceLabel && spaceNames[step]) spaceLabel.textContent = spaceNames[step];
@@ -4861,7 +4389,6 @@ function s2GoStep(step) {
 
   }
 
-  // 결과 단계면 display 설정 후 calc() + renderCalc() 실행
   if (step === 8) {
     setTimeout(function() {
       calc();
@@ -4881,7 +4408,6 @@ function showS2Result() {
   calc();
   var d = window._calc;
 
-  // go() 방식으로 스크린 전환
   document.querySelectorAll('.screen').forEach(function(s) {
     s.classList.remove('active');
   });
@@ -4889,7 +4415,6 @@ function showS2Result() {
   if (result) result.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // 데이터 채우기
   if (d) {
     var set = function(id, val) { var e = document.getElementById(id); if(e) e.textContent = val; };
     set('r2-total-py',    d.totalPy);
@@ -4897,7 +4422,6 @@ function showS2Result() {
     set('r2-usable-py',  Math.round(d.usablePy));
     set('r2-corridor-py', Math.round(d.corridorPy));
 
-    // 임대면적 계산 (전용률 60~65% 기준)
     var leaseMin = Math.round(d.totalPy / 0.65);
     var leaseMax = Math.round(d.totalPy / 0.60);
     set('r2-lease-min', leaseMin);
@@ -4906,7 +4430,6 @@ function showS2Result() {
     set('r2-lease-max-m2', Math.round(leaseMax * 3.305));
   }
 
-  // 단계별 등장 애니메이션 — 먼저 리셋
   var allSteps = ['rs-step1','rs-arrow1','rs-step2','rs-arrow2','rs-step3','rs-arrow3','rs-step4','rs-arrow4','rs-step5','rs-buttons'];
   allSteps.forEach(function(id) {
     var el = document.getElementById(id);
@@ -4916,7 +4439,6 @@ function showS2Result() {
     }
   });
 
-  // 단계별 등장 애니메이션
   var steps = [
     'rs-step1', 'rs-arrow1',
     'rs-step2', 'rs-arrow2',
@@ -4941,13 +4463,6 @@ function showTooltip(id) {
     el.style.display = 'flex';
   }
 }
-/* ─────────────────────────────────────────────
-   RENDER ANALYSIS — 공간 구성 비율 이중 막대 + 분석
-───────────────────────────────────────────── */
-
-/* ─────────────────────────────────────────────
-   Section 01 — 가로 누적 막대 차트
-───────────────────────────────────────────── */
 function renderStackedBar(d) {
   var chartEl  = document.getElementById('stacked-bar-chart');
   var legendEl = document.getElementById('stacked-bar-legend');
@@ -4960,7 +4475,6 @@ function renderStackedBar(d) {
   var usableCore = d.usableCore || 0;
   if (usableCore <= 0) return;
 
-  // 각 공간 면적
   var exec  = d.execArea || 0;
   var biz   = (d.tmArea || 0) + (d.empArea || 0);
   var conf  = (d.confArea || 0) - ((d.conf_pb||0)*0.5) - ((d.conf_fr||0)*1.5);
@@ -4969,7 +4483,6 @@ function renderStackedBar(d) {
   var corr  = Math.round(usableCore / 0.664 * 0.336 * 10) / 10;
   var total = usableCore + corr;
 
-  // 비율 계산
   var pct = function(val) {
     return total > 0 ? Math.round(val / total * 1000) / 10 : 0;
   };
@@ -4983,12 +4496,9 @@ function renderStackedBar(d) {
     { label:'통로', val:corr, color:'#A8E0FF' },
   ];
 
-  // 0% 항목 제거 (입력 안 한 경우)
   var validItems = items.filter(function(it) { return it.val > 0; });
   if (validItems.length === 0) return;
 
-  // ── 누적 막대 ──
-  // 전체 합산 기준 % 재계산 (100% 맞추기)
   var totalPct = 0;
   validItems.forEach(function(it) { totalPct += pct(it.val); });
 
@@ -5004,7 +4514,6 @@ function renderStackedBar(d) {
   barHTML += '</div>';
   chartEl.innerHTML = barHTML;
 
-  // ── 범례 ──
   var legendHTML = '';
   validItems.forEach(function(it) {
     var p = pct(it.val);
@@ -5016,7 +4525,6 @@ function renderStackedBar(d) {
   });
   if (legendEl) legendEl.innerHTML = legendHTML;
 
-  // ── 하단 2열 카드 값 ──
   var usablePy  = Math.round(usableCore * 10) / 10;
   var usableM2  = Math.round(usableCore * 3.305 * 10) / 10;
   var corrPy    = Math.round(corr * 10) / 10;
@@ -5029,7 +4537,6 @@ function renderStackedBar(d) {
   if (totalPy2El) totalPy2El.textContent = corrPy + '평';
   if (totalM22El) totalM22El.textContent = corrM2 + ' m²';
 
-  // 표지 + 흐름카드 임대면적 계산 (전용률 60~65% 기준)
   var coverMin = Math.round(parseFloat(totalPyV) / 0.65);
   var coverMax = Math.round(parseFloat(totalPyV) / 0.60);
   var setEl = function(id, val) { var e = document.getElementById(id); if(e) e.textContent = val; };
@@ -5044,11 +4551,8 @@ function renderAnalysis() {
   var d = window._calc;
   if (!d) return;
 
-  // 입력된 회사명 가져오기
   var companyEl = document.getElementById('f-company');
   var companyName = (companyEl && companyEl.value && companyEl.value.trim()) ? companyEl.value.trim() : '우리회사';
-  // 그래프 라벨용: 5글자 초과 시 줄임표 처리
-  // 회사명 레이블 업데이트
   var compLbl = document.getElementById('analysis-company-label');
   if (compLbl) compLbl.textContent = companyName;
 
@@ -5073,7 +4577,7 @@ function renderAnalysis() {
   if(pSum > 0) pEmp += (100 - pSum);
 
   var OUR = { exec:pExec, emp:pEmp, conf:pConf, lg:pLg, stor:pStor, corridor:pCorridor };
-  var AVG = { exec:8.2,  emp:27.2, conf:11.7, lg:6.6,  stor:12.7, corridor:33.6 }; // 퍼시스 공간 DB
+  var AVG = { exec:8.2,  emp:27.2, conf:11.7, lg:6.6,  stor:12.7, corridor:33.6 };
 
   var LABELS = [
     { key:'exec',     label:'임원공간',           colorOur:'#0D3D7A' },
@@ -5136,7 +4640,6 @@ function renderAnalysis() {
     var HL = 'color:#4DBAFF;';
     var msgs = [];
 
-    // ── 임원공간 ──
     var execDiff = (OUR.exec - AVG.exec).toFixed(1);
     var execAbs  = Math.abs(OUR.exec - AVG.exec).toFixed(1);
     if (OUR.exec - AVG.exec > 2)
@@ -5153,7 +4656,6 @@ function renderAnalysis() {
         '<b>임원공간</b>은 ' + OUR.exec.toFixed(1) + '%로 기업평균(8.2%)과 유사한 수준입니다. ' +
         '일반적인 기업 구성 범위 내에 있습니다.');
 
-    // ── 업무공간 ──
     var empDiff = (OUR.emp - AVG.emp).toFixed(1);
     var empAbs  = Math.abs(OUR.emp - AVG.emp).toFixed(1);
     if (OUR.emp - AVG.emp > 3)
@@ -5169,7 +4671,6 @@ function renderAnalysis() {
       msgs.push(DOT_OK +
         '<b>업무공간</b>은 ' + OUR.emp.toFixed(1) + '%로 기업평균(27.2%)과 유사한 수준입니다.');
 
-    // ── 회의공간 ──
     var confDiff = (OUR.conf - AVG.conf).toFixed(1);
     var confAbs  = Math.abs(OUR.conf - AVG.conf).toFixed(1);
     if (OUR.conf - AVG.conf < -2)
@@ -5185,7 +4686,6 @@ function renderAnalysis() {
       msgs.push(DOT_OK +
         '<b>회의공간</b>은 ' + OUR.conf.toFixed(1) + '%로 기업평균(11.7%)과 유사한 수준입니다.');
 
-    // ── 휴게공간 ──
     var lgDiff = (OUR.lg - AVG.lg).toFixed(1);
     var lgAbs  = Math.abs(OUR.lg - AVG.lg).toFixed(1);
     if (OUR.lg === 0)
@@ -5206,7 +4706,6 @@ function renderAnalysis() {
       msgs.push(DOT_OK +
         '<b>휴게공간</b>은 ' + OUR.lg.toFixed(1) + '%로 기업평균(6.6%)과 유사한 수준입니다.');
 
-    // ── 지원공간 ──
     var storDiff = (OUR.stor - AVG.stor).toFixed(1);
     var storAbs  = Math.abs(OUR.stor - AVG.stor).toFixed(1);
     if (OUR.stor - AVG.stor < -3)
@@ -5230,9 +4729,6 @@ function renderAnalysis() {
   renderStackedBar(d);
 }
 
-/* ─────────────────────────────────────────────
-   1인당 면적 적정성 분석
-───────────────────────────────────────────── */
 function renderPerPersonAnalysis(d) {
   var el = document.getElementById('per-person-analysis');
   if (!el) return;
@@ -5250,7 +4746,6 @@ function renderPerPersonAnalysis(d) {
     el.innerHTML = '<div style="background:#F8F7F3;border-radius:10px;padding:16px;text-align:center;color:var(--muted);font-size:13px;">팀원석·팀장석 입력 시 자동 분석됩니다.</div>';
     return;
   }
-  // 임원실 1개당 평균 면적
   var execQty = (d.exec_xl||0)+(d.exec_l||0)+(d.exec_m||0)+(d.exec_s||0);
   var execAreaTotal = d.execArea || 0;
   var execPerRoom = execQty > 0 ? execAreaTotal / execQty * 3.305 : 0;
@@ -5286,9 +4781,6 @@ function renderPerPersonAnalysis(d) {
   }).join('') + '</div>';
 }
 
-/* ─────────────────────────────────────────────
-   회의실 적정성 분석
-───────────────────────────────────────────── */
 function renderConfAnalysis(d) {
   var el = document.getElementById('conf-analysis');
   if (!el) return;
@@ -5355,9 +4847,6 @@ function renderConfAnalysis(d) {
 }
 
 
-/* ─────────────────────────────────────────────
-   보고서 저장하기 애니메이션
-───────────────────────────────────────────── */
 function completeReport() {
   var ICON_CHECK = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align:-3px;"><path d="M3 8.5l3.2 3.2L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var ICON_SPINNER = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align:-3px;animation:loadingSpin 0.8s linear infinite;display:inline-block;"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2" stroke-opacity="0.25"/><path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
@@ -5372,7 +4861,6 @@ function completeReport() {
 
   var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
-  // 인앱 브라우저에서는 다운로드가 막히므로 먼저 안내
   if (isInAppBrowser()) {
     var b = document.getElementById('inapp-banner');
     if (b) {
@@ -5380,11 +4868,9 @@ function completeReport() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     if (isAndroid()) {
-      // 안드로이드는 크롬으로 전환 시도
       handleInAppBrowser();
       return;
     }
-    // 아이폰은 배너 안내 후 그래도 다운로드 시도는 함 (될 수도 있으니)
   }
 
   function resetBtn() {
@@ -5415,7 +4901,6 @@ function completeReport() {
   }
 
   setTimeout(function() {
-    // 모바일은 메모리 한계로 scale을 낮춤
     var scale = isMobile ? 1.4 : 2;
     html2canvas(s4, {
       scale: scale,
@@ -5445,7 +4930,6 @@ function completeReport() {
 
       var filename = company + '_공간분석보고서.pdf';
 
-      // ── 다운로드: Blob 방식 (모바일 안정성 ↑) ──
       try {
         var blob = pdf.output('blob');
         var url = URL.createObjectURL(blob);
@@ -5461,12 +4945,10 @@ function completeReport() {
         }, 1500);
         done();
       } catch (e1) {
-        // 폴백 1: jsPDF 기본 save
         try {
           pdf.save(filename);
           done();
         } catch (e2) {
-          // 폴백 2: 새 탭에서 PDF 열기 (사용자가 직접 저장)
           try {
             var url2 = URL.createObjectURL(pdf.output('blob'));
             window.open(url2, '_blank');
@@ -5491,18 +4973,13 @@ function completeReport() {
 }
 
 
-/* ─────────────────────────────────────────────
-   PDF 저장
-───────────────────────────────────────────── */
 function savePDF() {
-  // 파일명 설정
   var company = document.getElementById('f-company');
   var companyName = company && company.value ? company.value : '회사명';
   var today = new Date();
   var dateStr = today.getFullYear() + String(today.getMonth()+1).padStart(2,'0') + String(today.getDate()).padStart(2,'0');
   document.title = companyName + '_공간분석보고서_' + dateStr;
 
-  // S4만 인쇄되도록 설정
   var style = document.createElement('style');
   style.id = 'print-style';
   style.innerHTML = [
@@ -5520,7 +4997,6 @@ function savePDF() {
 
   window.print();
 
-  // 인쇄 후 정리
   setTimeout(function() {
     var ps = document.getElementById('print-style');
     if (ps) ps.remove();
@@ -5528,7 +5004,6 @@ function savePDF() {
   }, 1000);
 }
 
-// s-pdf 진입 시 파일명 업데이트
 function updatePdfFilename() {
   var el = document.getElementById('pdf-filename');
   if (!el) return;
@@ -5542,13 +5017,11 @@ function updatePdfFilename() {
 
 go = function(id) {
   _goOriginal(id);
-  // step-bar 업데이트
   if (id === 's2' || id === 's2result') updateStepBar(1);
   if (id === 's3' || id === 's-loading') updateStepBar(2);
   if (id === 's4' || id === 's-next' || id === 's5' || id === 's7' || id === 's8' || id === 's9') updateStepBar(3);
 
   if (id === 's4') {
-    // buildReport는 startLoadingAnimation에서 이미 호출됨
   }
   if (id === 's-pdf') {
     updatePdfFilename();
@@ -5564,7 +5037,6 @@ go = function(id) {
     setU('snext-emp', (d.empTotal && d.tmTotal !== undefined ? d.empTotal + d.tmTotal : d.empTotal || '—'), '명');
     var confCnt = (d.conf_4||0)+(d.conf_6||0)+(d.conf_8||0)+(d.conf_12||0)+(d.conf_14||0)+(d.conf_16||0);
     setU('snext-conf', (confCnt || '—'), '개');
-    // 리포트 번호 (leadId 뒷자리)
     if (!window._leadId) {
       var now = new Date();
       var ymd = now.getFullYear().toString().slice(2)
@@ -5578,30 +5050,22 @@ go = function(id) {
 };
 </script>
 
-<!-- ════════════════════════════════════════
-     FLOOR PLAN PREVIEW BOTTOM SHEET
-════════════════════════════════════════ -->
 <div id="fp-overlay" onclick="closeFpPreview()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1000;transition:opacity 0.3s;"></div>
 
 <div id="fp-sheet" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#0F1419;border:1px solid rgba(77,186,255,0.2);border-radius:20px;z-index:1001;max-height:85vh;overflow:hidden;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.7),0 0 40px rgba(77,186,255,0.06);">
 
-  <!-- 핸들 + 헤더 -->
   <div style="padding:12px 20px 0;flex-shrink:0;">
     <div style="width:36px;height:4px;background:#ddd;border-radius:2px;margin:0 auto 12px;"></div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
       <div style="font-size:16px;font-weight:800;letter-spacing:-0.5px;" id="fp-sheet-title">예시 이미지</div>
       <button onclick="closeFpPreview()" style="background:none;border:none;font-size:20px;color:var(--muted);cursor:pointer;padding:4px 8px;">✕</button>
     </div>
-    <!-- 탭 버튼 -->
     <div id="fp-tabs" style="display:flex;gap:6px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--border);overflow-x:auto;"></div>
   </div>
 
-  <!-- 이미지 영역 -->
   <div class="fp-img-scroll" style="flex:1;overflow-y:auto;padding:16px 20px;">
-    <!-- 렌더링 이미지 (스와이프 가능) -->
     <div id="fp-img-wrap" style="position:relative;background:#F8F7F3;border-radius:12px;overflow:hidden;margin-bottom:12px;min-height:180px;display:flex;align-items:center;justify-content:center;touch-action:pan-y;">
       <img id="fp-preview-img" src="" style="width:100%;height:auto;display:none;border-radius:12px;transition:opacity 0.2s;" alt="렌더링 이미지">
-      <!-- 좌우 화살표 -->
       <button id="fp-prev-btn" onclick="fpSwipe(-1)" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.9);border:none;box-shadow:0 2px 8px rgba(0,0,0,0.15);font-size:18px;color:var(--brand);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;">‹</button>
       <button id="fp-next-btn" onclick="fpSwipe(1)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.9);border:none;box-shadow:0 2px 8px rgba(0,0,0,0.15);font-size:18px;color:var(--brand);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;">›</button>
       <div id="fp-no-img" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center;">
@@ -5615,9 +5079,6 @@ go = function(id) {
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     공간 조정 팝업 (Section 02 [조정] 버튼)
-══════════════════════════════════════ -->
 <style>
 #adj-overlay {
   display:none;
@@ -5683,7 +5144,6 @@ go = function(id) {
 </div>
 
 <script>
-// 공간별 팝업 항목 정의
 var ADJ_CONFIG = {
   exec: {
     title: '임원공간 수정버튼',
@@ -5771,7 +5231,6 @@ function adjChange(id, delta) {
   numEl.textContent = next;
 }
 
-// 토스트 메시지
 function showToast(msg, duration) {
   var toast = document.getElementById('adj-toast');
   if (!toast) {
@@ -5788,7 +5247,6 @@ function showToast(msg, duration) {
 }
 
 function applyAdj() {
-  // 팝업 값을 실제 입력 필드에 반영
   var allIds = [];
   Object.values(ADJ_CONFIG).forEach(function(cfg) {
     cfg.items.forEach(function(item) { allIds.push(item.id); });
@@ -5803,15 +5261,12 @@ function applyAdj() {
 
   closeAdjPanel();
 
-  // 토스트: 업데이트 중
   showToast('⟳ 보고서 업데이트 중...', null);
 
-  // 0.7초 후 계산 및 보고서 업데이트
   setTimeout(function() {
     calc();
     if (typeof buildReport === 'function') buildReport();
 
-    // 완료 메시지
     showToast('✓ 업데이트 완료', 1500);
   }, 700);
 }
@@ -5821,9 +5276,6 @@ function closeAdjPanel() {
 }
 </script>
 
-<!-- ══════════════════════════════════════
-     공간 입력 가이드 팝업
-══════════════════════════════════════ -->
 <style>
 #guide-overlay {
   display:none;
@@ -5926,9 +5378,6 @@ function closeGuide() {
 }
 </script>
 
-<!-- ══════════════════════════════════════
-     피드백 플로팅 버튼
-══════════════════════════════════════ -->
 <style>
 #fb-wrap {
   display: none;
@@ -5970,7 +5419,6 @@ function closeGuide() {
   to   { opacity:1; transform:translateY(0); }
 }
 
-/* 피드백 레이더 버튼 */
 #fb-radar {
   position: relative;
   width: 64px;
@@ -5978,7 +5426,6 @@ function closeGuide() {
   align-self: flex-end;
   cursor: pointer;
 }
-/* 동심원 3개 */
 .fb-ring {
   position: absolute;
   border-radius: 50%;
@@ -5989,7 +5436,6 @@ function closeGuide() {
 .fb-ring-1 { width: 64px; height: 64px; border-color: rgba(77,186,255,0.2); }
 .fb-ring-2 { width: 46px; height: 46px; border-color: rgba(77,186,255,0.3); }
 .fb-ring-3 { width: 28px; height: 28px; border-color: rgba(77,186,255,0.4); }
-/* 중심 점 */
 .fb-dot {
   position: absolute;
   width: 8px; height: 8px;
@@ -5999,7 +5445,6 @@ function closeGuide() {
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
 }
-/* 퍼져나가는 링 애니메이션 */
 .fb-pulse {
   position: absolute;
   border-radius: 50%;
@@ -6016,10 +5461,9 @@ function closeGuide() {
   100% { transform: translate(-50%,-50%) scale(2.2); opacity: 0; }
 }
 #fb-btn {
-  display: none; /* 기존 버튼 숨김 */
+  display: none;
 }
 
-/* 팝업 */
 #fb-modal-overlay {
   display: none;
   position: fixed;
@@ -6080,7 +5524,6 @@ function closeGuide() {
 }
 </style>
 
-<!-- 플로팅 버튼 -->
 <div id="fb-wrap">
   <div id="fb-bubble">솔직한 의견을 들려주세요 🙏</div>
   <div id="fb-radar" onclick="openFbModal()">
@@ -6094,7 +5537,6 @@ function closeGuide() {
   <button id="fb-btn" onclick="openFbModal()">💬</button>
 </div>
 
-<!-- 피드백 팝업 -->
 <div id="fb-modal-overlay" onclick="if(event.target===this)closeFbModal()">
   <div id="fb-modal">
     <div style="font-size:15px;font-weight:900;color:#FFFFFF;margin-bottom:4px;">의견 남기기</div>
@@ -6106,7 +5548,6 @@ function closeGuide() {
 </div>
 
 <script>
-// s-next 진입 시 플로팅 버튼 표시
 function showFbBtn() {
   var wrap = document.getElementById('fb-wrap');
   if (!wrap) return;
@@ -6131,11 +5572,9 @@ async function submitFeedback() {
   var text = document.getElementById('fb-text').value.trim();
   var btn  = document.getElementById('fb-submit');
 
-  // 빈 의견도 제출 가능 (강제성 없음)
   btn.textContent = '제출 중...';
   btn.disabled = true;
 
-  // 회사명·면적 자동 포함
   var d = window._calc || {};
   var company = (document.getElementById('f-company') || {}).value || '';
   var totalPy = d.totalPy || 0;
@@ -6163,9 +5602,6 @@ async function submitFeedback() {
 }
 </script>
 
-<!-- ══════════════════════════════════════
-     s-next 순차 등장 애니메이션 (B안)
-══════════════════════════════════════ -->
 <style>
 @keyframes snextFadeUp {
   from { opacity: 0; transform: translateY(28px); }
@@ -6190,7 +5626,6 @@ function initSeqAnim() {
     { sel: '.snext-soon-grid',    delay: 1850 },
   ];
 
-  // 전부 즉시 숨김
   groups.forEach(function(g) {
     snext.querySelectorAll(g.sel).forEach(function(el) {
       el.style.opacity = '0';
@@ -6198,7 +5633,6 @@ function initSeqAnim() {
     });
   });
 
-  // 순차 등장
   groups.forEach(function(g) {
     setTimeout(function() {
       snext.querySelectorAll(g.sel).forEach(function(el) {
