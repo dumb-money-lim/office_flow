@@ -2166,7 +2166,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         <button onclick="showTooltip('tooltip-rate')" style="width:16px;height:16px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);font-size:10px;font-weight:700;color:var(--accent);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">?</button>
       </div>
       <div style="background:var(--card);border:1px solid rgba(74,158,255,0.2);border-radius:14px;padding:16px 18px;">
-        <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">서울 오피스 빌딩 통상 기준</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">초기 매물 검토를 위한 전용률 참고범위</div>
         <div style="display:flex;gap:8px;">
           <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:12px;text-align:center;">
             <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">프라임급 대형빌딩</div>
@@ -2175,7 +2175,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
           <div style="flex:1;background:rgba(74,158,255,0.1);border:1px solid rgba(74,158,255,0.3);border-radius:10px;padding:12px;text-align:center;">
             <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">일반 오피스빌딩</div>
             <div style="font-size:16px;font-weight:800;color:#4DBAFF;">60~65%</div>
-            <div style="font-size:9px;color:var(--accent);font-weight:700;margin-top:2px;">통상 기준</div>
+            <div style="font-size:9px;color:var(--accent);font-weight:700;margin-top:2px;">기본 적용</div>
           </div>
           <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:12px;text-align:center;">
             <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">소규모·지식산업센터</div>
@@ -2198,7 +2198,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         <button onclick="showTooltip('tooltip-lease')" style="width:16px;height:16px;border-radius:50%;background:rgba(74,158,255,0.2);border:1px solid rgba(74,158,255,0.4);font-size:10px;font-weight:700;color:var(--accent);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">?</button>
       </div>
       <div style="background:linear-gradient(135deg,rgba(26,127,212,0.15),rgba(0,212,255,0.08));border:1.5px solid rgba(74,158,255,0.4);border-radius:14px;padding:20px 18px;box-shadow:0 0 24px rgba(0,212,255,0.1);">
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;">실제 계약해야 할 건물 크기 (전용률 60~65% 기준)</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:8px;">예상 필요 임대면적</div>
         <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;">
           <span style="font-size:13px;color:var(--muted);">약</span>
           <span style="font-family:'DM Sans',sans-serif;font-size:48px;font-weight:900;letter-spacing:-2px;color:var(--accent2);" id="r2-lease-min">—</span>
@@ -2207,6 +2207,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
           <span style="font-size:18px;font-weight:700;color:var(--muted);">평</span>
         </div>
         <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:6px;">약 <span id="r2-lease-min-m2">—</span> ~ <span id="r2-lease-max-m2">—</span> m²</div>
+        <div style="font-size:11.5px;color:rgba(255,255,255,0.55);margin-bottom:6px;">일반 오피스빌딩 전용률 60~65%를 적용한 초기 추정값입니다.</div>
         <div style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.6;">
           * 실제 건물의 전용률에 따라 달라질 수 있어요<br>
           * 계약 전 반드시 해당 건물의 전용률을 확인하세요
@@ -2242,7 +2243,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
         100평 계약 / 전용률 62%<br>
         → 실제 사용 공간 62평<br><br>
         오피스 건물에는 화장실, 엘리베이터, 비상계단 등 혼자 독점할 수 없는 공용 공간이 포함되어 있어서, 계약면적이 전용면적보다 항상 커요.<br><br>
-        OfficeFlow는 서울 오피스 빌딩의 <b style="color:var(--accent2);">통상적인 기준인 60~65%</b>를 적용했어요.
+        OfficeFlow는 일반 오피스빌딩 기준으로 <b style="color:var(--accent2);">60~65%</b>를 초기 계산값으로 적용했어요.
       </div>
       <button onclick="document.getElementById('tooltip-rate').style.display='none'" style="margin-top:16px;width:100%;padding:12px;border-radius:10px;background:rgba(74,158,255,0.15);border:1px solid rgba(74,158,255,0.3);color:var(--accent2);font-weight:700;cursor:pointer;font-size:14px;">확인</button>
     </div>
@@ -2503,7 +2504,7 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       </div>
       <div style="background:rgba(74,158,255,0.07);border-radius:10px;border:1px solid rgba(74,158,255,0.3);padding:12px 16px;font-size:11px;color:var(--text-sub);line-height:1.9;">
         <b style="color:var(--glow-dot);">* 전용면적</b>: 코어(화장실·엘리베이터·계단실 등)를 제외한 실사용 가능 면적<br>
-        <b style="color:var(--glow-dot);">* 전용률</b>: 임대면적 중 전용면적 비율. 서울 오피스 빌딩 통상 60~65% 적용<br>
+        <b style="color:var(--glow-dot);">* 전용률</b>: 임대면적 중 전용면적 비율. 일반 오피스빌딩 기준 60~65%를 초기 계산값으로 적용<br>
         <b style="color:var(--glow-dot);">* 임대면적</b>: 실제 계약서 기재 면적. 부동산 매물 검색 시 이 기준으로 확인
       </div>
     </div>
