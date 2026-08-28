@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PR98EB6S3K"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,25 +12,49 @@
   gtag('js', new Date());
   gtag('config', 'G-PR98EB6S3K');
   function gtagEvent(name, params) { try { gtag('event', name, params || {}); } catch(e) {} }
+  (function() {
+    var fired = false;
+    window.addEventListener('scroll', function() {
+      if (fired) return;
+      var scrolled = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (scrolled >= 0.9) { fired = true; gtagEvent('scroll_90'); }
+    }, { passive: true });
+  })();
+  setTimeout(function() { gtagEvent('time_on_page_60s'); }, 60000);
 </script>
 
-<title>사무실 이전 가이드 | OfficeFlow(오피스플로우)</title>
-<meta name="description" content="사무실 이전을 준비하는 담당자가 알아야 할 기준을 정리했습니다. 공간 정의부터 면적 계산, 적정성 분석까지 OfficeFlow의 가이드 모음입니다.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://office-flow.co.kr/guide/">
+<!-- ═══════════════════════════════════════
+     PRIMARY SEO META
+════════════════════════════════════════ -->
+<title>OfficeFlow 공간 분석 기준 | 사무실 면적은 어떻게 계산하나요? - OfficeFlow(오피스플로우)</title>
+<meta name="description" content="OfficeFlow가 사무실 면적을 계산하는 방법을 공개합니다. 공간 정의부터 표준 면적 DB, 통로·배치 여유(33.6%), 전용률 적용까지 필요 전용면적과 예상 임대면적을 산출하는 전체 계산 기준을 설명합니다.">
+<meta name="author" content="OfficeFlow(오피스플로우)">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://office-flow.co.kr/methodology/office-space-calculation/">
 
-<meta property="og:type" content="website">
+<!-- ═══════════════════════════════════════
+     OPEN GRAPH
+════════════════════════════════════════ -->
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="OfficeFlow">
-<meta property="og:title" content="사무실 이전 가이드 | OfficeFlow">
-<meta property="og:description" content="사무실 이전을 준비하는 담당자가 알아야 할 기준을 정리했습니다.">
-<meta property="og:url" content="https://office-flow.co.kr/guide/">
+<meta property="og:title" content="OfficeFlow 공간 분석 기준 | 사무실 면적은 어떻게 계산하나요?">
+<meta property="og:description" content="공간 정의부터 표준 면적 DB, 통로·배치 여유, 전용률 적용까지 — OfficeFlow가 사무실 면적을 계산하는 전체 기준을 공개합니다.">
+<meta property="og:url" content="https://office-flow.co.kr/methodology/office-space-calculation/">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://office-flow.co.kr/og_image.png?v=2">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OfficeFlow 공간 분석 기준">
+<meta name="twitter:description" content="사무실 면적은 어떻게 계산하나요? OfficeFlow의 계산 기준을 공개합니다.">
+<meta name="twitter:image" content="https://office-flow.co.kr/og_image.png?v=2">
 
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+<!-- ═══════════════════════════════════════
+     구조화 데이터
+════════════════════════════════════════ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -39,22 +64,27 @@
       "@id": "https://office-flow.co.kr/#organization",
       "name": "OfficeFlow",
       "alternateName": ["오피스플로우", "Office.Flow"],
-      "url": "https://office-flow.co.kr"
+      "url": "https://office-flow.co.kr",
+      "logo": { "@type": "ImageObject", "url": "https://office-flow.co.kr/og-image.png" }
     },
     {
-      "@type": "CollectionPage",
-      "@id": "https://office-flow.co.kr/guide/#collection",
-      "name": "사무실 이전 가이드",
-      "description": "사무실 이전을 준비하는 담당자가 알아야 할 기준을 정리했습니다.",
-      "url": "https://office-flow.co.kr/guide/",
-      "isPartOf": { "@id": "https://office-flow.co.kr/#organization" },
-      "inLanguage": "ko-KR"
+      "@type": "Article",
+      "@id": "https://office-flow.co.kr/methodology/office-space-calculation/#article",
+      "headline": "OfficeFlow 공간 분석 기준",
+      "description": "OfficeFlow가 사무실 면적을 계산하는 방법. 공간 정의, 표준 면적 DB, 통로·배치 여유(33.6%), 전용률 적용까지 필요 전용면적과 예상 임대면적을 산출하는 전체 계산 기준.",
+      "datePublished": "2026-08-28",
+      "dateModified": "2026-08-28",
+      "inLanguage": "ko-KR",
+      "author": { "@id": "https://office-flow.co.kr/#organization" },
+      "publisher": { "@id": "https://office-flow.co.kr/#organization" },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://office-flow.co.kr/methodology/office-space-calculation/" }
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://office-flow.co.kr/" },
-        { "@type": "ListItem", "position": 2, "name": "가이드", "item": "https://office-flow.co.kr/guide/" }
+        { "@type": "ListItem", "position": 2, "name": "가이드", "item": "https://office-flow.co.kr/guide/" },
+        { "@type": "ListItem", "position": 3, "name": "OfficeFlow 공간 분석 기준", "item": "https://office-flow.co.kr/methodology/office-space-calculation/" }
       ]
     }
   ]
@@ -71,75 +101,122 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Noto Sans KR', sans-serif; background: #000000; color: #FFFFFF; -webkit-font-smoothing: antialiased; }
 :root {
-  --bg: #09090B; --card: #0F1419; --text-sub: #DDDDDD; --muted: #999999;
-  --glow-dot: #4DBAFF; --border: rgba(255,255,255,0.08); --border-mid: rgba(255,255,255,0.13);
-  --max: 720px;
+  --brand: #09090B; --bg: #09090B; --bg-deep: #050C0E; --card: #0F1419;
+  --text: #FFFFFF; --text-sub: #DDDDDD; --muted: #999999;
+  --glow-dot: #4DBAFF; --accent: #4A9EFF; --accent2: #00D4FF;
+  --border: rgba(255,255,255,0.08); --border-mid: rgba(255,255,255,0.13);
+  --radius: 14px; --max: 720px;
 }
+img { max-width: 100%; display: block; }
 .wrap { max-width: var(--max); margin: 0 auto; background: var(--bg); }
-.topnav {
-  background: rgba(9,9,11,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-mid);
-  padding: 0 24px; height: 58px; display: flex; align-items: center; position: sticky; top: 0; z-index: 100;
-}
+
+.topnav { background: rgba(9,9,11,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-mid); padding: 0 24px; height: 58px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
 .logo { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 800; color: #E0E0E0; letter-spacing: 1px; text-decoration: none; }
 .logo span { color: var(--glow-dot); }
+
 .crumb { padding: 14px 24px 0; font-size: 12px; color: var(--muted); }
 .crumb a { color: var(--muted); text-decoration: none; }
 .crumb a:hover { color: var(--glow-dot); }
 
-.page-head { padding: 28px 24px 8px; }
-.page-eyebrow { color: var(--glow-dot); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 12px; }
-.page-title { font-family: 'DM Sans', sans-serif; font-size: clamp(24px, 5vw, 30px); font-weight: 800; letter-spacing: -0.6px; margin-bottom: 10px; }
-.page-sub { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.7; }
+.hero-block { padding: 28px 24px 8px; }
+.hero-eyebrow { color: var(--glow-dot); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 14px; }
+.hero-title { font-family: 'DM Sans', sans-serif; font-size: clamp(26px, 5.5vw, 36px); font-weight: 800; line-height: 1.3; letter-spacing: -0.8px; margin-bottom: 10px; }
+.hero-sub { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.7; }
 
-/* ── 서문(featured) 카드 — 다른 글과 확실히 구분되는 표현 ── */
-.featured {
-  margin: 28px 24px 8px;
-  background: linear-gradient(165deg, rgba(74,158,255,0.12) 0%, rgba(0,212,255,0.03) 100%);
-  border: 1.5px solid rgba(74,158,255,0.35);
-  border-radius: 16px; overflow: hidden; text-decoration: none; display: block;
-  box-shadow: 0 0 30px rgba(0,212,255,0.06);
-}
-.featured-media { width: 100%; display: block; line-height: 0; }
-.featured-body { padding: 20px 20px 22px; }
-.featured-label { font-size: 10.5px; font-weight: 700; color: var(--glow-dot); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
-.featured-title { font-family: 'DM Sans', sans-serif; font-size: 19px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.3px; margin-bottom: 8px; line-height: 1.35; }
-.featured-desc { font-size: 13px; color: var(--text-sub); line-height: 1.7; margin-bottom: 10px; }
-.featured-link { font-size: 13px; font-weight: 700; color: var(--glow-dot); }
+.article { padding: 8px 24px 0; }
+.article p { font-size: 15px; line-height: 1.85; color: var(--text-sub); margin-bottom: 16px; }
+.article p b, .article p strong { color: #FFFFFF; font-weight: 700; }
+.h2 { font-family: 'DM Sans', sans-serif; font-size: 21px; font-weight: 800; letter-spacing: -0.4px; color: #FFFFFF; margin: 36px 0 14px; }
+.h2 .num { color: var(--glow-dot); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 6px; }
+.quote-line { font-size: 15px; color: #FFFFFF; font-weight: 700; background: rgba(77,186,255,0.08); border-left: 3px solid rgba(77,186,255,0.5); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 18px 0; }
+.flow-line { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--glow-dot); text-align: center; line-height: 1.9; background: var(--card); border: 1px solid rgba(77,186,255,0.2); border-radius: 12px; padding: 16px 14px; margin: 20px 0; }
+.formula-box { background: var(--card); border: 1px solid rgba(77,186,255,0.25); border-radius: 12px; padding: 14px 18px; margin: 16px 0; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--glow-dot); text-align: center; letter-spacing: -0.2px; }
+.rate-table { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
+.rate-row { display: flex; justify-content: space-between; align-items: center; background: var(--card); border: 1px solid var(--border-mid); border-radius: 10px; padding: 12px 16px; font-size: 13px; }
+.rate-row .rlabel { color: var(--text-sub); font-weight: 600; }
+.rate-row .rval { color: var(--glow-dot); font-weight: 800; font-family: 'DM Sans', sans-serif; }
 
-/* ── 섹션 목록 (앞으로 늘어날 자리) ── */
-.section-block { padding: 32px 24px 8px; }
-.section-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
-.link-list { display: flex; flex-direction: column; gap: 8px; }
-.link-item {
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--card); border: 1px solid var(--border-mid); border-radius: 10px;
-  padding: 14px 16px; text-decoration: none; color: #FFFFFF; font-size: 13.5px; font-weight: 600;
-}
-.link-item .arrow { color: var(--glow-dot); font-size: 15px; }
-.link-item.disabled { color: var(--muted); cursor: default; }
-.link-item.disabled .arrow { color: var(--muted); }
-.link-item.disabled .soon { font-size: 10.5px; font-weight: 700; color: var(--muted); background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 20px; margin-left: 8px; }
+.bullet-list { list-style: none; margin: 16px 0; display: flex; flex-direction: column; gap: 10px; }
+.bullet-list li { font-size: 14px; line-height: 1.7; color: var(--text-sub); padding-left: 20px; position: relative; }
+.bullet-list li::before { content: '→'; position: absolute; left: 0; color: var(--glow-dot); font-weight: 700; }
+.bullet-list li b { color: #FFFFFF; }
 
-/* ── Methodology 링크 — Featured 카드와 동일한 가로폭, 세로는 컴팩트하게 ── */
-.methodology-link {
-  display: flex; align-items: center; justify-content: center; gap: 12px; text-decoration: none;
-  margin: 0 24px 24px;
-  background: rgba(77,186,255,0.06); border: 1px solid rgba(77,186,255,0.25);
-  border-radius: 12px; padding: 14px 16px;
-}
-.methodology-link .m-icon { display: flex; align-items: center; flex-shrink: 0; }
-.methodology-link .m-body { text-align: center; }
-.methodology-link .m-title { display: block; font-size: 13.5px; font-weight: 700; color: #FFFFFF; margin-bottom: 3px; }
-.methodology-link .m-desc { display: block; font-size: 12px; color: var(--muted); line-height: 1.5; }
+.check-grid { display: flex; flex-direction: column; gap: 8px; margin: 16px 0 20px; }
+.check-item { display: flex; align-items: flex-start; gap: 10px; background: var(--card); border: 1px solid var(--border-mid); border-radius: 10px; padding: 12px 14px; font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+.check-item .dot { flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--glow-dot); margin-top: 6px; }
 
-footer { background: #000000; border-top: 1px solid var(--border-mid); padding: 28px 24px; text-align: center; margin-top: 32px; }
+.source-box { border: 1px dashed rgba(77,186,255,0.3); border-radius: 10px; padding: 14px 16px; margin: 16px 0 20px; background: rgba(77,186,255,0.04); }
+.source-title { font-size: 11px; font-weight: 700; color: var(--glow-dot); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.source-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.source-list li { font-size: 12.5px; color: var(--text-sub); line-height: 1.7; padding-left: 14px; position: relative; }
+.source-list li::before { content: '·'; position: absolute; left: 0; color: var(--glow-dot); }
+.source-list li b { color: #FFFFFF; }
+.footnote { font-size: 11px; color: var(--muted); line-height: 1.7; margin: 6px 0 20px; }
+
+/* ── DATA TABLE (공간별 기준면적) ── */
+.data-table-wrap { margin: 14px 0 22px; border: 1px solid var(--border-mid); border-radius: 12px; overflow: hidden; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table caption { text-align: left; font-size: 11px; font-weight: 700; color: var(--glow-dot); text-transform: uppercase; letter-spacing: 0.5px; background: var(--card); padding: 10px 14px; border-bottom: 1px solid var(--border-mid); caption-side: top; }
+.data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-sub); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table td:first-child { color: #FFFFFF; font-weight: 500; }
+.data-table td:last-child { text-align: right; color: var(--glow-dot); font-weight: 700; font-family: 'DM Sans', sans-serif; white-space: nowrap; }
+
+/* ── COMPARE CARD (건물 비교) ── */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
+.compare-card { background: var(--card); border: 1px solid var(--border-mid); border-radius: 12px; padding: 16px; }
+.compare-card .cname { font-size: 13px; font-weight: 700; color: var(--glow-dot); margin-bottom: 8px; }
+.compare-card .cline { font-size: 12.5px; color: var(--text-sub); margin-bottom: 4px; }
+.compare-card .cresult { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 800; color: #FFFFFF; margin-top: 8px; }
+@media (max-width: 420px) { .compare-grid { grid-template-columns: 1fr; } }
+
+/* ── STEP LIST ── */
+.step-item { display: flex; gap: 12px; background: var(--card); border: 1px solid var(--border-mid); border-radius: 12px; padding: 14px 16px; margin-bottom: 8px; }
+.step-num { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: rgba(77,186,255,0.15); border: 1px solid rgba(77,186,255,0.35); color: var(--glow-dot); font-family: 'DM Sans', sans-serif; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+.step-body .stitle { font-size: 13.5px; font-weight: 700; color: #FFFFFF; margin-bottom: 3px; }
+.step-body .sdesc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+.cta-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg,#1A7FD4,#00D4FF); color: #fff; text-decoration: none; font-size: 14.5px; font-weight: 700; padding: 14px 26px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,212,255,0.3); }
+
+.faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+.faq-q { font-size: 14px; font-weight: 700; color: #FFFFFF; margin-bottom: 8px; display: flex; gap: 8px; }
+.faq-q .qmark { color: var(--glow-dot); flex-shrink: 0; }
+.faq-a { font-size: 13.5px; color: var(--text-sub); line-height: 1.75; padding-left: 22px; }
+
+/* ── Reference (정식 인용) ── */
+.ref-item { background: var(--card); border: 1px solid var(--border-mid); border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; }
+.ref-name { font-size: 14px; font-weight: 700; color: #FFFFFF; margin-bottom: 2px; }
+.ref-cite { font-size: 12.5px; color: var(--glow-dot); font-style: italic; margin-bottom: 8px; }
+.ref-desc { font-size: 12.5px; color: var(--text-sub); line-height: 1.7; }
+.ref-url { font-size: 11px; color: var(--muted); word-break: break-all; margin-top: 6px; }
+
+/* ── Version History ── */
+.vh-block { background: var(--card); border: 1px solid var(--border-mid); border-radius: 12px; padding: 16px 18px; margin: 14px 0 20px; }
+.vh-ver { font-size: 13px; font-weight: 700; color: var(--glow-dot); margin-bottom: 10px; }
+.vh-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.vh-list li { font-size: 12.5px; color: var(--text-sub); line-height: 1.6; padding-left: 14px; position: relative; }
+.vh-list li::before { content: '·'; position: absolute; left: 0; color: var(--glow-dot); }
+
+/* ── 한계(Limitations) ── */
+.limit-item { margin-bottom: 14px; }
+.limit-title { font-size: 13.5px; font-weight: 700; color: #FFFFFF; margin-bottom: 4px; }
+.limit-desc { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
+
+.final-cta { background: #050C0E; border-top: 1px solid var(--border-mid); padding: 40px 24px; text-align: center; position: relative; overflow: hidden; margin-top: 20px; }
+.final-cta::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(0,102,85,0.2), transparent 65%); pointer-events: none; }
+.final-title { font-family: 'DM Sans', sans-serif; color: #fff; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 10px; position: relative; }
+.final-sub { color: rgba(255,255,255,0.55); font-size: 13.5px; line-height: 1.7; margin-bottom: 22px; position: relative; }
+
+footer { background: #000000; border-top: 1px solid var(--border-mid); padding: 28px 24px; text-align: center; }
 footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
 @media (max-width: 480px) {
   :root { --max: 100%; }
-  .page-head, .featured, .section-block, .crumb, .methodology-link { margin-left: 0; margin-right: 0; }
-  .page-head, .section-block { padding-left: 18px; padding-right: 18px; }
-  .featured, .methodology-link { margin-left: 18px; margin-right: 18px; }
+  .hero-block, .article, .crumb { padding-left: 18px; padding-right: 18px; }
+  .hero-title { font-size: 24px; }
+  .article p { font-size: 14.5px; }
+  .data-table { font-size: 12px; }
+  .data-table td { padding: 8px 10px; }
 }
 @media (min-width: 768px) {
   :root { --max: 680px; }
@@ -156,107 +233,294 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     <a class="logo" href="/">Office<span>.</span>Flow</a>
   </nav>
 
-  <div class="crumb"><a href="/">홈</a> / 가이드</div>
+  <div class="crumb"><a href="/">홈</a> / <a href="/guide/">가이드</a> / OfficeFlow 공간 분석 기준</div>
 
-  <div class="page-head">
-    <div class="page-eyebrow">OfficeFlow</div>
-    <h1 class="page-title">사무실 이전 가이드</h1>
-    <p class="page-sub">사무실 이전을 준비하는 담당자가<br>알아야 할 기준을 정리했습니다.</p>
+  <div class="hero-block">
+    <div class="hero-eyebrow">OfficeFlow Methodology</div>
+    <h1 class="hero-title">OfficeFlow 공간 분석 기준</h1>
+    <p class="hero-sub">필요한 사무실 면적은 어떻게 계산하나요?</p>
   </div>
 
-  <a class="featured" href="/guide/office-relocation/" onclick="gtagEvent('guide_hub_click',{target:'office-relocation'})">
-    <div class="featured-media" role="img" aria-label="사무실 이전, 어디서부터 시작해야 할까? — OfficeFlow의 공간 분석 과정을 상징하는 애니메이션">
-    <svg viewBox="0 0 1400 630" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#09090B;">
-    <defs>
-    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <filter id="glowSoft" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="9" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    </defs>
-    <style>
-    .gline{stroke:rgba(77,186,255,0.13);stroke-width:1;}
-    .ring{fill:none;stroke:rgba(77,186,255,0.18);stroke-width:1;}
-    .outline{fill:none;stroke:#4DBAFF;stroke-width:2.5;stroke-linejoin:round;filter:url(#glow);stroke-dasharray:1443.6;stroke-dashoffset:1443.6;animation:draw 6s ease-in-out infinite;}
-    .part0{fill:none;stroke:#4DBAFF;stroke-width:1.5;filter:url(#glow);stroke-dasharray:351.0;stroke-dashoffset:351.0;opacity:0;animation:drawpart0 6s ease-in-out infinite;}
-    .part1{fill:none;stroke:#4DBAFF;stroke-width:1.5;filter:url(#glow);stroke-dasharray:130.8;stroke-dashoffset:130.8;opacity:0;animation:drawpart1 6s ease-in-out infinite;}
-    .part2{fill:none;stroke:#4DBAFF;stroke-width:1.5;filter:url(#glow);stroke-dasharray:149.0;stroke-dashoffset:149.0;opacity:0;animation:drawpart2 6s ease-in-out infinite;}
-    .dot{fill:#4DBAFF;filter:url(#glowSoft);animation:pulse 2.4s ease-in-out infinite;}
-    @keyframes draw{0%{stroke-dashoffset:1443.6;opacity:0.3;}8%{opacity:1;}42%{stroke-dashoffset:0;opacity:1;}72%{stroke-dashoffset:0;opacity:1;}88%{opacity:0;}100%{stroke-dashoffset:1443.6;opacity:0;}}
-    @keyframes drawpart0{0%{stroke-dashoffset:351.0;opacity:0;}42%{stroke-dashoffset:351.0;opacity:1;}50%{stroke-dashoffset:0;opacity:1;}72%{stroke-dashoffset:0;opacity:1;}86%{opacity:0;}100%{opacity:0;}}
-    @keyframes drawpart1{0%{stroke-dashoffset:130.8;opacity:0;}47%{stroke-dashoffset:130.8;opacity:1;}55%{stroke-dashoffset:0;opacity:1;}72%{stroke-dashoffset:0;opacity:1;}86%{opacity:0;}100%{opacity:0;}}
-    @keyframes drawpart2{0%{stroke-dashoffset:149.0;opacity:0;}52%{stroke-dashoffset:149.0;opacity:1;}60%{stroke-dashoffset:0;opacity:1;}72%{stroke-dashoffset:0;opacity:1;}86%{opacity:0;}100%{opacity:0;}}
-    @keyframes pulse{0%,100%{r:5;opacity:0.85;}50%{r:7;opacity:1;}}
-    </style>
-    <rect x="0" y="0" width="1400" height="630" fill="#09090B"/>
-    <circle cx="700" cy="120" r="50" class="ring"/>
-    <circle cx="700" cy="120" r="100" class="ring"/>
-    <circle cx="700" cy="120" r="160" class="ring"/>
-    <circle cx="700" cy="120" r="230" class="ring"/>
-    <line x1="700.0" y1="120.0" x2="-250.0" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="-163.6" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="-77.3" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="9.1" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="95.5" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="181.8" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="268.2" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="354.5" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="440.9" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="527.3" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="613.6" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="700.0" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="786.4" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="872.7" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="959.1" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="1045.5" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="1131.8" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="1218.2" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="1304.5" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="1390.9" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="1477.3" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="1563.6" y2="640.0" class="gline"/>
-    <line x1="700.0" y1="120.0" x2="1650.0" y2="640.0" class="gline"/>
-    <line x1="619.3" y1="164.2" x2="780.7" y2="164.2" class="gline"/>
-    <line x1="600.5" y1="174.5" x2="799.5" y2="174.5" class="gline"/>
-    <line x1="572.1" y1="190.0" x2="827.9" y2="190.0" class="gline"/>
-    <line x1="535.0" y1="210.3" x2="865.0" y2="210.3" class="gline"/>
-    <line x1="489.5" y1="235.2" x2="910.5" y2="235.2" class="gline"/>
-    <line x1="436.1" y1="264.4" x2="963.9" y2="264.4" class="gline"/>
-    <line x1="375.1" y1="297.8" x2="1024.9" y2="297.8" class="gline"/>
-    <line x1="306.7" y1="335.3" x2="1093.3" y2="335.3" class="gline"/>
-    <line x1="231.0" y1="376.7" x2="1169.0" y2="376.7" class="gline"/>
-    <line x1="148.4" y1="421.9" x2="1251.6" y2="421.9" class="gline"/>
-    <line x1="58.8" y1="471.0" x2="1341.2" y2="471.0" class="gline"/>
-    <line x1="-37.5" y1="523.7" x2="1437.5" y2="523.7" class="gline"/>
-    <line x1="-140.5" y1="580.1" x2="1540.5" y2="580.1" class="gline"/>
-    <line x1="-250.0" y1="640.0" x2="1650.0" y2="640.0" class="gline"/>
-    <line x1="449.3" y1="421.9" x2="800.3" y2="421.9" class="part0"/>
-    <line x1="640.9" y1="297.8" x2="599.7" y2="421.9" class="part1"/>
-    <line x1="742.6" y1="376.7" x2="767.0" y2="523.7" class="part2"/>
-    <path d="M 552.3 297.8 L 847.7 297.8 L 913.2 376.7 L 785.3 376.7 L 834.1 523.7 L 364.8 523.7 Z" class="outline"/>
-    <circle cx="700" cy="120" r="5" class="dot"/>
-    </svg>
-    </div>
-    <div class="featured-body">
-      <div class="featured-label">시작하기 전에 꼭 읽어보세요</div>
-      <div class="featured-title">사무실 이전, 어디서부터 시작해야 할까?</div>
-      <div class="featured-desc">매물부터 찾지 마세요.<br>공간 정의부터 면적 계산, 적정성 분석, 보고서까지 —<br>OfficeFlow가 사무실 이전을 바라보는 방식을 담았습니다.</div>
-      <div class="featured-link">가이드 읽기 →</div>
-    </div>
-  </a>
+    <p>사무실 이전을 준비할 때 가장 많이 묻는 질문 중 하나는 이것입니다.</p>
+    <p><b>"우리 회사에는 몇 평의 사무실이 필요할까?"</b></p>
+    <p>가장 간단한 방법은 직원 수에 일정한 1인당 면적을 곱하는 것입니다.</p>
+    <p>하지만 같은 50명의 회사라도 실제 필요한 사무실 면적은 같지 않습니다. 임원실이 몇 개인지, 어떤 규모의 회의실이 필요한지, 업무석은 어떻게 구성하는지, 라운지와 폰부스, OA, 수납공간은 얼마나 필요한지에 따라 필요한 면적이 달라지기 때문입니다.</p>
+    <p>OfficeFlow는 그래서 직원 수만으로 사무실 규모를 결정하지 않습니다.</p>
+    <p>우리 회사에 필요한 공간을 먼저 구성하고, 각 공간의 계획면적을 적용해 실제 업무공간을 계산합니다. 여기에 통로와 배치에 필요한 여유공간을 반영해 필요 전용면적을 계산하고, 마지막으로 건물의 전용률을 적용해 실제로 검토해야 할 예상 임대면적을 산출합니다.</p>
 
-  <a class="methodology-link" href="/methodology/office-space-calculation/" onclick="gtagEvent('guide_hub_click',{target:'methodology'})">
-    <span class="m-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="#4DBAFF" stroke-width="1.6"/><path d="M19.5 19.5l-4.3-4.3" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-    <span class="m-body">
-      <span class="m-title">OfficeFlow는 사무실 면적을 어떻게 계산하나요?</span>
-      <span class="m-desc">모든 가이드와 보고서가 참조하는 공식 계산 기준입니다.</span>
-    </span>
-  </a>
+    <p style="font-weight:700;color:#fff;margin-bottom:8px;">OfficeFlow 공간 분석 흐름</p>
+    <div class="flow-line">공간 구성 → 실제 업무공간 → 통로·배치 여유 → 필요 전용면적 → 건물 전용률 → 예상 임대면적</div>
 
-  <div class="section-block">
-    <div class="section-label">공간과 면적</div>
-    <div class="link-list">
-      <div class="link-item disabled"><span>직원 50명 사무실은 몇 평이 필요할까?</span><span class="soon">준비 중</span></div>
-      <div class="link-item disabled"><span>전용면적과 임대면적은 무엇이 다를까?</span><span class="soon">준비 중</span></div>
-      <div class="link-item disabled"><span>회의실은 몇 개가 적당할까?</span><span class="soon">준비 중</span></div>
+    <p>이 페이지에서는 OfficeFlow가 공간을 분석할 때 사용하는 계산 방법과 주요 기준, 각 데이터의 의미와 한계를 설명합니다.</p>
+
+    <h2 class="h2"><span class="num">01</span>직원 수보다 먼저 필요한 공간을 정의합니다</h2>
+    <p>사무실 필요면적은 직원 수만으로 결정할 수 없습니다. 같은 인원의 회사라도 다음 조건에 따라 필요한 면적이 달라집니다.</p>
+    <ul class="bullet-list">
+      <li>팀원석과 팀장석의 크기</li>
+      <li>임원실의 수와 규모</li>
+      <li>회의실의 개수와 수용인원</li>
+      <li>폰부스나 집중업무공간의 필요 정도</li>
+      <li>라운지와 탕비공간의 규모</li>
+      <li>OA, 수납, 창고 등 지원공간의 필요 정도</li>
+    </ul>
+    <p>따라서 OfficeFlow는 직원 수 → 면적이 아니라, 직원 수와 업무 특성 → 필요한 공간 구성 → 면적 순서로 접근합니다.</p>
+    <p>실제로 GSA의 공간계획 방법론 역시 조직의 공간 요구량을 산정할 때 개별 공간의 종류, 면적과 수량을 먼저 산정한 뒤 circulation을 반영해 전체 usable area를 계획하는 구조를 설명합니다. OfficeFlow 역시 우리 회사에 실제로 필요한 공간을 먼저 정의하는 것에서 공간 분석을 시작합니다.</p>
+
+    <h2 class="h2"><span class="num">02</span>공간 유형별 계획면적을 적용합니다</h2>
+    <p>필요한 공간이 정해지면 각 공간에 OfficeFlow의 공간별 계획면적을 적용합니다. 같은 업무석이라도 책상 규격에 따라 필요한 면적이 다르고, 같은 회의실이라도 수용인원과 가구구성에 따라 필요한 면적이 달라지기 때문에 하나의 고정값을 모든 공간에 적용하지 않습니다.</p>
+
+    <div class="data-table-wrap"><table class="data-table">
+      <caption>업무석 계획면적</caption>
+      <tr><td>팀원석 W1200</td><td>약 0.7평/석</td></tr>
+      <tr><td>팀원석 W1400</td><td>약 0.8평/석</td></tr>
+      <tr><td>팀원석 W1600</td><td>약 0.9평/석</td></tr>
+      <tr><td>팀원석 W1800</td><td>약 1.0평/석</td></tr>
+      <tr><td>팀원석 120도형</td><td>약 0.7평/석</td></tr>
+      <tr><td>팀장석 W1600 L형</td><td>약 1.0평/석</td></tr>
+      <tr><td>팀장석 W1600 L형 + 보조테이블</td><td>약 2.0평/석</td></tr>
+      <tr><td>팀장석 W1800 L형</td><td>약 1.1평/석</td></tr>
+      <tr><td>팀장석 W1800 L형 + 보조테이블</td><td>약 2.3평/석</td></tr>
+    </table></div>
+
+    <div class="data-table-wrap"><table class="data-table">
+      <caption>임원실 계획면적</caption>
+      <tr><td>소형 임원실</td><td>약 3.3평</td></tr>
+      <tr><td>중형 임원실</td><td>약 5.4평</td></tr>
+      <tr><td>중대형 임원실</td><td>약 8.0평</td></tr>
+      <tr><td>대형 임원실</td><td>약 13.3평</td></tr>
+    </table></div>
+
+    <div class="data-table-wrap"><table class="data-table">
+      <caption>회의실 계획면적</caption>
+      <tr><td>4인 회의실</td><td>약 2.4평</td></tr>
+      <tr><td>6인 회의실</td><td>약 3.3평</td></tr>
+      <tr><td>8인 회의실</td><td>약 5.4평</td></tr>
+      <tr><td>12인 회의실</td><td>약 8.2평</td></tr>
+      <tr><td>14인 회의실</td><td>약 10.5평</td></tr>
+      <tr><td>16인 이상 회의실</td><td>약 14.2평</td></tr>
+    </table></div>
+
+    <div class="data-table-wrap"><table class="data-table">
+      <caption>휴게·라운지 계획면적</caption>
+      <tr><td>소형 라운지</td><td>약 5.2평</td></tr>
+      <tr><td>중형 라운지</td><td>약 6.0평</td></tr>
+      <tr><td>중대형 라운지</td><td>약 12.8평</td></tr>
+    </table></div>
+
+    <div class="data-table-wrap"><table class="data-table">
+      <caption>지원공간 계획면적</caption>
+      <tr><td>폰부스</td><td>약 0.5평</td></tr>
+      <tr><td>포커스룸</td><td>약 1.5평</td></tr>
+      <tr><td>OA존 컴팩트</td><td>약 1.5평</td></tr>
+      <tr><td>OA존 표준</td><td>약 2.0평</td></tr>
+      <tr><td>탕비공간 컴팩트</td><td>약 1.5평</td></tr>
+      <tr><td>탕비공간 표준</td><td>약 2.0평</td></tr>
+      <tr><td>3단 캐비닛</td><td>약 0.1평/EA</td></tr>
+      <tr><td>창고·문서고</td><td>약 2.8평</td></tr>
+    </table></div>
+
+    <p>이 값들은 현재 OfficeFlow가 실제 업무공간을 계산할 때 사용하는 공간별 적용값입니다.</p>
+    <p><b>위 면적은 국내 오피스의 평균값이나 법정 설계기준을 의미하지 않습니다. OfficeFlow가 사무실 이전 초기 단계에서 필요면적을 산정하기 위해 사용하는 공간별 계획면적입니다. 실제 필요한 면적은 가구 규격, 좌석 간격, AV 설비, 수납 방식, 공간 형태 및 배치 조건 등에 따라 달라질 수 있습니다.</b></p>
+
+    <h2 class="h2"><span class="num">03</span>실제 업무공간의 합계가 곧 전용면적은 아닙니다</h2>
+    <p>OfficeFlow에서는 업무석, 임원실, 회의실, 라운지, 폰부스, OA, 탕비, 수납·창고 등 기업이 실제 사용 목적으로 구성하는 공간의 합계를 '실제 업무공간'으로 계산합니다.</p>
+    <p>각 공간의 계획면적에 필요한 수량을 적용하면 실제 업무공간의 합계를 계산할 수 있습니다.</p>
+    <p>하지만 이 합계가 곧 필요한 전용면적은 아닙니다.</p>
+    <p>사무실에는 각 공간 사이를 이동하기 위한 통로가 필요합니다. 또한 의자를 사용하고 가구를 배치하며, 공간과 공간을 연결하기 위한 여유도 필요합니다.</p>
+    <p>GSA 역시 Net Area와 Circulation Area를 구분하며, workstation이나 office뿐 아니라 conference room, storage, break room 등의 support space를 Net Area에 포함하고 여기에 Circulation Area를 더해 Usable Area를 산정하는 구조를 설명합니다. OfficeFlow 역시 같은 이유로 실제 업무공간과 통로·배치 여유를 구분해 계산합니다.</p>
+
+    <h2 class="h2"><span class="num">04</span>통로와 배치에 필요한 여유공간을 반영합니다</h2>
+    <p>OfficeFlow는 초기 공간계획에서 최종 전용면적의 33.6%를 통로 및 배치 여유공간으로 적용합니다. 따라서 실제 업무공간의 합계가 최종 전용면적의 66.4%가 되도록 역산합니다.</p>
+    <div class="formula-box">필요 전용면적 = 실제 업무공간 합계 ÷ 0.664</div>
+    <p>예를 들어 실제 업무공간의 합계가 100평이라면,</p>
+    <div class="formula-box">100평 ÷ 0.664 ≈ 151평</div>
+    <p>따라서 약 151평의 전용면적이 필요한 것으로 계산합니다.</p>
+    <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:6px;">실제 업무공간 66.4% + 통로·배치 여유 33.6% = 필요 전용면적 100%</p>
+
+    <p style="font-weight:700;color:#fff;margin:20px 0 8px;">왜 33.6%인가요?</p>
+    <p>33.6%는 법에서 정한 비율도 아니고, 특정 기관이 제시한 고정값도 아닙니다.</p>
+    <p><b>OfficeFlow가 사무실 이전 초기 단계에서 필요면적을 추정하기 위해 사용하는 실무 계획 기준(Planning Standard)입니다.</b></p>
+    <p>OfficeFlow는 이 기준을 설정할 때 해외 공간계획 Reference와 국내 오피스 공간구성 데이터를 함께 참고했습니다.</p>
+    <p>미국 General Services Administration(GSA)과 Gensler의 Circulation: Defining and Planning은 일반적인 공간계획의 경험적 기준으로 Circulation Area가 전체 Usable Area의 약 25~40%를 차지한다고 설명합니다.</p>
+    <p>같은 자료는 실제 사무공간 사례를 통해, Open/Enclosed 공간 구성 비율에 따라 Circulation Factor가 28~38% 범위에서 나타난다고 제시합니다. 이 사례들의 수치를 평균 내면 약 33%로, OfficeFlow가 적용하는 33.6%와 비슷한 수준입니다. 다만 이 '평균 33%'는 GSA가 직접 제시한 값이 아니라 OfficeFlow가 사례 수치를 계산한 결과이며, OfficeFlow의 33.6%가 이 계산에서 도출된 것도 아닙니다. GSA 자료에서 확인할 수 있는 것은 특정 평균 숫자보다, 공간 구성에 따라 통로·여유 비율이 상당히 달라질 수 있다는 공간계획의 일반적인 경향입니다.</p>
+    <p>또한 workplace planning 실무자료인 Duvall과 Whitney의 연구(2018)는 기존형(Legacy) 오피스의 circulation이 일반적으로 25~35% 수준이며, 보다 개방적인 오피스에서는 40~45% 이상까지 나타날 수 있다고 설명합니다. 이 자료 역시 오피스의 circulation 비율이 하나의 고정값이 아니라 공간 구성과 배치 방식에 따라 달라진다는 것을 보여줍니다.</p>
+    <p>따라서 OfficeFlow의 33.6%는 GSA나 Duvall·Whitney의 숫자를 그대로 가져온 것이 아니라,</p>
+    <p><b>외부 공간계획 Reference(GSA, Duvall·Whitney) + 국내 오피스 공간구성 데이터 + OfficeFlow의 초기 공간계획 기준</b></p>
+    <p>을 종합적으로 참고해 설정한 OfficeFlow의 실무 계획값입니다.</p>
+    <p class="footnote">※ 실제 필요한 통로·배치 여유는 건물 형태, 코어 위치, 기둥, 좌석 배치와 공간 구성 등에 따라 달라질 수 있습니다.</p>
+
+    <h2 class="h2"><span class="num">05</span>OfficeFlow는 데이터의 성격을 구분합니다</h2>
+    <p>OfficeFlow의 공간 분석에는 여러 종류의 숫자가 사용됩니다. 하지만 모든 숫자의 의미가 같은 것은 아닙니다. OfficeFlow는 Methodology에서 사용하는 데이터를 크게 세 가지로 구분합니다.</p>
+
+    <p style="font-weight:700;color:var(--glow-dot);margin:18px 0 6px;">External Reference</p>
+    <p>외부 기관이나 전문자료에서 확인되는 공간계획 관련 정보입니다. 예를 들어 GSA나 Duvall·Whitney의 circulation 관련 자료가 여기에 해당합니다. 외부 Reference는 OfficeFlow의 기준을 검토하고 설명하기 위한 참고 근거이며, 해당 기관의 값을 OfficeFlow 자체 기준인 것처럼 사용하지 않습니다.</p>
+
+    <p style="font-weight:700;color:var(--glow-dot);margin:18px 0 6px;">Benchmark Data</p>
+    <p>실제 오피스 사례와 공간 DB에서 관찰되는 값입니다. Benchmark가 답하는 질문은 "실제 기업들의 오피스는 어떻게 구성되어 있는가?"입니다. Benchmark는 실제 사례의 경향을 이해하고 OfficeFlow 분석 결과의 상대적 수준을 비교하는 데 활용할 수 있지만, 그 평균값 자체를 모든 기업의 적정 기준으로 보지는 않습니다.</p>
+
+    <p style="font-weight:700;color:var(--glow-dot);margin:18px 0 6px;">OfficeFlow Planning Standard</p>
+    <p>OfficeFlow가 초기 공간계획과 필요면적 계산에 실제 적용하는 값입니다. 예를 들어:</p>
+    <ul class="bullet-list">
+      <li>통로·배치 여유 33.6%</li>
+      <li>업무석별 계획면적</li>
+      <li>임원실별 계획면적</li>
+      <li>회의실별 계획면적</li>
+      <li>휴게·라운지별 계획면적</li>
+      <li>지원공간별 계획면적</li>
+    </ul>
+    <p>등이 여기에 해당합니다.</p>
+
+    <div class="formula-box" style="font-size:12.5px;">External Reference ≠ Benchmark Data ≠ OfficeFlow Planning Standard</div>
+    <p>새로운 Benchmark가 확보되었다고 해서 OfficeFlow의 Planning Standard가 자동으로 같은 값으로 변경되는 것은 아닙니다. 새로운 데이터는 현재 기준을 검토하는 근거가 되고, 실제 계산기준을 변경할 충분한 이유가 있다고 판단될 경우 Methodology와 Calculator의 기준을 함께 업데이트합니다.</p>
+
+    <h2 class="h2"><span class="num">06</span>전용면적과 임대면적을 구분합니다</h2>
+    <p>필요 전용면적을 계산했다면 이제 부동산 매물을 검토할 수 있는 면적으로 변환해야 합니다. OfficeFlow에서는 다음과 같이 구분합니다.</p>
+    <div class="check-grid">
+      <div class="check-item"><span class="dot"></span><span><b style="color:#fff;">전용면적</b> — 기업이 실제로 독점적으로 사용하는 공간</span></div>
+      <div class="check-item"><span class="dot"></span><span><b style="color:#fff;">임대면적</b> — 전용면적에 계약상 배분되는 공용면적을 포함한 면적</span></div>
+      <div class="check-item"><span class="dot"></span><span><b style="color:#fff;">전용률</b> — 임대면적 가운데 전용면적이 차지하는 비율</span></div>
     </div>
+    <div class="formula-box">전용률 = 전용면적 ÷ 임대면적 × 100</div>
+    <p>예를 들어 임대면적 200평, 전용률 60%인 사무실이라면:</p>
+    <div class="formula-box">200평 × 60% = 전용면적 120평</div>
+    <p>반대로 우리 회사에 120평의 전용면적이 필요하고 후보 건물의 전용률이 60%라면:</p>
+    <div class="formula-box">120평 ÷ 0.60 = 임대면적 200평</div>
+    <p>이므로 약 200평의 임대면적을 검토해야 합니다.</p>
+
+    <h2 class="h2"><span class="num">07</span>건물 전용률을 적용해 예상 임대면적을 계산합니다</h2>
+    <p>필요 전용면적이 계산되면 검토하는 건물의 전용률을 적용해 예상 임대면적을 계산합니다.</p>
+    <div class="formula-box">필요 임대면적 = 필요 전용면적 ÷ 건물 전용률</div>
+    <p>OfficeFlow는 초기 매물 검토 단계에서 다음 범위를 실무적 참고범위로 사용합니다.</p>
+    <div class="rate-table">
+      <div class="rate-row"><span class="rlabel">프라임 빌딩</span><span class="rval">55~60%</span></div>
+      <div class="rate-row"><span class="rlabel">일반 오피스</span><span class="rval">60~65%</span></div>
+      <div class="rate-row"><span class="rlabel">지식산업센터·소규모</span><span class="rval">65~75%</span></div>
+    </div>
+    <p>예를 들어 필요한 전용면적이 150평이라면,</p>
+    <ul class="bullet-list">
+      <li>전용률 60% → 약 250평</li>
+      <li>전용률 65% → 약 231평</li>
+      <li>전용률 70% → 약 214평</li>
+    </ul>
+    <p>의 임대면적을 검토하게 됩니다.</p>
+    <p><b>위 전용률 범위는 서울 오피스 시장 전체를 대표하는 공식 통계나 건물 등급의 정의가 아닙니다. OfficeFlow가 후보 매물의 대략적인 규모를 검토하기 위해 사용하는 초기 참고범위입니다. 실제 전용률은 각 건물의 임대조건과 관련 자료를 확인해야 합니다.</b></p>
+
+    <h2 class="h2"><span class="num">08</span>같은 임대면적이라도 실제 사용할 수 있는 공간은 다릅니다</h2>
+    <p>두 개의 사무실 매물이 있다고 가정해보겠습니다.</p>
+    <div class="compare-grid">
+      <div class="compare-card"><div class="cname">A빌딩</div><div class="cline">임대면적 200평</div><div class="cline">전용률 55%</div><div class="cresult">전용면적 110평</div></div>
+      <div class="compare-card"><div class="cname">B빌딩</div><div class="cline">임대면적 180평</div><div class="cline">전용률 70%</div><div class="cresult">전용면적 126평</div></div>
+    </div>
+    <p>표면적으로는 A빌딩의 임대면적이 20평 더 큽니다. 하지만 실제 기업이 독점적으로 사용할 수 있는 전용면적은 B빌딩이 16평 더 넓습니다.</p>
+    <p>그래서 OfficeFlow는 "200평짜리 사무실을 찾자"에서 출발하지 않습니다. 먼저 "우리 회사에는 실제로 어느 정도의 전용면적이 필요한가?"를 계산합니다. 그다음 후보 건물의 전용률을 적용해 실제로 검토해야 할 임대면적을 판단합니다.</p>
+
+    <h2 class="h2"><span class="num">09</span>전체 면적뿐 아니라 공간 구성도 함께 분석합니다</h2>
+    <p>같은 전용면적의 사무실이라도 공간이 어떻게 배분되어 있는지에 따라 업무환경은 크게 달라질 수 있습니다. OfficeFlow는 공간을 다음 다섯 영역으로 구분해 분석합니다.</p>
+    <div class="check-grid">
+      <div class="check-item"><span class="dot"></span><span>임원공간</span></div>
+      <div class="check-item"><span class="dot"></span><span>업무공간</span></div>
+      <div class="check-item"><span class="dot"></span><span>회의공간</span></div>
+      <div class="check-item"><span class="dot"></span><span>휴게·라운지</span></div>
+      <div class="check-item"><span class="dot"></span><span>지원공간</span></div>
+    </div>
+    <p>이를 통해 단순히 전체 평수만 확인하는 것이 아니라,</p>
+    <ul class="bullet-list">
+      <li>임원공간과 업무공간의 비중</li>
+      <li>필요한 회의공간의 구성</li>
+      <li>휴게·라운지의 확보 여부</li>
+      <li>OA·수납·창고 등 지원공간의 구성</li>
+    </ul>
+    <p>등을 함께 살펴봅니다.</p>
+    <p>회의실이 몇 개 필요한지는 직원 수만으로 하나의 고정 비율을 적용하지 않습니다. 회의 빈도, 평균 회의인원, 동시 사용 정도, 조직 구조와 업무 방식 등에 따라 적절한 회의실 구성은 달라질 수 있기 때문입니다.</p>
+    <p>Benchmark Data를 사용하는 경우에도 그 값은 비교를 위한 참고자료이며 모든 기업에 적용되는 절대적인 적정 기준을 의미하지 않습니다.</p>
+
+    <h2 class="h2"><span class="num">10</span>OfficeFlow의 계산 과정을 한 번에 보면</h2>
+    <div class="step-item"><div class="step-num">1</div><div class="step-body"><div class="stitle">회사 정보 입력</div><div class="sdesc">직원 수와 임원 수 등 기본 정보를 입력합니다.</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-body"><div class="stitle">필요한 공간 구성</div><div class="sdesc">팀원석, 팀장석, 임원실, 회의실, 폰부스, 라운지, OA, 탕비, 수납 등 우리 회사에 필요한 공간을 구성합니다.</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-body"><div class="stitle">실제 업무공간 계산</div><div class="sdesc">각 공간의 계획면적과 수량을 적용해 합계를 계산합니다.</div></div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-body"><div class="stitle">필요 전용면적 계산</div><div class="sdesc">통로와 배치에 필요한 여유를 반영합니다.</div></div></div>
+    <div class="step-item"><div class="step-num">5</div><div class="step-body"><div class="stitle">예상 임대면적 계산</div><div class="sdesc">후보 건물의 전용률을 적용합니다.</div></div></div>
+    <div class="step-item"><div class="step-num">6</div><div class="step-body"><div class="stitle">공간 구성 분석</div><div class="sdesc">임원·업무·회의·휴게·라운지·지원공간의 구성을 함께 분석합니다.</div></div></div>
+    <p style="margin-top:16px;">즉 OfficeFlow는 단순한 직원 수 × 1인당 평수 계산기가 아닙니다.</p>
+    <p><b>우리 회사에 필요한 실제 업무공간을 먼저 구성하고, 그 공간을 실제 면적으로 변환한 뒤 통로·배치 여유와 건물 전용률을 순차적으로 적용하는 방식으로 사무실 필요면적을 분석합니다.</b></p>
+
+    <h2 class="h2"><span class="num">11</span>분석 결과는 최종 설계가 아니라 의사결정의 출발점입니다</h2>
+    <p>OfficeFlow의 공간 분석 결과는 사무실 이전 초기 단계에서 "우리 회사에는 어느 정도의 공간이 필요한가?"를 판단하기 위한 기준입니다.</p>
+    <p>실제 후보 건물이 정해지면 건물 형태, 코어 위치, 기둥, 창호, 출입구, 설비, 실제 동선과 배치조건 등을 추가로 검토해야 합니다. GSA 자료에서도 건물의 코어 위치, 기둥 간격과 평면 형태 등에 따라 공간 효율과 필요한 Circulation Area가 달라질 수 있다고 설명합니다.</p>
+    <p>따라서 OfficeFlow의 자동 분석 결과가 특정 건물에서 그대로 구현된다는 의미는 아닙니다. 후보 건물이 정해진 이후에는 실제 도면을 기준으로 Test-Fit과 상세 Layout Planning을 진행해 배치 가능성을 확인해야 합니다.</p>
+    <div class="quote-line">필요면적 정의 → 매물 검토 → 후보 비교 → Test-Fit → Space Planning</div>
+    <p>으로 이어지는 사무실 이전 의사결정의 출발점입니다.</p>
+
+    <h2 class="h2"><span class="num">12</span>Methodology의 한계</h2>
+    <p>OfficeFlow의 분석 결과를 사용할 때 다음 사항을 함께 고려해야 합니다.</p>
+    <div class="limit-item"><div class="limit-title">공간별 계획면적은 법정 설계기준이 아닙니다.</div><div class="limit-desc">OfficeFlow가 초기 필요면적을 산정하기 위해 사용하는 계획값이며 실제 설계조건에 따라 달라질 수 있습니다.</div></div>
+    <div class="limit-item"><div class="limit-title">33.6%는 모든 사무실의 실제 통로 비율을 의미하지 않습니다.</div><div class="limit-desc">OfficeFlow의 초기 공간계획 기준이며 건물 형태와 공간구성에 따라 실제 비율은 달라질 수 있습니다.</div></div>
+    <div class="limit-item"><div class="limit-title">전용률 참고범위는 시장 전체를 대표하는 공식 통계가 아닙니다.</div><div class="limit-desc">실제 후보 건물의 전용률을 확인해야 합니다.</div></div>
+    <div class="limit-item"><div class="limit-title">Benchmark의 평균은 적정값을 의미하지 않습니다.</div><div class="limit-desc">실제 기업의 관찰값과 OfficeFlow가 사용하는 계획기준은 구분합니다.</div></div>
+    <div class="limit-item"><div class="limit-title">OfficeFlow의 자동 분석은 최종 설계를 대신하지 않습니다.</div><div class="limit-desc">실제 배치 가능 여부는 후보 건물의 도면을 이용한 Test-Fit과 상세 공간계획을 통해 확인해야 합니다.</div></div>
+
+    <h2 class="h2">자주 묻는 질문</h2>
+    <div class="faq-item"><div class="faq-q"><span class="qmark">Q.</span>직원 수만으로 사무실 면적을 계산하면 안 되나요?</div><div class="faq-a">대략적인 추정에는 사용할 수 있지만 OfficeFlow는 직원 수만으로 필요면적을 결정하지 않습니다. 같은 인원이라도 업무석 규격, 임원실, 회의실, 라운지, 지원공간과 업무방식에 따라 필요한 면적이 달라질 수 있기 때문입니다.</div></div>
+    <div class="faq-item"><div class="faq-q"><span class="qmark">Q.</span>'실제 업무공간'은 무엇을 의미하나요?</div><div class="faq-a">OfficeFlow에서 실제 업무공간은 업무석뿐만 아니라 임원실, 회의실, 라운지, 폰부스, OA, 탕비, 수납·창고 등 기업이 실제 사용 목적으로 구성한 공간의 합계를 의미합니다. 통로와 배치 여유는 별도로 계산합니다.</div></div>
+    <div class="faq-item"><div class="faq-q"><span class="qmark">Q.</span>공간별 계획면적은 법으로 정해진 값인가요?</div><div class="faq-a">아닙니다. OfficeFlow가 사무실 이전 초기 단계에서 필요면적을 산정하기 위해 사용하는 계획값입니다. 실제 설계에서는 가구 규격, 건물 형태, 설비와 동선 등을 추가로 검토해야 합니다.</div></div>
+    <div class="faq-item"><div class="faq-q"><span class="qmark">Q.</span>왜 통로·배치 여유를 33.6%로 계산하나요?</div><div class="faq-a">33.6%는 OfficeFlow의 Planning Standard입니다. GSA의 Circulation Planning 자료, Duvall과 Whitney의 workplace planning 실무자료, 국내 오피스 공간구성 데이터를 참고해 초기 필요면적 산정을 위한 실무 계획값으로 설정했습니다. GSA는 일반적인 planning rule of thumb으로 Circulation Area가 전체 Usable Area의 약 25~40%를 차지한다고 설명하고, Duvall과 Whitney는 기존형(Legacy) 오피스의 circulation을 일반적으로 25~35% 수준으로 설명합니다. 다만 두 자료 모두 실제 비율은 공간구성과 건물 효율에 따라 달라질 수 있다고 설명합니다.</div></div>
+    <div class="faq-item"><div class="faq-q"><span class="qmark">Q.</span>33.6%를 실제 업무공간에 그대로 더하면 되나요?</div><div class="faq-a">아닙니다. 33.6%는 최종 전용면적에서 통로·배치 여유가 차지하는 비율입니다. 따라서 실제 업무공간은 전용면적의 66.4%가 되며, 필요 전용면적 = 실제 업무공간 합계 ÷ 0.664 로 계산합니다.</div></div>
+    <div class="faq-item"><div class="faq-q"><span class="qmark">Q.</span>국내 오피스 Benchmark가 바뀌면 33.6%도 자동으로 바뀌나요?</div><div class="faq-a">아닙니다. Benchmark Data는 실제 오피스에서 관찰된 값이고, 33.6%는 OfficeFlow가 계산에 사용하는 Planning Standard이기 때문입니다. 새로운 Benchmark는 Planning Standard를 검토하는 근거가 될 수 있지만, 기준 변경은 별도의 검토와 Version Update를 거쳐야 합니다.</div></div>
+    <div class="faq-item"><div class="faq-q"><span class="qmark">Q.</span>OfficeFlow 결과와 실제 설계면적은 동일한가요?</div><div class="faq-a">아닙니다. OfficeFlow 결과는 초기 의사결정을 위한 공간계획값입니다. 실제 배치 가능 여부는 후보 건물의 도면을 기준으로 Test-Fit과 상세 Layout Planning을 통해 확인해야 합니다.</div></div>
+
+    <h2 class="h2">Reference</h2>
+    <p style="font-weight:700;color:var(--glow-dot);margin-bottom:10px;">External Reference</p>
+
+    <div class="ref-item">
+      <div class="ref-name">U.S. General Services Administration &amp; Gensler</div>
+      <div class="ref-cite">Circulation: Defining and Planning, May 11, 2012.</div>
+      <div class="ref-desc">이 자료는 Net Area, Circulation Area, Usable Area 및 Rentable Area의 관계와 Circulation Factor/Multiplier의 차이를 설명합니다. 또한 일반적인 공간계획 참고범위로 Circulation Area가 Usable Area의 약 25~40%를 차지한다고 설명하며, 실제 사무공간 사례 분석 결과 Circulation Factor는 약 28~38%(사례 평균 약 33%)로 나타났다고 제시합니다.</div>
+      <div class="ref-url">원문: wbdg.org/FFC/DOD/UFC/600SERIES/RESOURCES/Circulation_-_Defining_and_Planning.pdf</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-name">Cheryl Duvall &amp; Dudley Whitney (Avancé LLC)</div>
+      <div class="ref-cite">Are You Giving Your Workplace Clients Enough Office Space?, I+S Design / IFMA Knowledge Library, 2018.</div>
+      <div class="ref-desc">이 자료는 실무 workplace planning 연구를 바탕으로, 기존형(Legacy) 오피스의 circulation은 일반적으로 25~35% 수준이며 보다 개방적인 오피스에서는 40~45% 이상까지 나타날 수 있다고 설명합니다.</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-name">ANSI/BOMA Z65.1-1996</div>
+      <div class="ref-cite">Standard Method for Measuring Floor Area in Office Buildings.</div>
+      <div class="ref-desc">이 표준은 Office Building의 Usable Area, Rentable Area 등 면적의 정의·측정 방식을 다루는 표준입니다. 통로·배치 여유(circulation) 비율의 적정 범위를 직접 제시하는 자료가 아니며, OfficeFlow는 이 표준을 25~35% 등 특정 circulation 수치의 출처로 사용하지 않습니다.</div>
+    </div>
+
+    <p style="font-weight:700;color:var(--glow-dot);margin:22px 0 10px;">Domestic Benchmark Data</p>
+    <p>OfficeFlow는 국내 기업 오피스의 공간구성 분석 데이터를 Benchmark 및 Planning Standard 검토를 위한 참고자료로 활용합니다.</p>
+    <p><b>단, Benchmark에서 관찰된 평균값과 OfficeFlow의 Planning Standard를 동일한 값으로 취급하지 않습니다.</b></p>
+    <p>또한 외부 공개가 제한된 데이터는 해당 데이터의 공개 권한과 이용조건을 확인한 범위에서만 사용합니다.</p>
+
+    <h2 class="h2">Methodology Version</h2>
+    <div class="vh-block">
+      <div class="vh-ver">v1.0 · 2026.08.28</div>
+      <ul class="vh-list">
+        <li>OfficeFlow 공간 분석 방법론 최초 공개</li>
+        <li>실제 업무공간 정의</li>
+        <li>공간별 계획면적 정의</li>
+        <li>통로·배치 여유 33.6%의 성격을 OfficeFlow Planning Standard로 명확화</li>
+        <li>GSA Circulation Reference 반영</li>
+        <li>Duvall &amp; Whitney(2018) workplace planning Reference 추가</li>
+        <li>ANSI/BOMA Z65.1-1996의 역할을 면적 측정 표준으로 명확히 하고, circulation 수치의 출처로 사용하지 않음을 명시</li>
+        <li>휴게·라운지 계획면적과 지원공간 계획면적을 별도 항목으로 구분</li>
+        <li>External Reference / Benchmark Data / OfficeFlow Planning Standard 구분</li>
+        <li>전용면적 및 예상 임대면적 계산방식 정의</li>
+        <li>Methodology 적용범위 및 한계 명시</li>
+      </ul>
+    </div>
+    <p class="footnote">향후 공간계획 기준이나 주요 계산식이 변경되는 경우 Methodology Version과 변경 내용을 함께 기록합니다.</p>
+
+  <div class="final-cta">
+    <div class="final-title">우리 회사에 필요한 공간을 직접 확인해보세요</div>
+    <div class="final-sub">
+      직원 수와 필요한 공간을 선택하면<br>
+      OfficeFlow가 실제 업무공간 면적, 필요 전용면적, 예상 임대면적, 공간 구성 비율을 분석합니다.
+    </div>
+    <a class="cta-btn" href="/#s2" onclick="gtagEvent('methodology_cta_click')">OfficeFlow 공간 분석 시작하기 ›</a>
   </div>
 
   <footer>
