@@ -3681,7 +3681,7 @@ function goHome() {
   window._calc  = null;
   window._leadId = null;
 
-  s2GoStep(1);
+  s2GoStep(1, true);
 
   go('s1');
 }
@@ -4308,7 +4308,7 @@ var S2_STEPS = [
   { label: '✅ 결과 확인',             pct: 100 },
 ];
 
-function s2GoStep(step) {
+function s2GoStep(step, skipGuide) {
   if (step === 1 && typeof _s2Step !== 'undefined' && _s2Step !== 1) {
     gtagEvent('calculator_started');
   }
@@ -4324,7 +4324,7 @@ function s2GoStep(step) {
     if (screen) screen.scrollTop = 0;
   }
 
-  if (typeof showGuide === 'function') {
+  if (!skipGuide && typeof showGuide === 'function') {
     setTimeout(function() { showGuide(step); }, 500);
   }
 
