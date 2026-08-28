@@ -277,19 +277,34 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
     </ul>
 
     <h2 class="h2"><span class="num">Chapter 03</span>필요한 전용면적과 임대면적을 계산합니다</h2>
-    <p>공간 목록이 나오면 각 공간의 면적을 합산합니다. 그런데 이 합계가 곧 필요한 전용면적은 아닙니다.</p>
-    <p>사람이 이동하는 통로와 가구 배치를 위한 여유공간이 추가로 필요합니다. OfficeFlow는 이 여유를 반영하기 위해 <b>33.6%</b>를 자체 기준값으로 적용하고 있습니다.</p>
-    <p>예를 들어 직원 50명 기준으로 임원실·업무석·회의실·라운지·지원공간을 구성하면, 통로와 배치 여유를 반영한 전용면적은 약 181평이 됩니다.</p>
-    <div class="formula-box">필요한 공간 합계 ÷ 0.664 = 전용면적</div>
-    <p>사무실 매물은 임대면적을 기준으로 안내되는 경우가 많기 때문에, 건물의 전용률을 적용해 임대면적까지 계산해야 합니다. 서울 오피스 빌딩의 일반적인 전용률 범위는 아래와 같습니다. <span style="font-size:12px;color:var(--muted);">(OfficeFlow 실무 적용 기준)</span></p>
+    <p>임원실·업무공간·회의실·라운지·지원공간처럼 실제 사용 목적이 있는 공간의 면적을 먼저 합산합니다. OfficeFlow에서는 이를 <b>실제 업무공간</b>이라고 부릅니다. 그런데 이 합계가 곧 필요한 전용면적이 되는 것은 아닙니다.</p>
+    <p>각 공간의 면적 외에도 사람이 이동하는 통로와 의자 사용, 가구 배치 등에 필요한 여유공간을 함께 고려해야 합니다. OfficeFlow는 최종 전용면적 중 <b>33.6%</b>를 통로 및 배치 여유공간으로 가정하고 있습니다.</p>
+    <p style="font-size:11px;color:var(--muted);line-height:1.7;">※ 33.6%는 BOMA(Building Owners and Managers Association International) 실무 가이드의 circulation factor(25~35%) 범위 내에서, 퍼시스 공간 DB 국내 기업 평균을 적용한 OfficeFlow의 실무 적용 기준입니다. 실제 비율은 건물 형태와 공간 구성에 따라 달라질 수 있습니다.</p>
+    <p>예를 들어 직원 50명을 기준으로 임원실·업무석·회의실·라운지·지원공간을 구성한 하나의 사례에서는, 통로와 배치 여유를 반영한 전용면적이 약 181평으로 계산됩니다. <span style="color:var(--muted);">181평은 50명 기업의 표준값이 아니라, 위 공간 구성을 입력했을 때 산출되는 예시 결과입니다.</span></p>
+    <div class="formula-box">필요 전용면적 = 실제 업무공간 합계 ÷ 0.664</div>
+    <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:-12px;">실제 업무공간 66.4% + 통로·배치 여유 33.6%</p>
+    <p>사무실 매물은 임대면적을 기준으로 안내되는 경우가 많기 때문에, 건물의 전용률을 적용해 임대면적까지 계산해야 합니다.</p>
+    <p style="font-weight:700;color:#fff;margin-bottom:10px;">OfficeFlow가 초기 매물 검토에 사용하는 전용률 참고 범위</p>
     <div class="rate-table">
       <div class="rate-row"><span class="rlabel">프라임 빌딩</span><span class="rval">전용률 55~60%</span></div>
       <div class="rate-row"><span class="rlabel">일반 오피스</span><span class="rval">전용률 60~65%</span></div>
       <div class="rate-row"><span class="rlabel">지식산업센터·소규모</span><span class="rval">전용률 65~75%</span></div>
     </div>
-    <p>전용면적에 전용률 60~65%를 적용하면 필요한 임대면적을 산출할 수 있습니다.</p>
-    <div class="formula-box">전용면적 ÷ 전용률 0.60~0.65 = 임대면적</div>
-    <p>이 숫자가 있어야 부동산에 정확하게 요청할 수 있고, 매물을 비교할 수 있습니다.</p>
+    <p style="font-size:11px;color:var(--muted);line-height:1.7;">※ 위 범위는 서울 오피스 전체의 공식 통계가 아니라 OfficeFlow가 초기 매물 검토에 활용하는 실무적 비교 기준입니다. 실제 전용률은 건물별로 다릅니다.</p>
+    <p>검토 중인 건물의 전용률을 적용하면 필요한 임대면적을 계산할 수 있습니다.</p>
+    <div class="formula-box">필요 임대면적 = 전용면적 ÷ 건물 전용률</div>
+    <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:-12px;">예: 전용률 60~65% → 전용면적 ÷ 0.60~0.65</p>
+    <p>필요 임대면적을 먼저 계산해두면 부동산에 보다 정확한 조건으로 매물을 요청하고, 여러 매물을 같은 기준에서 비교할 수 있습니다.</p>
+
+    <div class="source-box">
+      <div class="source-title">OfficeFlow 면적 산정 4단계</div>
+      <div style="font-size:13px;color:var(--text-sub);line-height:2;">
+        ① 실제 업무공간 — 임원실·업무공간·회의실·라운지·지원공간 합계<br>
+        ② 필요 전용면적 — 실제 업무공간 ÷ 0.664<br>
+        ③ 필요 임대면적 — 전용면적 ÷ 건물 전용률<br>
+        ④ 매물 탐색 조건 — 예: "전용 120평 / 임대 약 181~200평 규모의 사무실"
+      </div>
+    </div>
 
     <div class="figure">
       <img src="images/input-number.jpg" alt="OfficeFlow 공간 입력부터 필요 임대면적 계산까지 — 직원 50명 기준" loading="lazy">
@@ -312,7 +327,6 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       <div class="source-title">OfficeFlow 분석 기준</div>
       <ul class="source-list">
         <li>공간 비율 비교는 <b>퍼시스 공간 DB</b>의 국내 사무환경 데이터를 기반으로 합니다.</li>
-        <li>통로 및 배치 여유는 OfficeFlow 내부 공간계획 기준인 <b>33.6%</b>를 적용합니다.</li>
       </ul>
     </div>
 
