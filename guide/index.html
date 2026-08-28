@@ -120,14 +120,26 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #000000; color: #FFF
 .link-item.disabled .arrow { color: var(--muted); }
 .link-item.disabled .soon { font-size: 10.5px; font-weight: 700; color: var(--muted); background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 20px; margin-left: 8px; }
 
+/* ── Methodology 링크 — Featured 카드와 동일한 가로폭, 세로는 컴팩트하게 ── */
+.methodology-link {
+  display: flex; align-items: center; justify-content: center; gap: 12px; text-decoration: none;
+  margin: 0 24px 24px;
+  background: rgba(77,186,255,0.06); border: 1px solid rgba(77,186,255,0.25);
+  border-radius: 12px; padding: 14px 16px;
+}
+.methodology-link .m-icon { display: flex; align-items: center; flex-shrink: 0; }
+.methodology-link .m-body { text-align: center; }
+.methodology-link .m-title { display: block; font-size: 13.5px; font-weight: 700; color: #FFFFFF; margin-bottom: 3px; }
+.methodology-link .m-desc { display: block; font-size: 12px; color: var(--muted); line-height: 1.5; }
+
 footer { background: #000000; border-top: 1px solid var(--border-mid); padding: 28px 24px; text-align: center; margin-top: 32px; }
 footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
 
 @media (max-width: 480px) {
   :root { --max: 100%; }
-  .page-head, .featured, .section-block, .crumb { margin-left: 0; margin-right: 0; }
+  .page-head, .featured, .section-block, .crumb, .methodology-link { margin-left: 0; margin-right: 0; }
   .page-head, .section-block { padding-left: 18px; padding-right: 18px; }
-  .featured { margin-left: 18px; margin-right: 18px; }
+  .featured, .methodology-link { margin-left: 18px; margin-right: 18px; }
 }
 @media (min-width: 768px) {
   :root { --max: 680px; }
@@ -228,6 +240,14 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
       <div class="featured-desc">매물부터 찾지 마세요.<br>공간 정의부터 면적 계산, 적정성 분석, 보고서까지 —<br>OfficeFlow가 사무실 이전을 바라보는 방식을 담았습니다.</div>
       <div class="featured-link">가이드 읽기 →</div>
     </div>
+  </a>
+
+  <a class="methodology-link" href="/methodology/office-space-calculation/" onclick="gtagEvent('guide_hub_click',{target:'methodology'})">
+    <span class="m-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="#4DBAFF" stroke-width="1.6"/><path d="M19.5 19.5l-4.3-4.3" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+    <span class="m-body">
+      <span class="m-title">OfficeFlow는 사무실 면적을 어떻게 계산하나요?</span>
+      <span class="m-desc">모든 가이드와 보고서가 참조하는 공식 계산 기준입니다.</span>
+    </span>
   </a>
 
   <div class="section-block">
