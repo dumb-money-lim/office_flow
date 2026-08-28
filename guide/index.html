@@ -122,15 +122,14 @@ body { font-family: 'Noto Sans KR', sans-serif; background: #000000; color: #FFF
 
 /* ── Methodology 링크 — Featured 카드와 동일한 가로폭, 세로는 컴팩트하게 ── */
 .methodology-link {
-  display: flex; align-items: center; justify-content: center; gap: 12px; text-decoration: none;
+  display: block; text-decoration: none;
   margin: 0 24px 24px;
   background: rgba(77,186,255,0.06); border: 1px solid rgba(77,186,255,0.25);
-  border-radius: 12px; padding: 14px 16px;
+  border-radius: 16px; padding: 20px 20px 22px;
 }
-.methodology-link .m-icon { display: flex; align-items: center; flex-shrink: 0; }
-.methodology-link .m-body { text-align: center; }
-.methodology-link .m-title { display: block; font-size: 13.5px; font-weight: 700; color: #FFFFFF; margin-bottom: 3px; }
-.methodology-link .m-desc { display: block; font-size: 12px; color: var(--muted); line-height: 1.5; }
+.methodology-link .m-title { font-family: 'DM Sans', sans-serif; font-size: 19px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.3px; margin-bottom: 8px; line-height: 1.35; }
+.methodology-link .m-desc { font-size: 13px; color: var(--text-sub); line-height: 1.7; margin-bottom: 10px; }
+.methodology-link .m-cta { font-size: 13px; font-weight: 700; color: var(--glow-dot); }
 
 footer { background: #000000; border-top: 1px solid var(--border-mid); padding: 28px 24px; text-align: center; margin-top: 32px; }
 footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
@@ -243,11 +242,9 @@ footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
   </a>
 
   <a class="methodology-link" href="/methodology/office-space-calculation/" onclick="gtagEvent('guide_hub_click',{target:'methodology'})">
-    <span class="m-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="#4DBAFF" stroke-width="1.6"/><path d="M19.5 19.5l-4.3-4.3" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-    <span class="m-body">
-      <span class="m-title">OfficeFlow는 사무실 면적을 어떻게 계산하나요?</span>
-      <span class="m-desc">모든 가이드와 보고서가 참조하는 공식 계산 기준입니다.</span>
-    </span>
+    <div class="m-title">OfficeFlow 공간 분석 기준</div>
+    <div class="m-desc">공간별 기준면적 · 통로·배치 여유 · 전용률 · 분석 방식</div>
+    <div class="m-cta">분석 기준 보기 →</div>
   </a>
 
   <div class="section-block">
