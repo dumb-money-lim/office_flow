@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PR98EB6S3K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PR98EB6S3K');
+  function gtagEvent(name, params) { try { gtag('event', name, params || {}); } catch(e) {} }
+  (function() {
+    var fired = false;
+    window.addEventListener('scroll', function() {
+      if (fired) return;
+      var scrolled = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (scrolled >= 0.9) { fired = true; gtagEvent('scroll_90'); }
+    }, { passive: true });
+  })();
+  setTimeout(function() { gtagEvent('time_on_page_60s'); }, 60000);
+</script>
+
+<!-- ═══════════════════════════════════════
+     PRIMARY SEO META
+════════════════════════════════════════ -->
+<title>사무실 레이아웃, 같은 평수라도 배치가 달라지는 이유 - OfficeFlow(오피스플로우)</title>
+<meta name="description" content="사무실 레이아웃은 전용면적이 같다고 같은 결과가 나오지 않습니다. 건물 조건과 회사의 공간 구성 방식에 따라 후보 도면에서 실제 배치 가능성을 확인해야 하는 이유를 설명합니다.">
+<meta name="author" content="OfficeFlow(오피스플로우)">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://office-flow.co.kr/guide/office-layout/">
+
+<!-- ═══════════════════════════════════════
+     OPEN GRAPH
+════════════════════════════════════════ -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="OfficeFlow">
+<meta property="og:title" content="사무실 레이아웃, 같은 평수라도 배치가 달라지는 이유">
+<meta property="og:description" content="같은 전용면적인데 왜 사무실마다 실제 배치가 다를까요? 건물 조건과 회사의 공간 구성 방식이라는 두 가지 변수를 설명합니다.">
+<meta property="og:url" content="https://office-flow.co.kr/guide/office-layout/">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://office-flow.co.kr/og_image.png?v=2">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="사무실 레이아웃, 같은 평수라도 배치가 달라지는 이유">
+<meta name="twitter:description" content="같은 전용면적인데 왜 실제 배치가 다를까요? OfficeFlow가 설명합니다.">
+<meta name="twitter:image" content="https://office-flow.co.kr/og_image.png?v=2">
+
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- ═══════════════════════════════════════
+     구조화 데이터
+════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://office-flow.co.kr/#organization",
+      "name": "OfficeFlow",
+      "alternateName": ["오피스플로우", "Office.Flow"],
+      "url": "https://office-flow.co.kr",
+      "logo": { "@type": "ImageObject", "url": "https://office-flow.co.kr/apple-touch-icon.png" }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://office-flow.co.kr/guide/office-layout/#article",
+      "headline": "사무실 레이아웃, 같은 평수라도 배치가 달라지는 이유",
+      "description": "사무실 레이아웃은 전용면적이 같다고 같은 결과가 나오지 않습니다. 건물 조건과 회사의 공간 구성 방식에 따라 후보 도면에서 실제 배치 가능성을 확인해야 합니다.",
+      "datePublished": "2026-09-02",
+      "dateModified": "2026-09-02",
+      "inLanguage": "ko-KR",
+      "author": { "@id": "https://office-flow.co.kr/#organization" },
+      "publisher": { "@id": "https://office-flow.co.kr/#organization" },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://office-flow.co.kr/guide/office-layout/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://office-flow.co.kr/" },
+        { "@type": "ListItem", "position": 2, "name": "가이드", "item": "https://office-flow.co.kr/guide/" },
+        { "@type": "ListItem", "position": 3, "name": "사무실 레이아웃, 같은 평수라도 배치가 달라지는 이유", "item": "https://office-flow.co.kr/guide/office-layout/" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=DM+Sans:wght@400;500;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet"></noscript>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans KR', sans-serif; background: #000000; color: #FFFFFF; -webkit-font-smoothing: antialiased; }
+:root {
+  --brand: #09090B; --bg: #09090B; --bg-deep: #050C0E; --card: #0F1419;
+  --text: #FFFFFF; --text-sub: #DDDDDD; --muted: #999999;
+  --glow-dot: #4DBAFF; --accent: #4A9EFF; --accent2: #00D4FF;
+  --border: rgba(255,255,255,0.08); --border-mid: rgba(255,255,255,0.13);
+  --radius: 14px; --max: 720px;
+}
+img { max-width: 100%; display: block; }
+.wrap { max-width: var(--max); margin: 0 auto; background: var(--bg); }
+
+.topnav { background: rgba(9,9,11,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-mid); padding: 0 24px; height: 58px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+.logo { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 800; color: #E0E0E0; letter-spacing: 1px; text-decoration: none; }
+.logo span { color: var(--glow-dot); }
+
+.crumb { padding: 14px 24px 0; font-size: 12px; color: var(--muted); }
+.crumb a { color: var(--muted); text-decoration: none; }
+.crumb a:hover { color: var(--glow-dot); }
+
+.hero-block { padding: 28px 24px 8px; }
+.hero-eyebrow { color: var(--glow-dot); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 14px; }
+.hero-title { font-family: 'DM Sans', sans-serif; font-size: clamp(26px, 5.5vw, 36px); font-weight: 800; line-height: 1.3; letter-spacing: -0.8px; margin-bottom: 10px; }
+
+.article { padding: 8px 24px 0; }
+.article p { font-size: 15px; line-height: 1.85; color: var(--text-sub); margin-bottom: 16px; }
+.article p b, .article p strong { color: #FFFFFF; font-weight: 700; }
+.h2 { font-family: 'DM Sans', sans-serif; font-size: 21px; font-weight: 800; letter-spacing: -0.4px; color: #FFFFFF; margin: 36px 0 14px; }
+.h2 .num { color: var(--glow-dot); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 6px; }
+.quote-line { font-size: 15px; color: #FFFFFF; font-weight: 700; background: rgba(77,186,255,0.08); border-left: 3px solid rgba(77,186,255,0.5); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 18px 0; }
+.flow-line { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--glow-dot); text-align: center; line-height: 1.9; background: var(--card); border: 1px solid rgba(77,186,255,0.2); border-radius: 12px; padding: 16px 14px; margin: 20px 0; }
+
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
+.compare-card { background: var(--card); border: 1px solid var(--border-mid); border-radius: 12px; padding: 16px; }
+.compare-card .cname { font-size: 13px; font-weight: 700; color: var(--glow-dot); margin-bottom: 8px; }
+.compare-card .cline { font-size: 12.5px; color: var(--text-sub); margin-bottom: 4px; }
+.compare-card .cresult { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 800; color: #FFFFFF; margin-top: 8px; line-height: 1.5; }
+@media (max-width: 420px) { .compare-grid { grid-template-columns: 1fr; } }
+
+.footnote { font-size: 11px; color: var(--muted); line-height: 1.7; margin: 6px 0 20px; }
+
+/* ── AEO 답변 박스 (이 템플릿의 시그니처 컴포넌트) ── */
+.aeo-box { background: linear-gradient(165deg, rgba(74,158,255,0.12) 0%, rgba(0,212,255,0.03) 100%); border: 1.5px solid rgba(74,158,255,0.35); border-radius: 16px; padding: 20px 20px 22px; margin: 18px 24px 8px; box-shadow: 0 0 30px rgba(0,212,255,0.06); }
+.aeo-q { font-size: 11px; font-weight: 700; color: var(--glow-dot); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.aeo-question { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.3px; line-height: 1.4; margin-bottom: 12px; }
+.aeo-answer { font-size: 14.5px; color: var(--text-sub); line-height: 1.8; }
+.aeo-answer b { color: var(--glow-dot); font-weight: 700; }
+
+/* ── Next Action 3갈래 카드 ── */
+.next-action-title { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 800; color: #FFFFFF; margin: 40px 24px 12px; letter-spacing: -0.2px; }
+.next-action-list { display: flex; flex-direction: column; gap: 10px; padding: 0 24px 8px; }
+.na-card { display: flex; align-items: center; gap: 14px; text-decoration: none; background: var(--card); border: 1px solid var(--border-mid); border-radius: 12px; padding: 14px 16px; transition: border-color 0.15s; }
+.na-card:hover { border-color: rgba(77,186,255,0.4); }
+.na-icon { flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px; background: rgba(77,186,255,0.1); display: flex; align-items: center; justify-content: center; }
+.na-body { flex: 1; min-width: 0; }
+.na-q { font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+.na-a { font-size: 14px; font-weight: 700; color: #FFFFFF; }
+.na-arrow { flex-shrink: 0; color: var(--glow-dot); font-size: 16px; }
+
+footer { background: #000000; border-top: 1px solid var(--border-mid); padding: 28px 24px; text-align: center; margin-top: 24px; }
+footer p { color: rgba(255,255,255,0.22); font-size: 12px; line-height: 1.8; }
+
+@media (max-width: 480px) {
+  :root { --max: 100%; }
+  .hero-block, .article, .crumb { padding-left: 18px; padding-right: 18px; }
+  .hero-title { font-size: 24px; }
+  .article p { font-size: 14.5px; }
+  .aeo-box { margin-left: 18px; margin-right: 18px; }
+  .next-action-title, .next-action-list { padding-left: 18px; padding-right: 18px; }
+}
+@media (min-width: 768px) {
+  :root { --max: 680px; }
+  .wrap { margin: 24px auto; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(77,186,255,0.08); }
+}
+@media (min-width: 1100px) { :root { --max: 860px; } .wrap { margin: 32px auto; border-radius: 24px; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <nav class="topnav">
+    <a class="logo" href="/">Office<span>.</span>Flow</a>
+  </nav>
+
+  <div class="crumb"><a href="/">홈</a> / <a href="/guide/">가이드</a> / 사무실 레이아웃, 같은 평수라도 배치가 달라지는 이유</div>
+
+  <div class="hero-block">
+    <div class="hero-eyebrow">OfficeFlow Guide</div>
+    <h1 class="hero-title">사무실 레이아웃, 같은 평수라도 배치가 달라지는 이유</h1>
+  </div>
+
+  <div class="aeo-box">
+    <div class="aeo-q">Q.</div>
+    <div class="aeo-question">같은 전용면적인데 왜 사무실마다 실제 배치가 다른가요?</div>
+    <div class="aeo-answer">건물의 평면 형태·코어·기둥 위치 같은 <b>건물 조건</b>과, 회사의 <b>좌석·공간 구성 방식</b>에 따라 실제 배치 결과는 달라질 수 있습니다.</div>
+  </div>
+
+  <div class="article">
+
+    <h2 class="h2"><span class="num">01</span>건물 조건에 따라 달라집니다</h2>
+    <p>같은 전용면적이라도 평면의 가로·세로 비율, 코어와 기둥의 위치, 창호와 출입구가 어디에 있는지에 따라 공간을 실제로 배치할 수 있는 조건은 달라집니다.</p>
+    <p>기둥이나 코어의 위치에 따라 좌석과 회의실을 배치할 수 있는 위치가 제한되거나, 필요한 동선을 확보하기 위해 배치 계획을 조정해야 할 수 있습니다.</p>
+
+    <h2 class="h2"><span class="num">02</span>회사의 공간 구성 방식에 따라 달라집니다</h2>
+    <p>건물 조건만큼 중요한 변수가 하나 더 있습니다. 회사가 공간을 사용하는 방식입니다.</p>
+    <p>실제 사무환경 프로젝트 경험에서 반복적으로 확인한 패턴이 있습니다. 직원 50명, 책상은 동일하게 W1600 사이즈를 쓰는 두 회사도 필요한 배치 면적이 서로 다를 수 있습니다.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="cname">팀장석 별도 구성 없음</div>
+        <div class="cline">동일 좌석 체계 적용</div>
+        <div class="cresult">팀원석과 같은 배치 기준</div>
+      </div>
+      <div class="compare-card">
+        <div class="cname">팀장석 별도 구성</div>
+        <div class="cline">팀원석과 구분 배치</div>
+        <div class="cresult">배치 조건 추가 고려</div>
+      </div>
+    </div>
+
+    <p>팀장도 팀원과 동일한 좌석 체계를 사용하는 경우, 팀장석을 별도의 영역으로 구분하지 않고 팀원석과 같은 배치 기준을 적용할 수 있습니다.</p>
+    <p>반대로 팀장석을 별도로 구성하는 경우, 책상 크기는 같더라도 팀장석을 팀원석과 구분해 배치하기 위한 공간을 고려해야 합니다. 이 차이가 누적되면 같은 인원이라도 전체 좌석 배치에 필요한 면적이 달라질 수 있습니다.</p>
+    <p>이런 차이는 회의공간이나 휴게 및 라운지 공간에서도 나타납니다. 회의실을 어떤 규모로 몇 개 구성하는지, 휴게 및 라운지 공간을 어느 정도 확보하는지에 따라 같은 전용면적 안에서도 전체 공간 구성은 달라질 수 있습니다.</p>
+    <p>즉, 배치 결과가 달라지는 이유는 건물 조건 하나 때문이 아닙니다. 같은 건물이라도 회사가 공간을 구성하는 방식에 따라 결과는 달라질 수 있습니다.</p>
+
+    <h2 class="h2"><span class="num">03</span>그래서 후보 도면에 실제로 배치해봐야 합니다</h2>
+    <div class="flow-line">필요한 면적 정의 → 후보 도면 확보 → 좌석·필요 공간 배치</div>
+    <div class="quote-line">이처럼 후보 도면에서 실제 공간 구성이 가능한지 확인하는 사전 배치 검토를 <b>Test-Fit</b>이라고 합니다.</div>
+    <p>전용면적만 보면 충분해 보였던 공간도 실제 좌석과 필요한 공간을 도면에 배치해보면 계획을 조정해야 하는 경우가 생길 수 있습니다.</p>
+
+    <h2 class="h2"><span class="num">04</span>면적 계산과 레이아웃 검토는 연결되어 있습니다</h2>
+    <div class="flow-line">필요한 공간 정의 → 필요 전용면적 계산 → 후보 매물 확보 → Test-Fit → 실제 배치 가능성 검토</div>
+    <p>필요 전용면적 계산은 후보를 좁히기 위한 출발점이고, 레이아웃 검토는 계산한 면적이 후보 도면에서 실제로 구현 가능한지 확인하는 다음 단계입니다.</p>
+    <p>둘은 별개의 작업이 아니라, 우리 회사에 맞는 사무실을 찾기 위해 순서대로 이어지는 하나의 과정입니다.</p>
+
+  </div>
+
+  <div class="next-action-title">상황에 맞게 선택하세요</div>
+  <div class="next-action-list">
+
+    <a class="na-card" href="/methodology/office-space-calculation/" onclick="gtagEvent('guide_layout_next_action',{target:'methodology'})">
+      <span class="na-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 19.5V6a2 2 0 012-2h8.5L20 8.5V19.5a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 014 19.5z" stroke="#4DBAFF" stroke-width="1.6"/><path d="M8 12h8M8 16h5" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+      <span class="na-body">
+        <span class="na-q">계산 기준이 궁금하신가요?</span>
+        <span class="na-a">OfficeFlow 공간 분석 기준 보기</span>
+      </span>
+      <span class="na-arrow">→</span>
+    </a>
+
+    <a class="na-card" href="/#s2" onclick="gtagEvent('guide_layout_next_action',{target:'calculator'})">
+      <span class="na-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="#4DBAFF" stroke-width="1.6"/><path d="M8 8h8M8 12h3M13 12h3M8 16h3M13 16h3" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+      <span class="na-body">
+        <span class="na-q">우리 회사 필요면적이 궁금하신가요?</span>
+        <span class="na-a">지금 바로 계산하기</span>
+      </span>
+      <span class="na-arrow">→</span>
+    </a>
+
+    <a class="na-card" href="/contact/?source=guide_layout" onclick="gtagEvent('guide_layout_next_action',{target:'contact'})">
+      <span class="na-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 13v-1a8 8 0 0116 0v1" stroke="#4DBAFF" stroke-width="1.6" stroke-linecap="round"/><rect x="2.5" y="12" width="4" height="7" rx="2" stroke="#4DBAFF" stroke-width="1.6"/><rect x="17.5" y="12" width="4" height="7" rx="2" stroke="#4DBAFF" stroke-width="1.6"/></svg></span>
+      <span class="na-body">
+        <span class="na-q">후보 도면을 이미 가지고 계신가요?</span>
+        <span class="na-a">OfficeFlow 전문가에게 상담하기</span>
+      </span>
+      <span class="na-arrow">→</span>
+    </a>
+
+  </div>
+
+  <footer>
+    <p>Office.Flow &nbsp;|&nbsp; 공간의 기준은 우리 안에 있습니다.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
